@@ -95,13 +95,13 @@
 
 
 
-<meta name="description" content="solr高级查询-edismax函数详解 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如">
+<meta name="description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
 <meta name="keywords" content="solr,edismax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="solr高级查询edismax函数详解">
 <meta property="og:url" content="http://www.lilhui.com/2017/09/11/solr-高级查询/index.html">
 <meta property="og:site_name" content="Lilhui&#39;s Notes">
-<meta property="og:description" content="solr高级查询-edismax函数详解 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如">
+<meta property="og:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:updated_time" content="2017-09-12T03:22:14.000Z">
+<meta property="og:updated_time" content="2017-09-12T08:08:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solr高级查询edismax函数详解">
-<meta name="twitter:description" content="solr高级查询-edismax函数详解 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如">
+<meta name="twitter:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
 <meta name="twitter:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 
 
@@ -403,7 +403,7 @@
       
 
       
-        <h1 id="solr高级查询-edismax函数详解"><a href="#solr高级查询-edismax函数详解" class="headerlink" title="solr高级查询-edismax函数详解"></a>solr高级查询-edismax函数详解</h1><blockquote>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p>
 </blockquote>
 <p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p>
@@ -648,7 +648,7 @@ sum(sqrt(x),log(y),z,0.5)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#solr高级查询-edismax函数详解"><span class="nav-number">1.</span> <span class="nav-text">solr高级查询-edismax函数详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bf函数列表"><span class="nav-number">1.1.</span> <span class="nav-text">bf函数列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景应用"><span class="nav-number">1.2.</span> <span class="nav-text">场景应用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bf函数列表"><span class="nav-number">2.</span> <span class="nav-text">bf函数列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景应用"><span class="nav-number">3.</span> <span class="nav-text">场景应用</span></a></li></ol></div>
             
 
           </div>
