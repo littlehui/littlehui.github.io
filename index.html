@@ -205,11 +205,79 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
 
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
       
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -331,10 +399,10 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+            <h1 id="solr高级查询-edismax函数详解"><a href="#solr高级查询-edismax函数详解" class="headerlink" title="solr高级查询-edismax函数详解"></a>solr高级查询-edismax函数详解</h1><blockquote>
 <p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p>
 </blockquote>
-<p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p>
+<p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p>
 <h2 id="bf函数列表"><a href="#bf函数列表" class="headerlink" title="bf函数列表"></a>bf函数列表</h2><ol>
 <li><p>constant<br> ~ 支持小数点的常量<br>例如，1.5，查询表达式就是：<em>val</em>:1.5</p>
 </li>
@@ -392,7 +460,13 @@ sum(sqrt(x),log(y),z,0.5)
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sqrt(log(1239781944)) = 3.0155174194591075  </div><div class="line">权重乘100 得:  </div><div class="line">301.55174194591075</div><div class="line">再加 27.811382  </div><div class="line">=329.36312394591073</div><div class="line"></div><div class="line">sqrt(log(1503334472)) = 3.029365546794402</div><div class="line">权重乘100 得:</div><div class="line">302.9365546794402</div><div class="line">再加 26.519054</div><div class="line">=329.45560867944016</div><div class="line"></div><div class="line">sqrt(log(1473820016)) = 3.0279439311841663</div><div class="line">权重乘100 得:</div><div class="line">302.79439311841663</div><div class="line">再加 26.511488</div><div class="line">=329.3058811184166</div></pre></td></tr></table></figure>
 <pre><code>纳尼。很奇怪为什么 9759987 计算最小 不对劲
-</code></pre>
+</code></pre><p>于是翻看原来前面查询的debug列表分析仔细看原来是<br>原图：</p>
+<p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
+<p>添加edismax后：<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
+<p>对比以上靓图，原来是我们的Qparser不一样。在普通查询的时候我么使用的是定制化的 SWMCLuceneQparser 查询解析器。而 用edimax后，解析器变成了 ExtendDismaxQparser 这两个差别在于 定制化的 SWMCLuceneQparser会将查询字段通过IK分词转换后进行查询。其parsedquery_tostring 变成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery&quot;:&quot;PhraseQuery(subject:\&quot;武 则 天\&quot;) PhraseQuery(message:\&quot;武 则 天\&quot;)&quot;,</div></pre></td></tr></table></figure></p>
+<p>ExtendDismaxQparser的 parsedquery_tostringshi :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery_toString&quot;:&quot;+((subject:武 subject:则 subject:天) (message:武 message:则 message:天)) (sqrt(log(long(dateline))))^10.0&quot;,</div></pre></td></tr></table></figure></p>
+<p>两者稍有不同，所以在计算最终权重的时候有些差异。</p>
+
           
         
       
@@ -751,10 +825,10 @@ sum(sqrt(x),log(y),z,0.5)
             
             
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
@@ -762,10 +836,10 @@ sum(sqrt(x),log(y),z,0.5)
             
             
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -802,7 +876,10 @@ sum(sqrt(x),log(y),z,0.5)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright" >
   
   &copy; 
   <span itemprop="copyrightYear">2017</span>
@@ -814,6 +891,13 @@ sum(sqrt(x),log(y),z,0.5)
   
 </div>
 
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
 
   <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
@@ -979,10 +1063,38 @@ sum(sqrt(x),log(y),z,0.5)
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
+
+
 
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
