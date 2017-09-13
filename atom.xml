@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Littlehui&#39;s Notes</title>
+  
+  <subtitle>天地那么大，世界那么辽阔。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.lilhui.com/"/>
+  <updated>2017-09-13T03:28:29.000Z</updated>
+  <id>http://www.lilhui.com/</id>
+  
+  <author>
+    <name>Littlehui</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>alfred结合七牛实现快速插入markdown格式图片</title>
+    <link href="http://www.lilhui.com/2017/09/13/blog/alfred%E7%BB%93%E5%90%88%E4%B8%83%E7%89%9B%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8F%92%E5%85%A5markdown%E6%A0%BC%E5%BC%8F%E5%9B%BE%E7%89%87/"/>
+    <id>http://www.lilhui.com/2017/09/13/blog/alfred结合七牛实现快速插入markdown格式图片/</id>
+    <published>2017-09-13T03:17:03.000Z</published>
+    <updated>2017-09-13T03:28:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/tiann/markdown-img-upload" target="_blank" rel="external">详细过程可以访问：https://github.com/tiann/markdown-img-upload</a></p><h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2><blockquote><p>由于retina截屏的图片会放大，所以在markdown脚本里做了处理：有遇到缩放的会进行指定宽度大小。所以会插入&lt;img 标签。但是这不符合markdown的图片方式，这里做了一下改进。将 计算后的size插入七牛的样式图片里就可以解决。</p></blockquote><p>打开workflow的脚本修改保存<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">from</span> clipboard <span class="keyword">import</span> get_paste_img_file</div><div class="line"><span class="keyword">from</span> upload <span class="keyword">import</span> upload_qiniu</div><div class="line"><span class="keyword">import</span> util</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(util.CONFIG_FILE):</div><div class="line">    util.generate_config_file()</div><div class="line"></div><div class="line">config = util.read_config()</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> config:</div><div class="line">    util.notice(<span class="string">'请先设置你的七牛图床信息'</span>)</div><div class="line">    util.open_with_editor(util.CONFIG_FILE)</div><div class="line">    sys.exit(<span class="number">0</span>)</div><div class="line"></div><div class="line">url = <span class="string">'%s/%s'</span> % (config[<span class="string">'url'</span>], config[<span class="string">'prefix'</span>])</div><div class="line">styleprefix = <span class="string">'imageView2/2/w/'</span></div><div class="line">stylesubfix = <span class="string">'/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim'</span></div><div class="line">mkdprefix=<span class="string">'![图片]('</span></div><div class="line">mkdsubfix=<span class="string">')'</span></div><div class="line">img_file, need_format, format = get_paste_img_file()</div><div class="line"><span class="keyword">if</span> img_file:</div><div class="line">    <span class="comment"># has image</span></div><div class="line"></div><div class="line">    <span class="comment"># use time to generate a unique upload_file name, we can not use the tmp file name</span></div><div class="line"></div><div class="line">    upload_name = <span class="string">"%s.%s"</span> % (int(time.time() * <span class="number">1000</span>), format) </div><div class="line">    <span class="keyword">if</span> need_format:</div><div class="line">        size_str = subprocess.check_output(<span class="string">'sips -g pixelWidth %s | tail -n1 | cut -d" " -f4'</span> % img_file.name, shell=<span class="keyword">True</span>)</div><div class="line">        size = int(size_str.strip()) / <span class="number">2</span></div><div class="line">        <span class="comment">#markdown_url = '&lt;img src="%s/%s-1960" width="%d"/&gt;' % (url, upload_name, size)</span></div><div class="line">    </div><div class="line">        markdown_url = <span class="string">'%s%s/%s?%s%d%s%s'</span> % (mkdprefix, url, upload_name, styleprefix, size, stylesubfix, mkdsubfix)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        markdown_url = <span class="string">'%s%s/%s-960%s'</span> % (mkdprefix, url, upload_name, mkdsubfix)</div><div class="line"></div><div class="line">    <span class="comment"># make it to clipboard</span></div><div class="line">    os.system(<span class="string">"echo '%s' | pbcopy"</span> % markdown_url)</div><div class="line">    os.system(<span class="string">'osascript -e \'tell application "System Events" to keystroke "v" using command down\''</span>)</div><div class="line">    upload_file = util.try_compress_png(img_file, format!=<span class="string">'gif'</span>)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> upload_qiniu(upload_file.name, upload_name): util.notice(<span class="string">"上传图片到图床失败，请检查网络后重试"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    util.notice(<span class="string">"剪切版里没有图片！"</span>)</div></pre></td></tr></table></figure></p><p>上面是我修改后的脚本信息，修改的地方是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">markdown_url = &apos;%s%s/%s?%s%d%s%s&apos; % (mkdprefix, url, upload_name, styleprefix, size, stylesubfix, mkdsubfix)</div></pre></td></tr></table></figure></p><p>注意这两个变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">styleprefix = &apos;imageView2/2/w/&apos;  </div><div class="line">stylesubfix =&apos;/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim&apos;</div></pre></td></tr></table></figure></p><p>根据自己的七牛图片拼装 markdown_url即可。我这里用的是通过改变七牛提供的链接图片 size 进行替换。<br>中间拼装计算好的原始图片size即变成正常大小。<br>既： styleprefix + size + stylesubfix</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://github.com/tiann/markdown-img-upload&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;详细过程可以访问：https://github.com/tiann/markdown-img-uplo
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="http://www.lilhui.com/categories/blog/"/>
+    
+    
+      <category term="alfred" scheme="http://www.lilhui.com/tags/alfred/"/>
+    
+      <category term="markdown" scheme="http://www.lilhui.com/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>solr高级查询edismax函数详解</title>
+    <link href="http://www.lilhui.com/2017/09/11/search/solr%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2edismax%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://www.lilhui.com/2017/09/11/search/solr高级查询edismax函数详解/</id>
+    <published>2017-09-11T09:29:43.000Z</published>
+    <updated>2017-09-12T08:08:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p></blockquote><p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p><h2 id="bf函数列表"><a href="#bf函数列表" class="headerlink" title="bf函数列表"></a>bf函数列表</h2><ol><li><p>constant<br> ~ 支持小数点的常量<br>例如，1.5，查询表达式就是：<em>val</em>:1.5</p></li><li><p>fieldvalue<br> ~ 返回numberic field的名字.<br>域必须是index的，非multivalue。格式为该域的名字。如果这个域没值，就返回0</p></li><li><p>ord<br> ~ ord，返回你要查询的那个特定的值在这个顺序中的排名。<br> 非multiValued的，当没有值存在的时候，将返回0<br> 例如：某个特定的域只能去三个值，“apple”、“banana”、“pear”，那么ord（“apple”）=1，ord（“banana”）=2，ord（“pear”）=3<br> 需要注意的是，ord（）这个函数，依赖于值在索引中的位置，所以当有文档被删除、或者添加的时候，ord（）的值就会发生变化。当你使用MultiSearcher的时候，这个值也就是不定的了。</p></li><li>rord<br> ~ 函数将会返回与ord相对应的倒排序的排名。<br> 格式: rord(myIndexedField).</li><li>sum<br> ~ 就是表示多个数值的“和”。  <pre><code>格式：  sum(x,1)  sum(x,y)  sum(sqrt(x),log(y),z,0.5)</code></pre></li><li><p>product<br> ~ 多个参数的乘积，参数可以是数值，也可以是函数，当为函数时，表示为此函数的计算值乘积。<br> 格式：<br> product(x,2)<br> product(x,y)</p></li><li><p>div<br> ~ 两个参数做除法。支持函数参数<br> 格式：<br> div(x,y)<br> div(sum(x,100),max(y,1))</p></li><li>pow<br> ~ 幂值计算，pow(x,y)=x^y 。支持函数参数。<br> 格式：<br> pow(x,0.5) 标识开方<br> pow(x, log(y))</li><li>abs<br> ~ 返回表达式的绝对值，支持函数参数。<br> 格式：<br> abx(-5)<br> abc(x)  </li><li><p>log<br>~ 返回对数操作，支持函数参数。<br>格式：<br>log(x)<br>log(sum(x,100))  </p></li><li><p>sqrt<br>~ 返回平方根。与pow(x，0.5)一样。<br>格式：<br>sqrt(2)<br>sqrt(sum(x,100))</p></li><li><p>map<br>~ 区间检测<br>如果 min&lt;=x&lt;=max，那么map(x,min,max,target)=target，如果x不在[min,max]这个区间内，那么map(x,min,max,target)=x.</p></li><li>scala<br>~ 限制参数区间<br>例如：<br>scale(x,minTarget,maxTarget) 这个函数将会把x的值限制在[minTarget,maxTarget]范围内。</li><li>query<br>~ 计算subquery查询分数<br>例如：<br>query(subquery,default)表示返回给定的subquery的分数，如果subquery与文档不匹配，那么将会返回默认值。任何的查询类型都是受支持的。可以通过引用的方式，也可以直接指定查询串。<br>q=product(popularity, query({!dismax v=’solr rocks’})) 将会返回popularity和通过dismax 查询得到的分数的乘积<br>q=product(popularity, query($qq)&amp;qq={!dismax}solr rocks) 跟上一个例子的效果是一样的。不过这里使用的是引用的方式<br>q=product(popularity, query($qq,0.1)&amp;qq={!dismax}solr rocks) 在前一个例子的基础上又加了一个默认值。</li><li>linear<br>~ 线性函数计算<br>例如：<br>liner(x,m,c)其中 x为变量或者函数，m,c为常量。整个函数取值为： x<em>m+c的值。<br>liner(x,2,4)=2</em>x+4</li><li>recip<br>~ recip(x,m,a,b) 函数表达式 a/(m*x+b)<br>其中，m、a、b是常量，x是变量或者一个函数。当a=b，并且x&gt;=0的时候，这个函数的最大值是1，值的大小随着x的增大而减小。</li><li>max<br>~ 比较大小<br>例如：max(x,c) x可以为变量或者函数，c为常数，返回两个之间最大值。</li></ol><h2 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h2><ol><li><p>某地的新闻网页库中原本的逻辑是对仓库里的数据字段 subject，message进行搜索。默认是通过score检索字段匹配得分进行排序输出。随着时间的推移，大量的搜索可能会展示两年前，三年前匹配度更高的数据，这些搜索结果明显不合适的。那么我们需要对其进行改造，加入发布时间权重排序。</p><p> 原本的参数：  </p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">subject:武则天 OR message:武则天</div></pre></td></tr></table></figure><p> 搜索得出结果：  </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 文档得分：<br> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p> 上面我们可以看到，tid为666811的文档排在第一位，得分27.811375 它的dateline时间是：1239781944明显早于第二位 tid：10364925的 1503334472，得分：26.519054。第三位是 tid:9759987 得分：26.511488。这样的搜索结果显然不是很令人满意的。<br> 开启edismax 加入</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bf=sqrt(log(dateline))^100</div></pre></td></tr></table></figure><p> 搜索得出结果：  </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p> 文档得分： </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 经过调整，我们得出的结果中排在第一位的是 tid:9759987 其时间dateline是1473820016 得分：330.85 是原本的第三位。原来的排第一的 tid:666811排在了第三位，得分 329.40 原来的第二tid:10364925 得分：329.50</p><p> 调整后的排序大致满足我们的需求。那么为什么调整后会变成这样的排序呢？</p><p> 首先我们要清楚solr的打分机制默认是通过匹配度计算文档相似度得来的。也就是第一次搜索的默认得分，引入edismax的bf函数后我们来分析下最终的结果是怎样，以第一次搜索排名前三的数据为例子：  </p></li></ol><pre><code>tid  | dateline | 初始得分 | 引入bf重新计算---|---|---|---666811 | 1239781944 | 27.811382 | 329.4019810364925 | 1503334472  | 26.519054 |329.501749759987 | 1473820016 | 26.511488 | 330.85834 </code></pre><blockquote><p>根据bf=sqrt(log(dateline))^100 分别计算上面三个的新得分  </p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sqrt(log(1239781944)) = 3.0155174194591075  </div><div class="line">权重乘100 得:  </div><div class="line">301.55174194591075</div><div class="line">再加 27.811382  </div><div class="line">=329.36312394591073</div><div class="line"></div><div class="line">sqrt(log(1503334472)) = 3.029365546794402</div><div class="line">权重乘100 得:</div><div class="line">302.9365546794402</div><div class="line">再加 26.519054</div><div class="line">=329.45560867944016</div><div class="line"></div><div class="line">sqrt(log(1473820016)) = 3.0279439311841663</div><div class="line">权重乘100 得:</div><div class="line">302.79439311841663</div><div class="line">再加 26.511488</div><div class="line">=329.3058811184166</div></pre></td></tr></table></figure><pre><code>纳尼。很奇怪为什么 9759987 计算最小 不对劲</code></pre><p>于是翻看原来前面查询的debug列表分析仔细看原来是<br>原图：</p><p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p>添加edismax后：<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p>对比以上靓图，原来是我们的Qparser不一样。在普通查询的时候我么使用的是定制化的 SWMCLuceneQparser 查询解析器。而 用edimax后，解析器变成了 ExtendDismaxQparser 这两个差别在于 定制化的 SWMCLuceneQparser会将查询字段通过IK分词转换后进行查询。其parsedquery_tostring 变成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery&quot;:&quot;PhraseQuery(subject:\&quot;武 则 天\&quot;) PhraseQuery(message:\&quot;武 则 天\&quot;)&quot;,</div></pre></td></tr></table></figure></p><p>ExtendDismaxQparser的 parsedquery_tostringshi :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery_toString&quot;:&quot;+((subject:武 subject:则 subject:天) (message:武 message:则 message:天)) (sqrt(log(long(dateline))))^10.0&quot;,</div></pre></td></tr></table></figure></p><p>两者稍有不同，所以在计算最终权重的时候有些差异。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了
+      
+    
+    </summary>
+    
+      <category term="搜索" scheme="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+    
+    
+      <category term="solr" scheme="http://www.lilhui.com/tags/solr/"/>
+    
+      <category term="edismax" scheme="http://www.lilhui.com/tags/edismax/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo技术博客搭建日记</title>
+    <link href="http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/"/>
+    <id>http://www.lilhui.com/2017/09/02/blog/hexo技术博客搭建日记/</id>
+    <published>2017-09-02T09:58:27.000Z</published>
+    <updated>2017-09-13T06:54:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>9月2号听说Hexo  </p><ul><li><a href="http://blog.didispace.com/books/" target="_blank" rel="external">案例1</a>  </li><li><a href="http://www.itmuch.com" target="_blank" rel="external">案例2</a>  </li></ul><p>9月3号了解Hexo搭建博客方式  </p><ul><li><a href="http://www.youmeek.com/hexo/" target="_blank" rel="external">hexo搭建参考1</a>  </li><li><a href="http://www.jianshu.com/p/a417262815a6" target="_blank" rel="external">hexo搭建参考2</a>  </li><li><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">hexo主题</a>  </li></ul><p>9月5号搭建完成</p><p>9月6号添加域名解析</p><p>9月7号添加Gitment评论功能</p><ul><li><a href="https://github.com/littlehui/gitment" target="_blank" rel="external">Gitment的github地址</a>  </li></ul><p>9月9号配置结合alfred + 七牛 快捷插入markdown图片工具</p><ul><li><a href="https://github.com/tiann/markdown-img-upload" target="_blank" rel="external">Github地址</a>  </li></ul><p>9月11号第一篇文章登陆</p><p>9月12号完善主题配置</p><p>9月13日添加站点收录</p><blockquote><p>npm install hexo-generator-sitemap –save<br>  npm install hexo-generator-baidu-sitemap –save</p></blockquote><ul><li><a href="http://www.cnblogs.com/tengj/p/5357879.html" target="_blank" rel="external">搜索引擎站点收录</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;9月2号听说Hexo  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.didispace.com/books/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;案例1&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ww
+      
+    
+    </summary>
+    
+      <category term="blog" scheme="http://www.lilhui.com/categories/blog/"/>
+    
+    
+      <category term="Hexo" scheme="http://www.lilhui.com/tags/Hexo/"/>
+    
+      <category term="IntelliJ IDEA" scheme="http://www.lilhui.com/tags/IntelliJ-IDEA/"/>
+    
+      <category term="Git" scheme="http://www.lilhui.com/tags/Git/"/>
+    
+      <category term="Github" scheme="http://www.lilhui.com/tags/Github/"/>
+    
+  </entry>
+  
+</feed>
