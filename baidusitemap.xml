@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2017/09/11/search/solr%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2edismax%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-09-13T07:46:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>solr高级查询edismax函数详解</title>
+        <pubTime>2017-09-11T09:29:43.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>edismax</tag>
+         
+         
+           
+             
+              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/</loc>
     <lastmod>2017-09-13T06:54:47.000Z</lastmod>
     <data>
@@ -45,28 +67,6 @@
            
              
               <breadCrumb title="blog" url="http://www.lilhui.com/categories/blog/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2017/09/11/search/solr%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2edismax%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-09-12T08:08:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>solr高级查询edismax函数详解</title>
-        <pubTime>2017-09-11T09:29:43.000Z</pubTime>
-        
-        <tag>solr</tag>
-         
-        <tag>edismax</tag>
-         
-         
-           
-             
-              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
           
         </display>
     </data>
