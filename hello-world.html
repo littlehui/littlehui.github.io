@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="solr,edismax," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -102,25 +102,17 @@
 
 
 
-<meta name="description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
-<meta name="keywords" content="solr,edismax">
-<meta property="og:type" content="article">
-<meta property="og:title" content="solr高级查询edismax函数详解">
-<meta property="og:url" content="http://www.lilhui.com/2017/09/11/solr-高级查询/index.html">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://www.lilhui.com/hello-world.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:updated_time" content="2017-09-12T08:08:28.000Z">
+<meta property="og:updated_time" content="2017-09-02T15:31:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="solr高级查询edismax函数详解">
-<meta name="twitter:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant ~ 支持小数点的常量例如，1.5，查询表达式就是：val:1">
-<meta name="twitter:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
 
 
 
@@ -150,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://www.lilhui.com/2017/09/11/solr-高级查询/"/>
+  <link rel="canonical" href="http://www.lilhui.com/hello-world.html"/>
 
 
 
 
 
-  <title>solr高级查询edismax函数详解 | Littlehui's Notes</title>
+  <title>Hello World | Littlehui's Notes</title>
   
 
 
@@ -305,240 +297,42 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/09/11/solr-高级查询/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">solr高级查询edismax函数详解</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-11T17:29:43+08:00">
-                2017-09-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/搜索/" itemprop="url" rel="index">
-                    <span itemprop="name">搜索</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-
-          
+	<h1 class="post-title" itemprop="name headline">Hello World</h1>
 
 
-        </div>
-      </header>
-    
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p>
-</blockquote>
-<p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p>
-<h2 id="bf函数列表"><a href="#bf函数列表" class="headerlink" title="bf函数列表"></a>bf函数列表</h2><ol>
-<li><p>constant<br> ~ 支持小数点的常量<br>例如，1.5，查询表达式就是：<em>val</em>:1.5</p>
-</li>
-<li><p>fieldvalue<br> ~ 返回numberic field的名字.<br>域必须是index的，非multivalue。格式为该域的名字。如果这个域没值，就返回0</p>
-</li>
-<li><p>ord<br> ~ ord，返回你要查询的那个特定的值在这个顺序中的排名。<br> 非multiValued的，当没有值存在的时候，将返回0<br> 例如：某个特定的域只能去三个值，“apple”、“banana”、“pear”，那么ord（“apple”）=1，ord（“banana”）=2，ord（“pear”）=3<br> 需要注意的是，ord（）这个函数，依赖于值在索引中的位置，所以当有文档被删除、或者添加的时候，ord（）的值就会发生变化。当你使用MultiSearcher的时候，这个值也就是不定的了。</p>
-</li>
-<li>rord<br> ~ 函数将会返回与ord相对应的倒排序的排名。<br> 格式: rord(myIndexedField).</li>
-<li>sum<br> ~ 就是表示多个数值的“和”。  <pre><code>格式：  
-sum(x,1)  
-sum(x,y)  
-sum(sqrt(x),log(y),z,0.5)
-</code></pre></li>
-<li><p>product<br> ~ 多个参数的乘积，参数可以是数值，也可以是函数，当为函数时，表示为此函数的计算值乘积。<br> 格式：<br> product(x,2)<br> product(x,y)</p>
-</li>
-<li><p>div<br> ~ 两个参数做除法。支持函数参数<br> 格式：<br> div(x,y)<br> div(sum(x,100),max(y,1))</p>
-</li>
-<li>pow<br> ~ 幂值计算，pow(x,y)=x^y 。支持函数参数。<br> 格式：<br> pow(x,0.5) 标识开方<br> pow(x, log(y))</li>
-<li>abs<br> ~ 返回表达式的绝对值，支持函数参数。<br> 格式：<br> abx(-5)<br> abc(x)  </li>
-<li><p>log<br>~ 返回对数操作，支持函数参数。<br>格式：<br>log(x)<br>log(sum(x,100))  </p>
-</li>
-<li><p>sqrt<br>~ 返回平方根。与pow(x，0.5)一样。<br>格式：<br>sqrt(2)<br>sqrt(sum(x,100))</p>
-</li>
-<li><p>map<br>~ 区间检测<br>如果 min&lt;=x&lt;=max，那么map(x,min,max,target)=target，如果x不在[min,max]这个区间内，那么map(x,min,max,target)=x.</p>
-</li>
-<li>scala<br>~ 限制参数区间<br>例如：<br>scale(x,minTarget,maxTarget) 这个函数将会把x的值限制在[minTarget,maxTarget]范围内。</li>
-<li>query<br>~ 计算subquery查询分数<br>例如：<br>query(subquery,default)表示返回给定的subquery的分数，如果subquery与文档不匹配，那么将会返回默认值。任何的查询类型都是受支持的。可以通过引用的方式，也可以直接指定查询串。<br>q=product(popularity, query({!dismax v=’solr rocks’})) 将会返回popularity和通过dismax 查询得到的分数的乘积<br>q=product(popularity, query($qq)&amp;qq={!dismax}solr rocks) 跟上一个例子的效果是一样的。不过这里使用的是引用的方式<br>q=product(popularity, query($qq,0.1)&amp;qq={!dismax}solr rocks) 在前一个例子的基础上又加了一个默认值。</li>
-<li>linear<br>~ 线性函数计算<br>例如：<br>liner(x,m,c)其中 x为变量或者函数，m,c为常量。整个函数取值为： x<em>m+c的值。<br>liner(x,2,4)=2</em>x+4</li>
-<li>recip<br>~ recip(x,m,a,b) 函数表达式 a/(m*x+b)<br>其中，m、a、b是常量，x是变量或者一个函数。当a=b，并且x&gt;=0的时候，这个函数的最大值是1，值的大小随着x的增大而减小。</li>
-<li>max<br>~ 比较大小<br>例如：max(x,c) x可以为变量或者函数，c为常数，返回两个之间最大值。</li>
-</ol>
-<h2 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h2><ol>
-<li><p>某地的新闻网页库中原本的逻辑是对仓库里的数据字段 subject，message进行搜索。默认是通过score检索字段匹配得分进行排序输出。随着时间的推移，大量的搜索可能会展示两年前，三年前匹配度更高的数据，这些搜索结果明显不合适的。那么我们需要对其进行改造，加入发布时间权重排序。</p>
-<p> 原本的参数：  </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">subject:武则天 OR message:武则天</div></pre></td></tr></table></figure>
-<p> 搜索得出结果：  </p>
-<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 文档得分：<br> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
-<p> 上面我们可以看到，tid为666811的文档排在第一位，得分27.811375 它的dateline时间是：1239781944明显早于第二位 tid：10364925的 1503334472，得分：26.519054。第三位是 tid:9759987 得分：26.511488。这样的搜索结果显然不是很令人满意的。<br> 开启edismax 加入</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bf=sqrt(log(dateline))^100</div></pre></td></tr></table></figure>
-<p> 搜索得出结果：  </p>
-<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
-<p> 文档得分： </p>
-<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 经过调整，我们得出的结果中排在第一位的是 tid:9759987 其时间dateline是1473820016 得分：330.85 是原本的第三位。原来的排第一的 tid:666811排在了第三位，得分 329.40 原来的第二tid:10364925 得分：329.50</p>
-<p> 调整后的排序大致满足我们的需求。那么为什么调整后会变成这样的排序呢？</p>
-<p> 首先我们要清楚solr的打分机制默认是通过匹配度计算文档相似度得来的。也就是第一次搜索的默认得分，引入edismax的bf函数后我们来分析下最终的结果是怎样，以第一次搜索排名前三的数据为例子：  </p>
-</li>
-</ol>
-<pre><code>tid  | dateline | 初始得分 | 引入bf重新计算
----|---|---|---
-666811 | 1239781944 | 27.811382 | 329.40198
-10364925 | 1503334472  | 26.519054 |329.50174
-9759987 | 1473820016 | 26.511488 | 330.85834 
-</code></pre><blockquote>
-<p>根据bf=sqrt(log(dateline))^100 分别计算上面三个的新得分  </p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sqrt(log(1239781944)) = 3.0155174194591075  </div><div class="line">权重乘100 得:  </div><div class="line">301.55174194591075</div><div class="line">再加 27.811382  </div><div class="line">=329.36312394591073</div><div class="line"></div><div class="line">sqrt(log(1503334472)) = 3.029365546794402</div><div class="line">权重乘100 得:</div><div class="line">302.9365546794402</div><div class="line">再加 26.519054</div><div class="line">=329.45560867944016</div><div class="line"></div><div class="line">sqrt(log(1473820016)) = 3.0279439311841663</div><div class="line">权重乘100 得:</div><div class="line">302.79439311841663</div><div class="line">再加 26.511488</div><div class="line">=329.3058811184166</div></pre></td></tr></table></figure>
-<pre><code>纳尼。很奇怪为什么 9759987 计算最小 不对劲
-</code></pre><p>于是翻看原来前面查询的debug列表分析仔细看原来是<br>原图：</p>
-<p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
-<p>添加edismax后：<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
-<p>对比以上靓图，原来是我们的Qparser不一样。在普通查询的时候我么使用的是定制化的 SWMCLuceneQparser 查询解析器。而 用edimax后，解析器变成了 ExtendDismaxQparser 这两个差别在于 定制化的 SWMCLuceneQparser会将查询字段通过IK分词转换后进行查询。其parsedquery_tostring 变成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery&quot;:&quot;PhraseQuery(subject:\&quot;武 则 天\&quot;) PhraseQuery(message:\&quot;武 则 天\&quot;)&quot;,</div></pre></td></tr></table></figure></p>
-<p>ExtendDismaxQparser的 parsedquery_tostringshi :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery_toString&quot;:&quot;+((subject:武 subject:则 subject:天) (message:武 message:则 message:天)) (sqrt(log(long(dateline))))^10.0&quot;,</div></pre></td></tr></table></figure></p>
-<p>两者稍有不同，所以在计算最终权重的时候有些差异。</p>
+      <div class="post-body">
+        
+        
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/solr/" rel="tag"># solr</a>
-          
-            <a href="/tags/edismax/" rel="tag"># edismax</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/09/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -626,7 +420,7 @@ sum(sqrt(x),log(y),z,0.5)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -661,7 +455,7 @@ sum(sqrt(x),log(y),z,0.5)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bf函数列表"><span class="nav-number">2.</span> <span class="nav-text">bf函数列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景应用"><span class="nav-number">3.</span> <span class="nav-text">场景应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -825,10 +619,6 @@ sum(sqrt(x),log(y),z,0.5)
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
 
   
 
