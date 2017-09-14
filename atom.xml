@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2017-09-13T03:28:29.000Z</updated>
+  <updated>2017-09-14T03:27:27.000Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux expect ssh自动登录详解</title>
+    <link href="http://www.lilhui.com/2017/09/14/linux/linux%20expect%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://www.lilhui.com/2017/09/14/linux/linux expect详解/</id>
+    <published>2017-09-14T01:40:11.000Z</published>
+    <updated>2017-09-14T03:27:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>Expect是用于自动化交互式应用程序的工具，如telnet，ftp，passwd，fsck，rlogin，tip等。使用起来很简单。</p></blockquote><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol><li>首行加上/usr/bin/expect</li><li>spawn: 后面加上需要执行的shell 命令，比如说spawn sudo touch testfile</li><li>expect: 只有spawn 执行的命令结果才会被expect 捕捉到，因为spawn 会启<br>动一个进程，只有这个进程的相关信息才会被捕捉到，主要包括：标准输入的提<br>示信息，eof 和timeout。</li><li>send 和send_user：send 会将expect 脚本中需要的信息发送给spawn 启动<br>的那个进程，而send_user 只是回显用户发出的信息，类似于shell 中的echo 而<br>已。</li></ol><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1:远程拷贝文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">set timeout 10</div><div class="line">set host [lindex $argv 0]</div><div class="line">set username [lindex $argv 1]</div><div class="line">set password [lindex $argv 2]</div><div class="line">set src_file [lindex $argv 3]</div><div class="line">set dest_file [lindex $argv 4]</div><div class="line">spawn scp  $src_file $username@$host:$dest_file</div><div class="line">   expect &#123;</div><div class="line">           &quot;(yes/no)?&quot;</div><div class="line">            &#123;</div><div class="line">                send &quot;yes\n&quot;</div><div class="line">                expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125;</div><div class="line">             &#125;</div><div class="line">           &quot;*assword:&quot;</div><div class="line">             &#123;</div><div class="line">                 send &quot;$password\n&quot;</div><div class="line">             &#125;</div><div class="line">        &#125;</div><div class="line">   expect &quot;100%&quot;</div><div class="line">   expect eof</div></pre></td></tr></table></figure></p><p>2:执行远程命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">set timeout 10</div><div class="line">set host [lindex $argv 0]</div><div class="line">set username [lindex $argv 1]</div><div class="line">set password [lindex $argv 2]</div><div class="line">set cmd [lindex $argv 3]</div><div class="line"></div><div class="line">spawn ssh -t -p $port $username@$host &apos;cmd&apos;  </div><div class="line">   expect &#123;</div><div class="line">       &quot;(yes/no)?&quot;</div><div class="line">            &#123;</div><div class="line">                send &quot;yes\n&quot;</div><div class="line">                expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125;</div><div class="line">             &#125;</div><div class="line">           &quot;*assword:&quot;</div><div class="line">             &#123;</div><div class="line">                 send &quot;$password\n&quot;</div><div class="line">             &#125;</div><div class="line">        &#125;</div><div class="line">   expect &quot;100%&quot;</div><div class="line">   expect eof</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Expect是用于自动化交互式应用程序的工具，如telnet，ftp，passwd，fsck，rlogin，tip
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://www.lilhui.com/tags/linux/"/>
+    
+      <category term="bash" scheme="http://www.lilhui.com/tags/bash/"/>
+    
+  </entry>
   
   <entry>
     <title>alfred结合七牛实现快速插入markdown格式图片</title>
