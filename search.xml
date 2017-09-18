@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Redis数据结构介绍]]></title>
+    <url>%2F2017%2F09%2F18%2Fredis%2FRedis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。 结构类型 值类型 读写能力 STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减 LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪，读取单个或者多个元素；根据值查找或者移除元素 SET 包含字符串的无序搜集器（unordered collection)，并且被包含的每个字符串都是独一无二，各不相同的 添加，获取，移除单个元素；检查一个元素是否存在于集合中；计算交集，并集，差集；从集合里随机获取元素 HASH 包含键值对的无序散列表 添加、获取、移除单个键值对；获取所有键值对 ZSET(有序集合) 字符串成员（member）与浮点数值（score）之间的有序映射，元素的排列顺序由分值的大小决定 添加、获取、删除、单个元素；根据分值范围（染个）或者成员来获取元素 字符串（STRING)基本操作： 命令 行为 GET 获取存储在给定键值中的值 SET 设置存储在给定键中的值 DEL 删除存储在给定键中的值（所有类型适用） 列表（List)基本操作： 命令 行为 RPUSH 给定的值推入列表的右端 LRANGE 获取列表在给定范围上的所有值 LINDEX 获取在列表给定位置上的单个元素 LPOP 从列表的左端弹出一个值，并返回被弹出的值 集合（SET） 和集合一样可以存储多个字符串，不同的是 列表中可以村粗多个相同的字符串。而集合则通过使用散列来保证自己存储的每个字符串都是各自不同的（这些散列只有键没有键值） 基本操作：命令 | 行为— | —SADD | 将给定元素添加到集合SMEMBERS | 返回集合包含的所有元素SISMEMBER | 检查给定元素是存在于集合中SREM | 如果给定的元素存在于集合中，那么移除这个元素 另外的操作SINTER,SUNION, SDIFF 分别执行交集计算、并集计算和差集计算。 散列（HASH） Redis的散列可以存储多个键值间的映射。其值，可以是字符串有可以是数字值。也可以对散列存储的值进行自增或自减。 散列在很多方面就是一个缩小版的Redis，不少字符串都有相应的散列版本。 基本操作： 命令 行为 HSET 在散列里面关联起给定的键值对 HGET 获取指定散列键的值 HGETALL 获取散列包含所有键值对 HDEL 如果给定键存在于散列里，那么移除这个键 Redis的散列可以看做文档数据库里的文档，在开发过程中可以很好的对应。在关系书库里可以看做关系数据库里的行。散列、文档、数据行这三者都允许用户同时访问或者修改一个火多个域。 有序集（ZSET） 和散列一样，有序集都用于存储键值对：有序集合的键称为 成员（member）每个成员都各不相同；有序集的值被称为分值（score）必须为浮点数。是唯一一个可以根据成员访问元素，又可以根据分值以及分值的排序来访问元素的结构。 基本操作： 命令 行为 ZADD 将一个带有给定成分值的成员添加到有序集合里 ZRANGE 根据元素在有序排列中所处处的位置，从有序集合中获取多个元素 ZRANGEBYSCORE 获取有序集合给定分值范围内的所有属性 ZREM 如果给定成员存在，移除这个成员]]></content>
+      <categories>
+        <category>缓存</category>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mysql缓存与Memcached,Redis区别]]></title>
+    <url>%2F2017%2F09%2F18%2Fsearch%2FMysql%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8EMemcached%2CRedis%E7%BC%93%E5%AD%98%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[前言 我们在做Web开发的时候从至上而下的技术分层里，缓存始终贯穿其中。浏览器层–》业务层–》数据库层。每个层面上的缓存都有各自的功能与场景。我们今天探讨下业务层到数据库层上缓存的功能和区别。 业务层缓存MemcachedMemcached 严格上讲还不能说是完整的分布式缓存系统。它有很多第三方工具支撑其分布式功能。Memcached 通过内部固定的大小的chunk预申请内存数据。使得分配和回收内存的效率很高。读写性能也很高。64k对象的情况下，单机QPS可以达到15W以上。Memcached 的集群架构中，单个节点对其他节点是相互独立的，没有数据方面的通信。不具备failover能力。Memcached 支持多语言，有相当的稳定性。 RedisRedis 显著的特点是不仅支持普通的K，V 类型存储，还支持其独特的 五种数据结构 详见Redis数据结构Redis 也支持集群，Redis支持的集群是Master-Slave模式。其有点是可以在宕机时切换到备份机。可用性方面有一定的提升。Redis 单纯当做缓存存储在内存时速度和Memcached不相上下。存储到硬盘时，性能和速度会下降很多，介于 Memcahced 和mysql之间。Redis 有特殊的订阅功能，使得它经常被用于当做内存队列使用。Redis 扩展方面不如Memcached，无法做到持续的线性扩容。目前支持通过复制的方式，产生一主多备架构并升级容量。 数据库层缓存mysql缓存MySQL将缓存分为Buffer缓存和Cache缓存。Buffer缓存:由于硬盘的写入速度过慢，或者频繁的I/O，对于硬盘来说是极大的效率浪费。那么可以等到缓存中储存一定量的数据之后，一次性的写入到硬盘中。Buffer 缓存主要用于写数据，提升I/O性能。Cache 缓存:Cache 是在开启缓存功能前提下，在通过的每次sql进行hash计算，生成此条sql的唯一hash作为存储的Key值。SO select是区分大小写的。生成缓存之后，如果涉及的table有任何数据的变动（整个talbe),所有的cache就会被删除。如果Cache缓存已经存储满，则启用LRU算法，进行数据淘汰。淘汰掉最远未使用的数据，从而开辟新的存储空间。不过对于特大型的网站，依靠这种策略很难缓解高频率的读请求，一般会把访问非常频繁的数据静态化，直接由nginx返还给用户。程序和数据库I/O设备交互的越少，则效率越高。 问题既然有Memcached,Redis 为什么还要用Mysql缓存呢？ 解答 从整体架构上看，Memcached和Redis支持扩展分布式缓存。适用于大型Web项目。单从单节点功能上看，Mysql由于自身的cache 删除方式。使得其缓存有相对的局限性。并且无法简单的管控。需要更好的使用的话，需要对业务上进行更详尽细致的分析。在数据库的逻辑设计层面细分出能够说回合mysql缓存的场景。单节点，数据简单，无太多修改的数据面前，但根据场景来，mysql缓存还是有一定价值的。比Memcached Redis简单易用，效率更好。 参考：https://dev.mysql.com/doc/refman/5.7/en/query-cache.html]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux expect ssh自动登录详解]]></title>
     <url>%2F2017%2F09%2F14%2Flinux%2Flinux%20expect%E8%AF%A6%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[简介 Expect是用于自动化交互式应用程序的工具，如telnet，ftp，passwd，fsck，rlogin，tip等。使用起来很简单。 使用方法 首行加上/usr/bin/expect spawn: 后面加上需要执行的shell 命令，比如说spawn sudo touch testfile expect: 只有spawn 执行的命令结果才会被expect 捕捉到，因为spawn 会启动一个进程，只有这个进程的相关信息才会被捕捉到，主要包括：标准输入的提示信息，eof 和timeout。 send 和send_user：send 会将expect 脚本中需要的信息发送给spawn 启动的那个进程，而send_user 只是回显用户发出的信息，类似于shell 中的echo 而已。 实例1:远程拷贝文件1234567891011121314151617181920set timeout 10set host [lindex $argv 0]set username [lindex $argv 1]set password [lindex $argv 2]set src_file [lindex $argv 3]set dest_file [lindex $argv 4]spawn scp $src_file $username@$host:$dest_file expect &#123; &quot;(yes/no)?&quot; &#123; send &quot;yes\n&quot; expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125; &#125; &quot;*assword:&quot; &#123; send &quot;$password\n&quot; &#125; &#125; expect &quot;100%&quot; expect eof 2:执行远程命令1234567891011121314151617181920set timeout 10set host [lindex $argv 0]set username [lindex $argv 1]set password [lindex $argv 2]set cmd [lindex $argv 3]spawn ssh -t -p $port $username@$host &apos;cmd&apos; expect &#123; &quot;(yes/no)?&quot; &#123; send &quot;yes\n&quot; expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125; &#125; &quot;*assword:&quot; &#123; send &quot;$password\n&quot; &#125; &#125; expect &quot;100%&quot; expect eof 3：与SSH合用 123/usr/bin/expect &lt;&lt;-EOF//TODO这里写expect脚本 EOF]]></content>

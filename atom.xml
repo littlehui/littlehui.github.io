@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2017-09-14T08:22:57.000Z</updated>
+  <updated>2017-09-18T09:51:04.000Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis数据结构介绍</title>
+    <link href="http://www.lilhui.com/2017/09/18/redis/Redis%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <id>http://www.lilhui.com/2017/09/18/redis/Redis数据结构/</id>
+    <published>2017-09-18T09:20:47.000Z</published>
+    <updated>2017-09-18T09:51:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Redis数据结构介绍"><a href="#Redis数据结构介绍" class="headerlink" title="Redis数据结构介绍"></a>Redis数据结构介绍</h2><blockquote><p>Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。</p></blockquote><table><thead><tr><th>结构类型</th><th>值类型</th><th>读写能力</th></tr></thead><tbody><tr><td>STRING</td><td>字符串，整数，浮点数，基本类型</td><td>对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减</td></tr><tr><td>LIST</td><td>一个链表，链表上的每个节点都包含了一个字符串</td><td>从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪，读取单个或者多个元素；根据值查找或者移除元素</td></tr><tr><td>SET</td><td>包含字符串的无序搜集器（unordered collection)，并且被包含的每个字符串都是独一无二，各不相同的</td><td>添加，获取，移除单个元素；检查一个元素是否存在于集合中；计算交集，并集，差集；从集合里随机获取元素</td></tr><tr><td>HASH</td><td>包含键值对的无序散列表</td><td>添加、获取、移除单个键值对；获取所有键值对</td></tr><tr><td>ZSET(有序集合)</td><td>字符串成员（member）与浮点数值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td><td>添加、获取、删除、单个元素；根据分值范围（染个）或者成员来获取元素</td></tr></tbody></table><h3 id="字符串（STRING"><a href="#字符串（STRING" class="headerlink" title="字符串（STRING)"></a>字符串（STRING)</h3><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>GET</td><td>获取存储在给定键值中的值</td></tr><tr><td>SET</td><td>设置存储在给定键中的值</td></tr><tr><td>DEL</td><td>删除存储在给定键中的值（所有类型适用）</td></tr></tbody></table><h3 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List)"></a>列表（List)</h3><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>RPUSH</td><td>给定的值推入列表的右端</td></tr><tr><td>LRANGE</td><td>获取列表在给定范围上的所有值</td></tr><tr><td>LINDEX</td><td>获取在列表给定位置上的单个元素</td></tr><tr><td>LPOP</td><td>从列表的左端弹出一个值，并返回被弹出的值</td></tr></tbody></table><h3 id="集合（SET）"><a href="#集合（SET）" class="headerlink" title="集合（SET）"></a>集合（SET）</h3><blockquote><p>和集合一样可以存储多个字符串，不同的是 列表中可以村粗多个相同的字符串。而集合则通过使用散列来保证自己存储的每个字符串都是各自不同的（这些散列只有键没有键值）</p></blockquote><p>基本操作：<br>命令 | 行为<br>— | —<br>SADD | 将给定元素添加到集合<br>SMEMBERS | 返回集合包含的所有元素<br>SISMEMBER | 检查给定元素是存在于集合中<br>SREM | 如果给定的元素存在于集合中，那么移除这个元素</p><p>另外的操作<br>SINTER,SUNION, SDIFF 分别执行交集计算、并集计算和差集计算。</p><h3 id="散列（HASH）"><a href="#散列（HASH）" class="headerlink" title="散列（HASH）"></a>散列（HASH）</h3><blockquote><p>Redis的散列可以存储多个键值间的映射。其值，可以是字符串有可以是数字值。也可以对散列存储的值进行自增或自减。</p><p>散列在很多方面就是一个缩小版的Redis，不少字符串都有相应的散列版本。</p></blockquote><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>HSET</td><td>在散列里面关联起给定的键值对</td></tr><tr><td>HGET</td><td>获取指定散列键的值</td></tr><tr><td>HGETALL</td><td>获取散列包含所有键值对</td></tr><tr><td>HDEL</td><td>如果给定键存在于散列里，那么移除这个键</td></tr></tbody></table><p>Redis的散列可以看做文档数据库里的文档，在开发过程中可以很好的对应。在关系书库里可以看做关系数据库里的行。散列、文档、数据行这三者都允许用户同时访问或者修改一个火多个域。</p><h3 id="有序集（ZSET）"><a href="#有序集（ZSET）" class="headerlink" title="有序集（ZSET）"></a>有序集（ZSET）</h3><blockquote><p>和散列一样，有序集都用于存储键值对：有序集合的键称为 成员（member）每个成员都各不相同；有序集的值被称为分值（score）必须为浮点数。是唯一一个可以根据成员访问元素，又可以根据分值以及分值的排序来访问元素的结构。</p></blockquote><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>ZADD</td><td>将一个带有给定成分值的成员添加到有序集合里</td></tr><tr><td>ZRANGE</td><td>根据元素在有序排列中所处处的位置，从有序集合中获取多个元素</td></tr><tr><td>ZRANGEBYSCORE</td><td>获取有序集合给定分值范围内的所有属性</td></tr><tr><td>ZREM</td><td>如果给定成员存在，移除这个成员</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Redis数据结构介绍&quot;&gt;&lt;a href=&quot;#Redis数据结构介绍&quot; class=&quot;headerlink&quot; title=&quot;Redis数据结构介绍&quot;&gt;&lt;/a&gt;Redis数据结构介绍&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Redis数据结构分为 STRING,LI
+      
+    
+    </summary>
+    
+      <category term="缓存" scheme="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/"/>
+    
+      <category term="Redis" scheme="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/Redis/"/>
+    
+    
+      <category term="Redis" scheme="http://www.lilhui.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql缓存与Memcached,Redis区别</title>
+    <link href="http://www.lilhui.com/2017/09/18/search/Mysql%E7%9A%84%E7%BC%93%E5%AD%98%E4%B8%8EMemcached,Redis%E7%BC%93%E5%AD%98%E5%8C%BA%E5%88%AB/"/>
+    <id>http://www.lilhui.com/2017/09/18/search/Mysql的缓存与Memcached,Redis缓存区别/</id>
+    <published>2017-09-18T08:09:31.000Z</published>
+    <updated>2017-09-18T09:52:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>我们在做Web开发的时候从至上而下的技术分层里，缓存始终贯穿其中。浏览器层–》业务层–》数据库层。每个层面上的缓存都有各自的功能与场景。我们今天探讨下业务层到数据库层上缓存的功能和区别。</p></blockquote><h2 id="业务层缓存"><a href="#业务层缓存" class="headerlink" title="业务层缓存"></a>业务层缓存</h2><h3 id="Memcached"><a href="#Memcached" class="headerlink" title="Memcached"></a>Memcached</h3><p>Memcached 严格上讲还不能说是完整的分布式缓存系统。它有很多第三方工具支撑其分布式功能。<br>Memcached 通过内部固定的大小的chunk预申请内存数据。使得分配和回收内存的效率很高。读写性能也很高。64k对象的情况下，单机QPS可以达到15W以上。<br>Memcached 的集群架构中，单个节点对其他节点是相互独立的，没有数据方面的通信。不具备failover能力。<br>Memcached 支持多语言，有相当的稳定性。</p><h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>Redis 显著的特点是不仅支持普通的K，V 类型存储，还支持其独特的 五种数据结构 详见<a href="http://www.lilhui.com/2017/0918/redis/Redis数据结构">Redis数据结构</a><br>Redis 也支持集群，Redis支持的集群是Master-Slave模式。其有点是可以在宕机时切换到备份机。可用性方面有一定的提升。<br>Redis 单纯当做缓存存储在内存时速度和Memcached不相上下。存储到硬盘时，性能和速度会下降很多，介于 Memcahced 和mysql之间。<br>Redis 有特殊的订阅功能，使得它经常被用于当做内存队列使用。<br>Redis 扩展方面不如Memcached，无法做到持续的线性扩容。目前支持通过复制的方式，产生一主多备架构并升级容量。</p><h2 id="数据库层缓存"><a href="#数据库层缓存" class="headerlink" title="数据库层缓存"></a>数据库层缓存</h2><h3 id="mysql缓存"><a href="#mysql缓存" class="headerlink" title="mysql缓存"></a>mysql缓存</h3><p>MySQL将缓存分为Buffer缓存和Cache缓存。<br>Buffer缓存:<br>由于硬盘的写入速度过慢，或者频繁的I/O，对于硬盘来说是极大的效率浪费。那么可以等到缓存中储存一定量的数据之后，一次性的写入到硬盘中。Buffer 缓存主要用于写数据，提升I/O性能。<br>Cache 缓存:<br>Cache 是在开启缓存功能前提下，在通过的每次sql进行hash计算，生成此条sql的唯一hash作为存储的Key值。SO select是区分大小写的。<br>生成缓存之后，如果涉及的table有任何数据的变动（整个talbe),所有的cache就会被删除。如果Cache缓存已经存储满，则启用LRU算法，进行数据淘汰。淘汰掉最远未使用的数据，从而开辟新的存储空间。<br>不过对于特大型的网站，依靠这种策略很难缓解高频率的读请求，一般会把访问非常频繁的数据静态化，直接由nginx返还给用户。<br>程序和数据库I/O设备交互的越少，则效率越高。</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="既然有Memcached-Redis-为什么还要用Mysql缓存呢？"><a href="#既然有Memcached-Redis-为什么还要用Mysql缓存呢？" class="headerlink" title="既然有Memcached,Redis 为什么还要用Mysql缓存呢？"></a>既然有Memcached,Redis 为什么还要用Mysql缓存呢？</h3><ul><li>解答</li></ul><p>从整体架构上看，Memcached和Redis支持扩展分布式缓存。适用于大型Web项目。<br>单从单节点功能上看，Mysql由于自身的cache 删除方式。使得其缓存有相对的局限性。并且无法简单的管控。需要更好的使用的话，需要对业务上进行更详尽细致的分析。<br>在数据库的逻辑设计层面细分出能够说回合mysql缓存的场景。<br>单节点，数据简单，无太多修改的数据面前，但根据场景来，mysql缓存还是有一定价值的。比Memcached Redis简单易用，效率更好。</p><p>参考：<br><a href="https://dev.mysql.com/doc/refman/5.7/en/query-cache.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/query-cache.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;我们在做Web开发的时候从至上而下的技术分层里，缓存始终贯穿其中。浏览器层–》业务层–》数据库层。每个层面上的缓存
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="数据库" scheme="http://www.lilhui.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="缓存" scheme="http://www.lilhui.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
   
   <entry>
     <title>linux expect ssh自动登录详解</title>
