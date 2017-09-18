@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Redis," />
 
 
 
@@ -104,16 +104,18 @@
 
 
 
-<meta name="description" content="今晚月光那么美，你说是的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="http://www.lilhui.com/tags/Redis/index.html">
+<meta name="description" content="Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。     结构类型 值类型 读写能力     STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减   LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis数据结构介绍">
+<meta property="og:url" content="http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="今晚月光那么美，你说是的。">
+<meta property="og:description" content="Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。     结构类型 值类型 读写能力     STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减   LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-18T09:51:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Littlehui&#39;s Notes">
-<meta name="twitter:description" content="今晚月光那么美，你说是的。">
+<meta name="twitter:title" content="Redis数据结构介绍">
+<meta name="twitter:description" content="Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。     结构类型 值类型 读写能力     STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减   LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推">
 
 
 
@@ -143,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://www.lilhui.com/tags/Redis/"/>
+  <link rel="canonical" href="http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/"/>
 
 
 
 
 
-  <title>标签: Redis | Littlehui's Notes</title>
+  <title>Redis数据结构介绍 | Littlehui's Notes</title>
   
 
 
@@ -168,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,54 +298,341 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Redis<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/18/redis/Redisshujujiegou/" itemprop="url">
-              
-                <span itemprop="name">Redis数据结构介绍</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Redis数据结构介绍</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-18T17:20:47+08:00"
-              content="2017-09-18" >
-          09-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T17:20:47+08:00">
+                2017-09-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">缓存</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/缓存/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis数据结构介绍"><a href="#Redis数据结构介绍" class="headerlink" title="Redis数据结构介绍"></a>Redis数据结构介绍</h2><blockquote>
+<p>Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>结构类型</th>
+<th>值类型</th>
+<th>读写能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STRING</td>
+<td>字符串，整数，浮点数，基本类型</td>
+<td>对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减</td>
+</tr>
+<tr>
+<td>LIST</td>
+<td>一个链表，链表上的每个节点都包含了一个字符串</td>
+<td>从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪，读取单个或者多个元素；根据值查找或者移除元素</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>包含字符串的无序搜集器（unordered collection)，并且被包含的每个字符串都是独一无二，各不相同的</td>
+<td>添加，获取，移除单个元素；检查一个元素是否存在于集合中；计算交集，并集，差集；从集合里随机获取元素</td>
+</tr>
+<tr>
+<td>HASH</td>
+<td>包含键值对的无序散列表</td>
+<td>添加、获取、移除单个键值对；获取所有键值对</td>
+</tr>
+<tr>
+<td>ZSET(有序集合)</td>
+<td>字符串成员（member）与浮点数值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td>
+<td>添加、获取、删除、单个元素；根据分值范围（染个）或者成员来获取元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字符串（STRING"><a href="#字符串（STRING" class="headerlink" title="字符串（STRING)"></a>字符串（STRING)</h3><p>基本操作：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>获取存储在给定键值中的值</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>设置存储在给定键中的值</td>
+</tr>
+<tr>
+<td>DEL</td>
+<td>删除存储在给定键中的值（所有类型适用）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List)"></a>列表（List)</h3><p>基本操作：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RPUSH</td>
+<td>给定的值推入列表的右端</td>
+</tr>
+<tr>
+<td>LRANGE</td>
+<td>获取列表在给定范围上的所有值</td>
+</tr>
+<tr>
+<td>LINDEX</td>
+<td>获取在列表给定位置上的单个元素</td>
+</tr>
+<tr>
+<td>LPOP</td>
+<td>从列表的左端弹出一个值，并返回被弹出的值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="集合（SET）"><a href="#集合（SET）" class="headerlink" title="集合（SET）"></a>集合（SET）</h3><blockquote>
+<p>和集合一样可以存储多个字符串，不同的是 列表中可以村粗多个相同的字符串。而集合则通过使用散列来保证自己存储的每个字符串都是各自不同的（这些散列只有键没有键值）</p>
+</blockquote>
+<p>基本操作：<br>命令 | 行为<br>— | —<br>SADD | 将给定元素添加到集合<br>SMEMBERS | 返回集合包含的所有元素<br>SISMEMBER | 检查给定元素是存在于集合中<br>SREM | 如果给定的元素存在于集合中，那么移除这个元素</p>
+<p>另外的操作<br>SINTER,SUNION, SDIFF 分别执行交集计算、并集计算和差集计算。</p>
+<h3 id="散列（HASH）"><a href="#散列（HASH）" class="headerlink" title="散列（HASH）"></a>散列（HASH）</h3><blockquote>
+<p>Redis的散列可以存储多个键值间的映射。其值，可以是字符串有可以是数字值。也可以对散列存储的值进行自增或自减。</p>
+<p>散列在很多方面就是一个缩小版的Redis，不少字符串都有相应的散列版本。</p>
+</blockquote>
+<p>基本操作：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HSET</td>
+<td>在散列里面关联起给定的键值对</td>
+</tr>
+<tr>
+<td>HGET</td>
+<td>获取指定散列键的值</td>
+</tr>
+<tr>
+<td>HGETALL</td>
+<td>获取散列包含所有键值对</td>
+</tr>
+<tr>
+<td>HDEL</td>
+<td>如果给定键存在于散列里，那么移除这个键</td>
+</tr>
+</tbody>
+</table>
+<p>Redis的散列可以看做文档数据库里的文档，在开发过程中可以很好的对应。在关系书库里可以看做关系数据库里的行。散列、文档、数据行这三者都允许用户同时访问或者修改一个火多个域。</p>
+<h3 id="有序集（ZSET）"><a href="#有序集（ZSET）" class="headerlink" title="有序集（ZSET）"></a>有序集（ZSET）</h3><blockquote>
+<p>和散列一样，有序集都用于存储键值对：有序集合的键称为 成员（member）每个成员都各不相同；有序集的值被称为分值（score）必须为浮点数。是唯一一个可以根据成员访问元素，又可以根据分值以及分值的排序来访问元素的结构。</p>
+</blockquote>
+<p>基本操作：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZADD</td>
+<td>将一个带有给定成分值的成员添加到有序集合里</td>
+</tr>
+<tr>
+<td>ZRANGE</td>
+<td>根据元素在有序排列中所处处的位置，从有序集合中获取多个元素</td>
+</tr>
+<tr>
+<td>ZRANGEBYSCORE</td>
+<td>获取有序集合给定分值范围内的所有属性</td>
+</tr>
+<tr>
+<td>ZREM</td>
+<td>如果给定成员存在，移除这个成员</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"># Redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/18/search/Mysql的缓存与Memcached,Redis缓存区别/" rel="next" title="Mysql缓存与Memcached,Redis区别">
+                <i class="fa fa-chevron-left"></i> Mysql缓存与Memcached,Redis区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -351,6 +640,15 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
+
+        
+      </div>
+
 
         </div>
         
@@ -371,8 +669,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -444,6 +751,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis数据结构介绍"><span class="nav-number">1.</span> <span class="nav-text">Redis数据结构介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串（STRING"><span class="nav-number">1.1.</span> <span class="nav-text">字符串（STRING)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表（List"><span class="nav-number">1.2.</span> <span class="nav-text">列表（List)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合（SET）"><span class="nav-number">1.3.</span> <span class="nav-text">集合（SET）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列（HASH）"><span class="nav-number">1.4.</span> <span class="nav-text">散列（HASH）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集（ZSET）"><span class="nav-number">1.5.</span> <span class="nav-text">有序集（ZSET）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -602,6 +925,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
