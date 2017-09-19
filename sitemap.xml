@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.lilhui.com/2017/09/18/mysql/Mysql_1/</loc>
+    <loc>http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/</loc>
     
-    <lastmod>2017-09-19T01:23:43.000Z</lastmod>
+    <lastmod>2017-09-19T07:51:56.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/</loc>
+    <loc>http://www.lilhui.com/2017/09/18/mysql/Mysql_1/</loc>
     
-    <lastmod>2017-09-18T09:51:04.000Z</lastmod>
+    <lastmod>2017-09-19T01:23:43.000Z</lastmod>
     
   </url>
   
@@ -51,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     

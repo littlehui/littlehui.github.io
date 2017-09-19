@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。     结构类型 值类型 读写能力     STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减   LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-18T09:51:04.000Z">
+<meta property="og:updated_time" content="2017-09-19T07:51:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis数据结构介绍">
 <meta name="twitter:description" content="Redis数据结构介绍 Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。     结构类型 值类型 读写能力     STRING 字符串，整数，浮点数，基本类型 对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减   LIST 一个链表，链表上的每个节点都包含了一个字符串 从链表的两端推">
@@ -510,7 +510,33 @@
 <h3 id="集合（SET）"><a href="#集合（SET）" class="headerlink" title="集合（SET）"></a>集合（SET）</h3><blockquote>
 <p>和集合一样可以存储多个字符串，不同的是 列表中可以村粗多个相同的字符串。而集合则通过使用散列来保证自己存储的每个字符串都是各自不同的（这些散列只有键没有键值）</p>
 </blockquote>
-<p>基本操作：<br>命令 | 行为<br>— | —<br>SADD | 将给定元素添加到集合<br>SMEMBERS | 返回集合包含的所有元素<br>SISMEMBER | 检查给定元素是存在于集合中<br>SREM | 如果给定的元素存在于集合中，那么移除这个元素</p>
+<p>基本操作：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SADD</td>
+<td>将给定元素添加到集合</td>
+</tr>
+<tr>
+<td>SMEMBERS</td>
+<td>返回集合包含的所有元素</td>
+</tr>
+<tr>
+<td>SISMEMBER</td>
+<td>检查给定元素是存在于集合中</td>
+</tr>
+<tr>
+<td>SREM</td>
+<td>如果给定的元素存在于集合中，那么移除这个元素</td>
+</tr>
+</tbody>
+</table>
 <p>另外的操作<br>SINTER,SUNION, SDIFF 分别执行交集计算、并集计算和差集计算。</p>
 <h3 id="散列（HASH）"><a href="#散列（HASH）" class="headerlink" title="散列（HASH）"></a>散列（HASH）</h3><blockquote>
 <p>Redis的散列可以存储多个键值间的映射。其值，可以是字符串有可以是数字值。也可以对散列存储的值进行自增或自减。</p>

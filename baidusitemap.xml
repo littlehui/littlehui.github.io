@@ -4,6 +4,29 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/</loc>
+    <lastmod>2017-09-19T07:51:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>Redis数据结构介绍</title>
+        <pubTime>2017-09-18T09:20:47.000Z</pubTime>
+        
+        <tag>Redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="缓存" url="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/"/>
+          
+             
+              <breadCrumb title="Redis" url="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/Redis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2017/09/18/mysql/Mysql_1/</loc>
     <lastmod>2017-09-19T01:23:43.000Z</lastmod>
     <data>
@@ -19,29 +42,6 @@
            
              
               <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/</loc>
-    <lastmod>2017-09-18T09:51:04.000Z</lastmod>
-    <data>
-        <display>
-        <title>Redis数据结构介绍</title>
-        <pubTime>2017-09-18T09:20:47.000Z</pubTime>
-        
-        <tag>Redis</tag>
-         
-         
-           
-             
-              <breadCrumb title="缓存" url="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/"/>
-          
-             
-              <breadCrumb title="Redis" url="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/Redis/"/>
           
         </display>
     </data>
