@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[HttpURLConnection Post请求自动重传机制]]></title>
     <url>%2F2017%2F09%2F26%2Fjava%2Fjava_1%2F</url>
-    <content type="text"><![CDATA[前言 之前负责的一个商城项目，需要从供应商库进行订单下单同步，服务器间通讯通过http请求。 加密方式采用DES加密方式。在运行初七一切正常，几个月后对方发现有重复订单存在，而客户端这边接收到异常生成订单异常信息，订单生成不同步。供应商的处理逻辑我们无从得知，只能从自身角度思考为什么会有这种问题，在排除了一系列原因后，定位到一个问题。那就是 HttpURLConnection的post请求重发机制。 详解待补充 解决方法待补充 深入分析待补充 总结待补充]]></content>
+    <content type="text"><![CDATA[前言 之前负责的一个商城项目，需要从供应商库进行订单下单同步，服务器间通讯通过http请求。 加密方式采用DES加密方式。在运行初七一切正常，几个月后对方发现有重复订单存在，而客户端这边接收到异常生成订单异常信息，订单生成不同步。供应商的处理逻辑我们无从得知，只能从自身角度思考为什么会有这种问题，在排除了一系列原因后，定位到一个问题。那就是 HttpURLConnection的post请求重发机制。 说明待补充 解决方法待补充 深入分析待补充 总结待补充]]></content>
       <categories>
         <category>java</category>
       </categories>

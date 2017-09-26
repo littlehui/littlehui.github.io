@@ -43,9 +43,9 @@
     <link href="http://www.lilhui.com/2017/09/26/java/java_1/"/>
     <id>http://www.lilhui.com/2017/09/26/java/java_1/</id>
     <published>2017-09-26T10:01:22.000Z</published>
-    <updated>2017-09-26T10:26:05.000Z</updated>
+    <updated>2017-09-26T10:26:48.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>之前负责的一个商城项目，需要从供应商库进行订单下单同步，服务器间通讯通过http请求。 加密方式采用DES加密方式。在运行初七一切正常，几个月后<br>对方发现有重复订单存在，而客户端这边接收到异常生成订单异常信息，订单生成不同步。供应商的处理逻辑我们无从得知，只能从自身角度思考为什么会有这<br>种问题，在排除了一系列原因后，定位到一个问题。那就是 HttpURLConnection的post请求重发机制。</p></blockquote><h2 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h2><p>待补充</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>待补充</p><h2 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h2><p>待补充</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>待补充</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>之前负责的一个商城项目，需要从供应商库进行订单下单同步，服务器间通讯通过http请求。 加密方式采用DES加密方式。在运行初七一切正常，几个月后<br>对方发现有重复订单存在，而客户端这边接收到异常生成订单异常信息，订单生成不同步。供应商的处理逻辑我们无从得知，只能从自身角度思考为什么会有这<br>种问题，在排除了一系列原因后，定位到一个问题。那就是 HttpURLConnection的post请求重发机制。</p></blockquote><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>待补充</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>待补充</p><h2 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h2><p>待补充</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>待补充</p>]]></content>
     
     <summary type="html">
     
