@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 <meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
-<meta property="og:updated_time" content="2017-09-13T07:46:01.000Z">
+<meta property="og:updated_time" content="2017-09-27T03:16:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solr高级查询edismax函数详解">
 <meta name="twitter:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant 支持小数点的常量例如，1.5，查询表达式就是：val:1.5">
@@ -463,14 +463,10 @@ sum(sqrt(x),log(y),z,0.5)
 <p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 经过调整，我们得出的结果中排在第一位的是 tid:9759987 其时间dateline是1473820016 得分：330.85 是原本的第三位。原来的排第一的 tid:666811排在了第三位，得分 329.40 原来的第二tid:10364925 得分：329.50</p>
 <p> 调整后的排序大致满足我们的需求。那么为什么调整后会变成这样的排序呢？</p>
 <p> 首先我们要清楚solr的打分机制默认是通过匹配度计算文档相似度得来的。也就是第一次搜索的默认得分，引入edismax的bf函数后我们来分析下最终的结果是怎样，以第一次搜索排名前三的数据为例子：  </p>
+<p> tid  | dateline | 初始得分 | 引入bf重新计算<br> —|—|—|—<br> 666811 | 1239781944 | 27.811382 | 329.40198<br> 10364925 | 1503334472  | 26.519054 |329.50174<br> 9759987 | 1473820016 | 26.511488 | 330.85834 </p>
 </li>
 </ol>
-<pre><code>tid  | dateline | 初始得分 | 引入bf重新计算
----|---|---|---
-666811 | 1239781944 | 27.811382 | 329.40198
-10364925 | 1503334472  | 26.519054 |329.50174
-9759987 | 1473820016 | 26.511488 | 330.85834 
-</code></pre><blockquote>
+<blockquote>
 <p>根据bf=sqrt(log(dateline))^100 分别计算上面三个的新得分  </p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sqrt(log(1239781944)) = 3.0155174194591075  </div><div class="line">权重乘100 得:  </div><div class="line">301.55174194591075</div><div class="line">再加 27.811382  </div><div class="line">=329.36312394591073</div><div class="line"></div><div class="line">sqrt(log(1503334472)) = 3.029365546794402</div><div class="line">权重乘100 得:</div><div class="line">302.9365546794402</div><div class="line">再加 26.519054</div><div class="line">=329.45560867944016</div><div class="line"></div><div class="line">sqrt(log(1473820016)) = 3.0279439311841663</div><div class="line">权重乘100 得:</div><div class="line">302.79439311841663</div><div class="line">再加 26.511488</div><div class="line">=329.3058811184166</div></pre></td></tr></table></figure>
