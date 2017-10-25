@@ -107,7 +107,7 @@
 <meta name="description" content="今晚月光那么美，你说是的。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="http://www.lilhui.com/categories/Java/index.html">
+<meta property="og:url" content="http://www.lilhui.com/categories/java/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="今晚月光那么美，你说是的。">
 <meta property="og:locale" content="zh-Hans">
@@ -143,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://www.lilhui.com/categories/Java/"/>
+  <link rel="canonical" href="http://www.lilhui.com/categories/java/"/>
 
 
 
 
 
-  <title>分类: Java | Littlehui's Notes</title>
+  <title>分类: java | Littlehui's Notes</title>
   
 
 
@@ -303,7 +303,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Java<small>分类</small>
+        <h1>java<small>分类</small>
         </h1>
       </div>
 
@@ -315,9 +315,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/10/23/java/pattern_design/partern_design_1/" itemprop="url">
+            <a class="post-title-link" href="/2017/10/11/java/jvm/jvm_3/" itemprop="url">
               
-                <span itemprop="name">设计模式系列：单例模式</span>
+                <span itemprop="name">JVM系列：JVM内存优化实例</span>
               
             </a>
         
@@ -325,9 +325,93 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-23T16:23:02+08:00"
-              content="2017-10-23" >
-          10-23
+              datetime="2017-10-11T16:22:09+08:00"
+              content="2017-10-11" >
+          10-11
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/10/09/java/jvm/jvm_2/" itemprop="url">
+              
+                <span itemprop="name">JVM系列：JVM内存优化建议</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-10-09T17:21:09+08:00"
+              content="2017-10-09" >
+          10-09
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/09/28/java/jvm/jvm_1/" itemprop="url">
+              
+                <span itemprop="name">JVM系列：基础概念</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-09-28T16:15:39+08:00"
+              content="2017-09-28" >
+          09-28
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/09/26/java/java_1/" itemprop="url">
+              
+                <span itemprop="name">HttpURLConnection Post请求自动重传机制</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-09-26T18:01:22+08:00"
+              content="2017-09-26" >
+          09-26
         </time>
       </div>
 
@@ -930,91 +1014,6 @@
                 }
               });
               var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-         var searchResultList = '<ul class=\"search-result-list\">';
               resultItems.forEach(function (result) {
                 searchResultList += result.item;
               })
