@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="设计模式，单例," />
 
 
 
@@ -104,16 +104,18 @@
 
 
 
-<meta name="description" content="今晚月光那么美，你说是的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="http://www.lilhui.com/tags/java/index.html">
+<meta name="description" content="概念单例模式，顾名思义就是在Java应用中，类的实例保证只有一个在JVM中。他有几个好处  减少创建开销 减少内存使用频率，GC压力 保证流程独立  实现第一种 饿汉法1234567public class Singleton &amp;#123;       private static Singleton = new Singleton();    private Singleton() &amp;#123;">
+<meta name="keywords" content="设计模式，单例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式系列：单例模式">
+<meta property="og:url" content="http://www.lilhui.com/2017/10/23/java/pattern_design/partern_design_1/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="今晚月光那么美，你说是的。">
+<meta property="og:description" content="概念单例模式，顾名思义就是在Java应用中，类的实例保证只有一个在JVM中。他有几个好处  减少创建开销 减少内存使用频率，GC压力 保证流程独立  实现第一种 饿汉法1234567public class Singleton &amp;#123;       private static Singleton = new Singleton();    private Singleton() &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-25T03:39:15.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Littlehui&#39;s Notes">
-<meta name="twitter:description" content="今晚月光那么美，你说是的。">
+<meta name="twitter:title" content="设计模式系列：单例模式">
+<meta name="twitter:description" content="概念单例模式，顾名思义就是在Java应用中，类的实例保证只有一个在JVM中。他有几个好处  减少创建开销 减少内存使用频率，GC压力 保证流程独立  实现第一种 饿汉法1234567public class Singleton &amp;#123;       private static Singleton = new Singleton();    private Singleton() &amp;#123;">
 
 
 
@@ -143,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://www.lilhui.com/tags/java/"/>
+  <link rel="canonical" href="http://www.lilhui.com/2017/10/23/java/pattern_design/partern_design_1/"/>
 
 
 
 
 
-  <title>标签: java | Littlehui's Notes</title>
+  <title>设计模式系列：单例模式 | Littlehui's Notes</title>
   
 
 
@@ -168,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,138 +298,225 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>java<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/23/java/pattern_design/partern_design_1/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/10/11/java/jvm/jvm_3/" itemprop="url">
-              
-                <span itemprop="name">JVM系列：JVM内存优化实例</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">设计模式系列：单例模式</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-11T16:22:09+08:00"
-              content="2017-10-11" >
-          10-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T16:23:02+08:00">
+                2017-10-23
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/设计模式/单例/" itemprop="url" rel="index">
+                    <span itemprop="name">单例</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/10/09/java/jvm/jvm_2/" itemprop="url">
-              
-                <span itemprop="name">JVM系列：JVM内存优化建议</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-09T17:21:09+08:00"
-              content="2017-10-09" >
-          10-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/28/java/jvm/jvm_1/" itemprop="url">
-              
-                <span itemprop="name">JVM系列：基础概念</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-28T16:15:39+08:00"
-              content="2017-09-28" >
-          09-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/26/java/java_1/" itemprop="url">
-              
-                <span itemprop="name">HttpURLConnection Post请求自动重传机制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-26T18:01:22+08:00"
-              content="2017-09-26" >
-          09-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>单例模式，顾名思义就是在Java应用中，类的实例保证只有一个在JVM中。他有几个好处</p>
+<ul>
+<li>减少创建开销</li>
+<li>减少内存使用频率，GC压力</li>
+<li>保证流程独立</li>
+</ul>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="第一种-饿汉法"><a href="#第一种-饿汉法" class="headerlink" title="第一种 饿汉法"></a>第一种 饿汉法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;   </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton = <span class="keyword">new</span> Singleton();</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="title">getSignleton</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码简单，但是无法延迟加载。</p>
+<h4 id="第二种-单线程安全"><a href="#第二种-单线程安全" class="headerlink" title="第二种 单线程安全"></a>第二种 单线程安全</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </div><div class="line">            instance = <span class="keyword">new</span> Singleton();  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> instance;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方式可以实现基本要求，但是在多线程情况下就会出现可能New出多个实例的情况。由此引入synchronized关键字，我们有如下实现：</p>
+<h4 id="第三种-多线程安全"><a href="#第三种-多线程安全" class="headerlink" title="第三种 多线程安全"></a>第三种 多线程安全</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </div><div class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;  </div><div class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </div><div class="line">                    instance = <span class="keyword">new</span> Singleton();  </div><div class="line">                &#125;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> instance;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种方法引入了syncronized 关键字，在调用getInstance方法的时候进行了并发处理。然而在多线程情况下仍然有问题<br>情况如下：  </p>
+<pre><code>a&gt;A、B线程同时进入了第一个if判断
+b&gt;A首先进入synchronized块，由于instance为null，所以它执行instance = new Singleton();
+c&gt;在new对象的过程中，由于JVM的优化，指令进行重排序，JVM先画出了一些分配给Singleton实例的空白内存，并赋值给instance成员（注意此时JVM没有开始初始化这个实例），然后A离开了synchronized块。
+d&gt;B进入synchronized块，由于instance此时不是null，因此它马上离开了synchronized块并将结果返回给调用该方法的程序。
+e&gt;此时B线程打算使用Singleton实例，却发现它没有被初始化，于是错误发生了。
+</code></pre><p>这里引入volatile关键字禁止对instance操作的指令重排。</p>
+<h4 id="第四种-多线程安全”多重锁检查””"><a href="#第四种-多线程安全”多重锁检查””" class="headerlink" title="第四种 多线程安全”多重锁检查””"></a>第四种 多线程安全”多重锁检查””</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">null</span>;  </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </div><div class="line">            <span class="keyword">synchronized</span> (Singleton.class) &#123;  </div><div class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;  </div><div class="line">                    instance = <span class="keyword">new</span> Singleton();  </div><div class="line">                &#125;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> instance;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种方法就是有名的DCL的单利模式。基本已经完善多线程下的单例模式。需要提醒的是， volatile屏蔽指令重排的语义在JDK 1.5中才被修复，所以JDK1.5之前的JAVA无法使用这一方式。</p>
+<h4 id="第五种-静态内部类方法"><a href="#第五种-静态内部类方法" class="headerlink" title="第五种 静态内部类方法"></a>第五种 静态内部类方法</h4><p>静态类方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Holder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> Singleton singleton = <span class="keyword">new</span> Singleton();</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">         </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> Holder.singleton;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>类只加载一次，所以这中方式也是线程安全的。<br>不过以上的方法都存在一些问题：</p>
+<ul>
+<li>进行序列化时需要额外的工作进行序列化(Serializable,transient,readResolve())等操作。否则每次序列化都是创建一个新的实例。</li>
+<li>构造器虽然是私有的，但是还是可以通过反射来强行调用创建实例。一个方法是在构造器里判断已经创建过实例抛异常。<br>如何更优雅地解决以上两个缺陷呢，我们可以使用枚举单例。</li>
+</ul>
+<h4 id="第五种-枚举方法"><a href="#第五种-枚举方法" class="headerlink" title="第五种 枚举方法"></a>第五种 枚举方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton &#123;</div><div class="line">    INSTANCE;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>枚举不仅线程安全，防止反射强行调用构造器外。还提供了自动化序列机制，繁殖序列化的时候创建新对象。<br>更接近与”完美”的单利模式。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>单例模式既熟悉，又陌生。看起来简单的功能，算法，要写好，无瑕疵，还是需要很大专研精神。避免遇到快很多坑。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式，单例/" rel="tag"># 设计模式，单例</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/11/java/jvm/jvm_3/" rel="next" title="JVM系列：JVM内存优化实例">
+                <i class="fa fa-chevron-left"></i> JVM系列：JVM内存优化实例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -435,6 +524,15 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
+
+        
+      </div>
+
 
         </div>
         
@@ -455,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -528,6 +635,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种-饿汉法"><span class="nav-number">2.1.</span> <span class="nav-text">第一种 饿汉法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种-单线程安全"><span class="nav-number">2.2.</span> <span class="nav-text">第二种 单线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三种-多线程安全"><span class="nav-number">2.3.</span> <span class="nav-text">第三种 多线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四种-多线程安全”多重锁检查””"><span class="nav-number">2.4.</span> <span class="nav-text">第四种 多线程安全”多重锁检查””</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五种-静态内部类方法"><span class="nav-number">2.5.</span> <span class="nav-text">第五种 静态内部类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五种-枚举方法"><span class="nav-number">2.6.</span> <span class="nav-text">第五种 枚举方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -686,6 +809,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 

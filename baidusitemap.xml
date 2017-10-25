@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2017/10/23/java/pattern_design/partern_design_1/</loc>
+    <lastmod>2017-10-25T03:39:15.733Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：单例模式</title>
+        <pubTime>2017-10-23T08:23:02.000Z</pubTime>
+        
+        <tag>设计模式，单例</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.lilhui.com/categories/Java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+             
+              <breadCrumb title="单例" url="http://www.lilhui.com/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2017/09/28/java/jvm/jvm_1/</loc>
     <lastmod>2017-10-11T10:26:04.000Z</lastmod>
     <data>
