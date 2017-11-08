@@ -4,8 +4,128 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2017/10/23/java/pattern_design/partern_design_1/</loc>
-    <lastmod>2017-10-25T03:40:50.257Z</lastmod>
+    <loc>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_3/</loc>
+    <lastmod>2017-11-08T10:28:26.389Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：抽象工厂模式</title>
+        <pubTime>2017-10-25T03:54:58.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_2/</loc>
+    <lastmod>2017-11-08T10:28:26.384Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：工厂方法模式</title>
+        <pubTime>2017-10-25T03:54:44.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.lilhui.com/categories/Java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+             
+              <breadCrumb title="工厂方法" url="http://www.lilhui.com/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_5/</loc>
+    <lastmod>2017-11-08T10:25:24.931Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：原型模式</title>
+        <pubTime>2017-10-25T03:55:44.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_4/</loc>
+    <lastmod>2017-11-08T10:13:34.593Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：建造者模式</title>
+        <pubTime>2017-10-25T03:55:32.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_0/</loc>
+    <lastmod>2017-10-30T03:03:12.688Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式系列：概况</title>
+        <pubTime>2017-10-25T03:59:47.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/23/java/patterndesign/parterndesign_1/</loc>
+    <lastmod>2017-10-26T09:23:42.206Z</lastmod>
     <data>
         <display>
         <title>设计模式系列：单例模式</title>
@@ -24,6 +144,21 @@
              
               <breadCrumb title="单例" url="http://www.lilhui.com/categories/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/multithread/multithread_1/</loc>
+    <lastmod>2017-10-26T06:55:55.425Z</lastmod>
+    <data>
+        <display>
+        <title>多线程系列：volatile关键字</title>
+        <pubTime>2017-10-25T03:42:41.000Z</pubTime>
+        
+         
+           
         </display>
     </data>
     </url>
