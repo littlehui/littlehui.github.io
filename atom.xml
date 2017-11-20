@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2017-10-30T03:03:12.688Z</updated>
+  <updated>2017-11-20T02:59:32.077Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -17,13 +17,230 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux自动删除N天日志</title>
+    <link href="http://www.lilhui.com/2017/11/20/linux/linux_1/"/>
+    <id>http://www.lilhui.com/2017/11/20/linux/linux_1/</id>
+    <published>2017-11-20T02:38:07.000Z</published>
+    <updated>2017-11-20T02:59:32.077Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote><p>web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。<br>如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。</p><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3></blockquote><h4 id="删除文件脚本"><a href="#删除文件脚本" class="headerlink" title="删除文件脚本"></a>删除文件脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure><p>例如:删除3天前 /opt/logs下 search开头的日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>说明：<br>find：linux的查找命令，用户查找指定条件的文件<br>/opt/logs/：想要进行清理的任意目录；<br>-mtime：标准语句写法；<br>+3：查找30天前的文件，这里用数字代表天数；<br>“search*.log”：支持范式匹配<br>-exec：执行<br>rm -rf：强制删除命令<br>{} \; ：固定写法，一对大括号+空格++; </p><h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>将以上命令放置到可执行shell脚本中再通过cron调度执行。<br>创建shell:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch ~/bin/auto-del-30-days-ago-log.sh</div><div class="line">chmod +x auto-del-30-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>编辑shell脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim auto-del-3-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>添加计划调度：<br>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10 0 * * * ~/auto-del-3-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p><p>设置是每天凌晨0点10分执行auto-del-7-days-ago-log.sh文件进行数据清理任务了。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>THE END.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://www.lilhui.com/tags/linux/"/>
+    
+      <category term="系统维护" scheme="http://www.lilhui.com/tags/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列:享元模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-09T02:30:55.715Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列:桥接模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_10/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_10/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-20T03:00:29.481Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列：装饰器模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-09T02:30:55.722Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列：代理模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_8/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_8/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-09T02:30:55.707Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列：外观模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-09T02:30:55.701Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列:组合模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/</id>
+    <published>2017-11-09T02:24:29.000Z</published>
+    <updated>2017-11-09T02:30:55.711Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式系列：适配器模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_6/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_6/</id>
+    <published>2017-11-09T02:21:00.000Z</published>
+    <updated>2017-11-09T05:49:14.247Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>设计模式系列：概况</title>
     <link href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_0/"/>
     <id>http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_0/</id>
     <published>2017-10-25T03:59:47.000Z</published>
-    <updated>2017-10-30T03:03:12.688Z</updated>
+    <updated>2017-11-09T02:38:33.090Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h3><blockquote><p>设计模式是对于Java变成过程中遇到的特定抽象场景总结出的一套通用方法,常用的用23种几年模式。</p></blockquote><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>总体来说设计模式分为三大类：</p><ul><li>创建型模式，共五种： <ol><li>工厂方法模式<br> 定义一个创建对象的接口，让子类决定将哪一个类实例化。使一个类实例化延迟到子类。</li><li>抽象工厂模式<br> 提供一个创建一系列产品或相互依赖对象接口无需指定具体的类。 </li><li>单例模式<br> 保证一个类仅有一个实例，并提供一个访问它的全局访问。</li><li>建造者模式<br> 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</li><li>原型模式<br> 用原型实例指定创建对象的种类，并且通过拷贝这个原型来创建新的对象。</li></ol></li><li>结构型模式，共七种：<ol><li>适配器模式<br> 将一个类的接口转换成客户希望的另一个接口，Adapter使原本由于接口不兼容而不能正常工作的类可以正常工作。</li><li>装饰器模式<br> 动态地给一个对象添加一些额外的职责，就扩展功能而言，它比生成子类方式更加灵活。</li><li>代理模式<br> 为其他对象提供一个代理以控制对这个对象的访问。</li><li>外观模式<br> 为子系统中的一组接口提供一个一致的界面，Facade模式定义一个高层接口，这个接口使得这一子系统更加容易使用。</li><li>桥接模式<br> 将抽象部分与实现部分分离，使它们可以独立变化。</li><li>组合模式<br> 将对象组合成树形结构以表示 “部分-整体”的层次结构。它使得客户对单个对象和符合对象的使用具有一致性。</li><li>享元模式<br> 运用共享技术有效支持大量细粒度对象。</li></ol></li><li>行为型模式，共十一种：<ol><li>策略模式<br> 定义一系列算法，把他们封装起来，并且使它们可以相互替换，本模式使得算法的变化可以独立与使用它的客户端。</li><li>模板方法模式<br> 定义一个操作中的算法骨架，而将一些步骤延迟到子类，Template Method使得子类可以不改变一个算法结构即可重新定义该算法某些特定步骤。</li><li>观察者模式<br> 定义对象间的一种一对多的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并自动刷新。</li><li>迭代器模式<br> 提供一种方法顺序访问一个聚合对象中各个元素而又不暴露该对象内部表示。</li><li>责任链模式<br> 为接触请求的发送者和接受者之间的耦合，而使多个对象都有机会处理这个请求。将这些对象连成一条链，并沿着这条连传递该请求，知道有一个对象处理。</li><li>命令模式<br> 将一个请求封装为一个对象，从而使可以用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可取消操作。</li><li>备忘录模式<br> 在补破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可将该对象回复到保存的状态。</li><li>状态模式<br> 允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎属于一个新的类。</li><li>访问者模式<br> 表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。</li><li>中介者模式<br>用一个中介对象来封装一系列对象交互，中介者使各对象不需要显示的相互引用，从而使得其耦合松散，而且可以独立的改变他们之间的交互。</li><li>解释器模式<br>给定一个语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语言中句子。<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3></li></ol></li></ul><ol><li>开闭原则（Open Close Principle）<br> 开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。</li><li>里氏代换原则（Liskov Substitution Principle）   <ol><li>子类的能力必须大于等于父类，即父类可以使用的方法，子类都可以使用。</li><li>返回值也是同样的道理。假设一个父类方法返回一个List，子类返回一个ArrayList，这当然可以。<br>如果父类方法返回一个ArrayList，子类返回一个List，就说不通了。这里子类返回值的能力是比父类小的。</li><li>还有抛出异常的情况。任何子类方法可以声明抛出父类方法声明异常的子类。<br>而不能声明抛出父类没有声明的异常。<br>一句话理解：所有使用父类的地方都可以被子类替换</li></ol></li><li>依赖倒转原则（Dependence Inversion Principle）<br> 面向接口编程，依赖于抽象而不依赖于具体。</li><li>接口隔离原则（Interface Segregation Principle）<br> 使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，<br> 从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</li><li>迪米特法则（最少知道原则）（Demeter Principle）<br>一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</li><li>合成复用原则（Composite Reuse Principle）<br> 当聚合和继成都可以实现时候，应该使用聚合。聚合由于继承。</li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote><p>上面提到的23种是经典和常用的模式。在实际生产中按照需求总结提取使用。有利于提高代码和程序功能的扩展维护性。然而也不能一味的以使用模式而是用，这就本末倒置了。随着更深入的理解和学习设计模式，会渐渐意识到：设计模式<br>真正的的模式是 “无模式”。看似无招胜似有招。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h3 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h3><blockquote><p>设计模式是对于Java变成过程中遇到的特定抽象场景总结出的一套通用方法,常用的用23种几年模式。</p></blockquote><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>总体来说设计模式分为三大类：</p><ul><li>创建型模式，共五种： <ol><li>工厂方法模式<br> 定义一个创建对象的接口，让子类决定将哪一个类实例化。使一个类实例化延迟到子类。</li><li>抽象工厂模式<br> 提供一个创建一系列产品或相互依赖对象接口无需指定具体的类。 </li><li>单例模式<br> 保证一个类仅有一个实例，并提供一个访问它的全局访问。</li><li>建造者模式<br> 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</li><li>原型模式<br> 用原型实例指定创建对象的种类，并且通过拷贝这个原型来创建新的对象。</li></ol></li><li>结构型模式，共七种：<ol><li>适配器模式<br> 将一个类的接口转换成客户希望的另一个接口，Adapter使原本由于接口不兼容而不能正常工作的类可以正常工作。</li><li>装饰器模式<br> 动态地给一个对象添加一些额外的职责，就扩展功能而言，它比生成子类方式更加灵活。</li><li>代理模式<br> 为其他对象提供一个代理以控制对这个对象的访问。</li><li>外观模式<br> 为子系统中的一组接口提供一个一致的界面，Facade模式定义一个高层接口，这个接口使得这一子系统更加容易使用。</li><li>桥接模式<br> 将抽象部分与实现部分分离，使它们可以独立变化。</li><li>组合模式<br> 将对象组合成树形结构以表示 “部分-整体”的层次结构。它使得客户对单个对象和符合对象的使用具有一致性。</li><li>享元模式<br> 运用共享技术有效支持大量细粒度对象。</li></ol></li><li>行为型模式，共十一种：<ol><li>策略模式<br> 定义一系列算法，把他们封装起来，并且使它们可以相互替换，本模式使得算法的变化可以独立与使用它的客户端。</li><li>模板方法模式<br> 定义一个操作中的算法骨架，而将一些步骤延迟到子类，Template Method使得子类可以不改变一个算法结构即可重新定义该算法某些特定步骤。</li><li>观察者模式<br> 定义对象间的一种一对多的依赖关系，以便当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并自动刷新。</li><li>迭代器模式<br> 提供一种方法顺序访问一个聚合对象中各个元素而又不暴露该对象内部表示。</li><li>责任链模式<br> 为接触请求的发送者和接受者之间的耦合，而使多个对象都有机会处理这个请求。将这些对象连成一条链，并沿着这条连传递该请求，知道有一个对象处理。</li><li>命令模式<br> 将一个请求封装为一个对象，从而使可以用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可取消操作。</li><li>备忘录模式<br> 在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可将该对象回复到保存的状态。</li><li>状态模式<br> 允许一个对象在其内部状态改变时改变它的行为，对象看起来似乎属于一个新的类。</li><li>访问者模式<br> 表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。</li><li>中介者模式<br>用一个中介对象来封装一系列对象交互，中介者使各对象不需要显示的相互引用，从而使得其耦合松散，而且可以独立的改变他们之间的交互。</li><li>解释器模式<br>给定一个语言，定义它的文法的一种表示，并定义一个解释器，该解释器使用该表示来解释语言中句子。<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3></li></ol></li></ul><ol><li>开闭原则（Open Close Principle）<br> 开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。</li><li>里氏代换原则（Liskov Substitution Principle）   <ol><li>子类的能力必须大于等于父类，即父类可以使用的方法，子类都可以使用。</li><li>返回值也是同样的道理。假设一个父类方法返回一个List，子类返回一个ArrayList，这当然可以。<br>如果父类方法返回一个ArrayList，子类返回一个List，就说不通了。这里子类返回值的能力是比父类小的。</li><li>还有抛出异常的情况。任何子类方法可以声明抛出父类方法声明异常的子类。<br>而不能声明抛出父类没有声明的异常。<br>一句话理解：所有使用父类的地方都可以被子类替换</li></ol></li><li>依赖倒转原则（Dependence Inversion Principle）<br> 面向接口编程，依赖于抽象而不依赖于具体。</li><li>接口隔离原则（Interface Segregation Principle）<br> 使用多个隔离的接口，比使用单个接口要好。还是一个降低类之间的耦合度的意思，从这儿我们看出，其实设计模式就是一个软件的设计思想，<br> 从大型软件架构出发，为了升级和维护方便。所以上文中多次出现：降低依赖，降低耦合。</li><li>迪米特法则（最少知道原则）（Demeter Principle）<br>一个实体应当尽量少的与其他实体之间发生相互作用，使得系统功能模块相对独立。</li><li>合成复用原则（Composite Reuse Principle）<br> 当聚合和继成都可以实现时候，应该使用聚合。聚合由于继承。</li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote><p>上面提到的23种是经典和常用的模式。在实际生产中按照需求总结提取使用。有利于提高代码和程序功能的扩展维护性。然而也不能一味的以使用模式而是用，这就本末倒置了。随着更深入的理解和学习设计模式，会渐渐意识到：设计模式<br>真正的的模式是 “无模式”。看似无招胜似有招。</p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -352,207 +569,6 @@
       <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
     
       <category term="http" scheme="http://www.lilhui.com/tags/http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>solr 的ecismax插件扩展方式</title>
-    <link href="http://www.lilhui.com/2017/09/19/search/solr_2/"/>
-    <id>http://www.lilhui.com/2017/09/19/search/solr_2/</id>
-    <published>2017-09-19T09:54:07.000Z</published>
-    <updated>2017-09-26T09:38:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>solr 通过插件的方式实现对edismax的支持。在熟悉了solr插件的执行流程后我，我们也可以对solr插件功能进行定制。实现更加强大的功能。</p></blockquote><h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><ul><li>ExtendedDismaxQParserPlugin</li></ul><p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505899037285.png?imageView2/2/w/531/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><ol><li>NamedListInitializedPlugin 作用<br>NameList作为solr存储map的方式，可以看成是一个key value容器。<br>NameListInitializedPlugin是可以通过NameList初始化的插件。只有一个init方法。接收NameList参数。</li><li>SolrInfoMBean 作用<br>提供Solr后台基础信息的Bean接口。<br>3：QparserPlugin<br>所有插件的父类，定义了默认方法，保存声明了所有solr已经实现的plugin。</li></ol><ul><li>ExtendedDismaxQparser</li></ul><p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505899337351.png?imageView2/2/w/266/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片">  </p><p>ExtendDismaxQparser<br>描述edismax支持的配置和方法，集合了edismax所需功能的各种操作。并创建 ExtendedSolrDismaxQueryParser,为其提供职责更为简明的操作环境。是edismax语法支持类。</p><ul><li>ExtendSolrQueryParser</li></ul><p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505900285118.png?imageView2/2/w/393/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><ol><li><p>QueryBuilder<br>lucene 提供用于创建查询器的工厂类</p><p>可以被当做自定义解析器的子类，使得查询解析器更容易地集成到分析链中。生成查询可以定制化。<br>所有默认lucene提供的query在这里创建</p></li></ol><ol><li><p>SolrQueryParserBase<br>Solr继承自QueryBuilder的类。作为Solr标准查询解析器的父类。Solr对lucene的扩展，加入了 MagicFieldName RawQuery等支持。初始化时读入 schema配置。可以修改这个类来扩展schema标签功能。</p></li><li><p>QueryParser<br>默认的query解析器</p></li><li>SolrQueryParser<br>Solr’s 的默认查询解析器schema驱动的经典lucene查询解析方式。</li><li>ExtendedSolrQueryParser<br>作为ExtendedSolrQParser的内部类存在。实施最终的查询解析。</li></ol><h2 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h2><p>SolrDispatchFilter（doFilter,execute）</p><p>-&gt;SolrCore.execute</p><p>-&gt;RequestHandlerBase.handleRequest</p><p>-&gt;SearchHandler.handleRequestBody<br>//有可能执行多个Component<br>//query,facet,group等等，这里每个查询特性对应每个SearchComponent<br>-&gt;QueryComponent.process</p><p>-&gt;SolrIndexSearcher(search,getDocListC)  </p><blockquote><p>描述<br>edismax请求到 SearchHandler 分析调用的SearchComponent链，其中QueryComponent 通过defType选择 插件ExtendedDismaxQParserPlugin 创建queryParser初始化插件paraer</p></blockquote><p>QueryComponent prepare调用<br>QParser rqparser = QParser.getParser(rankQueryString, defType, req);<br>先解析出参数语法包含的解析器信息</p><p> QueryComponent 源码部分 关键方法:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> QParser <span class="title">getParser</span><span class="params">(String qstr, String defaultParser, SolrQueryRequest req)</span> <span class="keyword">throws</span> SyntaxError </span>&#123;</div><div class="line">  ...</div><div class="line"> <span class="comment">//存在字符 &#123;！需要分析参数需要什么样的查询解析器选定信息</span></div><div class="line"> <span class="keyword">if</span> (qstr != <span class="keyword">null</span> &amp;&amp; qstr.startsWith(QueryParsing.LOCALPARAM_START)) &#123;</div><div class="line">   localParams = <span class="keyword">new</span> ModifiableSolrParams();</div><div class="line">   localParamsEnd = QueryParsing.parseLocalParams(qstr, <span class="number">0</span>, localParams, globalParams);</div><div class="line"></div><div class="line">   String val = localParams.get(QueryParsing.V);</div><div class="line">   <span class="keyword">if</span> (val != <span class="keyword">null</span>) &#123;</div><div class="line">     <span class="comment">// val was directly specified in localParams via v=&lt;something&gt; or v=$arg</span></div><div class="line">     valFollowedParams = <span class="keyword">false</span>;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">     <span class="comment">// use the remainder of the string as the value</span></div><div class="line">     valFollowedParams = <span class="keyword">true</span>;</div><div class="line">     val = qstr.substring(localParamsEnd);</div><div class="line">     localParams.set(QueryParsing.V, val);</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"> ...</div><div class="line"> </div><div class="line"> <span class="comment">//localParams 语法解析出来的localParams是否需要特殊的解析器来解析查询。</span></div><div class="line">  <span class="keyword">if</span> (localParams == <span class="keyword">null</span>) &#123;</div><div class="line">   parserName = defaultParser;</div><div class="line"> &#125; <span class="keyword">else</span> &#123;</div><div class="line">   <span class="comment">//显示的defType与解析出来的信息一起判断优先级来选定解析器名称</span></div><div class="line">   parserName = localParams.get(QueryParsing.TYPE,defaultParser);</div><div class="line">   qstr = localParams.get(<span class="string">"v"</span>);</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> parserName = parserName==<span class="keyword">null</span> ? QParserPlugin.DEFAULT_QTYPE : parserName;</div><div class="line"> <span class="comment">//确定后通过名称获取解析插件</span></div><div class="line"> QParserPlugin qplug = req.getCore().getQueryPlugin(parserName);</div><div class="line"> QParser parser =  qplug.createParser(qstr, localParams, req.getParams(), req);</div><div class="line"> ...</div><div class="line"> <span class="keyword">return</span> parser;</div><div class="line"> &#125;</div></pre></td></tr></table></figure><p>对edisMax查询操作，QueryComponet返回了 ExtendDismaxQparser 作为查询解析器作为后续的查询支持 。<br>默认解析器 lucene  </p><h2 id="扩展功能"><a href="#扩展功能" class="headerlink" title="扩展功能"></a>扩展功能</h2><p>扩展步骤：<br>1:新建 XXPlugin 继承 QParserPlugin<br> 实现方法：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//定义插件名称，用于配置指定</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> String NAME = <span class="string">"XXXqueryPlus"</span>;</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> QParser <span class="title">createParser</span><span class="params">(String qstr, SolrParams localParams, SolrParams params, SolrQueryRequest req)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> XXXQParser(qstr, localParams, params, req);</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>2:创建XXXQParser继承QParser, XXXSolrQueryParser继承SolrQueryParser<br>可以采用组合方式，也可以采用内部类的方式。在XXXQParser里重写 parser()方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Query <span class="title">parse</span><span class="params">()</span> <span class="keyword">throws</span> SyntaxError </span>&#123;</div><div class="line">    <span class="comment">//返回具体的 查询Query</span></div><div class="line">    <span class="comment">//可以结合XXXSolrQueryParser方法返回.</span></div><div class="line">    <span class="comment">//this.parser() --&gt; XXSolrQueryParser.parser()。</span></div><div class="line">    <span class="comment">//提交给 SolrQuerybase执行，只要根据需要重写 SolrQueryBase里的</span></div><div class="line">    <span class="comment">//    protected Query getFieldQuery(String field, String queryText, //boolean quoted, boolean raw)方法即可。</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>3:solrConfig里配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">"standard"</span> <span class="attr">class</span>=<span class="string">"solr.SearchHandler"</span> <span class="attr">default</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">lst</span> <span class="attr">name</span>=<span class="string">"defaults"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"defType"</span>&gt;</span>XXXqueryPlus<span class="tag">&lt;/<span class="name">str</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">lst</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">requestHandler</span>&gt;</span></div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;solr 通过插件的方式实现对edismax的支持。在熟悉了solr插件的执行流程后我，我们也可以对solr插件功
-      
-    
-    </summary>
-    
-      <category term="搜索" scheme="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
-    
-    
-      <category term="solr" scheme="http://www.lilhui.com/tags/solr/"/>
-    
-      <category term="edismax" scheme="http://www.lilhui.com/tags/edismax/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis数据结构介绍</title>
-    <link href="http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/"/>
-    <id>http://www.lilhui.com/2017/09/18/redis/Redisshujujiegou/</id>
-    <published>2017-09-18T09:20:47.000Z</published>
-    <updated>2017-10-09T02:29:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Redis数据结构介绍"><a href="#Redis数据结构介绍" class="headerlink" title="Redis数据结构介绍"></a>Redis数据结构介绍</h2><blockquote><p>Redis数据结构分为 STRING,LIST,SET,HASH,ZSET五种。与其他数据库或者缓存有相互对应关系。又有他自己的特点。</p></blockquote><table><thead><tr><th>结构类型</th><th>值类型</th><th>读写能力</th></tr></thead><tbody><tr><td>STRING</td><td>字符串，整数，浮点数，基本类型</td><td>对整个字符串或者字符串其中的一部分进行操作，对整数和浮点数进行自增或者自减</td></tr><tr><td>LIST</td><td>一个链表，链表上的每个节点都包含了一个字符串</td><td>从链表的两端推入或者弹出元素，根据偏移量对链表进行修剪，读取单个或者多个元素；根据值查找或者移除元素</td></tr><tr><td>SET</td><td>包含字符串的无序搜集器（unordered collection)，并且被包含的每个字符串都是独一无二，各不相同的</td><td>添加，获取，移除单个元素；检查一个元素是否存在于集合中；计算交集，并集，差集；从集合里随机获取元素</td></tr><tr><td>HASH</td><td>包含键值对的无序散列表</td><td>添加、获取、移除单个键值对；获取所有键值对</td></tr><tr><td>ZSET(有序集合)</td><td>字符串成员（member）与浮点数值（score）之间的有序映射，元素的排列顺序由分值的大小决定</td><td>添加、获取、删除、单个元素；根据分值范围（染个）或者成员来获取元素</td></tr></tbody></table><h3 id="字符串（STRING"><a href="#字符串（STRING" class="headerlink" title="字符串（STRING)"></a>字符串（STRING)</h3><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>GET</td><td>获取存储在给定键值中的值</td></tr><tr><td>SET</td><td>设置存储在给定键中的值</td></tr><tr><td>DEL</td><td>删除存储在给定键中的值（所有类型适用）</td></tr></tbody></table><h3 id="列表（List"><a href="#列表（List" class="headerlink" title="列表（List)"></a>列表（List)</h3><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>RPUSH</td><td>给定的值推入列表的右端</td></tr><tr><td>LRANGE</td><td>获取列表在给定范围上的所有值</td></tr><tr><td>LINDEX</td><td>获取在列表给定位置上的单个元素</td></tr><tr><td>LPOP</td><td>从列表的左端弹出一个值，并返回被弹出的值</td></tr></tbody></table><h3 id="集合（SET）"><a href="#集合（SET）" class="headerlink" title="集合（SET）"></a>集合（SET）</h3><blockquote><p>和集合一样可以存储多个字符串，不同的是 列表中可以村粗多个相同的字符串。而集合则通过使用散列来保证自己存储的每个字符串都是各自不同的（这些散列只有键没有键值）</p></blockquote><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>SADD</td><td>将给定元素添加到集合</td></tr><tr><td>SMEMBERS</td><td>返回集合包含的所有元素</td></tr><tr><td>SISMEMBER</td><td>检查给定元素是存在于集合中</td></tr><tr><td>SREM</td><td>如果给定的元素存在于集合中，那么移除这个元素</td></tr></tbody></table><p>另外的操作<br>SINTER,SUNION, SDIFF 分别执行交集计算、并集计算和差集计算。</p><h3 id="散列（HASH）"><a href="#散列（HASH）" class="headerlink" title="散列（HASH）"></a>散列（HASH）</h3><blockquote><p>Redis的散列可以存储多个键值间的映射。其值，可以是字符串有可以是数字值。也可以对散列存储的值进行自增或自减。</p><p>散列在很多方面就是一个缩小版的Redis，不少字符串都有相应的散列版本。</p></blockquote><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>HSET</td><td>在散列里面关联起给定的键值对</td></tr><tr><td>HGET</td><td>获取指定散列键的值</td></tr><tr><td>HGETALL</td><td>获取散列包含所有键值对</td></tr><tr><td>HDEL</td><td>如果给定键存在于散列里，那么移除这个键</td></tr></tbody></table><p>Redis的散列可以看做文档数据库里的文档，在开发过程中可以很好的对应。在关系书库里可以看做关系数据库里的行。散列、文档、数据行这三者都允许用户同时访问或者修改一个火多个域。</p><h3 id="有序集（ZSET）"><a href="#有序集（ZSET）" class="headerlink" title="有序集（ZSET）"></a>有序集（ZSET）</h3><blockquote><p>和散列一样，有序集都用于存储键值对：有序集合的键称为 成员（member）每个成员都各不相同；有序集的值被称为分值（score）必须为浮点数。是唯一一个可以根据成员访问元素，又可以根据分值以及分值的排序来访问元素的结构。</p></blockquote><p>基本操作：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td>ZADD</td><td>将一个带有给定成分值的成员添加到有序集合里</td></tr><tr><td>ZRANGE</td><td>根据元素在有序排列中所处处的位置，从有序集合中获取多个元素</td></tr><tr><td>ZRANGEBYSCORE</td><td>获取有序集合给定分值范围内的所有属性</td></tr><tr><td>ZREM</td><td>如果给定成员存在，移除这个成员</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Redis数据结构介绍&quot;&gt;&lt;a href=&quot;#Redis数据结构介绍&quot; class=&quot;headerlink&quot; title=&quot;Redis数据结构介绍&quot;&gt;&lt;/a&gt;Redis数据结构介绍&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Redis数据结构分为 STRING,LI
-      
-    
-    </summary>
-    
-      <category term="缓存" scheme="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/"/>
-    
-      <category term="Redis" scheme="http://www.lilhui.com/categories/%E7%BC%93%E5%AD%98/Redis/"/>
-    
-    
-      <category term="Redis" scheme="http://www.lilhui.com/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql缓存与Memcached,Redis区别</title>
-    <link href="http://www.lilhui.com/2017/09/18/mysql/Mysql_1/"/>
-    <id>http://www.lilhui.com/2017/09/18/mysql/Mysql_1/</id>
-    <published>2017-09-18T08:09:31.000Z</published>
-    <updated>2017-09-19T01:23:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>我们在做Web开发的时候从至上而下的技术分层里，缓存始终贯穿其中。浏览器层–》业务层–》数据库层。每个层面上的缓存都有各自的功能与场景。我们今天探讨下业务层到数据库层上缓存的功能和区别。</p></blockquote><h2 id="业务层缓存"><a href="#业务层缓存" class="headerlink" title="业务层缓存"></a>业务层缓存</h2><h3 id="Memcached"><a href="#Memcached" class="headerlink" title="Memcached"></a>Memcached</h3><p>Memcached 严格上讲还不能说是完整的分布式缓存系统。它有很多第三方工具支撑其分布式功能。<br>Memcached 通过内部固定的大小的chunk预申请内存数据。使得分配和回收内存的效率很高。读写性能也很高。64k对象的情况下，单机QPS可以达到15W以上。<br>Memcached 的集群架构中，单个节点对其他节点是相互独立的，没有数据方面的通信。不具备failover能力。<br>Memcached 支持多语言，有相当的稳定性。</p><h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>Redis 显著的特点是不仅支持普通的K，V 类型存储，还支持其独特的 五种数据结构 详见<a href="http://www.lilhui.com/2017/0918/redis/Redis数据结构">Redis数据结构</a><br>Redis 也支持集群，Redis支持的集群是Master-Slave模式。其有点是可以在宕机时切换到备份机。可用性方面有一定的提升。<br>Redis 单纯当做缓存存储在内存时速度和Memcached不相上下。存储到硬盘时，性能和速度会下降很多，介于 Memcahced 和mysql之间。<br>Redis 有特殊的订阅功能，使得它经常被用于当做内存队列使用。<br>Redis 扩展方面不如Memcached，无法做到持续的线性扩容。目前支持通过复制的方式，产生一主多备架构并升级容量。</p><h2 id="数据库层缓存"><a href="#数据库层缓存" class="headerlink" title="数据库层缓存"></a>数据库层缓存</h2><h3 id="mysql缓存"><a href="#mysql缓存" class="headerlink" title="mysql缓存"></a>mysql缓存</h3><p>MySQL将缓存分为Buffer缓存和Cache缓存。<br>Buffer缓存:<br>由于硬盘的写入速度过慢，或者频繁的I/O，对于硬盘来说是极大的效率浪费。那么可以等到缓存中储存一定量的数据之后，一次性的写入到硬盘中。Buffer 缓存主要用于写数据，提升I/O性能。<br>Cache 缓存:<br>Cache 是在开启缓存功能前提下，在通过的每次sql进行hash计算，生成此条sql的唯一hash作为存储的Key值。SO select是区分大小写的。<br>生成缓存之后，如果涉及的table有任何数据的变动（整个talbe),所有的cache就会被删除。如果Cache缓存已经存储满，则启用LRU算法，进行数据淘汰。淘汰掉最远未使用的数据，从而开辟新的存储空间。<br>不过对于特大型的网站，依靠这种策略很难缓解高频率的读请求，一般会把访问非常频繁的数据静态化，直接由nginx返还给用户。<br>程序和数据库I/O设备交互的越少，则效率越高。</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="既然有Memcached-Redis-为什么还要用Mysql缓存呢？"><a href="#既然有Memcached-Redis-为什么还要用Mysql缓存呢？" class="headerlink" title="既然有Memcached,Redis 为什么还要用Mysql缓存呢？"></a>既然有Memcached,Redis 为什么还要用Mysql缓存呢？</h3><ul><li>解答</li></ul><p>从整体架构上看，Memcached和Redis支持扩展分布式缓存。适用于大型Web项目。<br>单从单节点功能上看，Mysql由于自身的cache 删除方式。使得其缓存有相对的局限性。并且无法简单的管控。需要更好的使用的话，需要对业务上进行更详尽细致的分析。<br>在数据库的逻辑设计层面细分出能够说回合mysql缓存的场景。<br>单节点，数据简单，无太多修改的数据面前，但根据场景来，mysql缓存还是有一定价值的。比Memcached Redis简单易用，效率更好。</p><p>参考：<br><a href="https://dev.mysql.com/doc/refman/5.7/en/query-cache.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/query-cache.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;我们在做Web开发的时候从至上而下的技术分层里，缓存始终贯穿其中。浏览器层–》业务层–》数据库层。每个层面上的缓存
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
-    
-    
-      <category term="数据库" scheme="http://www.lilhui.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="缓存" scheme="http://www.lilhui.com/tags/%E7%BC%93%E5%AD%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux expect ssh自动登录详解</title>
-    <link href="http://www.lilhui.com/2017/09/14/linux/linux%20expect%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://www.lilhui.com/2017/09/14/linux/linux expect详解/</id>
-    <published>2017-09-14T01:40:11.000Z</published>
-    <updated>2017-09-14T08:22:57.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>Expect是用于自动化交互式应用程序的工具，如telnet，ftp，passwd，fsck，rlogin，tip等。使用起来很简单。</p></blockquote><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol><li>首行加上/usr/bin/expect</li><li>spawn: 后面加上需要执行的shell 命令，比如说spawn sudo touch testfile</li><li>expect: 只有spawn 执行的命令结果才会被expect 捕捉到，因为spawn 会启<br>动一个进程，只有这个进程的相关信息才会被捕捉到，主要包括：标准输入的提<br>示信息，eof 和timeout。</li><li>send 和send_user：send 会将expect 脚本中需要的信息发送给spawn 启动<br>的那个进程，而send_user 只是回显用户发出的信息，类似于shell 中的echo 而<br>已。</li></ol><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>1:远程拷贝文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">set timeout 10</div><div class="line">set host [lindex $argv 0]</div><div class="line">set username [lindex $argv 1]</div><div class="line">set password [lindex $argv 2]</div><div class="line">set src_file [lindex $argv 3]</div><div class="line">set dest_file [lindex $argv 4]</div><div class="line">spawn scp  $src_file $username@$host:$dest_file</div><div class="line">   expect &#123;</div><div class="line">           &quot;(yes/no)?&quot;</div><div class="line">            &#123;</div><div class="line">                send &quot;yes\n&quot;</div><div class="line">                expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125;</div><div class="line">             &#125;</div><div class="line">           &quot;*assword:&quot;</div><div class="line">             &#123;</div><div class="line">                 send &quot;$password\n&quot;</div><div class="line">             &#125;</div><div class="line">        &#125;</div><div class="line">   expect &quot;100%&quot;</div><div class="line">   expect eof</div></pre></td></tr></table></figure></p><p>2:执行远程命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">set timeout 10</div><div class="line">set host [lindex $argv 0]</div><div class="line">set username [lindex $argv 1]</div><div class="line">set password [lindex $argv 2]</div><div class="line">set cmd [lindex $argv 3]</div><div class="line"></div><div class="line">spawn ssh -t -p $port $username@$host &apos;cmd&apos;  </div><div class="line">   expect &#123;</div><div class="line">       &quot;(yes/no)?&quot;</div><div class="line">            &#123;</div><div class="line">                send &quot;yes\n&quot;</div><div class="line">                expect &quot;*assword:&quot; &#123; send &quot;$password\n&quot;&#125;</div><div class="line">             &#125;</div><div class="line">           &quot;*assword:&quot;</div><div class="line">             &#123;</div><div class="line">                 send &quot;$password\n&quot;</div><div class="line">             &#125;</div><div class="line">        &#125;</div><div class="line">   expect &quot;100%&quot;</div><div class="line">   expect eof</div></pre></td></tr></table></figure></p><p>3：与SSH合用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/usr/bin/expect &lt;&lt;-EOF</div><div class="line">//TODO这里写expect脚本 </div><div class="line">EOF</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Expect是用于自动化交互式应用程序的工具，如telnet，ftp，passwd，fsck，rlogin，tip
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
-    
-    
-      <category term="linux" scheme="http://www.lilhui.com/tags/linux/"/>
-    
-      <category term="bash" scheme="http://www.lilhui.com/tags/bash/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>alfred结合七牛实现快速插入markdown格式图片</title>
-    <link href="http://www.lilhui.com/2017/09/13/blog/alfred%E7%BB%93%E5%90%88%E4%B8%83%E7%89%9B%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8F%92%E5%85%A5markdown%E6%A0%BC%E5%BC%8F%E5%9B%BE%E7%89%87/"/>
-    <id>http://www.lilhui.com/2017/09/13/blog/alfred结合七牛实现快速插入markdown格式图片/</id>
-    <published>2017-09-13T03:17:03.000Z</published>
-    <updated>2017-09-28T04:00:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/tiann/markdown-img-upload" target="_blank" rel="external">详细过程可以访问：https://github.com/tiann/markdown-img-upload</a></p><h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2><blockquote><p>由于retina截屏的图片会放大，所以在markdown脚本里做了处理：有遇到缩放的会进行指定宽度大小。所以会插入&lt;img 标签。但是这不符合markdown的图片方式，这里做了一下改进。将 计算后的size插入七牛的样式图片里就可以解决。</p></blockquote><p>打开workflow的脚本修改保存<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding: utf-8</span></div><div class="line"><span class="keyword">from</span> clipboard <span class="keyword">import</span> get_paste_img_file</div><div class="line"><span class="keyword">from</span> upload <span class="keyword">import</span> upload_qiniu</div><div class="line"><span class="keyword">import</span> util</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> subprocess</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(util.CONFIG_FILE):</div><div class="line">    util.generate_config_file()</div><div class="line"></div><div class="line">config = util.read_config()</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> config:</div><div class="line">    util.notice(<span class="string">'请先设置你的七牛图床信息'</span>)</div><div class="line">    util.open_with_editor(util.CONFIG_FILE)</div><div class="line">    sys.exit(<span class="number">0</span>)</div><div class="line"></div><div class="line">url = <span class="string">'%s/%s'</span> % (config[<span class="string">'url'</span>], config[<span class="string">'prefix'</span>])</div><div class="line">styleprefix = <span class="string">'imageView2/2/w/'</span></div><div class="line">stylesubfix = <span class="string">'/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim'</span></div><div class="line">mkdprefix=<span class="string">'![图片]('</span></div><div class="line">mkdsubfix=<span class="string">')'</span></div><div class="line">img_file, need_format, format = get_paste_img_file()</div><div class="line"><span class="keyword">if</span> img_file:</div><div class="line">    <span class="comment"># has image</span></div><div class="line"></div><div class="line">    <span class="comment"># use time to generate a unique upload_file name, we can not use the tmp file name</span></div><div class="line"></div><div class="line">    upload_name = <span class="string">"%s.%s"</span> % (int(time.time() * <span class="number">1000</span>), format) </div><div class="line">    <span class="keyword">if</span> need_format:</div><div class="line">        size_str = subprocess.check_output(<span class="string">'sips -g pixelWidth %s | tail -n1 | cut -d" " -f4'</span> % img_file.name, shell=<span class="keyword">True</span>)</div><div class="line">        size = int(size_str.strip()) / <span class="number">2</span></div><div class="line">        <span class="comment">#markdown_url = '&lt;img src="%s/%s-1960" width="%d"/&gt;' % (url, upload_name, size)</span></div><div class="line">    </div><div class="line">        markdown_url = <span class="string">'%s%s/%s?%s%d%s%s'</span> % (mkdprefix, url, upload_name, styleprefix, size, stylesubfix, mkdsubfix)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        markdown_url = <span class="string">'%s%s/%s-960%s'</span> % (mkdprefix, url, upload_name, mkdsubfix)</div><div class="line"></div><div class="line">    <span class="comment"># make it to clipboard</span></div><div class="line">    os.system(<span class="string">"echo '%s' | pbcopy"</span> % markdown_url)</div><div class="line">    os.system(<span class="string">'osascript -e \'tell application "System Events" to keystroke "v" using command down\''</span>)</div><div class="line">    upload_file = util.try_compress_png(img_file, format!=<span class="string">'gif'</span>)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> upload_qiniu(upload_file.name, upload_name): util.notice(<span class="string">"上传图片到图床失败，请检查网络后重试"</span>)</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    util.notice(<span class="string">"剪切版里没有图片！"</span>)</div></pre></td></tr></table></figure></p><p>上面是我修改后的脚本信息，修改的地方是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">markdown_url = &apos;%s%s/%s?%s%d%s%s&apos; % (mkdprefix, url, upload_name, styleprefix, size, stylesubfix, mkdsubfix)</div></pre></td></tr></table></figure></p><p>注意这两个变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">styleprefix = &apos;imageView2/2/w/&apos;  </div><div class="line">stylesubfix =&apos;/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim&apos;</div></pre></td></tr></table></figure></p><p>根据自己的七牛图片拼装 markdown_url即可。我这里用的是通过改变七牛提供的链接图片 size 进行替换。<br>中间拼装计算好的原始图片size即变成正常大小。<br>既： styleprefix + size + stylesubfix</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://github.com/tiann/markdown-img-upload&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;详细过程可以访问：https://github.com/tiann/markdown-img-uplo
-      
-    
-    </summary>
-    
-      <category term="blog" scheme="http://www.lilhui.com/categories/blog/"/>
-    
-    
-      <category term="alfred" scheme="http://www.lilhui.com/tags/alfred/"/>
-    
-      <category term="markdown" scheme="http://www.lilhui.com/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>solr高级查询edismax函数详解</title>
-    <link href="http://www.lilhui.com/2017/09/11/search/solr%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2edismax%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://www.lilhui.com/2017/09/11/search/solr高级查询edismax函数详解/</id>
-    <published>2017-09-11T09:29:43.000Z</published>
-    <updated>2017-09-27T06:07:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p></blockquote><p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="external">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p><h2 id="bf函数列表"><a href="#bf函数列表" class="headerlink" title="bf函数列表"></a>bf函数列表</h2><ol><li><p>constant<br> 支持小数点的常量<br>例如，1.5，查询表达式就是：_val_:1.5</p></li><li><p>fieldvalue<br> 返回numberic field的名字.<br>域必须是index的，非multivalue。格式为该域的名字。如果这个域没值，就返回0</p></li><li><p>ord<br> ord，返回你要查询的那个特定的值在这个顺序中的排名。<br> 非multiValued的，当没有值存在的时候，将返回0<br> 例如：某个特定的域只能去三个值，“apple”、“banana”、“pear”，那么ord（“apple”）=1，ord（“banana”）=2，ord（“pear”）=3<br> 需要注意的是，ord（）这个函数，依赖于值在索引中的位置，所以当有文档被删除、或者添加的时候，ord（）的值就会发生变化。当你使用MultiSearcher的时候，这个值也就是不定的了。</p></li><li>rord<br> 函数将会返回与ord相对应的倒排序的排名。<br> 格式: rord(myIndexedField).</li><li>sum<br> 就是表示多个数值的“和”。  <pre><code>格式：  sum(x,1)  sum(x,y)  sum(sqrt(x),log(y),z,0.5)</code></pre></li><li><p>product<br> 多个参数的乘积，参数可以是数值，也可以是函数，当为函数时，表示为此函数的计算值乘积。<br> 格式：<br> product(x,2)<br> product(x,y)</p></li><li><p>div<br> 两个参数做除法。支持函数参数<br> 格式：<br> div(x,y)<br> div(sum(x,100),max(y,1))</p></li><li>pow<br> 幂值计算，pow(x,y)=x^y 。支持函数参数。<br> 格式：<br> pow(x,0.5) 标识开方<br> pow(x, log(y))</li><li>abs<br> 返回表达式的绝对值，支持函数参数。<br> 格式：<br> abx(-5)<br> abc(x)  </li><li><p>log<br>返回对数操作，支持函数参数。<br>格式：<br>log(x)<br>log(sum(x,100))  </p></li><li><p>sqrt<br>返回平方根。与pow(x，0.5)一样。<br>格式：<br>sqrt(2)<br>sqrt(sum(x,100))</p></li><li><p>map<br>区间检测<br>如果 min&lt;=x&lt;=max，那么map(x,min,max,target)=target，如果x不在[min,max]这个区间内，那么map(x,min,max,target)=x.</p></li><li>scala<br>限制参数区间<br>例如：<br>scale(x,minTarget,maxTarget) 这个函数将会把x的值限制在[minTarget,maxTarget]范围内。</li><li>query<br>计算subquery查询分数<br>例如：<br>query(subquery,default)表示返回给定的subquery的分数，如果subquery与文档不匹配，那么将会返回默认值。任何的查询类型都是受支持的。可以通过引用的方式，也可以直接指定查询串。<br>q=product(popularity, query({!dismax v=’solr rocks’})) 将会返回popularity和通过dismax 查询得到的分数的乘积<br>q=product(popularity, query($qq)&amp;qq={!dismax}solr rocks) 跟上一个例子的效果是一样的。不过这里使用的是引用的方式<br>q=product(popularity, query($qq,0.1)&amp;qq={!dismax}solr rocks) 在前一个例子的基础上又加了一个默认值。</li><li>linear<br>线性函数计算<br>例如：<br>liner(x,m,c)其中 x为变量或者函数，m,c为常量。整个函数取值为： x<em>m+c的值。<br>liner(x,2,4)=2</em>x+4</li><li>recip<br>recip(x,m,a,b) 函数表达式 a/(m*x+b)<br>其中，m、a、b是常量，x是变量或者一个函数。当a=b，并且x&gt;=0的时候，这个函数的最大值是1，值的大小随着x的增大而减小。</li><li>max<br>比较大小<br>例如：max(x,c) x可以为变量或者函数，c为常数，返回两个之间最大值。</li></ol><h2 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h2><ol><li><p>某地的新闻网页库中原本的逻辑是对仓库里的数据字段 subject，message进行搜索。默认是通过score检索字段匹配得分进行排序输出。随着时间的推移，大量的搜索可能会展示两年前，三年前匹配度更高的数据，这些搜索结果明显不合适的。那么我们需要对其进行改造，加入发布时间权重排序。</p><p> 原本的参数：  </p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">subject:武则天 OR message:武则天</div></pre></td></tr></table></figure><p> 搜索得出结果：  </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 文档得分：<br> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p> 上面我们可以看到，tid为666811的文档排在第一位，得分27.811375 它的dateline时间是：1239781944明显早于第二位 tid：10364925的 1503334472，得分：26.519054。第三位是 tid:9759987 得分：26.511488。这样的搜索结果显然不是很令人满意的。<br> 开启edismax 加入</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bf=sqrt(log(dateline))^100</div></pre></td></tr></table></figure><p> 搜索得出结果：  </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p> 文档得分： </p><p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"><br> 经过调整，我们得出的结果中排在第一位的是 tid:9759987 其时间dateline是1473820016 得分：330.85 是原本的第三位。原来的排第一的 tid:666811排在了第三位，得分 329.40 原来的第二tid:10364925 得分：329.50</p><p> 调整后的排序大致满足我们的需求。那么为什么调整后会变成这样的排序呢？</p><p> 首先我们要清楚solr的打分机制默认是通过匹配度计算文档相似度得来的。也就是第一次搜索的默认得分，引入edismax的bf函数后我们来分析下最终的结果是怎样，以第一次搜索排名前三的数据为例子：  </p><p> tid  | dateline | 初始得分 | 引入bf重新计算<br> —|—|—|—<br> 666811 | 1239781944 | 27.811382 | 329.40198<br> 10364925 | 1503334472  | 26.519054 |329.50174<br> 9759987 | 1473820016 | 26.511488 | 330.85834 </p></li></ol><blockquote><p>根据bf=sqrt(log(dateline))^100 分别计算上面三个的新得分  </p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sqrt(log(1239781944)) = 3.0155174194591075  </div><div class="line">权重乘100 得:  </div><div class="line">301.55174194591075</div><div class="line">再加 27.811382  </div><div class="line">=329.36312394591073</div><div class="line"></div><div class="line">sqrt(log(1503334472)) = 3.029365546794402</div><div class="line">权重乘100 得:</div><div class="line">302.9365546794402</div><div class="line">再加 26.519054</div><div class="line">=329.45560867944016</div><div class="line"></div><div class="line">sqrt(log(1473820016)) = 3.0279439311841663</div><div class="line">权重乘100 得:</div><div class="line">302.79439311841663</div><div class="line">再加 26.511488</div><div class="line">=329.3058811184166</div></pre></td></tr></table></figure><pre><code>纳尼。很奇怪为什么 9759987 计算最小 不对劲</code></pre><p>于是翻看原来前面查询的debug列表分析仔细看原来是<br>原图：</p><p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p>添加edismax后：<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p><p>对比以上靓图，原来是我们的Qparser不一样。在普通查询的时候我么使用的是定制化的 SWMCLuceneQparser 查询解析器。而 用edimax后，解析器变成了 ExtendDismaxQparser 这两个差别在于 定制化的 SWMCLuceneQparser会将查询字段通过IK分词转换后进行查询。其parsedquery_tostring 变成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery&quot;:&quot;PhraseQuery(subject:\&quot;武 则 天\&quot;) PhraseQuery(message:\&quot;武 则 天\&quot;)&quot;,</div></pre></td></tr></table></figure></p><p>ExtendDismaxQparser的 parsedquery_tostringshi :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;parsedquery_toString&quot;:&quot;+((subject:武 subject:则 subject:天) (message:武 message:则 message:天)) (sqrt(log(long(dateline))))^10.0&quot;,</div></pre></td></tr></table></figure></p><p>两者稍有不同，所以在计算最终权重的时候有些差异。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了
-      
-    
-    </summary>
-    
-      <category term="搜索" scheme="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
-    
-    
-      <category term="solr" scheme="http://www.lilhui.com/tags/solr/"/>
-    
-      <category term="edismax" scheme="http://www.lilhui.com/tags/edismax/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo技术博客搭建日记</title>
-    <link href="http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/"/>
-    <id>http://www.lilhui.com/2017/09/02/blog/hexo技术博客搭建日记/</id>
-    <published>2017-09-02T09:58:27.000Z</published>
-    <updated>2017-09-13T06:54:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>9月2号听说Hexo  </p><ul><li><a href="http://blog.didispace.com/books/" target="_blank" rel="external">案例1</a>  </li><li><a href="http://www.itmuch.com" target="_blank" rel="external">案例2</a>  </li></ul><p>9月3号了解Hexo搭建博客方式  </p><ul><li><a href="http://www.youmeek.com/hexo/" target="_blank" rel="external">hexo搭建参考1</a>  </li><li><a href="http://www.jianshu.com/p/a417262815a6" target="_blank" rel="external">hexo搭建参考2</a>  </li><li><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">hexo主题</a>  </li></ul><p>9月5号搭建完成</p><p>9月6号添加域名解析</p><p>9月7号添加Gitment评论功能</p><ul><li><a href="https://github.com/littlehui/gitment" target="_blank" rel="external">Gitment的github地址</a>  </li></ul><p>9月9号配置结合alfred + 七牛 快捷插入markdown图片工具</p><ul><li><a href="https://github.com/tiann/markdown-img-upload" target="_blank" rel="external">Github地址</a>  </li></ul><p>9月11号第一篇文章登陆</p><p>9月12号完善主题配置</p><p>9月13日添加站点收录</p><blockquote><p>npm install hexo-generator-sitemap –save<br>  npm install hexo-generator-baidu-sitemap –save</p></blockquote><ul><li><a href="http://www.cnblogs.com/tengj/p/5357879.html" target="_blank" rel="external">搜索引擎站点收录</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;9月2号听说Hexo  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.didispace.com/books/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;案例1&lt;/a&gt;  &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://ww
-      
-    
-    </summary>
-    
-      <category term="blog" scheme="http://www.lilhui.com/categories/blog/"/>
-    
-    
-      <category term="Hexo" scheme="http://www.lilhui.com/tags/Hexo/"/>
-    
-      <category term="IntelliJ IDEA" scheme="http://www.lilhui.com/tags/IntelliJ-IDEA/"/>
-    
-      <category term="Git" scheme="http://www.lilhui.com/tags/Git/"/>
-    
-      <category term="Github" scheme="http://www.lilhui.com/tags/Github/"/>
     
   </entry>
   
