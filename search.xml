@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Linux自动删除N天日志]]></title>
     <url>%2F2017%2F11%2F20%2Flinux%2Flinux_1%2F</url>
-    <content type="text"><![CDATA[前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。 过程删除文件脚本1find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \; 例如:删除3天前 /opt/logs下 search开头的日志。1find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \; 说明：find：linux的查找命令，用户查找指定条件的文件/opt/logs/：想要进行清理的任意目录；-mtime：标准语句写法；+3：查找30天前的文件，这里用数字代表天数；“search*.log”：支持范式匹配-exec：执行rm -rf：强制删除命令{} \; ：固定写法，一对大括号+空格++; 计划任务将以上命令放置到可执行shell脚本中再通过cron调度执行。创建shell:12touch ~/bin/auto-del-30-days-ago-log.shchmod +x auto-del-30-days-ago-log.sh 编辑shell脚本1vim auto-del-3-days-ago-log.sh 内容如下：12#!/bin/shfind /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \; 添加计划调度：执行：110 0 * * * ~/auto-del-3-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1 设置是每天凌晨0点10分执行auto-del-7-days-ago-log.sh文件进行数据清理任务了。 总结THE END.]]></content>
+    <content type="text"><![CDATA[前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。 过程删除文件脚本1find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \; 例如:删除3天前 /opt/logs下 search开头的日志。1find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \; 说明：find：linux的查找命令，用户查找指定条件的文件/opt/logs/：想要进行清理的任意目录；-mtime：标准语句写法；+3：查找30天前的文件，这里用数字代表天数；“search*.log”：支持范式匹配-exec：执行rm -rf：强制删除命令{} \; ：固定写法，一对大括号+空格++; 计划任务将以上命令放置到可执行shell脚本中再通过cron调度执行。创建shell:12touch ~/bin/auto-del-30-days-ago-log.shchmod +x auto-del-30-days-ago-log.sh 编辑shell脚本1vim auto-del-3-days-ago-log.sh 内容如下：12#!/bin/shfind /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \; 添加计划调度：执行：110 0 * * * ~/auto-del-3-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1 设置是每天凌晨0点10分执行auto-del-3-days-ago-log.sh文件进行数据清理任务了。 总结THE END.]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -13,20 +13,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[设计模式系列：装饰器模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_7%2F</url>
-    <content type="text"><![CDATA[概念实现场景总结]]></content>
-      <categories>
-        <category>java</category>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[设计模式系列:桥接模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_10%2F</url>
+    <title><![CDATA[设计模式系列:组合模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_11%2F</url>
     <content type="text"><![CDATA[概念实现场景总结]]></content>
       <categories>
         <category>java</category>
@@ -61,8 +49,20 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[设计模式系列:组合模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_11%2F</url>
+    <title><![CDATA[设计模式系列：装饰器模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_7%2F</url>
+    <content type="text"><![CDATA[概念实现场景总结]]></content>
+      <categories>
+        <category>java</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[设计模式系列:桥接模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_10%2F</url>
     <content type="text"><![CDATA[概念实现场景总结]]></content>
       <categories>
         <category>java</category>
