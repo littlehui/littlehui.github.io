@@ -104,18 +104,18 @@
 
 
 
-<meta name="description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。 过程 删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
+<meta name="description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。  过程删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
 <meta name="keywords" content="linux,系统维护">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux自动删除N天日志">
 <meta property="og:url" content="http://www.lilhui.com/2017/11/20/linux/linux_1/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。 过程 删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
+<meta property="og:description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。  过程删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-20T02:59:32.077Z">
+<meta property="og:updated_time" content="2017-11-20T03:01:44.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux自动删除N天日志">
-<meta name="twitter:description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。 过程 删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
+<meta name="twitter:description" content="前言 web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。  过程删除文件脚本1find 对应目录 -mtime +天数 -name &amp;quot;文件名">
 
 
 
@@ -409,8 +409,8 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。<br>如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3></blockquote>
-<h4 id="删除文件脚本"><a href="#删除文件脚本" class="headerlink" title="删除文件脚本"></a>删除文件脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="删除文件脚本"><a href="#删除文件脚本" class="headerlink" title="删除文件脚本"></a>删除文件脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure>
 <p>例如:删除3天前 /opt/logs下 search开头的日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p>
 <p>说明：<br>find：linux的查找命令，用户查找指定条件的文件<br>/opt/logs/：想要进行清理的任意目录；<br>-mtime：标准语句写法；<br>+3：查找30天前的文件，这里用数字代表天数；<br>“search*.log”：支持范式匹配<br>-exec：执行<br>rm -rf：强制删除命令<br>{} \; ：固定写法，一对大括号+空格++; </p>
 <h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>将以上命令放置到可执行shell脚本中再通过cron调度执行。<br>创建shell:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch ~/bin/auto-del-30-days-ago-log.sh</div><div class="line">chmod +x auto-del-30-days-ago-log.sh</div></pre></td></tr></table></figure></p>
@@ -451,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="next" title="设计模式系列:享元模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:享元模式
+              <a href="/2017/11/09/java/patterndesign/patterndesign_7/" rel="next" title="设计模式系列：装饰器模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列：装饰器模式
               </a>
             
           </div>

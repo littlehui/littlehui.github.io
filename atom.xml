@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2017-11-20T02:59:32.077Z</updated>
+  <updated>2017-11-20T03:01:44.450Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.lilhui.com/2017/11/20/linux/linux_1/"/>
     <id>http://www.lilhui.com/2017/11/20/linux/linux_1/</id>
     <published>2017-11-20T02:38:07.000Z</published>
-    <updated>2017-11-20T02:59:32.077Z</updated>
+    <updated>2017-11-20T03:01:44.450Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote><p>web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。<br>如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。</p><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3></blockquote><h4 id="删除文件脚本"><a href="#删除文件脚本" class="headerlink" title="删除文件脚本"></a>删除文件脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure><p>例如:删除3天前 /opt/logs下 search开头的日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>说明：<br>find：linux的查找命令，用户查找指定条件的文件<br>/opt/logs/：想要进行清理的任意目录；<br>-mtime：标准语句写法；<br>+3：查找30天前的文件，这里用数字代表天数；<br>“search*.log”：支持范式匹配<br>-exec：执行<br>rm -rf：强制删除命令<br>{} \; ：固定写法，一对大括号+空格++; </p><h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>将以上命令放置到可执行shell脚本中再通过cron调度执行。<br>创建shell:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch ~/bin/auto-del-30-days-ago-log.sh</div><div class="line">chmod +x auto-del-30-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>编辑shell脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim auto-del-3-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>添加计划调度：<br>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10 0 * * * ~/auto-del-3-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p><p>设置是每天凌晨0点10分执行auto-del-7-days-ago-log.sh文件进行数据清理任务了。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>THE END.</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote><p>web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。<br>如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方法了。</p></blockquote><h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="删除文件脚本"><a href="#删除文件脚本" class="headerlink" title="删除文件脚本"></a>删除文件脚本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find 对应目录 -mtime +天数 -name &quot;文件名&quot; -exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure><p>例如:删除3天前 /opt/logs下 search开头的日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>说明：<br>find：linux的查找命令，用户查找指定条件的文件<br>/opt/logs/：想要进行清理的任意目录；<br>-mtime：标准语句写法；<br>+3：查找30天前的文件，这里用数字代表天数；<br>“search*.log”：支持范式匹配<br>-exec：执行<br>rm -rf：强制删除命令<br>{} \; ：固定写法，一对大括号+空格++; </p><h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>将以上命令放置到可执行shell脚本中再通过cron调度执行。<br>创建shell:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">touch ~/bin/auto-del-30-days-ago-log.sh</div><div class="line">chmod +x auto-del-30-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>编辑shell脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim auto-del-3-days-ago-log.sh</div></pre></td></tr></table></figure></p><p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">find /opt/logs/ -mtime +3 -name &quot;search*.log&quot; exec rm -rf &#123;&#125; \;</div></pre></td></tr></table></figure></p><p>添加计划调度：<br>执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10 0 * * * ~/auto-del-3-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p><p>设置是每天凌晨0点10分执行auto-del-7-days-ago-log.sh文件进行数据清理任务了。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>THE END.</p>]]></content>
     
     <summary type="html">
     
@@ -45,11 +45,11 @@
   </entry>
   
   <entry>
-    <title>设计模式系列:享元模式</title>
-    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/"/>
-    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/</id>
+    <title>设计模式系列：装饰器模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/</id>
     <published>2017-11-09T02:24:29.000Z</published>
-    <updated>2017-11-09T02:30:55.715Z</updated>
+    <updated>2017-11-09T02:30:55.722Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
     
@@ -99,11 +99,11 @@
   </entry>
   
   <entry>
-    <title>设计模式系列：装饰器模式</title>
-    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/"/>
-    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/</id>
+    <title>设计模式系列：外观模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/</id>
     <published>2017-11-09T02:24:29.000Z</published>
-    <updated>2017-11-09T02:30:55.722Z</updated>
+    <updated>2017-11-09T02:30:55.701Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
     
@@ -153,11 +153,11 @@
   </entry>
   
   <entry>
-    <title>设计模式系列：外观模式</title>
-    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/"/>
-    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/</id>
+    <title>设计模式系列:组合模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/</id>
     <published>2017-11-09T02:24:29.000Z</published>
-    <updated>2017-11-09T02:30:55.701Z</updated>
+    <updated>2017-11-09T02:30:55.711Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
     
@@ -180,11 +180,11 @@
   </entry>
   
   <entry>
-    <title>设计模式系列:组合模式</title>
-    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/"/>
-    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/</id>
+    <title>设计模式系列:享元模式</title>
+    <link href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/"/>
+    <id>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/</id>
     <published>2017-11-09T02:24:29.000Z</published>
-    <updated>2017-11-09T02:30:55.711Z</updated>
+    <updated>2017-11-09T02:30:55.715Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
     
