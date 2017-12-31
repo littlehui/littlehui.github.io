@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="性能优化," />
 
 
 
@@ -104,16 +104,18 @@
 
 
 
-<meta name="description" content="今晚月光那么美，你说是的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="http://www.lilhui.com/tags/系统维护/index.html">
+<meta name="description" content="前言 Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器层面来寻找影响程序运行的稳定因素。  基本信息查看CPU信息查看 查看CPU个数 1cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | sort | uniq | wc -l  查看CPU中c">
+<meta name="keywords" content="性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux服务器性能评估">
+<meta property="og:url" content="http://www.lilhui.com/2017/11/21/linux/linux_2/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="今晚月光那么美，你说是的。">
+<meta property="og:description" content="前言 Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器层面来寻找影响程序运行的稳定因素。  基本信息查看CPU信息查看 查看CPU个数 1cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | sort | uniq | wc -l  查看CPU中c">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-08T10:07:44.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Littlehui&#39;s Notes">
-<meta name="twitter:description" content="今晚月光那么美，你说是的。">
+<meta name="twitter:title" content="Linux服务器性能评估">
+<meta name="twitter:description" content="前言 Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器层面来寻找影响程序运行的稳定因素。  基本信息查看CPU信息查看 查看CPU个数 1cat /proc/cpuinfo | grep &amp;quot;physical id&amp;quot; | sort | uniq | wc -l  查看CPU中c">
 
 
 
@@ -143,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://www.lilhui.com/tags/系统维护/"/>
+  <link rel="canonical" href="http://www.lilhui.com/2017/11/21/linux/linux_2/"/>
 
 
 
 
 
-  <title>标签: 系统维护 | Littlehui's Notes</title>
+  <title>Linux服务器性能评估 | Littlehui's Notes</title>
   
 
 
@@ -168,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,54 +298,270 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>系统维护<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/21/linux/linux_2/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/11/20/linux/linux_1/" itemprop="url">
-              
-                <span itemprop="name">Linux自动删除N天日志</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Linux服务器性能评估</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-20T10:38:07+08:00"
-              content="2017-11-20" >
-          11-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T14:53:13+08:00">
+                2017-11-21
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器<br>层面来寻找影响程序运行的稳定因素。</p>
+</blockquote>
+<h3 id="基本信息查看"><a href="#基本信息查看" class="headerlink" title="基本信息查看"></a>基本信息查看</h3><h4 id="CPU信息查看"><a href="#CPU信息查看" class="headerlink" title="CPU信息查看"></a>CPU信息查看</h4><ol>
+<li><p>查看CPU个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看CPU中core个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;cpu cores&quot; | wc -l</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看CPU逻辑个数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>逻辑CPU数 = 物理CPU个数*核心数</p>
+<h4 id="内存信息查看"><a href="#内存信息查看" class="headerlink" title="内存信息查看"></a>内存信息查看</h4><ol>
+<li>内存使用情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#free -m</div><div class="line">             total       used       free     shared    buffers     cached</div><div class="line">Mem:         64376      37881      26494          0        308      17273</div><div class="line">-/+ buffers/cache:      20299      44076</div><div class="line">Swap:        16383          0      16383</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>total: 总内存数</li>
+<li>used: 已用内存数</li>
+<li>free: 空闲内存  </li>
+<li>shared: 多进程共享的内存总数  </li>
+<li>- buffers/cache: 已用缓存总数 used-buffer-cached  </li>
+<li>+ buffers/cache: 可用缓存数 free+buffer+cached  </li>
+<li>Buffer Cache 用于针对磁盘块的写  </li>
+<li>Page Cache用于针对文件inode的读写，这些cache能够缩短I/O时间  </li>
+<li>free / used是系统可用/暂用的内存   </li>
+</ul>
+<p>对于程序来说 -/+ buffers/cache是可用/占用内存，因为 buffers/cache很容易就会被使用到</p>
+<h4 id="硬盘查看"><a href="#硬盘查看" class="headerlink" title="硬盘查看"></a>硬盘查看</h4><ol>
+<li><p>查看硬盘分区信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk -l</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看文件系统磁盘暂用情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看硬盘的I/O性能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">iostat -d -k 1</div><div class="line"></div><div class="line">Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 	2017年11月21日 	_x86_64_	(32 CPU)</div><div class="line"></div><div class="line">Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn</div><div class="line">sda              13.35        31.70       161.99 2867672698 14655271354</div><div class="line">sdb               0.86        17.77        29.61 1607620286 2679034433</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>参数解释：</p>
+<ul>
+<li>tps：该设备每秒的传输次数（Indicate the number of transfers per second that were issued to the device.）。”一次传输”意思是”一次I/O请求”。多个逻辑请求可能会被合并为”一次I/O请求”。”一次传输”请求的大小是未知的。</li>
+<li>kB_read/s：每秒从设备（drive expressed）读取的数据量；</li>
+<li>kB_wrtn/s：每秒向设备（drive expressed）写入的数据量；</li>
+<li>kB_read：读取的总数据量；</li>
+<li>kB_wrtn：写入的总数量数据量；这些单位都为Kilobytes。</li>
+</ul>
+<p>指定监控的设备名称为sda，该命令的输出结果和上面命令完全相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat -d sda 2</div></pre></td></tr></table></figure></p>
+<p>默认监控所有的硬盘设备，现在指定只监控sda。 </p>
+<h5 id="x-参数"><a href="#x-参数" class="headerlink" title="-x 参数"></a>-x 参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">iostat -d -x -k 1 10</div><div class="line"></div><div class="line">Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 	2017年11月21日 	_x86_64_	(32 CPU)</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.01    28.67    1.47   11.89    31.70   161.99    29.01     0.01    0.57    2.76    0.30   0.16   0.21</div><div class="line">sdb               0.00     0.00    0.47    0.39    17.77    29.61   109.69     0.00    1.61    0.55    2.87   0.38   0.03</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line">sdb               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line">sdb               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div></pre></td></tr></table></figure>
+<ul>
+<li>rrqm/s：每秒这个设备相关的读取请求有多少被Merge了（当系统调用需要读取数据的时候，VFS将请求发到各个FS，如果FS发现不同的读取请求读取的是相同Block的数据，FS会将这个请求合并Merge）；</li>
+<li>wrqm/s：每秒这个设备相关的写入请求有多少被Merge了.  </li>
+<li>rsec/s：每秒读取的扇区数.  </li>
+<li>wsec/：每秒写入的扇区数。 </li>
+<li>rKB/s：The number of read requests that were issued to the device per second；  </li>
+<li>wKB/s：The number of write requests that were issued to the device per second；  </li>
+<li>avgrq-sz 平均请求扇区的大小  </li>
+<li>avgqu-sz 是平均请求队列的长度。毫无疑问，队列长度越短越好。     </li>
+<li>await：  每一个IO请求的处理的平均时间（单位是微秒毫秒）。这里可以理解为IO的响应时间，一般地系统IO响应时间应该低于5ms，如果大于10ms就比较大了。  <pre><code>这个时间包括了队列时间和服务时间，也就是说，一般情况下，await大于svctm，它们的差值越小，则说明队列时间越短，反之差值越大，队列时间越长，说明系统出了问题。  
+</code></pre></li>
+<li>svctm    表示平均每次设备I/O操作的服务时间（以毫秒为单位）。如果svctm的值与await很接近，表示几乎没有I/O等待，磁盘性能很好，如果await的值远高于svctm的值，则表示I/O队列等待太长，         系统上运行的应用程序将变慢。<br>%util： 在统计时间内所有处理IO时间，除以总共统计时间。例如，如果统计间隔1秒，该设备有0.8秒在处理IO，而0.2秒闲置，那么该设备的%util = 0.8/1 = 80%，所以该参数暗示了设备的繁忙程度<br>。一般地，如果该参数是100%表示设备已经接近满负荷运行了（当然如果是多磁盘，即使%util是100%，因为磁盘的并发能力，所以磁盘使用未必就到了瓶颈）。</li>
+</ul>
+<h3 id="内存性能指标"><a href="#内存性能指标" class="headerlink" title="内存性能指标"></a>内存性能指标</h3><h3 id="磁盘性能指标"><a href="#磁盘性能指标" class="headerlink" title="磁盘性能指标"></a>磁盘性能指标</h3><h3 id="网络IO指标"><a href="#网络IO指标" class="headerlink" title="网络IO指标"></a>网络IO指标</h3><h4 id="系统评估指标"><a href="#系统评估指标" class="headerlink" title="系统评估指标"></a>系统评估指标</h4><table>
+<thead>
+<tr>
+<th>性能因素</th>
+<th>好</th>
+<th>坏</th>
+<th>糟糕  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>user% + sys% &lt; 70%</td>
+<td>user% + sys% =85%</td>
+<td>user% + sys% &gt;= 90%</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>Swap In(si) = 0 Swap Out(so) = 0</td>
+<td>Per CPU with 10 pages/s</td>
+<td>More Swap In &amp; Swap Out</td>
+</tr>
+<tr>
+<td>磁盘</td>
+<td>iowait%&lt; 20%</td>
+<td>iowat%=35%</td>
+<td>iowat% &gt;= 50%</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/20/linux/linux_1/" rel="next" title="Linux自动删除N天日志">
+                <i class="fa fa-chevron-left"></i> Linux自动删除N天日志
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -351,6 +569,15 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
+
+        
+      </div>
+
 
         </div>
         
@@ -371,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -444,6 +680,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本信息查看"><span class="nav-number">2.</span> <span class="nav-text">基本信息查看</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU信息查看"><span class="nav-number">2.1.</span> <span class="nav-text">CPU信息查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存信息查看"><span class="nav-number">2.2.</span> <span class="nav-text">内存信息查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬盘查看"><span class="nav-number">2.3.</span> <span class="nav-text">硬盘查看</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#x-参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">-x 参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存性能指标"><span class="nav-number">3.</span> <span class="nav-text">内存性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘性能指标"><span class="nav-number">4.</span> <span class="nav-text">磁盘性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络IO指标"><span class="nav-number">5.</span> <span class="nav-text">网络IO指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统评估指标"><span class="nav-number">5.1.</span> <span class="nav-text">系统评估指标</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -602,6 +854,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
