@@ -104,18 +104,21 @@
 
 
 
-<meta name="description" content="概念实现场景总结">
+<meta name="description" content="概念 适配器模式是将一个类的接口，转换成客户期望 的另一个接口。适配器让原来接口不兼容的类可以合作。 实现 对象适配器 类适配器 Target:12345678package com.littlehui.design.adapter.target;/** * Created by littlehui on 2017/11/9. */public interface Target &amp;#123;">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式系列：适配器模式">
 <meta property="og:url" content="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_6/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念实现场景总结">
+<meta property="og:description" content="概念 适配器模式是将一个类的接口，转换成客户期望 的另一个接口。适配器让原来接口不兼容的类可以合作。 实现 对象适配器 类适配器 Target:12345678package com.littlehui.design.adapter.target;/** * Created by littlehui on 2017/11/9. */public interface Target &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T05:49:14.247Z">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1516002365236.png?imageView2/2/w/402/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1516002398491.png?imageView2/2/w/404/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
+<meta property="og:updated_time" content="2018-01-15T08:02:24.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列：适配器模式">
-<meta name="twitter:description" content="概念实现场景总结">
+<meta name="twitter:description" content="概念 适配器模式是将一个类的接口，转换成客户期望 的另一个接口。适配器让原来接口不兼容的类可以合作。 实现 对象适配器 类适配器 Target:12345678package com.littlehui.design.adapter.target;/** * Created by littlehui on 2017/11/9. */public interface Target &amp;#123;">
+<meta name="twitter:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1516002365236.png?imageView2/2/w/402/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim">
 
 
 
@@ -418,7 +421,20 @@
       
 
       
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>适配器模式是将一个类的接口，转换成客户期望 的另一个接口。适配器让原来接口不兼容的类可以合作。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3></blockquote>
+<p>对象适配器<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1516002365236.png?imageView2/2/w/402/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
+<p>类适配器<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1516002398491.png?imageView2/2/w/404/h/640/format/jpg/q/100|watermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="图片"></p>
+<p>Target:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.adapter.target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2017/11/9.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTargetThings</span><span class="params">(String value)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Adapter<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.adapter.source;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.littlehui.design.adapter.target.Target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2017/11/9.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</div><div class="line"></div><div class="line">    Adaptee adaptee;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(Adaptee adaptee)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.adaptee = adaptee;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTargetThings</span><span class="params">(String value)</span> </span>&#123;</div><div class="line">        adaptee.doSourceThings(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Adaptee<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.adapter.source;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2017/11/9.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSourceThings</span><span class="params">(String value)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"value is : "</span> + value + <span class="string">"adaptee"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ConcreteTarget<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.adapter.target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2017/11/9.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteTarget</span> <span class="keyword">implements</span> <span class="title">Target</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTargetThings</span><span class="params">(String value)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"value is:"</span> + value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Client:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.adapter;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.littlehui.design.adapter.source.Adaptee;</div><div class="line"><span class="keyword">import</span> com.littlehui.design.adapter.source.Adapter;</div><div class="line"><span class="keyword">import</span> com.littlehui.design.adapter.target.ConcreteTarget;</div><div class="line"><span class="keyword">import</span> com.littlehui.design.adapter.target.Target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2017/11/9.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Target target = <span class="keyword">new</span> ConcreteTarget();</div><div class="line">        Target adaTarget = <span class="keyword">new</span> Adapter(<span class="keyword">new</span> Adaptee());</div><div class="line">        target.doTargetThings(<span class="string">"意外"</span>);</div><div class="line">        adaTarget.doTargetThings(<span class="string">"意外"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上利用组合的方式，以修改的接口包装适配者。这种实现方式称之为对象的适配器。它带来的有点是：被适配者的任意子类，都可以搭配适配器使用。</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>以Java举例，早先JDK里使用了枚举器（Enumeration)随着版本的更迭后来被 迭代器(Iterator)取代了。为了兼容之前的接口，枚举器仍然被保留着。<br>并且枚举器添加了删除元素的接口。如果遇到保留着 枚举器的客户端代码，依赖于枚举接口，完全可以使用适配器模式将迭代器转换成枚举。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>设计模式的原则有一条：组合优于继承。体现在适配器模式上就有两种适配方式。组合的称之为 对象时适配模式，继承的称之为对象适配模式。组合的有点是<br>不仅可以适配某个类，还可以适配这个类的子类属于垂直扩展。类适配器不需要重新实现整个适配者。必要的时候覆盖被适配行为就可以。两种各有优劣。站在<br>java的角度思考，类适配多更需要多继承的方式（虽然也可以用接口）。java不支持多继承。所以 建议使用对象适配。既组合。</p>
+
       
     </div>
     
@@ -458,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/09/java/patterndesign/patterndesign_10/" rel="prev" title="设计模式系列:桥接模式">
-                设计模式系列:桥接模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="prev" title="设计模式系列:享元模式">
+                设计模式系列:享元模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,7 +651,7 @@
 <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
