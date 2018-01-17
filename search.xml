@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux免密码登录]]></title>
+    <url>%2F2018%2F01%2F17%2Flinux%2Flinux_3%2F</url>
+    <content type="text"><![CDATA[前言有两台机器 A,B。现在要实现A访问B免密码登录。 步骤生成秘钥在A主机上执行12345ssh-keygen -t rsa -f rsa_for_174回车回车回车 -t 类型 -f 指定生成秘钥文件名 追加认证 将生成的秘钥拷贝到B主机，可以手动ftp，也可以用命令。1scp -i ~/.ssh/CY6034_rsa_4096 ./rsa_for_174.pub root@10.5.121.144:~/.ssh/ 1ssh -i CY6034_rsa_4096 root@10.5.121.144 追加1cat ~/.ssh/rsa_for_174 &gt;&gt; ~/.ssh/authorized_keys DONE]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Linux服务器性能评估]]></title>
     <url>%2F2017%2F11%2F21%2Flinux%2Flinux_2%2F</url>
     <content type="text"><![CDATA[前言 Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器层面来寻找影响程序运行的稳定因素。 基本信息查看CPU信息查看 查看CPU个数 1cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l 查看CPU中core个数 1cat /proc/cpuinfo | grep &quot;cpu cores&quot; | wc -l 查看CPU逻辑个数 1cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l 逻辑CPU数 = 物理CPU个数*核心数 内存信息查看 内存使用情况12345#free -m total used free shared buffers cachedMem: 64376 37881 26494 0 308 17273-/+ buffers/cache: 20299 44076Swap: 16383 0 16383 total: 总内存数 used: 已用内存数 free: 空闲内存 shared: 多进程共享的内存总数 - buffers/cache: 已用缓存总数 used-buffer-cached + buffers/cache: 可用缓存数 free+buffer+cached Buffer Cache 用于针对磁盘块的写 Page Cache用于针对文件inode的读写，这些cache能够缩短I/O时间 free / used是系统可用/暂用的内存 对于程序来说 -/+ buffers/cache是可用/占用内存，因为 buffers/cache很容易就会被使用到 硬盘查看 查看硬盘分区信息 1fdisk -l 查看文件系统磁盘暂用情况 1df -h 查看硬盘的I/O性能 1234567iostat -d -k 1Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 2017年11月21日 _x86_64_ (32 CPU)Device: tps kB_read/s kB_wrtn/s kB_read kB_wrtnsda 13.35 31.70 161.99 2867672698 14655271354sdb 0.86 17.77 29.61 1607620286 2679034433 参数解释： tps：该设备每秒的传输次数（Indicate the number of transfers per second that were issued to the device.）。”一次传输”意思是”一次I/O请求”。多个逻辑请求可能会被合并为”一次I/O请求”。”一次传输”请求的大小是未知的。 kB_read/s：每秒从设备（drive expressed）读取的数据量； kB_wrtn/s：每秒向设备（drive expressed）写入的数据量； kB_read：读取的总数据量； kB_wrtn：写入的总数量数据量；这些单位都为Kilobytes。 指定监控的设备名称为sda，该命令的输出结果和上面命令完全相同。1iostat -d sda 2 默认监控所有的硬盘设备，现在指定只监控sda。 -x 参数123456789101112131415iostat -d -x -k 1 10Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 2017年11月21日 _x86_64_ (32 CPU)Device: rrqm/s wrqm/s r/s w/s rkB/s wkB/s avgrq-sz avgqu-sz await r_await w_await svctm %utilsda 0.01 28.67 1.47 11.89 31.70 161.99 29.01 0.01 0.57 2.76 0.30 0.16 0.21sdb 0.00 0.00 0.47 0.39 17.77 29.61 109.69 0.00 1.61 0.55 2.87 0.38 0.03Device: rrqm/s wrqm/s r/s w/s rkB/s wkB/s avgrq-sz avgqu-sz await r_await w_await svctm %utilsda 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00sdb 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00Device: rrqm/s wrqm/s r/s w/s rkB/s wkB/s avgrq-sz avgqu-sz await r_await w_await svctm %utilsda 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00sdb 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 rrqm/s：每秒这个设备相关的读取请求有多少被Merge了（当系统调用需要读取数据的时候，VFS将请求发到各个FS，如果FS发现不同的读取请求读取的是相同Block的数据，FS会将这个请求合并Merge）； wrqm/s：每秒这个设备相关的写入请求有多少被Merge了. rsec/s：每秒读取的扇区数. wsec/：每秒写入的扇区数。 rKB/s：The number of read requests that were issued to the device per second； wKB/s：The number of write requests that were issued to the device per second； avgrq-sz 平均请求扇区的大小 avgqu-sz 是平均请求队列的长度。毫无疑问，队列长度越短越好。 await： 每一个IO请求的处理的平均时间（单位是微秒毫秒）。这里可以理解为IO的响应时间，一般地系统IO响应时间应该低于5ms，如果大于10ms就比较大了。 这个时间包括了队列时间和服务时间，也就是说，一般情况下，await大于svctm，它们的差值越小，则说明队列时间越短，反之差值越大，队列时间越长，说明系统出了问题。 svctm 表示平均每次设备I/O操作的服务时间（以毫秒为单位）。如果svctm的值与await很接近，表示几乎没有I/O等待，磁盘性能很好，如果await的值远高于svctm的值，则表示I/O队列等待太长， 系统上运行的应用程序将变慢。%util： 在统计时间内所有处理IO时间，除以总共统计时间。例如，如果统计间隔1秒，该设备有0.8秒在处理IO，而0.2秒闲置，那么该设备的%util = 0.8/1 = 80%，所以该参数暗示了设备的繁忙程度。一般地，如果该参数是100%表示设备已经接近满负荷运行了（当然如果是多磁盘，即使%util是100%，因为磁盘的并发能力，所以磁盘使用未必就到了瓶颈）。 内存性能指标磁盘性能指标网络IO指标系统评估指标 性能因素 好 坏 糟糕 CPU user% + sys% &lt; 70% user% + sys% =85% user% + sys% &gt;= 90% 内存 Swap In(si) = 0 Swap Out(so) = 0 Per CPU with 10 pages/s More Swap In &amp; Swap Out 磁盘 iowait%&lt; 20% iowat%=35% iowat% &gt;= 50%]]></content>
@@ -24,9 +32,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[设计模式系列：外观模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_9%2F</url>
-    <content type="text"><![CDATA[概念 外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。 实现 场景总结 外观模式体现了设计模式中 最少知识原则。不让太多的类耦合在一起。]]></content>
+    <title><![CDATA[设计模式系列:桥接模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_10%2F</url>
+    <content type="text"><![CDATA[概念 类的继承是类本身的垂直维度变化。如果需要水平维度上的变化扩展。继承是不好实现的。这时候我们可以引入桥接方式。桥接模式的做法是把变化部分抽象出来，使变化部分与主类分离开来，从而将多个维度的变化彻底分离。最后，提供一个管理类来组合不同维度上的变化，通过这种组合来满足业务的需要。 实现Fruit:12345678package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public interface Fruit &#123; public void eat();&#125; AbstractFruit:12345678910111213141516171819package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class AbstractFruit implements Fruit &#123; EatHandler eatHandler; public AbstractFruit(EatHandler eatHandler) &#123; this.eatHandler = eatHandler; &#125; @Override public void eat() &#123; eatHandler.handle(); System.out.println("开始吃水果。"); &#125;&#125; Apple:123456789101112131415package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class Apple extends AbstractFruit &#123; public Apple(EatHandler eatHandler) &#123; super(eatHandler); &#125; public void enjoy() &#123; eat(); &#125;&#125; WaterMelon:1234567891011121314151617package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class WaterMelon extends AbstractFruit &#123; public WaterMelon(EatHandler eatHandler) &#123; super(eatHandler); &#125; public void eat() &#123; super.eat(); System.out.println("吃西瓜"); &#125;&#125; EatHandler:1234567891011package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public abstract class EatHandler &#123; public void handle() &#123; System.out.println("吃水果前处理。"); &#125;&#125; PeelHandler :123456789101112package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class PeelHandler extends EatHandler &#123; @Override public void handle() &#123; super.handle(); System.out.println("削皮"); &#125;&#125; EatHandlerDivid:1234567891011package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class EatHandlerDivid extends EatHandler &#123; public void handle() &#123; super.handle(); System.out.println("切块。"); &#125;&#125; 123456789101112131415package com.littlehui.design.bridge;/** * Created by littlehui on 2018/1/17. */public class Client &#123; public static void main(String[] args) &#123; EatHandler eatHandler = new PeelHandler(); EatHandler eatHandler1 = new EatHandlerDivid(); Fruit apple = new Apple(eatHandler); Fruit waterMelon = new WaterMelon(eatHandler1); apple.eat(); waterMelon.eat(); &#125;&#125; 如上代码解释： 抽象部分 1：吃水果接口抽象，2.吃水果前处理抽象。 具体实现部分 : apple里的enjoy 这里就分离了水果关于吃水果和水果处理的部分。Apple里的enjoy是具体的实现，可以eat，可以做其他操作。我们可以切换 水果处理 Handle来改变 Appleenjoy具体时动作。 场景略 总结桥接的重点是 将实现解耦，抽象和实现独立开，不影响对方。桥接一般用于跨多个平台的图形和窗口系统上。当需要不同的方式改变借口和实现时，可以用桥接。]]></content>
       <categories>
         <category>java</category>
         <category>设计模式</category>
@@ -60,9 +68,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[设计模式系列:桥接模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_10%2F</url>
+    <title><![CDATA[设计模式系列:享元模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_12%2F</url>
     <content type="text"><![CDATA[概念实现场景总结]]></content>
+      <categories>
+        <category>java</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[设计模式系列：外观模式]]></title>
+    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_9%2F</url>
+    <content type="text"><![CDATA[概念 外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。 实现 MyOneDay:12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576package com.littlehui.design.facade;/** * Created by littlehui on 2018/1/16. * 我的一天 */public class MyOneDay &#123; private Morning morning; private Road road; private Back back; private Office office; private Rest rest; public MyOneDay(Morning morning, Office office, Back back, Road road, Rest rest) &#123; this.morning = morning; this.office = office; this.back = back; this.road = road; this.rest = rest; &#125; /** * 在家起床 */ public void morning() &#123; morning.morningStepA(); morning.morningStepB(); morning.moringStepC(); &#125; /** * 去公司 */ public void goToOffice() &#123; road.onLoadA(); road.onLoadB(); road.onLoadC(); road.onLoadE(); &#125; /** * 工作，coding */ public void work() &#123; office.officeA(); office.officeB(); office.officeC(); &#125; public void backToHome() &#123; back.backStepA(); back.backStepB(); back.backStepC(); back.backStepD(); &#125; public void rest() &#123; rest.restA(); rest.restB(); rest.restC(); rest.restD(); &#125; public void myWholeDay() &#123; morning(); goToOffice(); work(); backToHome(); rest(); &#125;&#125; Morning:12345678910111213141516171819package com.littlehui.design.facade;/** * Created by littlehui on 2018/1/16. */public class Morning &#123; public void morningStepA() &#123; System.out.println("起床刷牙洗脸"); &#125; public void morningStepB() &#123; System.out.println("吃早饭"); &#125; public void moringStepC() &#123; System.out.println("带上背包出门"); &#125;&#125; Office:12345678910111213141516171819package com.littlehui.design.facade;/** * Created by littlehui on 2018/1/16. */public class Office &#123; public void officeA() &#123; System.out.println("放下背包"); &#125; public void officeB() &#123; System.out.println("去除电脑开机"); &#125; public void officeC() &#123; System.out.println("打开IDEA 愉快地codeing"); &#125;&#125; Client:1234567891011package com.littlehui.design.facade;/** * Created by littlehui on 2018/1/16. */public class Client &#123; public static void main(String[] args) &#123; MyOneDay myOneDay = new MyOneDay(new Morning(), new Office(), new Back(), new Road(), new Rest()); myOneDay.myWholeDay(); &#125;&#125; 以上其他类略：详情github链接： 设计模式 场景总结 外观模式体现了设计模式中 最少知识原则。不让太多的类耦合在一起。]]></content>
       <categories>
         <category>java</category>
         <category>设计模式</category>
@@ -74,18 +94,6 @@
   <entry>
     <title><![CDATA[设计模式系列:组合模式]]></title>
     <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_11%2F</url>
-    <content type="text"><![CDATA[概念实现场景总结]]></content>
-      <categories>
-        <category>java</category>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[设计模式系列:享元模式]]></title>
-    <url>%2F2017%2F11%2F09%2Fjava%2Fpatterndesign%2Fpatterndesign_12%2F</url>
     <content type="text"><![CDATA[概念实现场景总结]]></content>
       <categories>
         <category>java</category>
