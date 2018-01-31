@@ -4,6 +4,90 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2018/01/31/java/java_2/</loc>
+    <lastmod>2018-01-31T09:18:03.203Z</lastmod>
+    <data>
+        <display>
+        <title>Twitter Snowflake 有序ID生成算法</title>
+        <pubTime>2018-01-31T09:11:17.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/</loc>
+    <lastmod>2018-01-23T07:25:46.073Z</lastmod>
+    <data>
+        <display>
+        <title>策略模式</title>
+        <pubTime>2018-01-23T07:22:01.000Z</pubTime>
+        
+        <tag>策略模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</loc>
+    <lastmod>2018-01-23T07:25:46.069Z</lastmod>
+    <data>
+        <display>
+        <title>观察者模式</title>
+        <pubTime>2018-01-23T07:25:00.000Z</pubTime>
+        
+        <tag>观察者</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</loc>
+    <lastmod>2018-01-23T07:25:46.059Z</lastmod>
+    <data>
+        <display>
+        <title>模板方法模式</title>
+        <pubTime>2018-01-23T07:24:07.000Z</pubTime>
+        
+        <tag>模板方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/</loc>
     <lastmod>2018-01-23T07:18:18.321Z</lastmod>
     <data>
