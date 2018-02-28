@@ -104,18 +104,18 @@
 
 
 
-<meta name="description" content="概念实现场景总结">
+<meta name="description" content="概念 策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。  实现策略模式涉及到三个角色：  环境(Context)角色：持有一个Strategy的引用。 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。 具体策略(ConcreteStrategy)角色：包装了相关的算法或行为。">
 <meta name="keywords" content="策略模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式">
 <meta property="og:url" content="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念实现场景总结">
+<meta property="og:description" content="概念 策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。  实现策略模式涉及到三个角色：  环境(Context)角色：持有一个Strategy的引用。 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。 具体策略(ConcreteStrategy)角色：包装了相关的算法或行为。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-23T07:25:46.073Z">
+<meta property="og:updated_time" content="2018-02-27T03:51:29.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式">
-<meta name="twitter:description" content="概念实现场景总结">
+<meta name="twitter:description" content="概念 策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。  实现策略模式涉及到三个角色：  环境(Context)角色：持有一个Strategy的引用。 抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。 具体策略(ConcreteStrategy)角色：包装了相关的算法或行为。">
 
 
 
@@ -418,7 +418,25 @@
       
 
       
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote>
+<p>策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。</p>
+</blockquote>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>策略模式涉及到三个角色：</p>
+<ul>
+<li>环境(Context)角色：持有一个Strategy的引用。</li>
+<li>抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。</li>
+<li>具体策略(ConcreteStrategy)角色：包装了相关的算法或行为。</li>
+</ul>
+<p>PriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>MemberPriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberPriceStrategy</span> <span class="keyword">implements</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.9</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>VipPriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VipPriceStrategy</span> <span class="keyword">implements</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.8</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Price:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Double price;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Price</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">cacularPrice</span><span class="params">(PriceStrategy priceStrategy)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> priceStrategy.caculaPrice(price);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Client:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Price price = <span class="keyword">new</span> Price(<span class="number">5</span>D);</div><div class="line">        System.out.println(price.cacularPrice(<span class="keyword">new</span> VipPriceStrategy()));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>策略模式的优点<br>　　（1）策略模式提供了管理相关的算法族的办法。策略类的等级结构定义了一个算法或行为族。恰当使用继承可以把公共的代码移到父类里面，从而避免代码重复。</p>
+<p>　　（2）使用策略模式可以避免使用多重条件(if-else)语句。多重条件语句不易维护，它把采取哪一种算法或采取哪一种行为的逻辑与算法或行为的逻辑混合在一起，统统列在一个多重条件语句里面，比使用继承的办法还要原始和落后。</p>
+<p>策略模式的缺点<br>　　（1）客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道算法或行为的情况。</p>
+<p>　　（2）由于策略模式把每个具体的策略实现都单独封装成为类，如果备选的策略很多的话，那么对象的数目就会很可观。</p>
+
       
     </div>
     
@@ -545,7 +563,7 @@
             
               <a href="/archives">
             
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -556,7 +574,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -567,7 +585,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
