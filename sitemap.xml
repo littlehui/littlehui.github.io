@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2018/05/17/http/http_tps/</loc>
+    
+    <lastmod>2018-05-17T07:49:40.736Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2018/05/17/http/http_2/</loc>
+    
+    <lastmod>2018-05-17T07:48:58.014Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2018/05/07/tools/tools_0/</loc>
     
-    <lastmod>2018-05-07T08:34:57.973Z</lastmod>
+    <lastmod>2018-05-08T06:26:17.685Z</lastmod>
     
   </url>
   
@@ -261,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     

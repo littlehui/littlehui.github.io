@@ -4,15 +4,50 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2018/05/17/http/http_tps/</loc>
+    <lastmod>2018-05-17T07:49:40.736Z</lastmod>
+    <data>
+        <display>
+        <title>网站QPS,TPS 预估方法</title>
+        <pubTime>2018-05-17T07:41:49.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/05/17/http/http_2/</loc>
+    <lastmod>2018-05-17T07:48:58.014Z</lastmod>
+    <data>
+        <display>
+        <title>秒杀系统架构优化思路</title>
+        <pubTime>2018-05-17T07:47:28.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2018/05/07/tools/tools_0/</loc>
-    <lastmod>2018-05-07T08:34:57.973Z</lastmod>
+    <lastmod>2018-05-08T06:26:17.685Z</lastmod>
     <data>
         <display>
         <title>git使用场景集锦</title>
         <pubTime>2018-05-07T08:10:56.000Z</pubTime>
         
+        <tag>git</tag>
+         
          
            
+             
+              <breadCrumb title="git" url="http://www.lilhui.com/categories/git/"/>
+          
         </display>
     </data>
     </url>
