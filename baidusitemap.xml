@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2018/07/02/linux/linux_4/</loc>
+    <lastmod>2018-07-02T09:22:16.123Z</lastmod>
+    <data>
+        <display>
+        <title>linux手动修改/etc/shadow和/etc/passwd中的用户密码</title>
+        <pubTime>2018-07-02T09:11:19.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="linux" url="http://www.lilhui.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/06/14/search/solr_3/</loc>
+    <lastmod>2018-07-02T09:12:00.692Z</lastmod>
+    <data>
+        <display>
+        <title>solr 高级功能：跨数据中心复制 CDCR踩坑记</title>
+        <pubTime>2018-06-14T01:50:16.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>cdcr</tag>
+         
+         
+           
+             
+              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2018/05/17/http/http_2/</loc>
     <lastmod>2018-05-17T07:55:29.861Z</lastmod>
     <data>
