@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？张宴：很多因素都会导致网站发生故障，从而影响网站的高可用性，比如服务器硬件故障、软件系统故障、IDC机房故障、程序上线前测试未发现的Bug、遭受分布式攻击、突发访问人数剧增等。 一套良好的网站系统架构，应该尽可能地避免只有一台服务器、一个数据库、一套软件节点等单点故障的存在。单点故障一旦发生，将直接导致网站服务不可用，">
+<meta name="keywords" content="java,架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="许式伟、张宴——系统架构运维思路对话">
+<meta property="og:url" content="http://www.lilhui.com/2018/07/10/java/java_4/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？张宴：很多因素都会导致网站发生故障，从而影响网站的高可用性，比如服务器硬件故障、软件系统故障、IDC机房故障、程序上线前测试未发现的Bug、遭受分布式攻击、突发访问人数剧增等。 一套良好的网站系统架构，应该尽可能地避免只有一台服务器、一个数据库、一套软件节点等单点故障的存在。单点故障一旦发生，将直接导致网站服务不可用，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-12T09:22:49.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="许式伟、张宴——系统架构运维思路对话">
+<meta name="twitter:description" content="许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？张宴：很多因素都会导致网站发生故障，从而影响网站的高可用性，比如服务器硬件故障、软件系统故障、IDC机房故障、程序上线前测试未发现的Bug、遭受分布式攻击、突发访问人数剧增等。 一套良好的网站系统架构，应该尽可能地避免只有一台服务器、一个数据库、一套软件节点等单点故障的存在。单点故障一旦发生，将直接导致网站服务不可用，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lilhui.com/2018/07/10/java/java_4/"/>
+
+
+
+
+
+  <title>许式伟、张宴——系统架构运维思路对话 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2018/07/10/java/java_4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">许式伟、张宴——系统架构运维思路对话</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T18:52:17+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？"><a href="#许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？" class="headerlink" title="许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？"></a>许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？</h3><p>张宴：很多因素都会导致网站发生故障，从而影响网站的高可用性，比如服务器硬件故障、软件系统故障、IDC机房故障、程序上线前测试未发现的Bug、遭受分布式攻击、突发访问人数剧增等。</p>
+<p>一套良好的网站系统架构，应该尽可能地避免只有一台服务器、一个数据库、一套软件节点等单点故障的存在。单点故障一旦发生，将直接导致网站服务不可用，恢复正常服务所需的时间也比较长，甚至还可能无法恢复。负载均衡集群、双节点热备、分布式处理等都可以用来解决单点故障，比如提供相同业务的Web服务器、MySQL数据库从库，都可以构建负载均衡集群。一旦集群中的一台服务器、一个服务出现故障，自动实时摘除，对用户来说是不可感知的，不会影响到整个网站的访问，可以为运维工程师留下足够的时间去排查和解决故障。</p>
+<p>对于重要的MySQL数据库主库，我们习惯于从硬件层和软件层来实现热备，避免单点。越是复杂的设备，发生故障的概率越大。在磁盘没有损坏的情况下，应用程序导致服务器宕机的概率，远高于简单的磁盘阵列宕机的概率。所以，从硬件层解决的话，可以在两台服务器上安装相同的数据库版本、进行相同的配置，用SAS或SCSI线连接一台磁盘阵列，将数据库数据文件存放到盘阵上。正常情况下用服务器A挂载盘阵分区，启动MySQL，绑定虚拟IP；如果服务器A宕机，则用服务器B挂载盘阵分区，启动MySQL，接管虚拟IP。从软件层解决的话，则可以借助DRBD等软件做镜像。（主从同步，负载均衡、高可用、缓存）</p>
+<p>IDC机房发生故障的概率较小，但如果发生的话，影响面也是最大的。如果所有服务器都托管在一个IDC机房，一旦该机房遭遇长时间流量攻击、断电、断网、地方政策性封网等，通常只能联系IDC去处理，除此之外束手无策，解决时间也比较长。如果成本允许，将网站服务器分布在两个以上的IDC机房，当某个IDC发生故障时，可以临时切换DNS域名解析来优先恢复服务。</p>
+<p>虽然程序代码上线前，经过了测试人员的严格测试，但测试环境和生产环境毕竟有差异，所以一些会急剧影响性能、正常服务的Bug往往在程序上线之后，才会被发现，这就要求我们在发现Bug后，能够迅速回滚到上一正常版本。我们在SVN的基础上，开发了Web代码发布系统，会将每个发布版本之间的文件变更记录下来，一键实现程序代码在多台Web服务器上的发布和回滚。</p>
+<p>遭遇DDOS分布式拒绝服务攻击，使用防火墙来对付半连接、假IP，还算比较容易。而那种专挑复杂动态应用程序URL进行的分布式CC攻击，来源为真实IP、真实HTTP请求，具有模拟正规浏览器User-Agent、单个IP的每秒请求数不高、有成千上万个攻击源等特征，很难与正常访问区分开，比较难对付。但是，正常通过浏览器访问一个URL，会加载该URL中引入的JavaScript脚本、CSS样式、图片等文件。遇到CC攻击，需要及时分析日志，找出访问量异常上涨的URL，然后用事先写好的shell脚本找出哪些IP的请求只访问了该URL，而不加载该URL引入的文件，对这些IP进行自动封锁。</p>
+<p>系统架构设计时，需要事先考虑到高于目前访问量多少倍的突发访问。对于网游站点来说，访问量受广告集中时间段投放、线上活动的影响较大，带宽峰值时间不固定，对于静态内容，可以使用商业CDN，按实际使用量计费。对于动态内容，如果遇到突发访问人数剧增，超过现有服务器处理能力，最简单的临时处理办法就是增加服务器。上架新服务器需要时间，但是，同一个IDC机房内，可以借助其他业务的服务器，在不同端口开启一组新进程，加入到原有负载均衡池中。另外，可以临时关闭一些Web中的次要功能，来减少服务器消耗。</p>
+<h3 id="许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？"><a href="#许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？" class="headerlink" title="许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？"></a>许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？</h3><p>张宴：相信很多人都遇到过这种情况：在一个老项目上修改、增加一些新功能所花费的时间，不比重新来做一个包含所有功能的新项目时间用得少。一个需要长期维护的项目，不可避免地会面临老员工的离职、新员工的接手，很多时候，项目代码的可维护性将决定一个项目的生存周期。让一个新员工在规定开发时间的压力下，去面对一个文档不够详细、陌生的、功能复杂的庞大项目，短时间弄明白所有功能逻辑不是一件容易的事。所以，任务需要切分，将一个大的任务切分成一个个小模块之后，各模块之间可以做到代码独立，互不影响，可维护性也大大增强。</p>
+<p>关于任务切分，我以本人今年负责的两个重要项目架构设计为例来介绍一下。在第一个项目：金山游戏官网的《用户行为分析系统》中，由于数据挖掘计算需要消耗较高的内存、CPU资源，一台服务器的处理能力不够，而商业的分布式数据仓库价格又太贵，所以，只有从程序应用中下手，进行任务切分。我们先按需要挖掘的数据指标，将整个数据挖掘任务切分成多个数据挖掘插件，每个插件可以在不同的服务器上运行，多个插件可以同时在多台服务器上。多个数据挖掘插件之间，如果用到相同的某项数据，那么，就将该项数据以冗余方式，复制几份提供给需要的插件，从而实现插件之间无交互、无关联，保证了超大数据量下插件的运算速度。</p>
+<p>在第二个项目：金山游戏新版运营管理系统中，则将整个任务切分成了PHP Web管理界面、PHP Web API功能接口、C/C++中间件引擎三部分。这是一种分层结构切分，最上层的“PHP Web管理界面”调用“PHP Web API功能接口”，“PHP Web API功能接口”调用运行在游戏服务器端的“C/C++中间件引擎”，“C/C++中间件引擎”与“游戏服务器端进程”通过TCP、UDP二进制协议、信号、命令行等多种方式通信。四者之间相对独立，代码无关联，通过一层层API接口实现交互。“PHP Web管理界面”负责通用界面实现。“PHP Web API功能接口”内部，又按接入的游戏模块、子功能模块进行了更细的切分，各功能模块之间通过内部API交互。“C/C++中间件引擎”大而全，不处理具体指令，但兼容TCP、UDP、HTTP、HTTPS/SSL、信号、命令行等大多数通信方式，负责和各种类型的游戏服务端交互。这是一套完全由API接口驱动的系统架构，一款新游戏接入运营管理系统时，只需在“PHP Web API功能接口”中增加一个模块；一个游戏新管理功能的增加，只需要在“PHP Web API功能接口”中增加一个子模块。通过任务切分，将复杂功能简单化，也将原来接入一款新游戏所需要的几个月时间，缩短为1~2周。</p>
+<h3 id="许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？"><a href="#许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？" class="headerlink" title="许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？"></a>许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？</h3><p>张宴：Web产品质量主要体现在架构、功能、性能、安全、代码唯一性、兼容性等方面。</p>
+<p>架构方面，我会先设计一套架构方案，然后让和项目相关的人员、专家组成员参与进来，一起探讨和论证架构的利弊，提出改进意见，保证架构的可行性。所有重要项目的技术方案需要经过专家组的评估。</p>
+<p>功能、性能方面，则会由专门的测试人员进行功能测试、压力测试、安全扫描，测试环境分为线下测试环境、线上准测试环境。</p>
+<p>在代码唯一性方面，我们开发了一个Web配置信息管理平台及相关PHP扩展，提供给系统工程师，用于配置信息的统一管理。在新项目中，PHP程序配置文件中将不再出现MySQL、Memcached等各类IP和端口信息，统一用Web配置信息管理平台给出的变量代替。从“开发环境→线下测试环境→线上测试环境→线上正式环境”，连接的数据库各不相同，导致PHP开发工程师经常搞混淆或忘了修改，通过Web配置信息管理平台，使得PHP代码中的配置文件，在四个环境中无须作任何修改，保证了代码的一致性，降低了出错率，从而确保了产品质量。</p>
+<p>在兼容性方面，我们从操作系统到PHP、MySQL版本，都保持开发环境、测试环境、线上环境的统一，所有的Web服务运行在CentOS Linux系统上。由于大多数PHP程序员习惯于在Windows上编写代码，而我们的程序中调用的一些接口、PHP扩展，只能在Linux下运行。为此，我们开发了一个小工具，可以将多名程序员在各自本机Windows上搭建的nginx虚拟主机、编写的程序文件，映射到一台Linux服务器，用Linux上的php-cgi执行Windows上的PHP代码。这样，PHP程序员修改完本机代码，保存一下，即可调试，多人之间互不影响。自己调试通过后，可以在Windows直接点击鼠标右键，将修改的代码提交到SVN版本库。</p>
+<p>Web 2.0时代，讲究网站更新的实时性，动态网站不用说，静态网站的内容发布也要保证实时。我们开发了一款名为Sersync的开源软件（<a href="http://code.google.com/p/sersync/），使用Linux" target="_blank" rel="external">http://code.google.com/p/sersync/），使用Linux</a> 2.6内核的inotify监控Linux文件系统事件，被监听目录下如果有文件发生修改，Sersync将通过内核自动捕获到事件，并将该文件利用rsync同步到CDN源站服务器。Sersync仅仅同步发生增、删、改事件的单个文件或目录，不像rsync镜像同步那样需要比对双方服务器整个目录下数千万的文件，并且支持多线程同步，因此效率非常高。金山游戏官网的CMS内容发布系统，无论网站编辑通过Web还是FTP上传图片、视频、附件，还是系统工程师直接去CMS发布服务器上增加、修改、删除文件，干完这些事情后不用做任何处理，Sersync 会自动将发生增、删、改事件的文件同步到CDN源站服务器，并可以在文件同步完成后，自动调用CDN缓存刷新接口，主动刷新发生修改、删除的文件的访问URL。</p>
+<h3 id="许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？"><a href="#许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？" class="headerlink" title="许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？"></a>许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？</h3><p>张宴：第一，需要具备岗位要求的基础技能知识，这方面我不再详述。</p>
+<p>第二，注重项目经验与积累，不看重学历与工作年限。做一个项目，犹如打一场战役，身经百战，积累下来的成功经验可以让工作更得心应手，失败经验可以避免走很多弯路。</p>
+<p>第三，能够在1~2个以上技术领域精通。所谓术业有专攻，能够在某几项技术领域做到精通的人，相信对于新的技术领域或者从未有过相关经验的新项目，也能够轻松胜任，做到尽善尽美。</p>
+<p>第四，关注应聘者的知识广度。如今的项目，已经告别个人英雄时代，讲究团队的协作。知识面越广，尽管在非专攻领域的深度可能不够，但是，知己知彼，可以站在一个更高的角度上看问题，这对于团队协作开发、项目融合的益处是显而易见的。</p>
+<p>第五，具备良好的领悟能力、思考能力、设计能力、创新能力。基础技能知识不够可以学习，经验不足可以积累，技术不精通可以钻研，知识面不广可以开拓，但要培养这四项能力，是一件非常困难的事。要打造一支优秀的团队，这四项能力不可缺少，它们的重要度甚至超过以上的四方面要求。</p>
+<p>我不会经常去问固定的问题，但所问的问题，几乎都跟以上的这些方面相关。</p>
+<h3 id="许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？"><a href="#许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？" class="headerlink" title="许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？"></a>许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？</h3><p>张宴：是否开源自己的程序代码，跟所在公司或部门的性质有着密切的关系。如果是在研发驱动型企业或部门，程序代码是公司生存的命脉，需要与竞争对手拼技术和保持技术领先的优势，因此，很难支持开源事业。反之，如果是在运营驱动型企业或部门，技术是用来提高运营质量、运营水平的工具之一。将纯粹的技术代码或产品，从公司的业务产品中提取出来，进行开<br>源，可以按照开源产品的要求，提高公司内部技术产品的规范化、标准化，还可以引用更广大用户的使用、反馈和意见，解决未发现的潜在Bug，改进代码质量，提升技术水平。对于提高运营质量、运营水平来说，益处多多。我也尝试开源自己的一些代码，例如简单消息队列服务HTTPSQS（<a href="http://code.google.com/p/httpsqs/）、MySQL" target="_blank" rel="external">http://code.google.com/p/httpsqs/）、MySQL</a> HTTP/REST客户端MySQL-UDF-HTTP（<a href="http://code.google.com/p/mysql-udf-http/），同时，也鼓励团队成员尝试开源，例如刚才提到的自动同步软件Sersync。" target="_blank" rel="external">http://code.google.com/p/mysql-udf-http/），同时，也鼓励团队成员尝试开源，例如刚才提到的自动同步软件Sersync。</a></p>
+<p>国内的开源社区在不断壮大，很多知名互联网公司都开源了自己的一些产品，但大多数还只停留在开源产品的使用、技术交流、汉化层面，真正参与到开源产品编码中的人还是较少，很多开源产品最终还是由原作者或原公司团队维护。国内开源社区的道路仍然漫长。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/06/java/java_3/" rel="next" title="软件设计原则">
+                <i class="fa fa-chevron-left"></i> 软件设计原则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/27/article/article_1/" rel="prev" title="【好文】滴滴出行技术总监：关于技术选型的那些事儿">
+                【好文】滴滴出行技术总监：关于技术选型的那些事儿 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
+
+        
+      </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480"
+              alt="Littlehui" />
+          
+            <p class="site-author-name" itemprop="name">Littlehui</p>
+            <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？"><span class="nav-number">1.</span> <span class="nav-text">许式伟：作为系统架构师，您一般会从哪些方面来保证网站的高可用性（降低故障时间）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？"><span class="nav-number">2.</span> <span class="nav-text">许式伟：您在任务切分上，有什么经验分享？您通过哪些手段保证任务的独立性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？"><span class="nav-number">3.</span> <span class="nav-text">许式伟：您通过哪些手段，来保障产品的质量？您倾向于多久更新一次您的网站？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？"><span class="nav-number">4.</span> <span class="nav-text">许式伟：您在面试时，通常关注应聘者的哪些方面？哪些问题经常会问呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？"><span class="nav-number">5.</span> <span class="nav-text">许式伟：您曾尝试开放自己的程序代码吗？您对中国国内开源社区的现状有何看法？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

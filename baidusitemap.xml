@@ -4,6 +4,132 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2018/07/27/article/article_1/</loc>
+    <lastmod>2018-07-27T03:22:06.894Z</lastmod>
+    <data>
+        <display>
+        <title>【好文】滴滴出行技术总监：关于技术选型的那些事儿</title>
+        <pubTime>2018-07-27T03:20:40.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/07/10/java/java_4/</loc>
+    <lastmod>2018-07-12T09:22:49.654Z</lastmod>
+    <data>
+        <display>
+        <title>许式伟、张宴——系统架构运维思路对话</title>
+        <pubTime>2018-07-10T10:52:17.000Z</pubTime>
+        
+        <tag>java</tag>
+         
+        <tag>架构</tag>
+         
+         
+           
+             
+              <breadCrumb title="转载" url="http://www.lilhui.com/categories/%E8%BD%AC%E8%BD%BD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/07/06/java/java_3/</loc>
+    <lastmod>2018-07-06T09:10:29.905Z</lastmod>
+    <data>
+        <display>
+        <title>软件设计原则</title>
+        <pubTime>2018-07-06T07:59:00.000Z</pubTime>
+        
+        <tag>设计原则</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/06/14/search/solr_3/</loc>
+    <lastmod>2018-07-02T10:47:49.086Z</lastmod>
+    <data>
+        <display>
+        <title>solr 跨数据中心复制 CDCR升级过程</title>
+        <pubTime>2018-06-14T01:50:16.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>cdcr</tag>
+         
+         
+           
+             
+              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/07/02/search/solr_4/</loc>
+    <lastmod>2018-07-02T10:47:49.080Z</lastmod>
+    <data>
+        <display>
+        <title>solr tlog详解</title>
+        <pubTime>2018-07-02T10:38:39.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>tlog</tag>
+         
+         
+           
+             
+              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/09/19/search/solr_2/</loc>
+    <lastmod>2018-07-02T10:47:49.073Z</lastmod>
+    <data>
+        <display>
+        <title>solr 的edismax插件扩展方式</title>
+        <pubTime>2017-09-19T09:54:07.000Z</pubTime>
+        
+        <tag>solr</tag>
+         
+        <tag>edismax</tag>
+         
+         
+           
+             
+              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2018/07/02/linux/linux_4/</loc>
     <lastmod>2018-07-02T09:22:16.123Z</lastmod>
     <data>
@@ -15,28 +141,6 @@
            
              
               <breadCrumb title="linux" url="http://www.lilhui.com/categories/linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2018/06/14/search/solr_3/</loc>
-    <lastmod>2018-07-02T09:12:00.692Z</lastmod>
-    <data>
-        <display>
-        <title>solr 高级功能：跨数据中心复制 CDCR踩坑记</title>
-        <pubTime>2018-06-14T01:50:16.000Z</pubTime>
-        
-        <tag>solr</tag>
-         
-        <tag>cdcr</tag>
-         
-         
-           
-             
-              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
           
         </display>
     </data>
@@ -796,28 +900,6 @@
         
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2017/09/19/search/solr_2/</loc>
-    <lastmod>2017-09-26T09:38:05.000Z</lastmod>
-    <data>
-        <display>
-        <title>solr 的ecismax插件扩展方式</title>
-        <pubTime>2017-09-19T09:54:07.000Z</pubTime>
-        
-        <tag>solr</tag>
-         
-        <tag>edismax</tag>
-         
-         
-           
-             
-              <breadCrumb title="搜索" url="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
-          
         </display>
     </data>
     </url>

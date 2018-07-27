@@ -104,18 +104,18 @@
 
 
 
-<meta name="description" content="###前言  公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。">
+<meta name="description" content="前言 公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。 原有架构升级后架构升级过程注意事项总结">
 <meta name="keywords" content="solr,cdcr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="solr 高级功能：跨数据中心复制 CDCR踩坑记">
+<meta property="og:title" content="solr 跨数据中心复制 CDCR升级过程">
 <meta property="og:url" content="http://www.lilhui.com/2018/06/14/search/solr_3/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="###前言  公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。">
+<meta property="og:description" content="前言 公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。 原有架构升级后架构升级过程注意事项总结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-02T09:12:00.692Z">
+<meta property="og:updated_time" content="2018-07-02T10:47:49.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="solr 高级功能：跨数据中心复制 CDCR踩坑记">
-<meta name="twitter:description" content="###前言  公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。">
+<meta name="twitter:title" content="solr 跨数据中心复制 CDCR升级过程">
+<meta name="twitter:description" content="前言 公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。  SOLR CDCR简介跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。 原有架构升级后架构升级过程注意事项总结">
 
 
 
@@ -151,7 +151,7 @@
 
 
 
-  <title>solr 高级功能：跨数据中心复制 CDCR踩坑记 | Littlehui's Notes</title>
+  <title>solr 跨数据中心复制 CDCR升级过程 | Littlehui's Notes</title>
   
 
 
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">solr 高级功能：跨数据中心复制 CDCR踩坑记</h1>
+          <h1 class="post-title" itemprop="name headline">solr 跨数据中心复制 CDCR升级过程</h1>
         
 
         <div class="post-meta">
@@ -407,12 +407,11 @@
       
 
       
-        <p>###前言</p>
-<blockquote>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>公司使用solr作为底层搜索引擎已经运行好多年了。从solr的 4.*版本到现在的 6.4.1经历了若干个大版本的修改和升级。稳定性一直在提高。</p>
 </blockquote>
 <h3 id="SOLR-CDCR简介"><a href="#SOLR-CDCR简介" class="headerlink" title="SOLR CDCR简介"></a>SOLR CDCR简介</h3><pre><code>跨数据中心复制。是solr从6.0开始的新功能。其目标是实现两个数据集群间的备份。通过合理的二次开发，可以实现异地容灾的功能。
-</code></pre>
+</code></pre><h3 id="原有架构"><a href="#原有架构" class="headerlink" title="原有架构"></a>原有架构</h3><h3 id="升级后架构"><a href="#升级后架构" class="headerlink" title="升级后架构"></a>升级后架构</h3><h3 id="升级过程"><a href="#升级过程" class="headerlink" title="升级过程"></a>升级过程</h3><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
       
     </div>
     
@@ -541,7 +540,7 @@
             
               <a href="/archives">
             
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -552,7 +551,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -563,7 +562,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -605,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLR-CDCR简介"><span class="nav-number">1.</span> <span class="nav-text">SOLR CDCR简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SOLR-CDCR简介"><span class="nav-number">2.</span> <span class="nav-text">SOLR CDCR简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原有架构"><span class="nav-number">3.</span> <span class="nav-text">原有架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级后架构"><span class="nav-number">4.</span> <span class="nav-text">升级后架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级过程"><span class="nav-number">5.</span> <span class="nav-text">升级过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">6.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
