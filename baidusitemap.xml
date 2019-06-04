@@ -4,6 +4,175 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_7/</loc>
+    <lastmod>2019-06-04T03:46:17.087Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列7】如何做人性化的代码审查</title>
+        <pubTime>2019-06-04T03:28:51.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_1/</loc>
+    <lastmod>2019-06-04T03:46:17.084Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列1】CODE REVIEW机制目标规划</title>
+        <pubTime>2019-06-04T03:17:38.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_6/</loc>
+    <lastmod>2019-06-04T03:46:17.080Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列6】GIT修改注释模板方式</title>
+        <pubTime>2019-06-04T03:28:02.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_2/</loc>
+    <lastmod>2019-06-04T03:46:17.077Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列2】CODE REVIEW 代码审查分类-以及选取方式</title>
+        <pubTime>2019-06-04T03:19:03.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_5/</loc>
+    <lastmod>2019-06-04T03:46:17.074Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列5】upsource使用简介</title>
+        <pubTime>2019-06-04T03:27:14.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_8/</loc>
+    <lastmod>2019-06-04T03:46:17.071Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列8】阿里巴巴编码规范</title>
+        <pubTime>2019-06-04T03:34:37.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</loc>
+    <lastmod>2019-06-04T03:46:17.067Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列3】CODE REVIEW代码审查执行方法</title>
+        <pubTime>2019-06-04T03:21:38.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_4/</loc>
+    <lastmod>2019-06-04T03:46:17.061Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列4】CODE REVIEW 代码审查清单</title>
+        <pubTime>2019-06-04T03:23:11.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2019/06/04/article/teammanager/article_2/</loc>
     <lastmod>2019-06-04T03:39:28.983Z</lastmod>
     <data>

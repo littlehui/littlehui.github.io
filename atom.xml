@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2019-06-04T03:39:28.983Z</updated>
+  <updated>2019-06-04T03:46:17.071Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -15,6 +15,234 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【代码审查系列8】阿里巴巴编码规范</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_8/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_8/</id>
+    <published>2019-06-04T03:34:37.000Z</published>
+    <updated>2019-06-04T03:46:17.071Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="http://note.youdao.com/noteshare?id=96f4bf961d3ded69d6af43bc183361fb" target="_blank" rel="external">阿里巴巴编码规范详情</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://note.youdao.com/noteshare?id=96f4bf961d3ded69d6af43bc183361fb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;阿里巴巴编码规范详情&lt;/a&gt;&lt;/li&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列7】如何做人性化的代码审查</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_7/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_7/</id>
+    <published>2019-06-04T03:28:51.000Z</published>
+    <updated>2019-06-04T03:46:17.087Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><a href="https://note.youdao.com/ynoteshare1/index.html?id=ce984049ed01f2c177de0e3d6d0dfbfb&amp;type=note" target="_blank" rel="external">如何做人性化的代码审查详情</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://note.youdao.com/ynoteshare1/index.html?id=ce984049ed01f2c177de0e3d6d0dfbfb&amp;amp;type=note&quot; target=&quot;_blank&quot; rel=&quot;ext
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列6】GIT修改注释模板方式</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_6/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_6/</id>
+    <published>2019-06-04T03:28:02.000Z</published>
+    <updated>2019-06-04T03:46:17.080Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在使用Git做版本控制工具的团队协助开发中，保证团队成员在提交代码后能够更详尽的追溯源头下。规范代码注释的必要性就得以体现。通过制定这种规范约束，可以显著提高代码提交的目的可追溯性。这里介绍Git修改注释模板方式。</p></blockquote><h2 id="创建过程"><a href="#创建过程" class="headerlink" title="创建过程"></a>创建过程</h2><ol><li><strong>git命令下创建注释模板</strong></li></ol><p>创建 XX_template文件，内容为团队制定的git提交规范例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Desgraption: </div><div class="line">Date: </div><div class="line">Author:</div></pre></td></tr></table></figure><p>通过git config配置commit_template,如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config –-global commit.template /d/develop/Git/Git_Home/commit_template</div></pre></td></tr></table></figure><p>设置git commit时填写注释所用的编辑器，如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global core.editor vim</div></pre></td></tr></table></figure><p>设置后，提交试用git commit</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;在使用Git做版本控制工具的团队协助开发中，保证团队成员在提交代码后能够更详尽的追溯源头下。规范代码注释的必要性就得以体现。通过制定这种规范约束，可以显著提高代码提交的目的可追溯性。这里介绍Git修改注释模板方式。&lt;/p&gt;
+&lt;/blockquote
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列5】upsource使用简介</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_5/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_5/</id>
+    <published>2019-06-04T03:27:14.000Z</published>
+    <updated>2019-06-04T03:46:17.074Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>upsource使用简介</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;upsource使用简介&lt;/p&gt;
+&lt;/blockquote&gt;
+
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列4】CODE REVIEW 代码审查清单</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_4/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_4/</id>
+    <published>2019-06-04T03:23:11.000Z</published>
+    <updated>2019-06-04T03:46:17.061Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="整洁的代码"><a href="#整洁的代码" class="headerlink" title="整洁的代码"></a>整洁的代码</h2><table><thead><tr><th>清单项</th><th>分类</th></tr></thead><tbody><tr><td>使用可以表达实际意图的名称</td><td>有意义的名称</td></tr><tr><td>每一个概念只用一个词</td><td>有意义的名称</td></tr><tr><td>使用方案/问题领域名称</td><td>有意义的名称</td></tr><tr><td>类应该是比较小的</td><td>类</td></tr><tr><td>函数应该是比较小的</td><td>函数</td></tr><tr><td>只做一件事</td><td>函数</td></tr><tr><td>DRY(拒绝重复)</td><td>函数</td></tr><tr><td>用代码来注释自己的做法</td><td>注释</td></tr><tr><td>确定应用了代码格式化</td><td>格式</td></tr><tr><td>使用异常而不是返回码</td><td>异常</td></tr><tr><td>不要返回NULL</td><td>异常</td></tr></tbody></table><h2 id="安全性问题"><a href="#安全性问题" class="headerlink" title="安全性问题"></a>安全性问题</h2><table><thead><tr><th>清单项</th><th>分类</th></tr></thead><tbody><tr><td>如果不用继承，使用final类</td><td>基础</td></tr><tr><td>避免重复代码</td><td>基础</td></tr><tr><td>权限限制：程序应该运行在保证功能正常的最小权限模式下</td><td>基础</td></tr><tr><td>最小化类和成员的可访问性</td><td>基础</td></tr><tr><td>注释安全相关的信息</td><td>基础</td></tr><tr><td>系统的输入必须检查是否有效和在允许范围内</td><td>拒绝服务</td></tr><tr><td>避免对于一些不寻常行为的过分日志</td><td>拒绝服务</td></tr><tr><td>在任何情况下都释放资源（流，连接等）</td><td>拒绝服务</td></tr><tr><td>从异常中清楚敏感信息（暴露文件路径，系统内部相关，配置，IP等）</td><td>秘密信息</td></tr><tr><td>不把高敏感度的信息写到日志</td><td>秘密信息</td></tr><tr><td>考虑把高度敏感的信息在使用后从内存中删除</td><td>密码信息</td></tr><tr><td>限制包，类，接口，方法和域的可访问性</td><td>可访问性的扩展</td></tr><tr><td>限制类和方法的可扩展性</td><td>可访问性的扩展</td></tr><tr><td>检验输入（有效数据，大小，范围，边界）</td><td>输入检验</td></tr><tr><td>把从不可信对象得到的输出作为输入来检验</td><td>输入检验</td></tr><tr><td>为native方法定义包装类（而不是定义native方法为public）</td><td>输入检验</td></tr><tr><td>把从不可信对象得到的输出作为输入来对待</td><td>可变性</td></tr><tr><td>使public static域为final（避免调用方法（caller）修改它的值）</td><td>可变性</td></tr><tr><td>避免暴露敏感类的构造函数</td><td>对象构造</td></tr><tr><td>避免安全敏感类的序列化</td><td>序列化反序列化（Serialization Deserialization)</td></tr><tr><td>通过序列化来保护敏感数据</td><td>序列化反序列化</td></tr><tr><td>小心地缓存潜在的特权操作结果</td><td>序列化反序列化</td></tr></tbody></table><h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><table><thead><tr><th>清单项目</th><th>分类</th></tr></thead><tbody><tr><td>避免过分的同步</td><td>并发</td></tr><tr><td>保持同步于去比较小</td><td>并发</td></tr><tr><td>知道String连接的性能情况</td><td>综合编程</td></tr><tr><td>避免创建不需要的对象</td><td>创建和销毁对象</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;整洁的代码&quot;&gt;&lt;a href=&quot;#整洁的代码&quot; class=&quot;headerlink&quot; title=&quot;整洁的代码&quot;&gt;&lt;/a&gt;整洁的代码&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;清单项&lt;/th&gt;
+&lt;th&gt;分类&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列3】CODE REVIEW代码审查执行方法</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_3/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</id>
+    <published>2019-06-04T03:21:38.000Z</published>
+    <updated>2019-06-04T03:46:17.067Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>建立完善的代码审查机制有助于提升开发团队的协作能力，和提升代码质量。并不是件简单的事情。不同团队所处的公司，项目客观环境不同，所采用的审查流程也不尽相同。本文根据目前公司项目状态和团队人员状况指定简单的可执行方案。希望对开展代码审查机制有帮助。</p></blockquote><h2 id="默认约定"><a href="#默认约定" class="headerlink" title="默认约定"></a>默认约定</h2><h3 id="review方法约定"><a href="#review方法约定" class="headerlink" title="review方法约定"></a>review方法约定</h3><p>这里暂时用两种方式  </p><ol><li><p>结对review</p><ul><li>在项目或者需求计划完成时由reviewer或者项目负责人对关键功能点进行评估是否进行结对review</li><li>当需要进行结对review的功能点开发完成后，由codeowner通知review约定一个具体时间对关键代码的解说，reviewer跟着coderowner的流程进行review提出可能隐藏的逻辑错误。</li></ul></li><li><p>异步review</p><ul><li>codeowner每天提交完整的可编译的代码。</li><li>codeviewer每天拉取完整的代码。<ul><li>项目实际开发天数&gt;7人日（含）：<br>在项目阶段的每个周四固定一个时间段进行已提交的完整代码review。再另外在提测前两天进行review一遍。如果两者时间有冲突，那么以提测前 两天为主。</li><li>如果项目或者需求实际时间小于7人日，在提测前两天进行review一遍。</li></ul></li><li>codeowner在接收到review comment时。最迟第二天进行答复。和codereview协商完成comment处理。</li><li>codereview在提测前一天下午前，进行完整审查。寻找未处理的reviewcomment灭掉。</li></ul></li></ol><h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol><li>代码上传到Gitlab  </li><li>配置好upsource代码库</li><li>安装upsource idea插件</li></ol><h3 id="划分角色"><a href="#划分角色" class="headerlink" title="划分角色"></a>划分角色</h3><p>CODEROWNER: 代码作者  </p><p>REVIEWER: 代码审查者  </p><h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">graph TB</div><div class="line">开始--&gt;开发计划</div><div class="line">开发计划--&gt;划分角色</div><div class="line">开发计划--&gt;review计划</div><div class="line">划分角色--&gt;开发提交代码</div><div class="line">review计划--&gt;开发提交代码</div><div class="line">开发提交代码--&gt;进行review</div><div class="line">进行review--&gt;开发提交代码</div><div class="line">进行review--&gt;提测</div></pre></td></tr></table></figure><h3 id="核心流程详解"><a href="#核心流程详解" class="headerlink" title="核心流程详解"></a>核心流程详解</h3><ol><li>划分角色和review计划制定<ul><li>开发计划制定后进行角色划分。code reviewer一般是项目负责人。同时也可以是coder</li><li>rewiver将要进行的项目上传到gitlab和<a href="http://10.5.117.151:8080/" target="_blank" rel="external">upsource</a>。并配置好项目在upsource上的配置。</li><li>coder 配置好idea插件</li><li>根据功能划分制定review方式。</li></ul></li><li><p>按照功能进行开发</p></li><li><p>在功能开发过程中按照指定好的review计划进行codereview</p></li></ol><h2 id="CODE-REVIEW的方法"><a href="#CODE-REVIEW的方法" class="headerlink" title="CODE REVIEW的方法"></a>CODE REVIEW的方法</h2><h3 id="代码审查方式"><a href="#代码审查方式" class="headerlink" title="代码审查方式"></a>代码审查方式</h3><ul><li>关注点<br>  代码审查清单列表</li><li><p>代码的设计是否符合要求</p></li><li><p>逻辑是否正确</p></li></ul><h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><ul><li>角色：<ul><li>Reviewer<br>reviewer为各个项目负责人可以同时是CodeOwner</li><li>CodeOwner<br>CoderOwner为这个代码的作者,</li></ul></li></ul><p>每天由Codeowner提交代码。Reviewer通过idea插件或者 upsource的hub页面筛查自己需要 审查的代码进行审查。并提交相关建议。</p><h3 id="结果反馈"><a href="#结果反馈" class="headerlink" title="结果反馈"></a>结果反馈</h3><p>略</p><h2 id="审查工具和附件"><a href="#审查工具和附件" class="headerlink" title="审查工具和附件"></a>审查工具和附件</h2><ul><li><a href="http://10.5.117.151:8080" target="_blank" rel="external">upsource</a></li><li><p><a href="http://note.youdao.com/noteshare?id=767a7fea1df64b72d5e06ffe9f3da103" target="_blank" rel="external">注释模板设置方式</a></p></li><li><p><a href="http://note.youdao.com/noteshare?id=79263de59433b0f710641c1966ca8785" target="_blank" rel="external">代码审查清单</a></p></li><li><a href="http://note.youdao.com/noteshare?id=767a7fea1df64b72d5e06ffe9f3da103" target="_blank" rel="external">git注释模板</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;建立完善的代码审查机制有助于提升开发团队的协作能力，和提升代码质量。并不是件简单的事情。不同团队所处的公司，项目客
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列2】CODE REVIEW 代码审查分类-以及选取方式</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_2/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_2/</id>
+    <published>2019-06-04T03:19:03.000Z</published>
+    <updated>2019-06-04T03:46:17.077Z</updated>
+    
+    <content type="html"><![CDATA[<p>代码审查主要可以划分4种类型。每一种代码审查类型都有它特有的优缺点。<br>在高层面，代码审查归为两大类：正式的审查，轻量级的审查。以下详细说明：</p><h2 id="正式的审查"><a href="#正式的审查" class="headerlink" title="正式的审查"></a>正式的审查</h2><p>正式的审查与开发流程绑定作为流程中不可或缺的一部分。实践方式有很多种，其中最流行的实践方式是 范根检查法（Faganinspection）。它为视图寻找代码缺陷提供了一种非常结构化的流程，并且，还可以用于发现规范中的或者设计中的缺陷。</p><h3 id="范根检查法步骤"><a href="#范根检查法步骤" class="headerlink" title="范根检查法步骤"></a>范根检查法步骤</h3><ol><li>计划</li><li>概述</li><li>准备</li><li>召开检查会议</li><li>重做</li><li>追查</li></ol><p>其基本思想为：预先制定好每一个步骤所需要达到的输出要求。当进行到某个过程时，检查现在的输出，并与之前指定的理想输出要求做比较。然后，由此决定是否进入下一个步骤。或者仍需在当前步骤继续工作。这种结构化的流程比较繁琐，用的不多。成本较高。一般团队很少使用。然而，如果开发的软件生死攸关，会因为有缺陷而让人丧命，那么以这种结构化的方式查找软件缺陷就显得很合理。比如动车调度，飞机自动驾驶等等。</p><h2 id="轻量级审查"><a href="#轻量级审查" class="headerlink" title="轻量级审查"></a>轻量级审查</h2><p>相比于正式的代码审查，轻量级代码审查正在被更多的开发团队所使用。<br>其子分类有：</p><ol><li><strong>瞬时代码审查，也称为结对编程</strong>。 </li></ol><ul><li><p><strong>一般情况</strong>：<br>  当一个开发者在敲代码的同时，另一个开发盯着代码，注意着代码中潜在的问题，并在此过程中给出提升代码质量的建议。</p></li><li><p><strong>解决复杂问题的情况</strong>：  </p><p>  此种方法比较适用于，仔细找解决方案的时候两个大脑汇集起来增加成功的概率。让两个头脑思考同一个问题，并且互相讨论可行的方案，这样你更可能覆盖到问题的一些边界情况。在遇到需要很多复杂业务逻辑的任务时候，可以用结对编程。</p></li><li><p><strong>需要学习新技术时候的情况</strong>：  </p></li></ul><p>例如：在使用一个新的框架，或者在探索之前没用过的新技术。最好还是单独行动，因为这时可以根据自己的情况作出快速调整。为了弄清楚技术是如何工作的，需要网络上搜索大量资料。或者阅读文档。这时，结对编程帮助就不大，因为不同的人可能获取知识的方式不同。另一方面，当你被问题卡主之后，与同事之间交流一下解决方案，往往会有意想不到的收获。</p><ul><li><p><strong>开发者水平差距问题的影响</strong>：  </p><p>  当一个初级开发者和高级开发者进行结对编程，效果并不好。在初级代码开发者负责写代码时，坐在旁边的高级程序员可能因为他写的太慢而感到烦恼。如此设定，这个高级程序员的能力就被限制住了，从而浪费时间。当键盘在高级程序员手上时，又敲得太快，初级程序员跟不上高级程序员的思路。几分钟后，初级程序员就迷失在代码上下文了，或者需要更多的时间解释代码的含义。徒增时间成本。</p></li><li><p><strong>总结</strong><br>  结对编程适用于两个有相似经验水平的开发者处理复杂的业务问题的情况。</p></li></ul><ol><li><strong>同步代码审查，既时代码审查</strong>。</li></ol><ul><li><p><strong>运行方式</strong>：</p><p>  一个开发者独自编写代码，当她写完代码后，立即找代码审查者进行审查。审查者来到开发者的桌前，看着同一个屏幕，一起审查、讨论和改进代码。</p></li><li><p><strong>审查者不清楚这个任务的目标时</strong>：    </p><p>  这种代码审查类型会很有效果。它会在这种情况下发生：团队里没有优化会议，或者sprint计划会议，来预先讨论每一项任务。此种做法会导致一种结果：只有特定的开发人员才能知道某项任务的需求。这种情况下，在代码审查之前，向审查者介绍下任务的目标是很有帮助的。</p></li><li><p><strong>期待大量的代码改进时</strong>：如果代码编写者缺乏经验，写出的代码需要很大的改进，那么同步代码审查也很有效。<br>  如果一个经验丰富的高级开发者将要对一个很初级的程序员写出的一段代码进行审查，那么，当初级程序员写完代码后和高级开发者一起改进这块代码，效率是远远高于初级程序员一个人看的。<br>  缺点：它强行切换了审查者的思路，不仅让审查者感到沮丧，也拖慢了整个团队的效率。</p></li></ul><ol><li><strong>异步的代码审查，工具支持的代码审查</strong>。  </li></ol><ul><li><p><strong>运行方式</strong>：<br>  开发者在写完代码后，让这些代码对审查者课件，让后开始他的下一个任务。当审查者有时间了，他会在自己的桌子上按自己的时间表进行审查。他不需要和开发者进行沟通，而是通过工具写一些评论。在完成审查后，那些工具会把评论和需要改动的通知给开发者。开发者就会根据评论改进代码，同样的，以自己的时间进行这些事情。这种循环，会以代码改动再次提交到审查者这里又重新开始。开发者修改代码，知道没有评论需要改进。最后改动完成，并且同意，合并到主分支。同步和异步的代码审查有较大的不同。</p></li><li><p><strong>好处</strong>：<br>  没有直接的依赖，异步发生。开发者不需要直接依赖于审查者，并且时间安排相对自由。</p></li><li><p><strong>缺点</strong>：<br>  可能有许多次循环的审查，可能持续好几天，最终被接受。可能发生的详情如下：当开发者完成代码后，需要几个小时候审查者才开始做代码审查。很多事会后，审查者给出的建议在第二天才能被开发者修复。这样，第一次审查周期就用了一天，如果有多次循环，审查的时间久延续了一整周，还不算代码和测试的时间。</p></li><li><strong>解决方案</strong>：<br>  在团队里，我们规定，每天上午，每个开发者在开始做其他工作之前，都需要处理挤压的代码审查任务，同样的，在中午午休结束后也类似的工作安排。在较长的休息时间后，开发者已经不出在他的代码思路里了。这时进行代码审查，冰没有强制他们进行不自然的思路切换，并且能够让代码在合适的时间内得到审查。</li><li><strong>总结</strong>：异步的代码审查应该作为每一个专业开发团队的默认选项。但是在为什么这么做之前，要想清楚这些代码审查分类原则。</li></ul><ol><li><strong>偶尔的代码审查，基于回忆的代码审查</strong>。</li></ol><ul><li><p><strong>执行方式</strong>：</p><p>  坐在会议室，一个开发者展示并解释他最近写的一段困难的代码。其他开发者尝试寻找潜在的缺陷，发表评论，给出如何改进代码的建议。  </p></li><li><p><strong>适用场景</strong>：  </p><p>  当整个团队都没有代码审查的经验时，把每个人都聚集起来，一起做代码审查，这样弄几次后，可能帮助每个人理解代码审查的目标和意义。长远看来，此种方式并不是一个合适的技术，因为让劝阻审核一段代码是很低效的。</p></li></ul><h2 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h2><ol><li>正式的代码审查，不流行，较难实现较难用于实践。</li><li>轻量级的代码审查选择<ol><li>瞬时代码审查用于结对编程，在解决复杂业务时候使用。</li><li>同步代码审查，用于审查者不知道大量改进时。</li><li>异步审查，避免了强行切换思路带来的问题，对大多数用例都工作的很好。</li><li>偶尔的代码审查，对于专业团队来说不是长期的选择。</li></ol></li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>主要用轻量级代码审查。在轻量级代码审查中按照不同情况进行选择审查方式。</p><ol><li>默认使用异步审查。</li><li>在开发一个新系统新业务时候，评估业务复杂度如果复杂度高，进行结对编程。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;代码审查主要可以划分4种类型。每一种代码审查类型都有它特有的优缺点。&lt;br&gt;在高层面，代码审查归为两大类：正式的审查，轻量级的审查。以下详细说明：&lt;/p&gt;
+&lt;h2 id=&quot;正式的审查&quot;&gt;&lt;a href=&quot;#正式的审查&quot; class=&quot;headerlink&quot; title=&quot;正
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【代码审查系列1】CODE REVIEW机制目标规划</title>
+    <link href="http://www.lilhui.com/2019/06/04/article/codereview/article_1/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/codereview/article_1/</id>
+    <published>2019-06-04T03:17:38.000Z</published>
+    <updated>2019-06-04T03:46:17.084Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>代码审查是软件生产过程中用于把控软件质量的一种方式。通常的目的是查找系统缺陷，保证软件总体质量和提高开发者自身水平。如何建立长远的审核机制，以保证代码的持续健康优化，是个相对复杂的过程。本文对代码审查的规划做一个简单的分析。</p></blockquote><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul><li>代码规范化</li><li>更好的设计</li><li>技术成长</li></ul><h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><p>通过制度和规范的手段对代码审核进行合理化推行，在执行的潜移默化中落实到实际操作 最终在团队变更或者其他事物发生变迁的情况下依然能够完整执行并且收效。</p><h2 id="目前的状态"><a href="#目前的状态" class="headerlink" title="目前的状态"></a>目前的状态</h2><p>当前项目的状态是：项目小，数量多，项目人员分散。  </p><p>外部环境的状态：需求不定期加入，维护性工作不定期进行。  </p><p>内部人员状态：<br>对于老员工来讲，习惯旧有的思考方式和做事方式。<br>对社招新员工来讲，带着之前的思维方式做事风格，还在适应新环境中。<br>对于校招员工来讲规则尚未建立，接受新鲜事物规则较快。</p><h2 id="推行面临的问题"><a href="#推行面临的问题" class="headerlink" title="推行面临的问题"></a>推行面临的问题</h2><ul><li>时间不够<br>  应对措施：在开发计划制定时预留1-2天时间进行review。</li><li>需求变化<br>  应对措施：在需求变化后重新进行review.</li><li>人员态度<br>  应对措施：局部某个项目开始进行review，养成习惯，各个击破。进而扩展到整体团队review</li></ul><h2 id="目标分解"><a href="#目标分解" class="headerlink" title="目标分解"></a>目标分解</h2><h3 id="阶段一"><a href="#阶段一" class="headerlink" title="阶段一"></a>阶段一</h3><ul><li>完成代码规范<ul><li>CODE REVIEW习惯养成<br>CODE REVIEW机制建立初始化，团队内部养成习惯，作为工作的一部分。</li></ul></li></ul><h3 id="阶段二"><a href="#阶段二" class="headerlink" title="阶段二"></a>阶段二</h3><ul><li>更好的设计<ul><li>发现隐藏缺陷Bug<br>发现并尽量避免隐藏Bug的发生，对不合理的设计进行重新评审。</li></ul></li></ul><h3 id="阶段三"><a href="#阶段三" class="headerlink" title="阶段三"></a>阶段三</h3><ul><li>技术成长<ul><li>REVIEWER能力的提升<br>提升代码审查的效率和准确率。</li><li>CODER的技术提升<br>提升代码设计的质量</li></ul></li></ul><p>参考：</p><ul><li><a href="http://note.youdao.com/noteshare?id=7c240547861df502ea232411563f2153" target="_blank" rel="external">审查类型和选择方式</a></li></ul><h2 id="代码审查执行方法"><a href="#代码审查执行方法" class="headerlink" title="代码审查执行方法"></a>代码审查执行方法</h2><ul><li><a href="http://note.youdao.com/noteshare?id=ca823b51d2e0bf44b5ddbc2ac3f0ec5a" target="_blank" rel="external">代码审查执行方法</a></li></ul><h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ul><li><a href="http://note.youdao.com/noteshare?id=767a7fea1df64b72d5e06ffe9f3da103" target="_blank" rel="external">注释模板设置方式</a></li></ul><ul><li><a href="http://note.youdao.com/noteshare?id=79263de59433b0f710641c1966ca8785" target="_blank" rel="external">代码审查清单</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;代码审查是软件生产过程中用于把控软件质量的一种方式。通常的目的是查找系统缺陷，保证软件总体质量和提高开发者自身水平
+      
+    
+    </summary>
+    
+      <category term="技术之外" scheme="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+    
+    
+      <category term="代码审查" scheme="http://www.lilhui.com/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/"/>
+    
+      <category term="CODEREVIEW" scheme="http://www.lilhui.com/tags/CODEREVIEW/"/>
+    
+  </entry>
   
   <entry>
     <title>团队管理中的三个时期</title>
@@ -323,223 +551,6 @@
     
     
       <category term="git" scheme="http://www.lilhui.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>swagger2 注解说明</title>
-    <link href="http://www.lilhui.com/2018/04/04/spring/swagger/swagger_1/"/>
-    <id>http://www.lilhui.com/2018/04/04/spring/swagger/swagger_1/</id>
-    <published>2018-04-04T01:36:56.000Z</published>
-    <updated>2018-04-04T03:12:45.932Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="整体说明"><a href="#整体说明" class="headerlink" title="整体说明"></a>整体说明</h3><blockquote><p>swagger2的在线文档功能异常强大。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@Api：用在请求的类上，表示对类的说明</div><div class="line">    tags=&quot;说明该类的作用，可以在UI界面上看到的注解&quot;</div><div class="line">    value=&quot;该参数没什么意义，在UI界面上也看到，所以不需要配置&quot;</div><div class="line"></div><div class="line">@ApiOperation：用在请求的方法上，说明方法的用途、作用</div><div class="line">    value=&quot;说明方法的用途、作用&quot;</div><div class="line">    notes=&quot;方法的备注说明&quot;</div><div class="line"></div><div class="line">@ApiImplicitParams：用在请求的方法上，表示一组参数说明</div><div class="line">    @ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面</div><div class="line">        name：参数名</div><div class="line">        value：参数的汉字说明、解释</div><div class="line">        required：参数是否必须传</div><div class="line">        paramType：参数放在哪个地方</div><div class="line">            · header --&gt; 请求参数的获取：@RequestHeader</div><div class="line">            · query --&gt; 请求参数的获取：@RequestParam</div><div class="line">            · path（用于restful接口）--&gt; 请求参数的获取：@PathVariable</div><div class="line">            · body（不常用）</div><div class="line">            · form（不常用）    </div><div class="line">        dataType：参数类型，默认String，其它值dataType=&quot;Integer&quot;       </div><div class="line">        defaultValue：参数的默认值</div><div class="line"></div><div class="line">@ApiResponses：用在请求的方法上，表示一组响应</div><div class="line">    @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息</div><div class="line">        code：数字，例如400</div><div class="line">        message：信息，例如&quot;请求参数没填好&quot;</div><div class="line">        response：抛出异常的类</div><div class="line"></div><div class="line">@ApiModel：用于响应类上，表示一个返回响应数据的信息</div><div class="line">            （这种一般用在post创建的时候，使用@RequestBody这样的场景，</div><div class="line">            请求参数无法使用@ApiImplicitParam注解进行描述的时候）</div><div class="line">    @ApiModelProperty：用在属性上，描述响应类的属性</div></pre></td></tr></table></figure><h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><ol><li>@Api：用在请求的类上，说明该类的作用</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Api：用在请求的类上，说明该类的作用</div><div class="line">    tags=&quot;说明该类的作用&quot;</div><div class="line">    value=&quot;该参数没什么意义，所以不需要配置&quot;</div></pre></td></tr></table></figure><ol><li>@ApiOperation：用在请求的方法上，说明方法的作用</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@ApiOperation：&quot;用在请求的方法上，说明方法的作用&quot;</div><div class="line">    value=&quot;说明方法的作用&quot;</div><div class="line">    notes=&quot;方法的备注说明</div></pre></td></tr></table></figure><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@ApiOperation(value=&quot;用户注册&quot;,notes=&quot;手机号、密码都是必输项，年龄随边填，但必须是数字&quot;)</div></pre></td></tr></table></figure></p><ol><li>@ApiImplicitParams：用在请求的方法上，包含一组参数说明</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">@ApiImplicitParams：用在请求的方法上，包含一组参数说明</div><div class="line">    @ApiImplicitParam：用在 @ApiImplicitParams 注解中，指定一个请求参数的配置信息       </div><div class="line">        name：参数名</div><div class="line">        value：参数的汉字说明、解释</div><div class="line">        required：参数是否必须传</div><div class="line">        paramType：参数放在哪个地方</div><div class="line">            · header --&gt; 请求参数的获取：@RequestHeader</div><div class="line">            · query --&gt; 请求参数的获取：@RequestParam</div><div class="line">            · path（用于restful接口）--&gt; 请求参数的获取：@PathVariable</div><div class="line">            · body（不常用）</div><div class="line">            · form（不常用）    </div><div class="line">        dataType：参数类型，默认String，其它值dataType=&quot;Integer&quot;       </div><div class="line">        defaultValue：参数的默认值</div></pre></td></tr></table></figure><p>示列：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@ApiImplicitParams(&#123;</div><div class="line">    @ApiImplicitParam(name=&quot;mobile&quot;,value=&quot;手机号&quot;,required=true,paramType=&quot;form&quot;),</div><div class="line">    @ApiImplicitParam(name=&quot;password&quot;,value=&quot;密码&quot;,required=true,paramType=&quot;form&quot;),</div><div class="line">    @ApiImplicitParam(name=&quot;age&quot;,value=&quot;年龄&quot;,required=true,paramType=&quot;form&quot;,dataType=&quot;Integer&quot;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure><ol><li>@ApiResponses：用于请求的方法上，表示一组响应</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@ApiResponses：用于请求的方法上，表示一组响应</div><div class="line">    @ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息</div><div class="line">        code：数字，例如400</div><div class="line">        message：信息，例如&quot;请求参数没填好&quot;</div><div class="line">        response：抛出异常的类</div></pre></td></tr></table></figure><p>示例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@ApiOperation(value = &quot;select1请求&quot;,notes = &quot;多个参数，多种的查询参数类型&quot;)</div><div class="line">@ApiResponses(&#123;</div><div class="line">    @ApiResponse(code=400,message=&quot;请求参数没填好&quot;),</div><div class="line">    @ApiResponse(code=404,message=&quot;请求路径没有或页面跳转路径不对&quot;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure><ol><li>@ApiModel：用于响应类上，表示一个返回响应数据的信息</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@ApiModel：用于响应类上，表示一个返回响应数据的信息</div><div class="line">            （这种一般用在post创建的时候，使用@RequestBody这样的场景，</div><div class="line">            请求参数无法使用@ApiImplicitParam注解进行描述的时候）</div><div class="line">    @ApiModelProperty：用在属性上，描述响应类的属性</div></pre></td></tr></table></figure><p>示例:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</div><div class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.Serializable;</div><div class="line"></div><div class="line"><span class="meta">@ApiModel</span>(description= <span class="string">"返回响应数据"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestMessage</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"是否成功"</span>)</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> success=<span class="keyword">true</span>;</div><div class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"返回对象"</span>)</div><div class="line">    <span class="keyword">private</span> Object data;</div><div class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"错误编号"</span>)</div><div class="line">    <span class="keyword">private</span> Integer errCode;</div><div class="line">    <span class="meta">@ApiModelProperty</span>(value = <span class="string">"错误信息"</span>)</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line"></div><div class="line">    <span class="comment">/* getter/setter */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;整体说明&quot;&gt;&lt;a href=&quot;#整体说明&quot; class=&quot;headerlink&quot; title=&quot;整体说明&quot;&gt;&lt;/a&gt;整体说明&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;swagger2的在线文档功能异常强大。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure cl
-      
-    
-    </summary>
-    
-      <category term="spring" scheme="http://www.lilhui.com/categories/spring/"/>
-    
-      <category term="swagger" scheme="http://www.lilhui.com/categories/spring/swagger/"/>
-    
-    
-      <category term="swagger" scheme="http://www.lilhui.com/tags/swagger/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Socket,WebSocket,HTML5</title>
-    <link href="http://www.lilhui.com/2018/02/06/http/hexo/"/>
-    <id>http://www.lilhui.com/2018/02/06/http/hexo/</id>
-    <published>2018-02-06T02:19:18.000Z</published>
-    <updated>2018-02-06T06:55:27.180Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>对Web项目来讲，一般都用http请求来解决。</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul><li>Socket 和 WebSocket 有哪些区别和联系？</li><li>WebSocket 和 HTML5 是什么关系？</li><li>必须在浏览器中才能使用 WebSocket 吗？</li><li>WebSocket 能和 Socket 一样传输 raw 数据么？</li><li>WebSocket 和 Socket 相比会多耗费流量么？</li></ul><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>选择了 WebSocket 技术之后，不可避免的，我要将它和其他协议以及技术做一下比较。最常见的，就是需要比较 WebSocket 与 HTTP、Socket 技术的异同。</p><p>WebSocket 是为了满足基于 Web 的日益增长的实时通信需求而产生的。在传统的 Web 中，要实现实时通信，通用的方式是采用 HTTP 协议不断发送请求。但这种方式即浪费带宽（HTTP HEAD 是比较大的），又消耗服务器 CPU 占用（没有信息也要接受请求）。（下图来自 WebSocket.org）</p><p>Latency comparison between the polling and WebSocket applications</p><p>而是用 WebSocket 技术，则会大幅降低上面提到的消耗：（下图来自websocket.org）</p><p>Comparison of the unnecessary network throughput overhead between the polling and the WebSocket applications</p><p>关于更详细的描述，尹立的这篇文章讲得非常好：WebSocket（2）–为什么引入WebSocket协议 。</p><p>那么，WebSocket 到底与 HTTP 协议到底是一个什么样的关系呢？它和 Socket 又有什么联系？这就要讲到 OSI 模型和 TCP/IP 协议族。</p><h3 id="OSI-模型与-TCP-IP"><a href="#OSI-模型与-TCP-IP" class="headerlink" title="OSI 模型与 TCP/IP"></a>OSI 模型与 TCP/IP</h3><p>以下是 维基百科 中关于OSI 模型的说明：</p><p>开放式系统互联通信参考模型（英语：Open System Interconnection Reference Model，ISO/IEC 7498-1），简称为OSI模型（OSI model），一种概念模型，由国际标准化组织（ISO）提出，一个试图使各种计算机在世界范围内互连为网络的标准框架。</p><p>而 TCP/IP 协议可以看做是对 OSI 模型的一种简化（以下内容来自 维基百科）：</p><p>它将软件通信过程抽象化为四个抽象层，采取协议堆叠的方式，分别实作出不同通信协议。协议套组下的各种协议，依其功能不同，被分别归属到这四个阶层之中7，常被视为是简化的七层OSI模型。</p><p>这里有一张图详细介绍了 TCP/IP 协议族中的各个协议在 OSI模型 中的分布，一图胜千言（下图来自 科来）：</p><p>TCP/IP 和 OSI 模型</p><p>TCP/IP 协议和 OSI 模型的内容，在互联网上有很多。我没有必要再次介绍它们。在这里，我们只需要知道，HTTP、WebSocket 等协议都是处于 OSI 模型的最高层： 应用层 。而 IP 协议工作在网络层（第3层），TCP 协议工作在传输层（第4层）。</p><p>至于 OSI 模型的各个层次都有什么系统和它们对应，这里有篇很好的文章可以满足大家的求知欲：OSI七层模型详解 。</p><ol><li>WebSocket、HTTP 与 TCP<br>从上面的图中可以看出，HTTP、WebSocket 等应用层协议，都是基于 TCP 协议来传输数据的。我们可以把这些高级协议理解成对 TCP 的封装。</li></ol><p>既然大家都使用 TCP 协议，那么大家的连接和断开，都要遵循 TCP 协议中的三次握手和四次握手 ，只是在连接之后发送的内容不同，或者是断开的时间不同。</p><p>更详细内容可阅读：wireshark抓包图解 TCP三次握手/四次挥手详解</p><p>对于 WebSocket 来说，它必须依赖 HTTP 协议进行一次握手 ，握手成功后，数据就直接从 TCP 通道传输，与 HTTP 无关了。</p><ol><li>Socket 与 WebScoket<br>Socket 其实并不是一个协议。它工作在 OSI 模型会话层（第5层），是为了方便大家直接使用更底层协议（一般是 TCP 或 UDP ）而存在的一个抽象层。</li></ol><p>最早的一套 Socket API 是 Berkeley sockets ，采用 C 语言实现。它是 Socket 的事实标准，POSIX sockets 是基于它构建的，多种编程语言都遵循这套 API，在 JAVA、Python 中都能看到这套 API 的影子。</p><p>下面摘录一段更容易理解的文字（来自 http和socket之长连接和短连接区别）：</p><p>Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。</p><p>Socket是什么</p><p>Socket通信过程</p><p>主机 A 的应用程序要能和主机 B 的应用程序通信，必须通过 Socket 建立连接，而建立 Socket 连接必须需要底层 TCP/IP 协议来建立 TCP 连接。建立 TCP 连接需要底层 IP 协议来寻址网络中的主机。我们知道网络层使用的 IP 协议可以帮助我们根据 IP 地址来找到目标主机，但是一台主机上可能运行着多个应用程序，如何才能与指定的应用程序通信就要通过 TCP 或 UPD 的地址也就是端口号来指定。这样就可以通过一个 Socket 实例唯一代表一个主机上的一个应用程序的通信链路了。</p><p>而 WebSocket 则不同，它是一个完整的 应用层协议，包含一套标准的 API 。</p><p>所以，从使用上来说，WebSocket 更易用，而 Socket 更灵活。</p><ol><li>HTML5 与 WebSocket<br>WebSocket API 是 HTML5 标准的一部分， 但这并不代表 WebSocket 一定要用在 HTML 中，或者只能在基于浏览器的应用程序中使用。</li></ol><p>实际上，许多语言、框架和服务器都提供了 WebSocket 支持，例如：</p><p>基于 C 的 libwebsocket.org<br>基于 Node.js 的 Socket.io<br>基于 Python 的 ws4py<br>基于 C++ 的 WebSocket++<br>Apache 对 WebSocket 的支持： Apache Module mod_proxy_wstunnel<br>Nginx 对 WebSockets 的支持： NGINX as a WebSockets Proxy 、 NGINX Announces Support for WebSocket Protocol 、WebSocket proxying<br>lighttpd 对 WebSocket 的支持：mod_websocket</p><p><a href="http://blog.csdn.net/yuanyuanispeak/article/details/51729191" target="_blank" rel="external">原文链接</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;对Web项目来讲，一般都用http请求来解决。&lt;/p&gt;
-&lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlin
-      
-    
-    </summary>
-    
-      <category term="http" scheme="http://www.lilhui.com/categories/http/"/>
-    
-      <category term="WebSocket" scheme="http://www.lilhui.com/categories/http/WebSocket/"/>
-    
-    
-      <category term="socket" scheme="http://www.lilhui.com/tags/socket/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Twitter Snowflake 有序ID生成算法</title>
-    <link href="http://www.lilhui.com/2018/01/31/java/java_2/"/>
-    <id>http://www.lilhui.com/2018/01/31/java/java_2/</id>
-    <published>2018-01-31T09:11:17.000Z</published>
-    <updated>2018-01-31T09:22:07.952Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>分布式系统，各种系统平台建设中，需要用到全局唯一的ID场景，可以统一地进行一些简单的统计和排序。这时候我们需要一个统一的ID生成系统来做这个事情。<br>Twitter Snowflake 可以作为一个满足基础需求的原始样本算法。可以以此为蓝本开发自己的业务ID生成算法。</p><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>snowflake的结构如下(每部分用-分开):<br>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000<br>第一位为未使用，接下来的41位为毫秒级时间(41位的长度可以使用69年)，然后是5位datacenterId和5位workerId(10位的长度最多支持部署1024个节点） ，最后12位是毫秒内的计数（12位的计数顺序号支持每个节点每毫秒产生4096个ID序号）<br>一共加起来刚好64位，为一个Long型。(转换成字符串后长度最多19)<br>snowflake生成的ID整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞（由datacenter和workerId作区分），并且效率较高。经测试snowflake每秒能够产生26万个ID。</p><h3 id="Java实现"><a href="#Java实现" class="headerlink" title="Java实现"></a>Java实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Twitter_Snowflake&lt;br&gt;</span></div><div class="line"><span class="comment"> * SnowFlake的结构如下(每部分用-分开):&lt;br&gt;</span></div><div class="line"><span class="comment"> * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000 &lt;br&gt;</span></div><div class="line"><span class="comment"> * 1位标识，由于long基本类型在Java中是带符号的，最高位是符号位，正数是0，负数是1，所以id一般是正数，最高位是0&lt;br&gt;</span></div><div class="line"><span class="comment"> * 41位时间截(毫秒级)，注意，41位时间截不是存储当前时间的时间截，而是存储时间截的差值（当前时间截 - 开始时间截)</span></div><div class="line"><span class="comment"> * 得到的值），这里的的开始时间截，一般是我们的id生成器开始使用的时间，由我们程序来指定的（如下下面程序IdWorker类的startTime属性）。41位的时间截，可以使用69年，年T = (1L &lt;&lt; 41) / (1000L * 60 * 60 * 24 * 365) = 69&lt;br&gt;</span></div><div class="line"><span class="comment"> * 10位的数据机器位，可以部署在1024个节点，包括5位datacenterId和5位workerId&lt;br&gt;</span></div><div class="line"><span class="comment"> * 12位序列，毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间截)产生4096个ID序号&lt;br&gt;</span></div><div class="line"><span class="comment"> * 加起来刚好64位，为一个Long型。&lt;br&gt;</span></div><div class="line"><span class="comment"> * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SnowflakeIdWorker</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// ==============================Fields===========================================</span></div><div class="line">    <span class="comment">/** 开始时间截 (2015-01-01) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> twepoch = <span class="number">1420041600000L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 机器id所占的位数 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 数据标识id所占的位数 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 支持的最大机器id，结果是31 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</div><div class="line"></div><div class="line">    <span class="comment">/** 支持的最大数据标识id，结果是31 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</div><div class="line"></div><div class="line">    <span class="comment">/** 序列在id中占的位数 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 机器ID向左移12位 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</div><div class="line"></div><div class="line">    <span class="comment">/** 数据标识id向左移17位(12+5) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</div><div class="line"></div><div class="line">    <span class="comment">/** 时间截向左移22位(5+5+12) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</div><div class="line"></div><div class="line">    <span class="comment">/** 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</div><div class="line"></div><div class="line">    <span class="comment">/** 工作机器ID(0~31) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</div><div class="line"></div><div class="line">    <span class="comment">/** 数据中心ID(0~31) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</div><div class="line"></div><div class="line">    <span class="comment">/** 毫秒内序列(0~4095) */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence = <span class="number">0L</span>;</div><div class="line"></div><div class="line">    <span class="comment">/** 上次生成ID的时间截 */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</div><div class="line"></div><div class="line">    <span class="comment">//==============================Constructors=====================================</span></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 构造函数</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> workerId 工作ID (0~31)</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> datacenterId 数据中心ID (0~31)</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SnowflakeIdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">this</span>.workerId = workerId;</div><div class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// ==============================Methods==========================================</span></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 获得下一个ID (该方法是线程安全的)</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> SnowflakeId</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> timestamp = timeGen();</div><div class="line"></div><div class="line">        <span class="comment">//如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常</span></div><div class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(</div><div class="line">                    String.format(<span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//如果是同一时间生成的，则进行毫秒内序列</span></div><div class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</div><div class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</div><div class="line">            <span class="comment">//毫秒内序列溢出</span></div><div class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</div><div class="line">                <span class="comment">//阻塞到下一个毫秒,获得新的时间戳</span></div><div class="line">                timestamp = tilNextMillis(lastTimestamp);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//时间戳改变，毫秒内序列重置</span></div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            sequence = <span class="number">0L</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//上次生成ID的时间截</span></div><div class="line">        lastTimestamp = timestamp;</div><div class="line"></div><div class="line">        <span class="comment">//移位并通过或运算拼到一起组成64位的ID</span></div><div class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) <span class="comment">//</span></div><div class="line">                | (datacenterId &lt;&lt; datacenterIdShift) <span class="comment">//</span></div><div class="line">                | (workerId &lt;&lt; workerIdShift) <span class="comment">//</span></div><div class="line">                | sequence;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 阻塞到下一个毫秒，直到获得新的时间戳</span></div><div class="line"><span class="comment">     * <span class="doctag">@param</span> lastTimestamp 上次生成ID的时间截</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> 当前时间戳</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> timestamp = timeGen();</div><div class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</div><div class="line">            timestamp = timeGen();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> timestamp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 返回以毫秒为单位的当前时间</span></div><div class="line"><span class="comment">     * <span class="doctag">@return</span> 当前时间(毫秒)</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> System.currentTimeMillis();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//==============================Test=============================================</span></div><div class="line">    <span class="comment">/** 测试 */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SnowflakeIdWorker idWorker = <span class="keyword">new</span> SnowflakeIdWorker(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">            <span class="keyword">long</span> id = idWorker.nextId();</div><div class="line">            System.out.println(Long.toBinaryString(id));</div><div class="line">            System.out.println(id);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;分布式系统，各种系统平台建设中，需要用到全局唯一的ID场景，可以统一地进行一些简单的统计和排序。这时候我们需要一个统一的ID生成系统来做这个
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
-    
-    
-      <category term="ID生成" scheme="http://www.lilhui.com/tags/ID%E7%94%9F%E6%88%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>观察者模式</title>
-    <link href="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/"/>
-    <id>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</id>
-    <published>2018-01-23T07:25:00.000Z</published>
-    <updated>2018-02-28T08:39:57.201Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>观察者模式提供了一种对象设计,让主题和观察者之间耦合度降得很低,为什么呢?关于观察者的一切,主题只知道观察者实现了Observer接口,并不需要观察者具体的类是谁,做了什么或者其他细节.<br>这样的话,由于松耦合,改变主题或者观察者其中一方,并不会影响另一方,只要他们之间的接口仍被遵守,就可以自由地改变它.<br>降低对象之间的耦合度,也是面设对象设计的一个很重要的原则.　　</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h3 id=&quot;实现&quot;&gt;&lt;a href=&quot;#实现&quot; class=&quot;headerlink&quot; title=&quot;实现&quot;&gt;&lt;/a&gt;实现&lt;/h3&gt;&lt;h3 id
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
-    
-      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="观察者" scheme="http://www.lilhui.com/tags/%E8%A7%82%E5%AF%9F%E8%80%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模板方法模式</title>
-    <link href="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/"/>
-    <id>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</id>
-    <published>2018-01-23T07:24:07.000Z</published>
-    <updated>2018-03-01T06:43:45.914Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote><p>模板方法模式 在意个方法中定义一个算法的骨架，而将这些具体步骤实现延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中<br>的某些步骤</p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3></blockquote><p>AbstraceClass:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;模板方法模式 在意个方法中定义一个算法的骨架，而将这些具体步骤实现延迟到子类中。模板方法使得子类可以在不改变算法结
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
-    
-      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="模板方法" scheme="http://www.lilhui.com/tags/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>策略模式</title>
-    <link href="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/"/>
-    <id>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/</id>
-    <published>2018-01-23T07:22:01.000Z</published>
-    <updated>2018-02-27T03:51:29.127Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><blockquote><p>策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。</p></blockquote><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>策略模式涉及到三个角色：</p><ul><li>环境(Context)角色：持有一个Strategy的引用。</li><li>抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。</li><li>具体策略(ConcreteStrategy)角色：包装了相关的算法或行为。</li></ul><p>PriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>MemberPriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberPriceStrategy</span> <span class="keyword">implements</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.9</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>VipPriceStrategy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VipPriceStrategy</span> <span class="keyword">implements</span> <span class="title">PriceStrategy</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">caculaPrice</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price * <span class="number">0.8</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>Price:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Double price;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Price</span><span class="params">(Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">cacularPrice</span><span class="params">(PriceStrategy priceStrategy)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> priceStrategy.caculaPrice(price);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>Client:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.strategy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by littlehui on 2018/2/27.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Price price = <span class="keyword">new</span> Price(<span class="number">5</span>D);</div><div class="line">        System.out.println(price.cacularPrice(<span class="keyword">new</span> VipPriceStrategy()));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>策略模式的优点<br>　　（1）策略模式提供了管理相关的算法族的办法。策略类的等级结构定义了一个算法或行为族。恰当使用继承可以把公共的代码移到父类里面，从而避免代码重复。</p><p>　　（2）使用策略模式可以避免使用多重条件(if-else)语句。多重条件语句不易维护，它把采取哪一种算法或采取哪一种行为的逻辑与算法或行为的逻辑混合在一起，统统列在一个多重条件语句里面，比使用继承的办法还要原始和落后。</p><p>策略模式的缺点<br>　　（1）客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法类。换言之，策略模式只适用于客户端知道算法或行为的情况。</p><p>　　（2）由于策略模式把每个具体的策略实现都单独封装成为类，如果备选的策略很多的话，那么对象的数目就会很可观。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。&lt;/p&gt;
-&lt;/
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
-    
-      <category term="设计模式" scheme="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="策略模式" scheme="http://www.lilhui.com/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux免密码登录</title>
-    <link href="http://www.lilhui.com/2018/01/17/linux/linux_3/"/>
-    <id>http://www.lilhui.com/2018/01/17/linux/linux_3/</id>
-    <published>2018-01-17T07:58:03.000Z</published>
-    <updated>2018-01-17T08:38:16.676Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>有两台机器 A,B。现在要实现A访问B免密码登录。</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="生成秘钥"><a href="#生成秘钥" class="headerlink" title="生成秘钥"></a>生成秘钥</h4><p>在A主机上执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -f rsa_for_174</div><div class="line"></div><div class="line">回车</div><div class="line">回车</div><div class="line">回车</div></pre></td></tr></table></figure></p><ul><li>-t 类型</li><li>-f 指定生成秘钥文件名</li></ul><h4 id="追加认证"><a href="#追加认证" class="headerlink" title="追加认证"></a>追加认证</h4><ul><li>将生成的秘钥拷贝到B主机，可以手动ftp，也可以用命令。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -i ~/.ssh/CY6034_rsa_4096 ./rsa_for_174.pub root@10.5.121.144:~/.ssh/</div></pre></td></tr></table></figure></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -i CY6034_rsa_4096 root@10.5.121.144</div></pre></td></tr></table></figure><p>追加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat ~/.ssh/rsa_for_174 &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p><p>DONE</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;有两台机器 A,B。现在要实现A访问B免密码登录。&lt;/p&gt;
-&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerl
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux服务器性能评估</title>
-    <link href="http://www.lilhui.com/2017/11/21/linux/linux_2/"/>
-    <id>http://www.lilhui.com/2017/11/21/linux/linux_2/</id>
-    <published>2017-11-21T06:53:13.000Z</published>
-    <updated>2017-12-08T10:07:44.458Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote><p>Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器<br>层面来寻找影响程序运行的稳定因素。</p></blockquote><h3 id="基本信息查看"><a href="#基本信息查看" class="headerlink" title="基本信息查看"></a>基本信息查看</h3><h4 id="CPU信息查看"><a href="#CPU信息查看" class="headerlink" title="CPU信息查看"></a>CPU信息查看</h4><ol><li><p>查看CPU个数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l</div></pre></td></tr></table></figure></li><li><p>查看CPU中core个数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;cpu cores&quot; | wc -l</div></pre></td></tr></table></figure></li><li><p>查看CPU逻辑个数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep &quot;processor&quot; | wc -l</div></pre></td></tr></table></figure></li></ol><p>逻辑CPU数 = 物理CPU个数*核心数</p><h4 id="内存信息查看"><a href="#内存信息查看" class="headerlink" title="内存信息查看"></a>内存信息查看</h4><ol><li>内存使用情况<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#free -m</div><div class="line">             total       used       free     shared    buffers     cached</div><div class="line">Mem:         64376      37881      26494          0        308      17273</div><div class="line">-/+ buffers/cache:      20299      44076</div><div class="line">Swap:        16383          0      16383</div></pre></td></tr></table></figure></li></ol><ul><li>total: 总内存数</li><li>used: 已用内存数</li><li>free: 空闲内存  </li><li>shared: 多进程共享的内存总数  </li><li>- buffers/cache: 已用缓存总数 used-buffer-cached  </li><li>+ buffers/cache: 可用缓存数 free+buffer+cached  </li><li>Buffer Cache 用于针对磁盘块的写  </li><li>Page Cache用于针对文件inode的读写，这些cache能够缩短I/O时间  </li><li>free / used是系统可用/暂用的内存   </li></ul><p>对于程序来说 -/+ buffers/cache是可用/占用内存，因为 buffers/cache很容易就会被使用到</p><h4 id="硬盘查看"><a href="#硬盘查看" class="headerlink" title="硬盘查看"></a>硬盘查看</h4><ol><li><p>查看硬盘分区信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fdisk -l</div></pre></td></tr></table></figure></li><li><p>查看文件系统磁盘暂用情况</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></li><li><p>查看硬盘的I/O性能</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">iostat -d -k 1</div><div class="line"></div><div class="line">Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 2017年11月21日 _x86_64_(32 CPU)</div><div class="line"></div><div class="line">Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn</div><div class="line">sda              13.35        31.70       161.99 2867672698 14655271354</div><div class="line">sdb               0.86        17.77        29.61 1607620286 2679034433</div></pre></td></tr></table></figure></li></ol><p>参数解释：</p><ul><li>tps：该设备每秒的传输次数（Indicate the number of transfers per second that were issued to the device.）。”一次传输”意思是”一次I/O请求”。多个逻辑请求可能会被合并为”一次I/O请求”。”一次传输”请求的大小是未知的。</li><li>kB_read/s：每秒从设备（drive expressed）读取的数据量；</li><li>kB_wrtn/s：每秒向设备（drive expressed）写入的数据量；</li><li>kB_read：读取的总数据量；</li><li>kB_wrtn：写入的总数量数据量；这些单位都为Kilobytes。</li></ul><p>指定监控的设备名称为sda，该命令的输出结果和上面命令完全相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">iostat -d sda 2</div></pre></td></tr></table></figure></p><p>默认监控所有的硬盘设备，现在指定只监控sda。 </p><h5 id="x-参数"><a href="#x-参数" class="headerlink" title="-x 参数"></a>-x 参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">iostat -d -x -k 1 10</div><div class="line"></div><div class="line">Linux 2.6.32-358.el6.x86_64 (fzck-10-59-107-216.h.173ops.com) 2017年11月21日 _x86_64_(32 CPU)</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.01    28.67    1.47   11.89    31.70   161.99    29.01     0.01    0.57    2.76    0.30   0.16   0.21</div><div class="line">sdb               0.00     0.00    0.47    0.39    17.77    29.61   109.69     0.00    1.61    0.55    2.87   0.38   0.03</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line">sdb               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line"></div><div class="line">Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util</div><div class="line">sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div><div class="line">sdb               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0.00    0.00    0.00    0.00   0.00   0.00</div></pre></td></tr></table></figure><ul><li>rrqm/s：每秒这个设备相关的读取请求有多少被Merge了（当系统调用需要读取数据的时候，VFS将请求发到各个FS，如果FS发现不同的读取请求读取的是相同Block的数据，FS会将这个请求合并Merge）；</li><li>wrqm/s：每秒这个设备相关的写入请求有多少被Merge了.  </li><li>rsec/s：每秒读取的扇区数.  </li><li>wsec/：每秒写入的扇区数。 </li><li>rKB/s：The number of read requests that were issued to the device per second；  </li><li>wKB/s：The number of write requests that were issued to the device per second；  </li><li>avgrq-sz 平均请求扇区的大小  </li><li>avgqu-sz 是平均请求队列的长度。毫无疑问，队列长度越短越好。     </li><li>await：  每一个IO请求的处理的平均时间（单位是微秒毫秒）。这里可以理解为IO的响应时间，一般地系统IO响应时间应该低于5ms，如果大于10ms就比较大了。  <pre><code>这个时间包括了队列时间和服务时间，也就是说，一般情况下，await大于svctm，它们的差值越小，则说明队列时间越短，反之差值越大，队列时间越长，说明系统出了问题。  </code></pre></li><li>svctm    表示平均每次设备I/O操作的服务时间（以毫秒为单位）。如果svctm的值与await很接近，表示几乎没有I/O等待，磁盘性能很好，如果await的值远高于svctm的值，则表示I/O队列等待太长，         系统上运行的应用程序将变慢。<br>%util： 在统计时间内所有处理IO时间，除以总共统计时间。例如，如果统计间隔1秒，该设备有0.8秒在处理IO，而0.2秒闲置，那么该设备的%util = 0.8/1 = 80%，所以该参数暗示了设备的繁忙程度<br>。一般地，如果该参数是100%表示设备已经接近满负荷运行了（当然如果是多磁盘，即使%util是100%，因为磁盘的并发能力，所以磁盘使用未必就到了瓶颈）。</li></ul><h3 id="内存性能指标"><a href="#内存性能指标" class="headerlink" title="内存性能指标"></a>内存性能指标</h3><h3 id="磁盘性能指标"><a href="#磁盘性能指标" class="headerlink" title="磁盘性能指标"></a>磁盘性能指标</h3><h3 id="网络IO指标"><a href="#网络IO指标" class="headerlink" title="网络IO指标"></a>网络IO指标</h3><h4 id="系统评估指标"><a href="#系统评估指标" class="headerlink" title="系统评估指标"></a>系统评估指标</h4><table><thead><tr><th>性能因素</th><th>好</th><th>坏</th><th>糟糕  </th></tr></thead><tbody><tr><td>CPU</td><td>user% + sys% &lt; 70%</td><td>user% + sys% =85%</td><td>user% + sys% &gt;= 90%</td></tr><tr><td>内存</td><td>Swap In(si) = 0 Swap Out(so) = 0</td><td>Per CPU with 10 pages/s</td><td>More Swap In &amp; Swap Out</td></tr><tr><td>磁盘</td><td>iowait%&lt; 20%</td><td>iowat%=35%</td><td>iowat% &gt;= 50%</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
-    
-    
-      <category term="性能优化" scheme="http://www.lilhui.com/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
