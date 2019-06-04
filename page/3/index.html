@@ -52,38 +52,27 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -93,11 +82,6 @@
 
 
   <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -122,11 +106,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -1740,7 +1724,7 @@ web在部署到linux环境后，一般都是把日志等级设置加高。只输
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1759,7 +1743,7 @@ web在部署到linux环境后，一般都是把日志等级设置加高。只输
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_9/" itemprop="url">设计模式系列：外观模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_12/" itemprop="url">设计模式系列:享元模式</a></h1>
         
 
         <div class="post-meta">
@@ -1846,18 +1830,16 @@ web在部署到linux环境后，一般都是把日志等级设置加高。只输
         
           
           概念
-外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。
+一个类的实例有多种 “虚拟实例”。 虚拟实例通过共享数据的方式存在。
+
 实现
-
-
 类图：
 
-
-MyOneDay:1234567891011121314151617181920212223242526
+Tree:1234567891011121314151617181920212223242526272829303132333435363738394041424344package com.littleh
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_9/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1930,76 +1912,75 @@ MyOneDay:1234567891011121314151617181920212223242526
 
       
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          
-            <img class="site-author-image" itemprop="image"
-              src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480"
-              alt="Littlehui" />
-          
-            <p class="site-author-name" itemprop="name">Littlehui</p>
-            <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
-        </div>
-
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <a href="/archives">
+              <img class="site-author-image" itemprop="image"
+                src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505211153688.png-480"
+                alt="Littlehui" />
             
-                <span class="site-state-item-count">55</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">40</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
           </div>
-        
 
-        <div class="links-of-author motion-element">
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
 
       
@@ -2016,15 +1997,9 @@ MyOneDay:1234567891011121314151617181920212223242526
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <!--
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
--->
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -2032,19 +2007,17 @@ MyOneDay:1234567891011121314151617181920212223242526
 </div>
 
 
-<!--
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
--->
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
-  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
 
   <span class="post-meta-divider">|</span>
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
 
 
         
@@ -2087,6 +2060,8 @@ MyOneDay:1234567891011121314151617181920212223242526
       </div>
     
 
+    
+
   </div>
 
   
@@ -2119,53 +2094,61 @@ MyOneDay:1234567891011121314151617181920212223242526
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
 
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
 
-
-
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -2195,29 +2178,11 @@ MyOneDay:1234567891011121314151617181920212223242526
 
 
 
+<<<<<<< HEAD
 
 
 
-   
-   
-   
-   
-   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-   
-       <script type="text/javascript">
-           var gitment = new Gitment({
-              id: document.location.href,
-               owner: 'littlehui',
-               repo: 'littlehui.github.io',
-               oauth: {
-                   client_id: '968de029d09127201fdc',
-                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-               }});
-           gitment.render('gitment-container');
-       </script>
-   
-
+<<<<<<< HEAD
 
 
   
@@ -2546,6 +2511,8 @@ MyOneDay:1234567891011121314151617181920212223242526
   
 
   
+
+  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -2562,6 +2529,7 @@ MyOneDay:1234567891011121314151617181920212223242526
 </script>
 
 
+  
   
 
   
