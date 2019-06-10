@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="前言 awk是由Alfred Aho, Peter Weinberger和 Brian Kernighan三人创造的，wak由三人的姓氏的首个字母组成早期是在unix上实现的。在unix上的叫gawk既GNU awk  awk语法 awk命令形式  1awk [-F|-f|-v] &apos;BEGIN&amp;#123;&amp;#125;//&amp;#123;command1;command2&amp;#125;END&amp;#123;&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T09:34:23.250Z">
+<meta property="og:updated_time" content="2019-06-10T09:36:53.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="awk基础">
 <meta name="twitter:description" content="前言 awk是由Alfred Aho, Peter Weinberger和 Brian Kernighan三人创造的，wak由三人的姓氏的首个字母组成早期是在unix上实现的。在unix上的叫gawk既GNU awk  awk语法 awk命令形式  1awk [-F|-f|-v] &apos;BEGIN&amp;#123;&amp;#125;//&amp;#123;command1;command2&amp;#125;END&amp;#123;&amp;">
@@ -555,9 +555,7 @@
 <tr>
 <td>&#124;&#124;</td>
 <td>或</td>
-<td>awk ‘{if ($1==”a”</td>
-<td></td>
-<td>$1==”b”) print $0}’ temp    //如果第1、第2个字段值是a或b，打印整行</td>
+<td>awk ‘{if ($1==”a” &#124;&#124; $1==”b”) print $0}’ temp    //如果第1、第2个字段值是a或b，打印整行</td>
 </tr>
 <tr>
 <td>></td>
