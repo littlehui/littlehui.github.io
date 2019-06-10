@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="前言 awk是由Alfred Aho, Peter Weinberger和 Brian Kernighan三人创造的，wak由三人的姓氏的首个字母组成早期是在unix上实现的。在unix上的叫gawk既GNU awk  awk语法 awk命令形式  1awk [-F|-f|-v] &apos;BEGIN&amp;#123;&amp;#125;//&amp;#123;command1;command2&amp;#125;END&amp;#123;&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-10T09:36:53.743Z">
+<meta property="og:updated_time" content="2019-06-10T09:40:38.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="awk基础">
 <meta name="twitter:description" content="前言 awk是由Alfred Aho, Peter Weinberger和 Brian Kernighan三人创造的，wak由三人的姓氏的首个字母组成早期是在unix上实现的。在unix上的叫gawk既GNU awk  awk语法 awk命令形式  1awk [-F|-f|-v] &apos;BEGIN&amp;#123;&amp;#125;//&amp;#123;command1;command2&amp;#125;END&amp;#123;&amp;">
@@ -631,20 +631,20 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">netstat -anp|awk <span class="string">'NR!=1&#123;a[$6]++&#125; END&#123;for (i in a) print i,"\t",a[i]&#125;'</span></div><div class="line"></div><div class="line">netstat -anp|awk <span class="string">'NR!=1&#123;a[$6]++&#125; END&#123;for (i in a) printf "%-20s %-10s %-5s \n", i,"\t",a[i]&#125;'</span></div></pre></td></tr></table></figure>
 <h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><ol>
-<li>指定输出</li>
+<li>指定输出  </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">awk -F: <span class="string">'&#123;print NF&#125;'</span> helloworld.sh                                                       //输出文件每行有多少字段</div><div class="line"></div><div class="line">awk -F: <span class="string">'&#123;print $1,$2,$3,$4,$5&#125;'</span> helloworld.sh                                 //输出前5个字段</div><div class="line"></div><div class="line">awk -F: <span class="string">'&#123;print $1,$2,$3,$4,$5&#125;'</span> OFS=<span class="string">'\t'</span> helloworld.sh                 //输出前5个字段并使用制表符分隔输出</div><div class="line"></div><div class="line">awk -F: <span class="string">'&#123;print NR,$1,$2,$3,$4,$5&#125;'</span> OFS=<span class="string">'\t'</span> helloworld.sh           //制表符分隔输出前5个字段，并打印行号</div></pre></td></tr></table></figure>
 <ol>
-<li>指定分隔符并且输出</li>
+<li>指定分隔符并且输出  </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">awk -F<span class="string">'[:#]'</span> <span class="string">'&#123;print NF&#125;'</span>  helloworld.sh                                                  //指定多个分隔符: <span class="comment">#，输出每行多少字段</span></div><div class="line"></div><div class="line">awk -F<span class="string">'[:#]'</span> <span class="string">'&#123;print $1,$2,$3,$4,$5,$6,$7&#125;'</span> OFS=<span class="string">'\t'</span> helloworld.sh   //制表符分隔输出多字段</div><div class="line"></div><div class="line">awk -F<span class="string">'[:#/]'</span> <span class="string">'&#123;print NF&#125;'</span> helloworld.sh                                               //指定三个分隔符，并输出每行字段数</div><div class="line"></div><div class="line">awk -F<span class="string">'[:#/]'</span> <span class="string">'&#123;print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12&#125;'</span> helloworld.sh     //制表符分隔输出多字段</div></pre></td></tr></table></figure>
 <ol>
-<li>简单计算</li>
+<li>简单计算  </li>
 </ol>
 <p>计算/home目录下，普通文件的大小，使用KB作为单位</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ls -l|awk <span class="string">'BEGIN&#123;sum=0&#125; !/^d/&#123;sum+=$5&#125; END&#123;print "total size is:",sum/1024,"KB"&#125;'</span></div><div class="line"></div><div class="line">ls -l|awk <span class="string">'BEGIN&#123;sum=0&#125; !/^d/&#123;sum+=$5&#125; END&#123;print "total size is:",int(sum/1024),"KB"&#125;'</span>         //int是取整的意思</div></pre></td></tr></table></figure>
 <ol>
-<li>统计</li>
+<li>统计  </li>
 </ol>
 <p>统计netstat -anp 状态为LISTEN和CONNECT的连接数量分别是多少</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -anp|awk <span class="string">'$6~/LISTEN|CONNECTED/&#123;sum[$6]++&#125; END&#123;for (i in sum) printf "%-10s %-6s %-3s \n", i," ",sum[i]&#125;'</span></div></pre></td></tr></table></figure>
@@ -655,7 +655,7 @@
 <p>统计/home目录下不同用户的普通文件的大小总size是多少？</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -l|awk <span class="string">'NR!=1 &amp;&amp; !/^d/&#123;sum[$3]+=$5&#125; END&#123;for (i in sum) printf "%-6s %-5s %-3s %-2s \n",i," ",sum[i]/1024/1024,"MB"&#125;'</span></div></pre></td></tr></table></figure>
 <ol>
-<li>复杂表格输出</li>
+<li>复杂表格输出  </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'BEGIN&#123;math=0;eng=0;com=0;printf "Lineno.   Name    No.    Math   English   Computer    Total\n";printf "------------------------------------------------------------\n"&#125;&#123;math+=$3; eng+=$4; com+=$5;printf "%-8s %-7s %-7s %-7s %-9s %-10s %-7s \n",NR,$1,$2,$3,$4,$5,$3+$4+$5&#125; END&#123;printf "------------------------------------------------------------\n";printf "%-24s %-7s %-9s %-20s \n","Total:",math,eng,com;printf "%-24s %-7s %-9s %-20s \n","Avg:",math/NR,eng/NR,com/NR&#125;'</span> test0</div><div class="line"></div><div class="line">cat test0  </div><div class="line"></div><div class="line">Marry   2143 78 84 77</div><div class="line"></div><div class="line">Jack    2321 66 78 45</div><div class="line"></div><div class="line">Tom     2122 48 77 71</div><div class="line"></div><div class="line">Mike    2537 87 97 95</div><div class="line"></div><div class="line">Bob     2415 40 57 62</div></pre></td></tr></table></figure>
 
