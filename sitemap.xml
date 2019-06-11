@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/worker/worker_1/</loc>
+    
+    <lastmod>2019-06-11T08:25:23.233Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/worker/worker_0/</loc>
+    
+    <lastmod>2019-06-11T08:23:46.679Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/word/word_0/</loc>
+    
+    <lastmod>2019-06-11T08:08:53.865Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/about/index.html</loc>
+    
+    <lastmod>2019-06-11T08:08:53.860Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</loc>
+    
+    <lastmod>2019-06-10T09:52:18.223Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2019/06/05/linux/linux_5/</loc>
     
     <lastmod>2019-06-10T09:40:38.088Z</lastmod>
@@ -47,13 +82,6 @@
     <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_8/</loc>
     
     <lastmod>2019-06-04T03:46:17.071Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</loc>
-    
-    <lastmod>2019-06-04T03:46:17.067Z</lastmod>
     
   </url>
   
@@ -390,13 +418,6 @@
     <loc>http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/</loc>
     
     <lastmod>2017-09-13T06:54:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/about/index.html</loc>
-    
-    <lastmod>2017-09-12T07:39:55.000Z</lastmod>
     
   </url>
   

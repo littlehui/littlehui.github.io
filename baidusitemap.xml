@@ -4,6 +4,89 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/worker/worker_1/</loc>
+    <lastmod>2019-06-11T08:25:23.233Z</lastmod>
+    <data>
+        <display>
+        <title>【更好工作的tips 2】会议的要点</title>
+        <pubTime>2019-06-11T07:36:06.000Z</pubTime>
+        
+        <tag>随想</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作" url="http://www.lilhui.com/categories/%E5%B7%A5%E4%BD%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/worker/worker_0/</loc>
+    <lastmod>2019-06-11T08:23:46.679Z</lastmod>
+    <data>
+        <display>
+        <title>【更好工作的tips 1】临时工作的安排</title>
+        <pubTime>2019-06-11T07:36:06.000Z</pubTime>
+        
+        <tag>随想</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作" url="http://www.lilhui.com/categories/%E5%B7%A5%E4%BD%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/11/article/word/word_0/</loc>
+    <lastmod>2019-06-11T08:08:53.865Z</lastmod>
+    <data>
+        <display>
+        <title>文档编写的过程</title>
+        <pubTime>2019-06-11T07:26:32.000Z</pubTime>
+        
+        <tag>文档能力</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</loc>
+    <lastmod>2019-06-10T09:52:18.223Z</lastmod>
+    <data>
+        <display>
+        <title>【代码审查系列3】CODE REVIEW代码审查执行方法</title>
+        <pubTime>2019-06-04T03:21:38.000Z</pubTime>
+        
+        <tag>代码审查</tag>
+         
+        <tag>CODEREVIEW</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2019/06/05/linux/linux_5/</loc>
     <lastmod>2019-06-10T09:40:38.088Z</lastmod>
     <data>
@@ -133,28 +216,6 @@
         <display>
         <title>【代码审查系列8】阿里巴巴编码规范</title>
         <pubTime>2019-06-04T03:34:37.000Z</pubTime>
-        
-        <tag>代码审查</tag>
-         
-        <tag>CODEREVIEW</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2019/06/04/article/codereview/article_3/</loc>
-    <lastmod>2019-06-04T03:46:17.067Z</lastmod>
-    <data>
-        <display>
-        <title>【代码审查系列3】CODE REVIEW代码审查执行方法</title>
-        <pubTime>2019-06-04T03:21:38.000Z</pubTime>
         
         <tag>代码审查</tag>
          
@@ -1228,7 +1289,6 @@
     </data>
     </url>
 
-    
     
     
     
