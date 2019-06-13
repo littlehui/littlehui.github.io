@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2019-06-11T08:25:23.233Z</updated>
+  <updated>2019-06-13T06:33:02.743Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -17,22 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>【更好工作的tips 2】会议的要点</title>
-    <link href="http://www.lilhui.com/2019/06/11/article/worker/worker_1/"/>
-    <id>http://www.lilhui.com/2019/06/11/article/worker/worker_1/</id>
-    <published>2019-06-11T07:36:06.000Z</published>
-    <updated>2019-06-11T08:25:23.233Z</updated>
+    <title>结果导向</title>
+    <link href="http://www.lilhui.com/2019/06/13/article/teammanager/tearmmanager_1/"/>
+    <id>http://www.lilhui.com/2019/06/13/article/teammanager/tearmmanager_1/</id>
+    <published>2019-06-13T06:24:58.000Z</published>
+    <updated>2019-06-13T06:33:02.743Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>会议的要点</li></ul><p>会议或大，或小，或长或短，目的要明确。要明确要解决的问题、确认的问题、达成的共<br>识等。当会议快结束时候确认会议达成的共识或者解决问题的方案，分配相应的任务。<br>特别是技术类、需求类会议。最终都需要达成一个超目标迈进的可执行方案。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="什么是结果导向"><a href="#什么是结果导向" class="headerlink" title="什么是结果导向"></a>什么是结果导向</h1><blockquote><p>结果导向是质量管理体系、绩效管理理论中的基本概念核心思想之一。强调工作的结果。<br>这里记录另外一种思考。称之为结果导向在过程中的作用和价值。</p></blockquote><h1 id="结果导向在过程中的作用和价值"><a href="#结果导向在过程中的作用和价值" class="headerlink" title="结果导向在过程中的作用和价值"></a>结果导向在过程中的作用和价值</h1><p>结果导向，字面上意思是注重结果。实际在执行工作过程中体现的是恰恰是过程中的重要性。<br>在过程中强调结果导向，其目的是强调在工作过程中朝着最终的结果靠拢。随着工作过程的推进，<br>这个路径慢慢向结果收敛靠近。它可以作为纠正工作中偏离最终设定结果的工具。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;ul&gt;
-&lt;li&gt;会议的要点&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;会议或大，或小，或长或短，目的要明确。要明确要解决的问题、确认的问题、达成的共&lt;br&gt;识等。当会议快结束时候确认会议达成的共识或者解决问题的方案，分配相应的任务。&lt;br&gt;特别是技术类、需求类会议。最终都需要达成一个超目标迈
+        &lt;h1 id=&quot;什么是结果导向&quot;&gt;&lt;a href=&quot;#什么是结果导向&quot; class=&quot;headerlink&quot; title=&quot;什么是结果导向&quot;&gt;&lt;/a&gt;什么是结果导向&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;结果导向是质量管理体系、绩效管理理论中的基本概念核心思想之一。强调工作的结
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【更好的工作 tips3】敏捷开发原则</title>
+    <link href="http://www.lilhui.com/2019/06/12/article/worker/worker_2/"/>
+    <id>http://www.lilhui.com/2019/06/12/article/worker/worker_2/</id>
+    <published>2019-06-12T09:26:19.000Z</published>
+    <updated>2019-06-12T09:33:07.605Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote><p>敏捷开发的核心目的是利用有限技术资源，实现软件开发的效能的最大化。一些原则或者方法贯穿<br>着敏捷开发的整个过程。</p></blockquote><p>#原则</p><ul><li><p>简单</p></li><li><p>拥抱变化</p></li><li><p>可持续性</p></li><li><p>递增</p></li><li><p>资源最大化</p></li><li><p>有目的地建模</p></li><li><p>多种模型</p></li><li><p>高质量的工作</p></li><li><p>快速反馈</p></li><li><p>主要目标-软件</p></li><li><p>轻量前行</p></li></ul><h1 id="成功的结果"><a href="#成功的结果" class="headerlink" title="成功的结果"></a>成功的结果</h1><ul><li><p>随机应变</p></li><li><p>自主权</p></li><li><p>分享经验</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;敏捷开发的核心目的是利用有限技术资源，实现软件开发的效能的最大化。一些原则或者方法贯穿&lt;br&gt;着敏捷开发的整个过程
       
     
     </summary>
@@ -40,16 +60,16 @@
       <category term="工作" scheme="http://www.lilhui.com/categories/%E5%B7%A5%E4%BD%9C/"/>
     
     
-      <category term="随想" scheme="http://www.lilhui.com/tags/%E9%9A%8F%E6%83%B3/"/>
+      <category term="敏捷开发" scheme="http://www.lilhui.com/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
   <entry>
-    <title>【更好工作的tips 1】临时工作的安排</title>
+    <title>【更好工作的 tips1】临时工作的安排</title>
     <link href="http://www.lilhui.com/2019/06/11/article/worker/worker_0/"/>
     <id>http://www.lilhui.com/2019/06/11/article/worker/worker_0/</id>
     <published>2019-06-11T07:36:06.000Z</published>
-    <updated>2019-06-11T08:23:46.679Z</updated>
+    <updated>2019-06-12T09:33:07.601Z</updated>
     
     <content type="html"><![CDATA[<ul><li>临时工作的安排</li></ul><p>口头，或者会议结论提出的临时工作任务。在安排好手上的工作后，立即着手对临时达成<br>协议内容进行安排，花五分钟时间进行记录和规划，上报。</p>]]></content>
     
@@ -62,6 +82,34 @@
 &lt;/ul&gt;
 &lt;p&gt;口头，或者会议结论提出的临时工作任务。在安排好手上的工作后，立即着手对临时达成&lt;br&gt;协议内容进行安排，花五分钟时间进行记录和规划，上报。&lt;/p&gt;
 
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://www.lilhui.com/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+      <category term="随想" scheme="http://www.lilhui.com/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【更好工作的 tips2】会议的要点</title>
+    <link href="http://www.lilhui.com/2019/06/11/article/worker/worker_1/"/>
+    <id>http://www.lilhui.com/2019/06/11/article/worker/worker_1/</id>
+    <published>2019-06-11T07:36:06.000Z</published>
+    <updated>2019-06-12T09:33:07.595Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>会议的要点</li></ul><p>会议或大，或小，或长或短，目的要明确。要明确要解决的问题、确认的问题、达成的共<br>识等。当会议快结束时候确认会议达成的共识或者解决问题的方案，分配相应的任务。<br>特别是技术类、需求类会议。最终都需要达成一个超目标迈进的可执行方案。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;会议的要点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;会议或大，或小，或长或短，目的要明确。要明确要解决的问题、确认的问题、达成的共&lt;br&gt;识等。当会议快结束时候确认会议达成的共识或者解决问题的方案，分配相应的任务。&lt;br&gt;特别是技术类、需求类会议。最终都需要达成一个超目标迈
       
     
     </summary>
@@ -355,8 +403,8 @@
   
   <entry>
     <title>团队管理中的三个时期</title>
-    <link href="http://www.lilhui.com/2019/06/04/article/teammanager/article_2/"/>
-    <id>http://www.lilhui.com/2019/06/04/article/teammanager/article_2/</id>
+    <link href="http://www.lilhui.com/2019/06/04/article/teammanager/teammanager_0/"/>
+    <id>http://www.lilhui.com/2019/06/04/article/teammanager/teammanager_0/</id>
     <published>2019-06-04T03:07:39.000Z</published>
     <updated>2019-06-04T03:39:28.983Z</updated>
     
@@ -510,50 +558,6 @@
     
     
       <category term="设计原则" scheme="http://www.lilhui.com/tags/%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>solr tlog详解</title>
-    <link href="http://www.lilhui.com/2018/07/02/search/solr_4/"/>
-    <id>http://www.lilhui.com/2018/07/02/search/solr_4/</id>
-    <published>2018-07-02T10:38:39.000Z</published>
-    <updated>2018-07-02T10:47:49.080Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="搜索" scheme="http://www.lilhui.com/categories/%E6%90%9C%E7%B4%A2/"/>
-    
-    
-      <category term="solr" scheme="http://www.lilhui.com/tags/solr/"/>
-    
-      <category term="tlog" scheme="http://www.lilhui.com/tags/tlog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux手动修改/etc/shadow和/etc/passwd中的用户密码</title>
-    <link href="http://www.lilhui.com/2018/07/02/linux/linux_4/"/>
-    <id>http://www.lilhui.com/2018/07/02/linux/linux_4/</id>
-    <published>2018-07-02T09:11:19.000Z</published>
-    <updated>2018-07-02T09:22:16.123Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在玩GameShell这小玩意儿，发现没有root权限。于是想办法获取到。发现官方有提供img镜像下载。</p><h3 id="img操作"><a href="#img操作" class="headerlink" title="img操作"></a>img操作</h3><p>1：查看img信息:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[ 17:15:11-root@hadoop214:img ]<span class="comment">#fdisk -lu clockworkos_v0.1.img</span></div><div class="line"></div><div class="line">Disk clockworkos_v0.1.img: 7948 MB, 7948206080 bytes, 15523840 sectors</div><div class="line">Units = sectors of 1 * 512 = 512 bytes</div><div class="line">Sector size (logical/physical): 512 bytes / 512 bytes</div><div class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</div><div class="line">Disk label <span class="built_in">type</span>: dos</div><div class="line">Disk identifier: 0x9d1726e4</div><div class="line"></div><div class="line">               Device Boot      Start         End      Blocks   Id  System</div><div class="line">clockworkos_v0.1.img1            8192       93814       42811+   c  W95 FAT32 (LBA)</div><div class="line">clockworkos_v0.1.img2           94208    15523839     7714816   83  Linux</div></pre></td></tr></table></figure></p><p>可以看到linxu文件从 94208 开始 扇区大小512k<br>所以<br>94208*512=48234496<br>2：挂载img<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount -o loop,offset=48234496 clockworkos_v0.1.img /home/gameshell/img/clockpi</div></pre></td></tr></table></figure></p><h3 id="密码修改"><a href="#密码修改" class="headerlink" title="密码修改"></a>密码修改</h3><p>1.手动修改/etc/shadow中的用户密码<br>/etc/shadow文件说明：</p><ul><li>第一字段：用户名（也被称为登录名），在/etc/shadow中，用户名和/etc/passwd 是相同的，这样就把passwd 和shadow中用的用户记录联系在一起；这个字段是非空的；</li><li>第二字段：密码（已被加密），这个字段是非空的；</li><li>第三字段：上次修改口令的时间；这个时间是从1970年01月01日算起到最近一次修改口令的时间间隔（天数），您可以通过passwd 来修改用户的密码，然后查看/etc/shadow中此字段的变化；</li><li>第四字段：两次修改口令间隔最少的天数；如果这个字段的值为空，帐号永久可用；</li><li>第五字段：两次修改口令间隔最多的天数；如果这个字段的值为空，帐号永久可用；</li><li>第六字段：提前多少天警告用户口令将过期；如果这个字段的值为空，帐号永久可用；</li><li>第七字段：在口令过期之后多少天禁用此用户；如果这个字段的值为空，帐号永久可用；</li><li>第八字段：用户过期日期；此字段指定了用户作废的天数（从1970年的1月1日开始的天数），如果这个字段的值为空，帐号永久可用；</li><li>第九字段：保留字段，目前为空，以备将来发展之用；</li></ul><p>/etc/shadow中格式如下</p><p>#testaccount:$1$acQMceF9$1SaCpG2qiKKA3eGolU4Fp0:13402:0:99999:7:::<br>彩色段为加密后的密码，$1$表示采用的是md5加密，绿色段是简单的字符串，蓝色段为加密后的密码</p><p>只要删除 $1$acQMceF9$1SaCpG2qiKKA3eGolU4Fp0 它后，就删除了密码</p><p>2.linux忘记登陆密码修改/etc/passwd也可以</p><p>很简单的一个技巧，给大家介绍一下<br>在这个界面 按任意键<br>按 e键(编辑命令之前启动)<br>选择第二项 在按e键(修改选定的命令在启动)<br>输入single (注意空格)进入单用户模式<br>选择b 启动<br>输入 vi /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>光标移至x下面按delete 键 删除它<br>输入：x！<br>输入reboot重启<br>重启后你会发现 没让你输密码，破译成功</p><p>原理解释：<br>在 /etc/passwd 的文件里 保存着用户的信息文件 root:x:0:0:Administrator:/root:/bin/bash</p><p>在这一句中</p><p>root就是用户名，</p><p>x是密码标志，只是说明密码的存放位置，具体呢是放在/etc/passwd的 至于密码别想了 全 是密文保存，看不懂的</p><p>0 用户id号</p><p>0 组id号</p><p>administrator估计是我在装系统的时候，原来的名字没改（虚拟机默认用户名），是用户说 明的意思，</p><p>root 用户的家目录</p><p>/bin/bash 记录着用户登陆后所拥有的权限，即所拥有的shell</p><p>那么我们把密码标示删掉之后，自然就不会有问你密码的对话框了</p><p>当然</p><p>GRUB这个引导装载程序是可以设密码的</p><p>不过 设密码 我们可以光启 ，用安装光盘进入安全模式，在把密码清除</p><p>光启 是可以设BIOS密码的，</p><p>BIOS 密码是可以拆机箱 扣电池的</p><p>那这么说来 传说中的linux岂不是很不安全，通常所说的安全是基于网络的 ，意思是连接互联网后，对方通过网络途径入侵你的linux计算机是很困难的，这种破译的方法只是以防万一，在万一你忘记密码的时候使用的，至于物理安全，那就看你怎么保护了.</p><p>本文转载于：<a href="http://blog.chinaunix.net/uid-15797451-id-3041560.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-15797451-id-3041560.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;最近在玩GameShell这小玩意儿，发现没有root权限。于是想办法获取到。发现官方有提供img镜像下载。&lt;/p&gt;
-&lt;h3 id=&quot;img
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.lilhui.com/categories/linux/"/>
-    
     
   </entry>
   
