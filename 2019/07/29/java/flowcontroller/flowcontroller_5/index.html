@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://images.lilhui.com/5ad75cfa5292afa21bcbef2930b1116e">
 <meta property="og:image" content="http://images.lilhui.com/1fa76486ed2514ef49369c490b3cb83b">
 <meta property="og:image" content="http://images.lilhui.com/475d519f2749add285155ba9f2832cae">
-<meta property="og:updated_time" content="2019-07-29T09:32:08.772Z">
+<meta property="og:updated_time" content="2019-07-29T10:06:05.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列5】Sentinal 详细介绍">
 <meta name="twitter:description" content="Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源。 现在的版本1.6.1 特性功能组成:  基本概念 资源    资源是 Sentinel 的关键概">
@@ -458,6 +458,7 @@
 <li>规则配置页需要进行相应的改造，直接针对应用维度进行规则配置；修改同个应用多个资源的规则时可以批量进行推送，也可以分别推送。Sentinel 控制台将规则缓存在内存中（如 InMemFlowRuleStore），可以对其进行改造使其支持应用维度的规则缓存（key 为 appName），每次添加/修改/删除规则都先更新内存中的规则缓存，然后需要推送的时候从规则缓存中获取全量规则，然后通过上面实现的 Client 将规则推送到 nacos。</li>
 <li>应用客户端需要注册对应的读数据源以监听变更。</li>
 </ol>
+<h2 id="文档索引"><a href="#文档索引" class="headerlink" title="文档索引"></a>文档索引</h2><p><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">【流量控制系列1】引言和索引</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">【流量控制系列2】流量控制的基础方法和算法</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_3/">【流量控制系列3】Semaphore信号量介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_4/">【流量控制系列4】Sentinel和Hystrix对比</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">【流量控制系列5】Sentinal 详细介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/">【流量控制系列5】Sentinal 详细介绍-SoltChain源码解析</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">【流量控制系列7】Sentinel实践</a>  </p>
 
       
     </div>
@@ -492,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="next" title="【流量控制系列7】Sentinel实践">
-                <i class="fa fa-chevron-left"></i> 【流量控制系列7】Sentinel实践
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_4/" rel="next" title="【流量控制系列4】Sentinel和Hystrix对比">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列4】Sentinel和Hystrix对比
               </a>
             
           </div>
@@ -502,8 +503,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="prev" title="【流量控制系列6】Sentinal 详细介绍-SoltChain源码解析">
-                【流量控制系列6】Sentinal 详细介绍-SoltChain源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="prev" title="【流量控制系列7】Sentinel实践">
+                【流量控制系列7】Sentinel实践 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -664,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinal-详细介绍"><span class="nav-number">1.</span> <span class="nav-text">Sentinal 详细介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">3.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用功能"><span class="nav-number">4.</span> <span class="nav-text">常用功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制"><span class="nav-number">4.1.</span> <span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熔断降级"><span class="nav-number">4.2.</span> <span class="nav-text">熔断降级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#降级策略"><span class="nav-number">4.2.1.</span> <span class="nav-text">降级策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群方案"><span class="nav-number">5.</span> <span class="nav-text">集群方案</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinal-详细介绍"><span class="nav-number">1.</span> <span class="nav-text">Sentinal 详细介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特性"><span class="nav-number">3.</span> <span class="nav-text">特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用功能"><span class="nav-number">4.</span> <span class="nav-text">常用功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制"><span class="nav-number">4.1.</span> <span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熔断降级"><span class="nav-number">4.2.</span> <span class="nav-text">熔断降级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#降级策略"><span class="nav-number">4.2.1.</span> <span class="nav-text">降级策略</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群方案"><span class="nav-number">5.</span> <span class="nav-text">集群方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档索引"><span class="nav-number">6.</span> <span class="nav-text">文档索引</span></a></li></ol></div>
             
 
           </div>

@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Sentinel和hystrix对比 Hystrix侧重点  隔离熔断为主的容错机制   sentinel侧重点S  多样化的流量控制 熔断降级 系统负载保护 实时监控和控制台   共同特征  资源类型和执行模型    sentinel的特色1. 轻量，高性能 2. 流量控制 3. 负载保护 4. 实时监控和控制面板 5. 生态 总结     Sentinel Hystrix     隔离策略 信">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-29T09:31:20.210Z">
+<meta property="og:updated_time" content="2019-07-29T10:06:05.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列4】Sentinel和Hystrix对比">
 <meta name="twitter:description" content="Sentinel和hystrix对比 Hystrix侧重点  隔离熔断为主的容错机制   sentinel侧重点S  多样化的流量控制 熔断降级 系统负载保护 实时监控和控制台   共同特征  资源类型和执行模型    sentinel的特色1. 轻量，高性能 2. 流量控制 3. 负载保护 4. 实时监控和控制面板 5. 生态 总结     Sentinel Hystrix     隔离策略 信">
@@ -523,8 +523,9 @@
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>从产品层面来看，sentinel提供了更为丰富的功能和控制入口。更容易实现项目级的扩展。Hystrix的功能更偏向线程、信号量的隔离，作为插件的方式集成在服务中会比较适合，更偏向包级扩展。<br>  所以在这里建议：</p>
 <ul>
 <li>在单纯的流量控制需求下，建议使用sentinel  </li>
-<li>在需求到线程池隔离的功能下使用Hystrix</li>
+<li>在需求到线程池隔离的功能下使用Hystrix </li>
 </ul>
+<h2 id="文档索引"><a href="#文档索引" class="headerlink" title="文档索引"></a>文档索引</h2><p><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">【流量控制系列1】引言和索引</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">【流量控制系列2】流量控制的基础方法和算法</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_3/">【流量控制系列3】Semaphore信号量介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_4/">【流量控制系列4】Sentinel和Hystrix对比</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">【流量控制系列5】Sentinal 详细介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/">【流量控制系列5】Sentinal 详细介绍-SoltChain源码解析</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">【流量控制系列7】Sentinel实践</a>  </p>
 
       
     </div>
@@ -559,8 +560,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_2/" rel="next" title="【流量控制系列2】流量控制的基础方法和算法">
-                <i class="fa fa-chevron-left"></i> 【流量控制系列2】流量控制的基础方法和算法
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="next" title="【流量控制系列1】引言和索引">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列1】引言和索引
               </a>
             
           </div>
@@ -568,6 +569,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="prev" title="【流量控制系列5】Sentinal 详细介绍">
+                【流量控制系列5】Sentinal 详细介绍 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -727,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel和hystrix对比"><span class="nav-number">1.</span> <span class="nav-text">Sentinel和hystrix对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel的特色"><span class="nav-number">2.</span> <span class="nav-text">sentinel的特色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel和hystrix对比"><span class="nav-number">1.</span> <span class="nav-text">Sentinel和hystrix对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel的特色"><span class="nav-number">2.</span> <span class="nav-text">sentinel的特色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档索引"><span class="nav-number">4.</span> <span class="nav-text">文档索引</span></a></li></ol></div>
             
 
           </div>

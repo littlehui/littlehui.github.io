@@ -97,7 +97,7 @@
 <meta property="og:description" content="sentinel在支付平台的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
-<meta property="og:updated_time" content="2019-07-29T09:59:18.191Z">
+<meta property="og:updated_time" content="2019-07-29T10:06:05.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列7】Sentinel实践">
 <meta name="twitter:description" content="sentinel在支付平台的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private">
@@ -466,6 +466,7 @@
 </li>
 </ol>
 <h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="http://ued.local.17173.com/gitlab/xiaohuichen_17173/nacos" target="_blank" rel="external">nacos-1.0.0-RC3源码</a><br><a href="http://ued.local.17173.com/gitlab/xiaohuichen_17173/sentinel" target="_blank" rel="external">sentinel-1.6.0源码</a></p>
+<h2 id="文档索引"><a href="#文档索引" class="headerlink" title="文档索引"></a>文档索引</h2><p><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">【流量控制系列1】引言和索引</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">【流量控制系列2】流量控制的基础方法和算法</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_3/">【流量控制系列3】Semaphore信号量介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_4/">【流量控制系列4】Sentinel和Hystrix对比</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">【流量控制系列5】Sentinal 详细介绍</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/">【流量控制系列5】Sentinal 详细介绍-SoltChain源码解析</a><br><a href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">【流量控制系列7】Sentinel实践</a>  </p>
 
       
     </div>
@@ -500,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/28/java/patterndesign/patterndesign_17/" rel="next" title="责任链模式">
-                <i class="fa fa-chevron-left"></i> 责任链模式
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="next" title="【流量控制系列5】Sentinal 详细介绍">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列5】Sentinal 详细介绍
               </a>
             
           </div>
@@ -510,8 +511,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="prev" title="【流量控制系列5】Sentinal 详细介绍">
-                【流量控制系列5】Sentinal 详细介绍 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_3/" rel="prev" title="【流量控制系列3】Semaphore信号量介绍">
+                【流量控制系列3】Semaphore信号量介绍 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -672,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel在支付平台的使用"><span class="nav-number">1.</span> <span class="nav-text">sentinel在支付平台的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构方式"><span class="nav-number">2.</span> <span class="nav-text">架构方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel-dashboard改造"><span class="nav-number">3.</span> <span class="nav-text">Sentinel dashboard改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面controller改造"><span class="nav-number">3.1.</span> <span class="nav-text">页面controller改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置改造"><span class="nav-number">3.2.</span> <span class="nav-text">配置改造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nacos集群部署"><span class="nav-number">4.</span> <span class="nav-text">nacos集群部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付平台配置改造"><span class="nav-number">5.</span> <span class="nav-text">支付平台配置改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17pay"><span class="nav-number">5.1.</span> <span class="nav-text">17pay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pp"><span class="nav-number">5.2.</span> <span class="nav-text">pp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">6.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">7.</span> <span class="nav-text">附件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">7.1.</span> <span class="nav-text">源码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel在支付平台的使用"><span class="nav-number">1.</span> <span class="nav-text">sentinel在支付平台的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构方式"><span class="nav-number">2.</span> <span class="nav-text">架构方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel-dashboard改造"><span class="nav-number">3.</span> <span class="nav-text">Sentinel dashboard改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面controller改造"><span class="nav-number">3.1.</span> <span class="nav-text">页面controller改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置改造"><span class="nav-number">3.2.</span> <span class="nav-text">配置改造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nacos集群部署"><span class="nav-number">4.</span> <span class="nav-text">nacos集群部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付平台配置改造"><span class="nav-number">5.</span> <span class="nav-text">支付平台配置改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17pay"><span class="nav-number">5.1.</span> <span class="nav-text">17pay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pp"><span class="nav-number">5.2.</span> <span class="nav-text">pp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">6.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">7.</span> <span class="nav-text">附件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">7.1.</span> <span class="nav-text">源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档索引"><span class="nav-number">8.</span> <span class="nav-text">文档索引</span></a></li></ol></div>
             
 
           </div>
