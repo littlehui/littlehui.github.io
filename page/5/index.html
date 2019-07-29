@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_7/" itemprop="url">设计模式系列：装饰器模式</a></h1>
+                <a class="post-title-link" href="/2018/01/23/java/patterndesign/patterndesign_14/" itemprop="url">模板方法模式</a></h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:24:29+08:00">
-                2017-11-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T15:24:07+08:00">
+                2018-01-23
               </time>
             
 
@@ -401,17 +401,14 @@
         
           
           概念
-动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
-
+模板方法模式 在意个方法中定义一个算法的骨架，而将这些具体步骤实现延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤
 实现
-类图：
-
-
-Money:1234567891011package com.littlehui.design.decorator;/** * Created by littlehui on 2018/1/15
-          ...
+AbstraceClass:12
+场景总结
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_7/" rel="contents">
+            <a class="btn" href="/2018/01/23/java/patterndesign/patterndesign_14/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -462,7 +459,7 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -481,7 +478,633 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_11/" itemprop="url">设计模式系列:组合模式</a></h1>
+                <a class="post-title-link" href="/2018/01/23/java/patterndesign/patterndesign_13/" itemprop="url">策略模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T15:22:01+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概念
+策略模式定义了算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的客户。
+
+实现策略模式涉及到三个角色：
+
+环境(Context)角色：持有一个Strategy的引用。
+抽象策略(Strategy)角色：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/23/java/patterndesign/patterndesign_13/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2018/01/17/linux/linux_3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/linux/linux_3/" itemprop="url">linux免密码登录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T15:58:03+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言有两台机器 A,B。现在要实现A访问B免密码登录。
+步骤生成秘钥在A主机上执行12345ssh-keygen -t rsa -f rsa_for_174回车回车回车
+
+-t 类型
+-f 指定生成秘钥文件名
+
+追加认证
+将生成的秘钥拷贝到B主机，可以手动ftp，也可以用命令。1scp -i ~/.
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/17/linux/linux_3/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/21/linux/linux_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/21/linux/linux_2/" itemprop="url">Linux服务器性能评估</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T14:53:13+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言
+Web服务在部署到Linux系统运行期间，可能会遇到各种问题。程序上的BUG，数据上的问题，这些排查起来较为简单。当排除这些问题后，往往需要深入到服务器层面来寻找影响程序运行的稳定因素。
+
+基本信息查看CPU信息查看
+查看CPU个数
+1cat /proc/cpuinfo | grep &quo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/21/linux/linux_2/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/20/linux/linux_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/linux/linux_1/" itemprop="url">Linux自动删除N天日志</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T10:38:07+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言
+web在部署到linux环境后，一般都是把日志等级设置加高。只输出Error信息或者直接关闭Log。但是某些系统需要搜集容器的access日志来做数据分析。如果本地存储的话，日子久了，日志就越来越大。占用大量磁盘资源，直接影响到系统的正常运行。所以，这种情况下，对日志做定期清理，是成本最低的方
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/linux/linux_1/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_10/" itemprop="url">设计模式系列:桥接模式</a></h1>
         
 
         <div class="post-meta">
@@ -568,16 +1191,14 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
         
           
           概念
-组合模式是把对象堆起来形成集合的一种方式。它组织对象形成集合，结合迭代器模式，可以对客户隐藏具体对象实现。不至于暴露集合内部信息。形式上经常将组合你模式用于对象的树形结构表示。
+类的继承是类本身的垂直维度变化。如果需要水平维度上的变化扩展。继承是不好实现的。这时候我们可以引入桥接方式。桥接模式的做法是把变化部分抽象出来，使变化部分与主类分离开来，从而将多个维度的变化彻底分离。最后，提供一个管理类来组合不同维度上的变化，通过这种组合来满足业务的需要。
+
 实现
-
-背景
-
-村子里面养了 鸡，鸭，本地鸭，外地鸭，猪。这些家畜都会跑。现在要将他们集合起来，进行统一管理。每天数
+Fruit
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_11/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_10/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -795,7 +1416,7 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -814,7 +1435,7 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_9/" itemprop="url">设计模式系列：外观模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_11/" itemprop="url">设计模式系列:组合模式</a></h1>
         
 
         <div class="post-meta">
@@ -901,18 +1522,16 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
         
           
           概念
-外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。
+组合模式是把对象堆起来形成集合的一种方式。它组织对象形成集合，结合迭代器模式，可以对客户隐藏具体对象实现。不至于暴露集合内部信息。形式上经常将组合你模式用于对象的树形结构表示。
 实现
 
+背景
 
-类图：
-
-
-MyOneDay:1234567891011121314151617181920212223242526
+村子里面养了 鸡，鸭，本地鸭，外地鸭，猪。这些家畜都会跑。现在要将他们集合起来，进行统一管理。每天数
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_9/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_11/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -963,7 +1582,7 @@ MyOneDay:1234567891011121314151617181920212223242526
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_6/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -982,7 +1601,7 @@ MyOneDay:1234567891011121314151617181920212223242526
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_6/" itemprop="url">设计模式系列：适配器模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_7/" itemprop="url">设计模式系列：装饰器模式</a></h1>
         
 
         <div class="post-meta">
@@ -994,7 +1613,7 @@ MyOneDay:1234567891011121314151617181920212223242526
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:21:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:24:29+08:00">
                 2017-11-09
               </time>
             
@@ -1069,19 +1688,17 @@ MyOneDay:1234567891011121314151617181920212223242526
         
           
           概念
-适配器模式是将一个类的接口，转换成客户期望 的另一个接口。适配器让原来接口不兼容的类可以合作。
-实现
+动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
 
+实现
 类图：
 
 
-对象适配器
-类适配器
-Target:12345678package com.littlehui.design.adapter.target;/** * Created by li
+Money:1234567891011package com.littlehui.design.decorator;/** * Created by littlehui on 2018/1/15
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_6/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_7/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1132,7 +1749,7 @@ Target:12345678package com.littlehui.design.adapter.target;/** * Created by li
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_0/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1151,7 +1768,7 @@ Target:12345678package com.littlehui.design.adapter.target;/** * Created by li
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/25/java/patterndesign/parterndesign_0/" itemprop="url">设计模式系列：概况</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_12/" itemprop="url">设计模式系列:享元模式</a></h1>
         
 
         <div class="post-meta">
@@ -1163,175 +1780,8 @@ Target:12345678package com.littlehui.design.adapter.target;/** * Created by li
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T11:59:47+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概况
-设计模式是对于Java变成过程中遇到的特定抽象场景总结出的一套通用方法,常用的用23种几年模式。
-
-分类总体来说设计模式分为三大类：
-
-创建型模式，共五种： 
-工厂方法模式 定义一个创建对象的接口，让子类决定将哪一个类实例化。使一个类实例化延迟到子类。
-抽象工厂模式 提供一个创建一系列产品或相
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/java/patterndesign/parterndesign_0/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/java/patterndesign/parterndesign_5/" itemprop="url">设计模式系列：原型模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T11:55:44+08:00">
-                2017-10-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:24:29+08:00">
+                2017-11-09
               </time>
             
 
@@ -1405,520 +1855,16 @@ Target:12345678package com.littlehui.design.adapter.target;/** * Created by li
         
           
           概念
-原型模式是特殊的创建模式，它创建对象不通过直接new的方式产生，而是通过已有的对象复制。
+一个类的实例有多种 “虚拟实例”。 虚拟实例通过共享数据的方式存在。
 
-实现浅拷贝
+实现
 类图：
 
-
-Product1234567891011121314151617181920212223242526272829303132333435363738394041424344454
+Tree:1234567891011121314151617181920212223242526272829303132333435363738394041424344package com.littleh
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/java/patterndesign/parterndesign_5/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/java/patterndesign/parterndesign_4/" itemprop="url">设计模式系列：建造者模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T11:55:32+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
-当要创建的对象相对复杂，可以将复杂对象的创建过程分离成若干过程。此时只要改变不同过程中的参数就可以产生不同的实例。
-实现
-类图
-代码Builder12345678910public interface Builder &#123;    public void buildProductPart
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/java/patterndesign/parterndesign_4/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/java/patterndesign/parterndesign_3/" itemprop="url">设计模式系列：抽象工厂模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T11:54:58+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
-抽象工厂模式在原有的工厂方法模式上扩展，在工厂方面进行了抽象。从而增加产品规格的需求，可以更高地抽象成增加工厂类型。降低了耦合。
-
-实现类图
-代码Factory123456public interface Factory &#123;    public Product createSoftP
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/java/patterndesign/parterndesign_3/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/10/25/java/patterndesign/parterndesign_2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/java/patterndesign/parterndesign_2/" itemprop="url">设计模式系列：工厂方法模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T11:54:44+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/设计模式/工厂方法/" itemprop="url" rel="index">
-                    <span itemprop="name">工厂方法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
-工厂与一类产品的关系。用于调用端从复杂的构造逻辑中解耦。
-
-实现简单工厂模式产品：Product1234public interface Product &#123;    public void methodOne();    public void methodTwo();&#125;
-P
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/java/patterndesign/parterndesign_2/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1960,7 +1906,7 @@ P
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2010,7 +1956,7 @@ P
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2021,7 +1967,7 @@ P
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2032,7 +1978,7 @@ P
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
