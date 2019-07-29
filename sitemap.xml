@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/</loc>
+    
+    <lastmod>2019-07-29T09:42:24.594Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/</loc>
     
     <lastmod>2019-07-29T09:39:17.626Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/</loc>
     
     <lastmod>2019-07-29T09:34:06.251Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/</loc>
-    
-    <lastmod>2019-07-29T09:33:05.617Z</lastmod>
     
   </url>
   
@@ -506,14 +506,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
