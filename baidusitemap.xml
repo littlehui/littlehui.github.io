@@ -4,11 +4,11 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_4/</loc>
-    <lastmod>2019-07-30T09:22:04.107Z</lastmod>
+    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/</loc>
+    <lastmod>2019-07-30T10:36:19.418Z</lastmod>
     <data>
         <display>
-        <title>【流量控制系列4】Sentinel和Hystrix对比</title>
+        <title>【流量控制系列5】Sentinal 详细介绍</title>
         <pubTime>2019-07-29T09:24:44.000Z</pubTime>
         
         <tag>限流</tag>
@@ -34,11 +34,11 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/</loc>
-    <lastmod>2019-07-30T09:22:04.104Z</lastmod>
+    <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_4/</loc>
+    <lastmod>2019-07-30T09:22:04.107Z</lastmod>
     <data>
         <display>
-        <title>【流量控制系列5】Sentinal 详细介绍</title>
+        <title>【流量控制系列4】Sentinel和Hystrix对比</title>
         <pubTime>2019-07-29T09:24:44.000Z</pubTime>
         
         <tag>限流</tag>
