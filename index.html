@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" itemprop="url">【流量控制系列7】Sentinel实践</a></h1>
         
 
         <div class="post-meta">
@@ -411,15 +411,13 @@
       
         
           
-          目的
-自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
-对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
-
-流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
+          sentinel的使用架构方式
+Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。
+页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualif
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -653,7 +651,7 @@ SoltChain内部
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -672,7 +670,7 @@ SoltChain内部
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" itemprop="url">【流量控制系列7】Sentinel实践</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" itemprop="url">【流量控制系列5】Sentinal 详细介绍</a></h1>
         
 
         <div class="post-meta">
@@ -769,13 +767,11 @@ SoltChain内部
       
         
           
-          sentinel的使用架构方式
-Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。
-页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualif
+          Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1191,7 +1187,7 @@ sentinel的特色1. 轻量，高性能
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1210,7 +1206,7 @@ sentinel的特色1. 轻量，高性能
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" itemprop="url">【流量控制系列5】Sentinal 详细介绍</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
         
 
         <div class="post-meta">
@@ -1307,11 +1303,15 @@ sentinel的特色1. 轻量，高性能
       
         
           
-          Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源
+          目的
+自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
+对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
+
+流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
