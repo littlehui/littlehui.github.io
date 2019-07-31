@@ -97,7 +97,7 @@
 <meta property="og:description" content="sentinel的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private Dyna">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
-<meta property="og:updated_time" content="2019-07-30T09:22:04.102Z">
+<meta property="og:updated_time" content="2019-07-31T03:54:55.293Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列7】Sentinel实践">
 <meta name="twitter:description" content="sentinel的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private Dyna">
@@ -458,8 +458,9 @@
 </ul>
 <p>监听 nacos配置变更</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">private void initSentinalClusterClientConfig() &#123;</div><div class="line">    String REMOTE_ADDRESS = propertyPlaceholderConfigurer.getCtxProp(&quot;nexos.host&quot;);</div><div class="line">    //初始化一个配置ClusterClientConfig的 Nacos 数据源</div><div class="line">    ReadableDataSource&lt;String, ClusterClientAssignConfig&gt; ds =</div><div class="line">            new NacosDataSource&lt;&gt;(REMOTE_ADDRESS, GROUP_ID, CLIENT_CONFIG_DATA,</div><div class="line">                    source -&gt; JSON.parseObject(source, new TypeReference&lt;ClusterClientAssignConfig&gt;() &#123;&#125;));</div><div class="line">    ClusterClientConfigManager.registerServerAssignProperty(ds.getProperty());</div><div class="line">&#125;</div><div class="line"></div><div class="line">private void initClientFlow() &#123;</div><div class="line">    String REMOTE_ADDRESS = propertyPlaceholderConfigurer.getCtxProp(&quot;nexos.host&quot;);</div><div class="line">    //使用 Nacos 数据源作为配置中心，需要在 REMOTE_ADDRESS 上启动一个 Nacos 的服务</div><div class="line">    ReadableDataSource&lt;String, List&lt;FlowRule&gt;&gt; ds =</div><div class="line">            new NacosDataSource&lt;&gt;(REMOTE_ADDRESS, GROUP_ID, APP_NAME + FLOW_POSTFIX,</div><div class="line">                    source -&gt; JSON.parseObject(source, new TypeReference&lt;List&lt;FlowRule&gt;&gt;() &#123;&#125;));</div><div class="line">    //为集群客户端注册动态规则源</div><div class="line">    FlowRuleManager.register2Property(ds.getProperty());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>启动加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Dcsp.sentinel.dashboard.server=10.5.32.97:8091 -Dproject.name=littlehui-17pay</div></pre></td></tr></table></figure></p>
 <h2 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h2><ol>
-<li><p>sentinel配置的限流规则。在单机限流模式下来源应用必须是default。如果指定app泽获取不到rule列表。</p>
+<li><p>sentinel配置的限流规则。在单机限流模式下来源app字段limitApp必须是default。如果指定app获取不到rule列表。</p>
 </li>
 <li><p>sentinel客户端不支持nacos的命名空间配置，所以用的是默认的public空间。</p>
 </li>
@@ -500,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="next" title="【流量控制系列1】引言和索引">
-                <i class="fa fa-chevron-left"></i> 【流量控制系列1】引言和索引
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_4/" rel="next" title="【流量控制系列4】Sentinel和Hystrix对比">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列4】Sentinel和Hystrix对比
               </a>
             
           </div>
@@ -510,8 +511,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_4/" rel="prev" title="【流量控制系列4】Sentinel和Hystrix对比">
-                【流量控制系列4】Sentinel和Hystrix对比 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="prev" title="【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析">
+                【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -678,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel的使用"><span class="nav-number">1.</span> <span class="nav-text">sentinel的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构方式"><span class="nav-number">2.</span> <span class="nav-text">架构方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel-dashboard改造"><span class="nav-number">3.</span> <span class="nav-text">Sentinel dashboard改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面controller改造"><span class="nav-number">3.1.</span> <span class="nav-text">页面controller改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置改造"><span class="nav-number">3.2.</span> <span class="nav-text">配置改造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nacos集群部署"><span class="nav-number">4.</span> <span class="nav-text">nacos集群部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付平台配置改造"><span class="nav-number">5.</span> <span class="nav-text">支付平台配置改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web项目"><span class="nav-number">5.1.</span> <span class="nav-text">Web项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">6.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">7.</span> <span class="nav-text">附件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">7.1.</span> <span class="nav-text">源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档索引"><span class="nav-number">8.</span> <span class="nav-text">文档索引</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sentinel的使用"><span class="nav-number">1.</span> <span class="nav-text">sentinel的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构方式"><span class="nav-number">2.</span> <span class="nav-text">架构方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel-dashboard改造"><span class="nav-number">3.</span> <span class="nav-text">Sentinel dashboard改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面controller改造"><span class="nav-number">3.1.</span> <span class="nav-text">页面controller改造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置改造"><span class="nav-number">3.2.</span> <span class="nav-text">配置改造</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nacos集群部署"><span class="nav-number">4.</span> <span class="nav-text">nacos集群部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支付平台配置改造"><span class="nav-number">5.</span> <span class="nav-text">支付平台配置改造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web项目"><span class="nav-number">5.1.</span> <span class="nav-text">Web项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">5.2.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的坑"><span class="nav-number">6.</span> <span class="nav-text">遇到的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">7.</span> <span class="nav-text">附件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">7.1.</span> <span class="nav-text">源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档索引"><span class="nav-number">8.</span> <span class="nav-text">文档索引</span></a></li></ol></div>
             
 
           </div>
