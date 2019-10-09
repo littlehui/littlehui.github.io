@@ -4,6 +4,115 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2019/10/09/article/worker/worker_3/</loc>
+    <lastmod>2019-10-09T09:30:01.327Z</lastmod>
+    <data>
+        <display>
+        <title>【更好的工作 tips4】理解事物的脉络</title>
+        <pubTime>2019-10-09T09:10:31.000Z</pubTime>
+        
+        <tag>事物的脉络</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作" url="http://www.lilhui.com/categories/%E5%B7%A5%E4%BD%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</loc>
+    <lastmod>2019-10-09T08:59:53.154Z</lastmod>
+    <data>
+        <display>
+        <title>观察者模式</title>
+        <pubTime>2018-01-23T07:25:00.000Z</pubTime>
+        
+        <tag>观察者</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</loc>
+    <lastmod>2019-10-09T03:52:59.758Z</lastmod>
+    <data>
+        <display>
+        <title>模板方法模式</title>
+        <pubTime>2018-01-23T07:24:07.000Z</pubTime>
+        
+        <tag>模板方法</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/10/08/article/teammanager/teammanager_2/</loc>
+    <lastmod>2019-10-08T09:46:00.829Z</lastmod>
+    <data>
+        <display>
+        <title>角色转变</title>
+        <pubTime>2019-10-08T09:32:58.000Z</pubTime>
+        
+        <tag>管理</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术之外" url="http://www.lilhui.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%A4%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_16/</loc>
+    <lastmod>2019-08-09T09:39:33.121Z</lastmod>
+    <data>
+        <display>
+        <title>迭代器模式</title>
+        <pubTime>2019-07-28T10:01:09.000Z</pubTime>
+        
+        <tag>迭代器模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/</loc>
     <lastmod>2019-07-31T03:57:00.313Z</lastmod>
     <data>
@@ -222,29 +331,6 @@
         <pubTime>2019-07-28T10:01:09.000Z</pubTime>
         
         <tag>责任链模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
-          
-             
-              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_16/</loc>
-    <lastmod>2019-07-28T10:02:40.548Z</lastmod>
-    <data>
-        <display>
-        <title>迭代器模式</title>
-        <pubTime>2019-07-28T10:01:09.000Z</pubTime>
-        
-        <tag>迭代器模式</tag>
          
          
            
@@ -879,52 +965,6 @@
            
              
               <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</loc>
-    <lastmod>2018-03-01T06:43:45.914Z</lastmod>
-    <data>
-        <display>
-        <title>模板方法模式</title>
-        <pubTime>2018-01-23T07:24:07.000Z</pubTime>
-        
-        <tag>模板方法</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
-          
-             
-              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</loc>
-    <lastmod>2018-02-28T08:39:57.201Z</lastmod>
-    <data>
-        <display>
-        <title>观察者模式</title>
-        <pubTime>2018-01-23T07:25:00.000Z</pubTime>
-        
-        <tag>观察者</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
-          
-             
-              <breadCrumb title="设计模式" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
           
         </display>
     </data>
