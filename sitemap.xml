@@ -2,6 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2019/11/01/mysql/Mysql_2/</loc>
+    
+    <lastmod>2019-11-01T08:27:16.316Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_19/</loc>
+    
+    <lastmod>2019-10-12T09:11:30.206Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_18/</loc>
+    
+    <lastmod>2019-10-12T08:49:05.947Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_16/</loc>
+    
+    <lastmod>2019-10-12T08:07:57.498Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.116Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_23/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.103Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_17/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.073Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_21/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.068Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.059Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.044Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_22/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.039Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2019/10/12/java/patterndesign/patterndesign_20/</loc>
+    
+    <lastmod>2019-10-12T07:32:40.035Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2019/10/09/article/worker/worker_3/</loc>
     
     <lastmod>2019-10-09T09:30:01.327Z</lastmod>
@@ -9,30 +93,9 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_15/</loc>
-    
-    <lastmod>2019-10-09T08:59:53.154Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_14/</loc>
-    
-    <lastmod>2019-10-09T03:52:59.758Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.lilhui.com/2019/10/08/article/teammanager/teammanager_2/</loc>
     
     <lastmod>2019-10-08T09:46:00.829Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_16/</loc>
-    
-    <lastmod>2019-08-09T09:39:33.121Z</lastmod>
     
   </url>
   
@@ -82,13 +145,6 @@
     <loc>http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/</loc>
     
     <lastmod>2019-07-30T09:22:04.087Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_17/</loc>
-    
-    <lastmod>2019-07-29T07:36:52.986Z</lastmod>
     
   </url>
   
@@ -310,13 +366,6 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/2018/01/23/java/patterndesign/patterndesign_13/</loc>
-    
-    <lastmod>2018-02-27T03:51:29.127Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.lilhui.com/2018/02/06/http/hexo/</loc>
     
     <lastmod>2018-02-06T06:55:27.180Z</lastmod>
@@ -520,14 +569,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
