@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。 实现 类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO *">
+<meta name="description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。    实现类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO">
 <meta name="keywords" content="备忘录模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式系列:备忘录模式">
 <meta property="og:url" content="http://www.lilhui.com/2020/01/08/java/patterndesign/patterndesign_19/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。 实现 类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO *">
+<meta property="og:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。    实现类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/d70b44ea3e5dab7e1dbb801c9828f31f">
-<meta property="og:updated_time" content="2020-04-07T07:30:43.981Z">
+<meta property="og:updated_time" content="2020-04-09T10:38:20.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:备忘录模式">
-<meta name="twitter:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。 实现 类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO *">
+<meta name="twitter:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。    实现类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO">
 <meta name="twitter:image" content="http://images.lilhui.com/d70b44ea3e5dab7e1dbb801c9828f31f">
 
 
@@ -415,9 +415,9 @@
 
       
         <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
-<p> 备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2></blockquote>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/d70b44ea3e5dab7e1dbb801c9828f31f" alt="图片"></p>
+<p> 备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。  </p>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/d70b44ea3e5dab7e1dbb801c9828f31f" alt="图片"></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
 <li><p>Originator<br>执行者，封装备忘录具体属性信息。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.memoto;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Originator</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/7 14:45</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Originator</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String state;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 创建一个新的备忘录对象</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Memento <span class="title">createMemento</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Memento(state);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * 将发起者的状态恢复到备忘录的状态</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">restore</span><span class="params">(Memento memento)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.state = memento.getState();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getState</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> state;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(String state)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.state = state;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -481,8 +481,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="prev" title="设计模式系列:命令模式">
-                设计模式系列:命令模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/08/java/patterndesign/patterndesign_20/" rel="prev" title="设计模式系列:状态模式">
+                设计模式系列:状态模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

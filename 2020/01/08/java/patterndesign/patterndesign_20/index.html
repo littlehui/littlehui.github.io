@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。 实现 类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author li">
+<meta name="description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。    实现类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author">
 <meta name="keywords" content="状态模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式系列:状态模式">
 <meta property="og:url" content="http://www.lilhui.com/2020/01/08/java/patterndesign/patterndesign_20/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。 实现 类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author li">
+<meta property="og:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。    实现类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/13cc93043b1f94bb237d668ffba543e8">
-<meta property="og:updated_time" content="2020-04-07T09:44:54.224Z">
+<meta property="og:updated_time" content="2020-04-09T10:38:20.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:状态模式">
-<meta name="twitter:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。 实现 类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author li">
+<meta name="twitter:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。    实现类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author">
 <meta name="twitter:image" content="http://images.lilhui.com/13cc93043b1f94bb237d668ffba543e8">
 
 
@@ -415,9 +415,9 @@
 
       
         <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
-<p>状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态<br>就那么几个，所以从状态的维度度量。业务上会清晰很多。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2></blockquote>
-<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/13cc93043b1f94bb237d668ffba543e8" alt="图片"></p>
+<p>状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态<br>就那么几个，所以从状态的维度度量。业务上会清晰很多。  </p>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/13cc93043b1f94bb237d668ffba543e8" alt="图片"></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
 <li><p>抽象状态 CarState</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.state;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> CarState</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/7 17:09</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CarState</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doCarAction</span><span class="params">(Car car)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -474,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="next" title="设计模式系列:命令模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:命令模式
+              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="next" title="设计模式系列:备忘录模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:备忘录模式
               </a>
             
           </div>
@@ -484,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/07/java/patterndesign/patterndesign_22/" rel="prev" title="设计模式系列:中介者模式">
-                设计模式系列:中介者模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="prev" title="设计模式系列:命令模式">
+                设计模式系列:命令模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
