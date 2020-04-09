@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码场景访问者模式一般用于当对象属性或者信息太多，太杂的时候，通过不同的访问器，访问不同的信息。并且可以对信息进行二次加工。 总结">
+<meta name="description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码 Coputer被访问者  12345678910111213141516171819202122/** * @Description TODO * @ClassName Computer * @Author littlehui * @Date 2020/4">
 <meta name="keywords" content="访问者模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式系列:访问者模式">
 <meta property="og:url" content="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_21/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码场景访问者模式一般用于当对象属性或者信息太多，太杂的时候，通过不同的访问器，访问不同的信息。并且可以对信息进行二次加工。 总结">
+<meta property="og:description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码 Coputer被访问者  12345678910111213141516171819202122/** * @Description TODO * @ClassName Computer * @Author littlehui * @Date 2020/4">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/26a86d206f0003f09670a3d4d9fcc987">
-<meta property="og:updated_time" content="2020-04-07T10:41:02.756Z">
+<meta property="og:updated_time" content="2020-04-08T08:34:13.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:访问者模式">
-<meta name="twitter:description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码场景访问者模式一般用于当对象属性或者信息太多，太杂的时候，通过不同的访问器，访问不同的信息。并且可以对信息进行二次加工。 总结">
+<meta name="twitter:description" content="概念 访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。 实现 类图 代码 Coputer被访问者  12345678910111213141516171819202122/** * @Description TODO * @ClassName Computer * @Author littlehui * @Date 2020/4">
 <meta name="twitter:image" content="http://images.lilhui.com/26a86d206f0003f09670a3d4d9fcc987">
 
 
@@ -418,8 +418,37 @@
 <p>访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息<br>生成不同的报表等。</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2></blockquote>
 <h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/26a86d206f0003f09670a3d4d9fcc987" alt="图片"></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>访问者模式一般用于当对象属性或者信息太多，太杂的时候，通过不同的访问器，访问不同的信息。<br>并且可以对信息进行二次加工。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
+<li>Coputer被访问者</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Computer</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/7 18:20</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> <span class="keyword">implements</span> <span class="title">ComputerPart</span> </span>&#123;</div><div class="line"></div><div class="line">    ComputerPart[] parts;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Computer</span><span class="params">()</span></span>&#123;</div><div class="line">        parts = <span class="keyword">new</span> ComputerPart[] &#123;<span class="keyword">new</span> Screen(), <span class="keyword">new</span> Keyboard()&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; parts.length; i++) &#123;</div><div class="line">            parts[i].accept(computerPartVisitor);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>ComputerPart 被访问者，被访问的部分</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComputerPart</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>ComputerPartVisitor 访问者</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComputerPartVisitor</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(Screen screen)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(Keyboard keyboard)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Keyboard ,Screen 具体的电脑访问部分对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Keyboard</span> <span class="keyword">implements</span> <span class="title">ComputerPart</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> </span>&#123;</div><div class="line">        computerPartVisitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Screen</span> <span class="keyword">implements</span> <span class="title">ComputerPart</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(ComputerPartVisitor computerPartVisitor)</span> </span>&#123;</div><div class="line">        computerPartVisitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>访问接口 Visitor</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Visitor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visit</span><span class="params">(ComputerPart computerPart)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Client客户端调用方式</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ComputerPart computer = <span class="keyword">new</span> Computer();</div><div class="line">        computer.accept(<span class="keyword">new</span> ComputerPartDisplayVisitor());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>执行结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Connected to the target VM, address: &apos;127.0.0.1:51341&apos;, transport: &apos;socket&apos;</div><div class="line">this is computer screen</div><div class="line">this is computer keyboard</div><div class="line">Disconnected from the target VM, address: &apos;127.0.0.1:51341&apos;, transport: &apos;socket&apos;</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>访问者模式一般用于当对象属性或者信息太多，太杂的时候，通过不同的访问器（观察角度），访问不同的信息。<br>并且可以对信息进行二次加工。具体场景如：<br>1：员工的绩效评估，工程师和HR评估的角度不同。访问角度不同，这时候<br>访问者模式就比较适合。<br>2：报表，老板看到的报表和团队看到的项目报表肯定不一样。这时就满足访问者模式场景。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总的来讲，访问者模式提供多角度对同个对象的观测方式。对其理解不深很深刻，总结可能不到位，以后再总结。</p>
+
       
     </div>
     
@@ -449,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="next" title="设计模式系列:命令模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:命令模式
+              <a href="/2020/04/07/java/patterndesign/patterndesign_22/" rel="next" title="设计模式系列:中介者模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:中介者模式
               </a>
             
           </div>
@@ -459,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/07/java/patterndesign/patterndesign_22/" rel="prev" title="设计模式系列:中介者模式">
-                设计模式系列:中介者模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="prev" title="设计模式系列:解释器模式">
+                设计模式系列:解释器模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

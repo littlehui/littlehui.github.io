@@ -1252,7 +1252,7 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1271,7 +1271,7 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_12/" itemprop="url">设计模式系列:享元模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_9/" itemprop="url">设计模式系列：外观模式</a></h1>
         
 
         <div class="post-meta">
@@ -1358,182 +1358,18 @@ Money:1234567891011package com.littlehui.design.decorator;/** * Created by littl
         
           
           概念
-一个类的实例有多种 “虚拟实例”。 虚拟实例通过共享数据的方式存在。
-
+外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。
 实现
+
+
 类图：
 
-Tree:1234567891011121314151617181920212223242526272829303132333435363738394041424344package com.littleh
+
+MyOneDay:1234567891011121314151617181920212223242526
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_11/" itemprop="url">设计模式系列:组合模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:24:29+08:00">
-                2017-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
-组合模式是把对象堆起来形成集合的一种方式。它组织对象形成集合，结合迭代器模式，可以对客户隐藏具体对象实现。不至于暴露集合内部信息。形式上经常将组合你模式用于对象的树形结构表示。
-实现
-
-背景
-
-村子里面养了 鸡，鸭，本地鸭，外地鸭，猪。这些家畜都会跑。现在要将他们集合起来，进行统一管理。每天数
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_11/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_9/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1751,7 +1587,7 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_9/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1770,7 +1606,7 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_9/" itemprop="url">设计模式系列：外观模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_11/" itemprop="url">设计模式系列:组合模式</a></h1>
         
 
         <div class="post-meta">
@@ -1857,18 +1693,182 @@ Car：123456789package com.littlehui.design.proxy.statics;/** * Created by littl
         
           
           概念
-外观模式用于简化系统中一个或者多个复杂的类。外观模式相当直接，容易理解。它提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子同更容易使用。
+组合模式是把对象堆起来形成集合的一种方式。它组织对象形成集合，结合迭代器模式，可以对客户隐藏具体对象实现。不至于暴露集合内部信息。形式上经常将组合你模式用于对象的树形结构表示。
 实现
 
+背景
 
-类图：
-
-
-MyOneDay:1234567891011121314151617181920212223242526
+村子里面养了 鸡，鸭，本地鸭，外地鸭，猪。这些家畜都会跑。现在要将他们集合起来，进行统一管理。每天数
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_9/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_11/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_12/" itemprop="url">设计模式系列:享元模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T10:24:29+08:00">
+                2017-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概念
+一个类的实例有多种 “虚拟实例”。 虚拟实例通过共享数据的方式存在。
+
+实现
+类图：
+
+Tree:1234567891011121314151617181920212223242526272829303132333435363738394041424344package com.littleh
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
