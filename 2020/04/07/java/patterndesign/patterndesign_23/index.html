@@ -88,18 +88,20 @@
 
 
 
-<meta name="description" content="概念实现类图代码场景总结">
+<meta name="description" content="概念 解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。  实现类图 代码 Expression  123456789101112package com.littlehui.design;/** * @Description TODO * @ClassName Expression * @Author littlehui * @Date 20">
 <meta name="keywords" content="解释器模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式系列:解释器模式">
 <meta property="og:url" content="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="概念实现类图代码场景总结">
+<meta property="og:description" content="概念 解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。  实现类图 代码 Expression  123456789101112package com.littlehui.design;/** * @Description TODO * @ClassName Expression * @Author littlehui * @Date 20">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-07T05:34:01.483Z">
+<meta property="og:image" content="http://images.lilhui.com/fc3cc988c12ee33d2ad48d9de91582cd">
+<meta property="og:updated_time" content="2020-04-10T02:31:23.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:解释器模式">
-<meta name="twitter:description" content="概念实现类图代码场景总结">
+<meta name="twitter:description" content="概念 解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。  实现类图 代码 Expression  123456789101112package com.littlehui.design;/** * @Description TODO * @ClassName Expression * @Author littlehui * @Date 20">
+<meta name="twitter:image" content="http://images.lilhui.com/fc3cc988c12ee33d2ad48d9de91582cd">
 
 
 
@@ -412,7 +414,43 @@
       
 
       
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。</p>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/fc3cc988c12ee33d2ad48d9de91582cd" alt="图片"></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
+<li>Expression</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Expression</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/10 09:51</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Expression</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>OrExpression</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> OrExpress</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/10 10:25</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Expression expr1 = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> Expression expr2 = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrExpression</span><span class="params">(Expression expr1, Expression expr2)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.expr1 = expr1;</div><div class="line">        <span class="keyword">this</span>.expr2 = expr2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> expr1.interpret(context) || expr2.interpret(context);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>AndExpression</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> AndExpression</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/10 10:25</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AndExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Expression expr1 = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> Expression expr2 = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AndExpression</span><span class="params">(Expression expr1, Expression expr2)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.expr1 = expr1;</div><div class="line">        <span class="keyword">this</span>.expr2 = expr2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> expr1.interpret(context) &amp;&amp; expr2.interpret(context);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Client</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Client</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/10 10:26</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//规则：Robert 和 John 是男性</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title">getMaleExpression</span><span class="params">()</span></span>&#123;</div><div class="line">        Expression robert = <span class="keyword">new</span> TerminalExpression(<span class="string">"Robert"</span>);</div><div class="line">        Expression john = <span class="keyword">new</span> TerminalExpression(<span class="string">"John"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OrExpression(robert, john);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//规则：Julie 是一个已婚的女性</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title">getMarriedWomanExpression</span><span class="params">()</span></span>&#123;</div><div class="line">        Expression julie = <span class="keyword">new</span> TerminalExpression(<span class="string">"Julie"</span>);</div><div class="line">        Expression married = <span class="keyword">new</span> TerminalExpression(<span class="string">"Married"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AndExpression(julie, married);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Expression isMale = getMaleExpression();</div><div class="line">        Expression isMarriedWoman = getMarriedWomanExpression();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"John is male? "</span> + isMale.interpret(<span class="string">"John"</span>));</div><div class="line">        System.out.println(<span class="string">"Julie is a married women? "</span></div><div class="line">                + isMarriedWoman.interpret(<span class="string">"Married Julie"</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>执行结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Connected to the target VM, address: &apos;127.0.0.1:61783&apos;, transport: &apos;socket&apos;</div><div class="line">John is male? true</div><div class="line">Julie is a married women? true</div><div class="line">Disconnected from the target VM, address: &apos;127.0.0.1:61783&apos;, transport: &apos;socket&apos;</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ul>
+<li>可以将一个需要解释执行的语言中的句子表示为一个抽象语法树</li>
+<li>一些重复出现的问题可以用一种简单的语言来表达</li>
+<li>一个简单语法需要解释的场景</li>
+</ul>
+<p>在一些编译器，运算表达式，正则表达式经常有使用。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>优点：<br>1、可扩展性比较好，灵活。<br>2、增加了新的解释表达式的方式。<br>3、易于实现简单文法。</p>
+</li>
+<li><p>缺点：<br>1、可利用场景比较少。<br>2、对于复杂的文法比较难维护。<br>3、解释器模式会引起类膨胀。<br>4、解释器模式采用递归调用方法。</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -442,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/07/java/patterndesign/patterndesign_22/" rel="next" title="设计模式系列:中介者模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:中介者模式
+              <a href="/2020/04/07/java/patterndesign/patterndesign_21/" rel="next" title="设计模式系列:访问者模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:访问者模式
               </a>
             
           </div>
@@ -451,6 +489,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/07/java/patterndesign/patterndesign_22/" rel="prev" title="设计模式系列:中介者模式">
+                设计模式系列:中介者模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -616,7 +658,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

@@ -97,7 +97,7 @@
 <meta property="og:description" content="概念 定义一个中介者对象, 封装一系列对象的交互关系, 使得各对象不必显示的相互引用,从而使其耦合松散, 而且可以独立的改变它们的交互.    实现以智能家居为例，小爱控制只能家居。 类图 代码 SmartDevice 智能设备抽象  12345678910111213141516package com.littlehui.design.mediator;/** * @Description TO">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/299215d0c0e1d6d6b58df5792de489c5">
-<meta property="og:updated_time" content="2020-04-09T10:38:20.634Z">
+<meta property="og:updated_time" content="2020-04-10T01:35:37.429Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:中介者模式">
 <meta name="twitter:description" content="概念 定义一个中介者对象, 封装一系列对象的交互关系, 使得各对象不必显示的相互引用,从而使其耦合松散, 而且可以独立的改变它们的交互.    实现以智能家居为例，小爱控制只能家居。 类图 代码 SmartDevice 智能设备抽象  12345678910111213141516package com.littlehui.design.mediator;/** * @Description TO">
@@ -451,8 +451,8 @@
 <li>执行结果</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Connected to the target VM, address: &apos;127.0.0.1:60536&apos;, transport: &apos;socket&apos;</div><div class="line">窗帘已open</div><div class="line">小爱操作窗帘</div><div class="line">窗帘设备准备open</div><div class="line">洗浴设备正在准备open</div><div class="line">音乐设备已close</div><div class="line">小爱操作音乐音乐</div><div class="line">音乐设备准备close</div><div class="line">洗浴设备正在准备close</div><div class="line">Disconnected from the target VM, address: &apos;127.0.0.1:60536&apos;, transport: &apos;socket&apos;</div></pre></td></tr></table></figure>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>当有多个对象彼此间相互交互的时候，自然就会想到对象间的耦合度过高，解决办法就是封装对象间的交互行为，因此就能想到中介者模式就是干这行的。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p> 中介者的核心是抽离依赖关系。通过依赖关系来描述整个业务场景。使得复杂的逻辑可以内聚。</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>当有多个对象彼此间相互交互的时候，自然就会想到对象间的耦合度过高，解决办法就是封装对象间的交互行为，因此就能想到中介者模式就是干这行的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p> 中介者的核心是抽离依赖关系。通过依赖关系来描述整个业务场景。使得复杂的逻辑可以内聚。</p>
 <ul>
 <li>中介者模式优点  <ol>
 <li>通过让对象彼此解耦，增加对象的复用性</li>
@@ -495,8 +495,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/07/java/patterndesign/patterndesign_21/" rel="next" title="设计模式系列:访问者模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:访问者模式
+              <a href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="next" title="设计模式系列:解释器模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:解释器模式
               </a>
             
           </div>
@@ -504,10 +504,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="prev" title="设计模式系列:解释器模式">
-                设计模式系列:解释器模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

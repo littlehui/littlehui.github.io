@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b">
 <meta property="og:image" content="http://images.lilhui.com/35c615bb6cee34ebf6f8ad578a7c57e0">
-<meta property="og:updated_time" content="2020-01-08T09:37:43.973Z">
+<meta property="og:updated_time" content="2020-04-10T01:35:37.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:命令模式">
 <meta name="twitter:description" content="概念 命令模式将命令的执行和发送命令的责任分隔开，委派给不同的对象执行。   ###涉及角色   客户端(Client)角色：创建一个具体命令(ConcreteCommand)对象并确定其接收者。 命令(Command)角色：声明了一个给所有具体命令类的抽象接口。 具体命令(ConcreteCommand)角色：定义一个接收者和行为之间的弱耦合；实现execute()方法，负责调用接收者的相应操作">
@@ -448,8 +448,8 @@
 <li>命令接收者</li>
 </ul>
 <p>FishSoldier<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.command;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Soldier</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/1/8 16:38</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishSoldier</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doHuntingFish</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"hunting fish"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doCookingFish</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"cooking fish"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>命令模式的场景经常用在对外系统调用的时候使用。比如一个http请求封装成一个命模式。<br>不同的参数也可以封装成不同的命令。命令执行端，服务端的业务发生改变时或者url调用<br>方式发生改变时，客户端不需要调整。只要修改相应的命令封装器就好了。有效地做到<br>了修改的隔离。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>命令模式的最大特点就是隔离了命令的发送端和执行端。命令的发送端无需知道命令<br>执行端具体怎么执行。这种隔离方式的好处是调用的透明化。具有更好的扩展性。<br>由于命令是一个个相互独立的，所以可以很自然的做到复合命令。命令已经是封装<br>过的，所以可以对他进行有效的参数化。综合以上他有几种特点：</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>命令模式的场景经常用在对外系统调用的时候使用。比如一个http请求封装成一个命模式。<br>不同的参数也可以封装成不同的命令。命令执行端，服务端的业务发生改变时或者url调用<br>方式发生改变时，客户端不需要调整。只要修改相应的命令封装器就好了。有效地做到<br>了修改的隔离。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>命令模式的最大特点就是隔离了命令的发送端和执行端。命令的发送端无需知道命令<br>执行端具体怎么执行。这种隔离方式的好处是调用的透明化。具有更好的扩展性。<br>由于命令是一个个相互独立的，所以可以很自然的做到复合命令。命令已经是封装<br>过的，所以可以对他进行有效的参数化。综合以上他有几种特点：</p>
 <ol>
 <li>更松散的耦合</li>
 <li>更动态的控制</li>
@@ -486,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_20/" rel="next" title="设计模式系列:状态模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:状态模式
+              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="next" title="设计模式系列:备忘录模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:备忘录模式
               </a>
             
           </div>
@@ -664,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

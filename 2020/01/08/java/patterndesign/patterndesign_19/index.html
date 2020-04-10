@@ -97,7 +97,7 @@
 <meta property="og:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。    实现类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/d70b44ea3e5dab7e1dbb801c9828f31f">
-<meta property="og:updated_time" content="2020-04-09T10:38:20.616Z">
+<meta property="og:updated_time" content="2020-04-10T01:35:37.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:备忘录模式">
 <meta name="twitter:description" content="概念  备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。    实现类图 代码 Originator执行者，封装备忘录具体属性信息。 1234567891011121314151617181920212223242526272829303132333435package com.littlehui.design.memoto;/** * @Description TODO">
@@ -434,8 +434,8 @@
 <li>Client<br>执行流程</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.littlehui.design.memoto;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></div><div class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Client</span></div><div class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></div><div class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/4/7 14:45</span></div><div class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></div><div class="line"><span class="comment"> **/</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">//发起 并初始化</span></div><div class="line">        Originator originator = <span class="keyword">new</span> Originator();</div><div class="line">        originator.setState(<span class="string">"state1"</span>);</div><div class="line"></div><div class="line">        <span class="comment">//备忘录管理</span></div><div class="line">        Caretaker caretaker = <span class="keyword">new</span> Caretaker();</div><div class="line">        caretaker.storeMemengto(originator.createMemento());</div><div class="line">        originator.setState(<span class="string">"state2"</span>);</div><div class="line">        System.out.println(originator);</div><div class="line"></div><div class="line">        <span class="comment">//备忘录 恢复</span></div><div class="line">        originator.restore(caretaker.restoreMemento());</div><div class="line">        System.out.println(originator);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>比如在玩游戏保存游戏进度的时候可以用来实现回退功能。回退到上一个保存点。等等</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>比如在玩游戏保存游戏进度的时候可以用来实现回退功能。回退到上一个保存点。等等</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><p>优点<br>备忘录模式存在的意义也是在于他的回复机制。并且其特点是在用户不必关心类的内部细节情况下完成了。<br>实现了信息封装。</p>
 </li>
 <li><p>缺点<br>由于备忘录的保存需要额外的存储空间，所以在类属性多的情况下，多次的备忘录操作比较消耗资源。</p>
@@ -471,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/01/mysql/Mysql_2/" rel="next" title="Communications link failure 问题解决">
-                <i class="fa fa-chevron-left"></i> Communications link failure 问题解决
+              <a href="/2020/01/08/java/patterndesign/patterndesign_20/" rel="next" title="设计模式系列:状态模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:状态模式
               </a>
             
           </div>
@@ -481,8 +481,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_20/" rel="prev" title="设计模式系列:状态模式">
-                设计模式系列:状态模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="prev" title="设计模式系列:命令模式">
+                设计模式系列:命令模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -649,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>

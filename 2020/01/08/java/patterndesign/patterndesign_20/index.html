@@ -97,7 +97,7 @@
 <meta property="og:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。    实现类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.lilhui.com/13cc93043b1f94bb237d668ffba543e8">
-<meta property="og:updated_time" content="2020-04-09T10:38:20.629Z">
+<meta property="og:updated_time" content="2020-04-10T01:35:37.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:状态模式">
 <meta name="twitter:description" content="概念 状态模式是将对象的状态接口抽出，从状态的维度出发描述对象。对象千千万，状态就那么几个，所以从状态的维度度量。业务上会清晰很多。    实现类图 代码 抽象状态 CarState 12345678910111213package com.littlehui.design.state;/** * @Description TODO * @ClassName CarState * @Author">
@@ -438,7 +438,7 @@
 <li>执行结果</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Connected to the target VM, address: &apos;127.0.0.1:64995&apos;, transport: &apos;socket&apos;</div><div class="line">汽车启动中。</div><div class="line">汽车在行驶中。</div><div class="line">汽车停止。</div><div class="line">Disconnected from the target VM, address: &apos;127.0.0.1:64995&apos;, transport: &apos;socket&apos;</div></pre></td></tr></table></figure>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li><p>好处<br>状态控制放到了服务的内部，客户端不用操作具体的状态流转业务逻辑。可以分节点操作，扩展性能比较好。<br>上面这个例子只是很简单的模仿了一下工作流控制状态的跳转。状态模式最主要的好处就是把状态的判断与控制放到了其服务端的内部，使得客户端不需要去写很多代码判断，来控制自己的节点跳转，而且这样实现的话，我们可以把每个节点都分开来处理，当流程流转到某个节点的时候，可以去写自己的节点流转方法。</p>
 </li>
 <li><p>坏处<br>状态类要同时实现。耦合度会高。</p>
@@ -474,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="next" title="设计模式系列:备忘录模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:备忘录模式
+              <a href="/2019/11/01/mysql/Mysql_2/" rel="next" title="Communications link failure 问题解决">
+                <i class="fa fa-chevron-left"></i> Communications link failure 问题解决
               </a>
             
           </div>
@@ -484,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="prev" title="设计模式系列:命令模式">
-                设计模式系列:命令模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="prev" title="设计模式系列:备忘录模式">
+                设计模式系列:备忘录模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">2.1.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
