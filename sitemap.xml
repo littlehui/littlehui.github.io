@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/about/index.html</loc>
+    
+    <lastmod>2020-08-24T07:02:11.899Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2017/10/25/java/multithread/multithread_1/</loc>
+    
+    <lastmod>2020-04-10T02:58:28.172Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/</loc>
     
     <lastmod>2020-04-10T02:31:23.519Z</lastmod>
@@ -187,13 +201,6 @@
     <loc>http://www.lilhui.com/2019/06/11/article/word/word_0/</loc>
     
     <lastmod>2019-06-11T08:08:53.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/about/index.html</loc>
-    
-    <lastmod>2019-06-11T08:08:53.860Z</lastmod>
     
   </url>
   
@@ -488,13 +495,6 @@
     <loc>http://www.lilhui.com/2017/10/23/java/patterndesign/parterndesign_1/</loc>
     
     <lastmod>2017-10-26T09:23:42.206Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/2017/10/25/java/multithread/multithread_1/</loc>
-    
-    <lastmod>2017-10-26T06:55:55.425Z</lastmod>
     
   </url>
   
