@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2020/08/25/article/teammanager/teammanager_3/</loc>
+    
+    <lastmod>2020-08-25T02:25:10.137Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/about/index.html</loc>
     
     <lastmod>2020-08-24T07:02:11.899Z</lastmod>
@@ -569,14 +576,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
