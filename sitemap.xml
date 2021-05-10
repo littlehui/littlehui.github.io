@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_6/</loc>
+    
+    <lastmod>2021-05-10T16:06:37.263Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_5/</loc>
+    
+    <lastmod>2021-05-10T16:06:37.257Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_4/</loc>
+    
+    <lastmod>2021-05-10T16:01:39.928Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_3/</loc>
+    
+    <lastmod>2021-05-10T16:00:32.960Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_2/</loc>
+    
+    <lastmod>2021-05-10T16:00:32.952Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_1/</loc>
+    
+    <lastmod>2021-05-10T15:52:47.661Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/</loc>
+    
+    <lastmod>2021-05-10T15:47:01.056Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.lilhui.com/2020/08/25/article/teammanager/teammanager_3/</loc>
     
     <lastmod>2020-08-25T02:25:10.137Z</lastmod>
@@ -562,21 +611,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/2017/09/02/blog/hexo%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%97%A5%E8%AE%B0/</loc>
-    
-    <lastmod>2017-09-13T06:54:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
