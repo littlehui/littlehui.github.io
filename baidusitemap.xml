@@ -25,21 +25,6 @@
     
     
   <url>
-    <loc>http://www.lilhui.com/2017/10/25/java/multithread/multithread_1/</loc>
-    <lastmod>2020-04-10T02:58:28.172Z</lastmod>
-    <data>
-        <display>
-        <title>多线程系列：volatile关键字</title>
-        <pubTime>2017-10-25T03:42:41.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/</loc>
     <lastmod>2020-04-10T02:31:23.519Z</lastmod>
     <data>

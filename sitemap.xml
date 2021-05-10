@@ -16,13 +16,6 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/2017/10/25/java/multithread/multithread_1/</loc>
-    
-    <lastmod>2020-04-10T02:58:28.172Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/</loc>
     
     <lastmod>2020-04-10T02:31:23.519Z</lastmod>
@@ -576,14 +569,14 @@
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/categories/index.html</loc>
+    <loc>http://www.lilhui.com/tags/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.lilhui.com/tags/index.html</loc>
+    <loc>http://www.lilhui.com/categories/index.html</loc>
     
     <lastmod>2017-09-12T07:26:05.000Z</lastmod>
     
