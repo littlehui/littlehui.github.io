@@ -4,6 +4,160 @@
 
     
   <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_7/</loc>
+    <lastmod>2021-05-10T16:23:45.373Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列7】MVCC与BufferPool缓存机制</title>
+        <pubTime>2021-05-10T16:22:39.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>MVCC</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_6/</loc>
+    <lastmod>2021-05-10T16:22:29.776Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列6】事务隔离级别</title>
+        <pubTime>2021-05-10T16:21:35.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>事务</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/</loc>
+    <lastmod>2021-05-10T16:21:24.038Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列5】索引优化2</title>
+        <pubTime>2021-05-10T16:19:33.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>索引</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/</loc>
+    <lastmod>2021-05-10T16:21:17.076Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列4】索引优化1</title>
+        <pubTime>2021-05-10T16:19:33.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>索引优化</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_2/</loc>
+    <lastmod>2021-05-10T16:15:54.679Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列2】执行计划</title>
+        <pubTime>2021-05-10T16:13:11.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>执行计划</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_3/</loc>
+    <lastmod>2021-05-10T16:15:54.676Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列3】执行原理</title>
+        <pubTime>2021-05-10T16:14:20.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>执行原理</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_1/</loc>
+    <lastmod>2021-05-10T16:13:35.459Z</lastmod>
+    <data>
+        <display>
+        <title>【Mysql深入理解系列1】数据结构</title>
+        <pubTime>2021-05-10T16:11:18.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+        <tag>索引</tag>
+         
+         
+           
+             
+              <breadCrumb title="mysql" url="http://www.lilhui.com/categories/mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_6/</loc>
     <lastmod>2021-05-10T16:06:37.263Z</lastmod>
     <data>
