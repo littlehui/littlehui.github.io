@@ -91,14 +91,14 @@
 <meta name="description" content="遗留问题String s2 = “dd” + new String(“test”);四个 string3个char 数组UseCompressedoops压缩的是对象指针的长度 UseCompressedClassPointers压缩的是klass对象指针的长度 如果不压缩，则在arrayOopDesc中声明的非静态字段之后分配，如果压缩，它将占用oopDesc中_klass字段的后半部分。  数">
 <meta name="keywords" content="java,jvm调优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM深入理解系列4】精通String">
+<meta property="og:title" content="【JVM深入理解系列4】精通String">
 <meta property="og:url" content="http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_4/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="遗留问题String s2 = “dd” + new String(“test”);四个 string3个char 数组UseCompressedoops压缩的是对象指针的长度 UseCompressedClassPointers压缩的是klass对象指针的长度 如果不压缩，则在arrayOopDesc中声明的非静态字段之后分配，如果压缩，它将占用oopDesc中_klass字段的后半部分。  数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-05-10T16:01:39.928Z">
+<meta property="og:updated_time" content="2021-05-11T13:17:56.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM深入理解系列4】精通String">
+<meta name="twitter:title" content="【JVM深入理解系列4】精通String">
 <meta name="twitter:description" content="遗留问题String s2 = “dd” + new String(“test”);四个 string3个char 数组UseCompressedoops压缩的是对象指针的长度 UseCompressedClassPointers压缩的是klass对象指针的长度 如果不压缩，则在arrayOopDesc中声明的非静态字段之后分配，如果压缩，它将占用oopDesc中_klass字段的后半部分。  数">
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>JVM深入理解系列4】精通String | Littlehui's Notes</title>
+  <title>【JVM深入理解系列4】精通String | Littlehui's Notes</title>
   
 
 
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM深入理解系列4】精通String</h1>
+          <h1 class="post-title" itemprop="name headline">【JVM深入理解系列4】精通String</h1>
         
 
         <div class="post-meta">
@@ -517,8 +517,7 @@ m_used_table
     指针切换了以后为什么可以访问？
     hashcode会一直变。运行时计算出来的，所以没影响。
 </code></pre><p>PS:对象模型，为什么要字节对齐。8B<br>CPU提升速率。<br>CPU读是 4</p>
-<pre><code>  当数据从1字节开始的时候，问题很复杂，首先先将前4个字节读到寄存器，并再次读取4-7字节的数据进寄存器，接着把0字节，4,6,7字节的数据剔除，最后合并1,2,3,4字节的数据进寄存器，对一个内存未对齐的寄存器进行了这么多额外操作，大大降低了CPU的性能。
-
+<pre><code>当数据从1字节开始的时候，问题很复杂，首先先将前4个字节读到寄存器，并再次读取4-7字节的数据进寄存器，接着把0字节，4,6,7字节的数据剔除，最后合并1,2,3,4字节的数据进寄存器，对一个内存未对齐的寄存器进行了这么多额外操作，大大降低了CPU的性能。
 但是这还属于乐观情况，上文提到内存对齐的作用之一是平台的移植原因，因为只有部分CPU肯干，其他部分CPU遇到未对齐边界就直接罢工了。
 </code></pre>
       
