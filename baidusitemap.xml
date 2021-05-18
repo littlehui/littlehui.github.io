@@ -4,16 +4,14 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2021/05/13/java/concurrent/concurrent_2/</loc>
-    <lastmod>2021-05-13T07:29:27.385Z</lastmod>
+    <loc>http://www.lilhui.com/2021/04/01/java/concurrent/concurrent_5/</loc>
+    <lastmod>2021-05-18T15:58:33.532Z</lastmod>
     <data>
         <display>
-        <title>【深入理解并发编程系列2】JVM内存模型</title>
-        <pubTime>2021-05-13T07:14:12.000Z</pubTime>
+        <title>【深入理解并发编程系列3】抽象队列同步器AQS Lock详解</title>
+        <pubTime>2021-04-01T15:56:58.000Z</pubTime>
         
-        <tag>java</tag>
-         
-        <tag>并发，内存模型</tag>
+        <tag>并发编程</tag>
          
          
            
@@ -29,16 +27,14 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2021/05/13/java/concurrent/concurrent_1/</loc>
-    <lastmod>2021-05-13T07:24:41.512Z</lastmod>
+    <loc>http://www.lilhui.com/2021/03/29/java/concurrent/concurrent_4/</loc>
+    <lastmod>2021-05-18T15:56:47.075Z</lastmod>
     <data>
         <display>
-        <title>【深入理解并发编程系列1】操作系统与虚拟机</title>
-        <pubTime>2021-05-13T06:10:10.000Z</pubTime>
+        <title>【深入理解并发编程系列3】JVM内置锁 synchronized关键字详解</title>
+        <pubTime>2021-03-29T15:55:32.000Z</pubTime>
         
-        <tag>java</tag>
-         
-        <tag>并发，操作系统</tag>
+        <tag>并发编程</tag>
          
          
            
@@ -47,6 +43,138 @@
           
              
               <breadCrumb title="并发" url="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/03/21/java/concurrent/concurrent_1/</loc>
+    <lastmod>2021-05-18T15:55:39.123Z</lastmod>
+    <data>
+        <display>
+        <title>【深入理解并发编程系列1】操作系统与虚拟机</title>
+        <pubTime>2021-03-21T06:10:10.000Z</pubTime>
+        
+        <tag>并发编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="并发" url="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/03/24/java/concurrent/concurrent_2/</loc>
+    <lastmod>2021-05-18T15:55:13.720Z</lastmod>
+    <data>
+        <display>
+        <title>【深入理解并发编程系列2】JVM内存模型</title>
+        <pubTime>2021-03-24T07:14:12.000Z</pubTime>
+        
+        <tag>并发编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="并发" url="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2021/03/26/java/concurrent/concurrent_3/</loc>
+    <lastmod>2021-05-18T15:54:50.939Z</lastmod>
+    <data>
+        <display>
+        <title>【深入理解并发编程系列3】JMM-CPU缓存一致性协议MESI</title>
+        <pubTime>2021-03-26T15:53:18.000Z</pubTime>
+        
+        <tag>并发编程</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="并发" url="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2017/09/26/java/java_1/</loc>
+    <lastmod>2021-05-18T15:45:24.496Z</lastmod>
+    <data>
+        <display>
+        <title>HttpURLConnection Post请求自动重传机制</title>
+        <pubTime>2017-09-26T10:01:22.000Z</pubTime>
+        
+        <tag>http</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/07/06/java/java_3/</loc>
+    <lastmod>2021-05-18T15:45:24.481Z</lastmod>
+    <data>
+        <display>
+        <title>软件设计原则</title>
+        <pubTime>2018-07-06T07:59:00.000Z</pubTime>
+        
+        <tag>架构设计</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
+          
+             
+              <breadCrumb title="设计" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lilhui.com/2018/07/10/java/java_4/</loc>
+    <lastmod>2021-05-18T15:45:24.473Z</lastmod>
+    <data>
+        <display>
+        <title>许式伟、张宴——系统架构运维思路对话</title>
+        <pubTime>2018-07-10T10:52:17.000Z</pubTime>
+        
+        <tag>架构设计</tag>
+         
+         
+           
+             
+              <breadCrumb title="转载" url="http://www.lilhui.com/categories/%E8%BD%AC%E8%BD%BD/"/>
           
         </display>
     </data>
@@ -1321,51 +1449,6 @@
 
     
   <url>
-    <loc>http://www.lilhui.com/2018/07/10/java/java_4/</loc>
-    <lastmod>2018-07-12T09:22:49.654Z</lastmod>
-    <data>
-        <display>
-        <title>许式伟、张宴——系统架构运维思路对话</title>
-        <pubTime>2018-07-10T10:52:17.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>架构</tag>
-         
-         
-           
-             
-              <breadCrumb title="转载" url="http://www.lilhui.com/categories/%E8%BD%AC%E8%BD%BD/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2018/07/06/java/java_3/</loc>
-    <lastmod>2018-07-06T09:10:29.905Z</lastmod>
-    <data>
-        <display>
-        <title>软件设计原则</title>
-        <pubTime>2018-07-06T07:59:00.000Z</pubTime>
-        
-        <tag>设计原则</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
-          
-             
-              <breadCrumb title="设计" url="http://www.lilhui.com/categories/java/%E8%AE%BE%E8%AE%A1/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.lilhui.com/2018/06/14/search/solr_3/</loc>
     <lastmod>2018-07-02T10:47:49.086Z</lastmod>
     <data>
@@ -1528,28 +1611,6 @@
           
              
               <breadCrumb title="swagger" url="http://www.lilhui.com/categories/spring/swagger/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lilhui.com/2017/09/26/java/java_1/</loc>
-    <lastmod>2018-03-01T07:42:40.722Z</lastmod>
-    <data>
-        <display>
-        <title>HttpURLConnection Post请求自动重传机制</title>
-        <pubTime>2017-09-26T10:01:22.000Z</pubTime>
-        
-        <tag>java</tag>
-         
-        <tag>http</tag>
-         
-         
-           
-             
-              <breadCrumb title="java" url="http://www.lilhui.com/categories/java/"/>
           
         </display>
     </data>
