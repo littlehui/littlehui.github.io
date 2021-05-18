@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://www.lilhui.com/2021/04/01/java/concurrent/concurrent_5/</loc>
-    <lastmod>2021-05-18T15:58:33.532Z</lastmod>
+    <lastmod>2021-05-18T16:03:27.804Z</lastmod>
     <data>
         <display>
-        <title>【深入理解并发编程系列3】抽象队列同步器AQS Lock详解</title>
+        <title>【深入理解并发编程系列5】抽象队列同步器AQS Lock详解</title>
         <pubTime>2021-04-01T15:56:58.000Z</pubTime>
         
         <tag>并发编程</tag>
@@ -28,10 +28,10 @@
     
   <url>
     <loc>http://www.lilhui.com/2021/03/29/java/concurrent/concurrent_4/</loc>
-    <lastmod>2021-05-18T15:56:47.075Z</lastmod>
+    <lastmod>2021-05-18T16:03:27.798Z</lastmod>
     <data>
         <display>
-        <title>【深入理解并发编程系列3】JVM内置锁 synchronized关键字详解</title>
+        <title>【深入理解并发编程系列4】JVM内置锁 synchronized关键字详解</title>
         <pubTime>2021-03-29T15:55:32.000Z</pubTime>
         
         <tag>并发编程</tag>
