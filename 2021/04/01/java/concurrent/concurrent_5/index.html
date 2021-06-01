@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="背景为了提升锁性能引入了 锁粗化技术。 锁粗化：多个同步都加统一个对象。反复不停进出一个对象。JVM会对这样的代码进行逃逸分析。对整个代码块进行扫描。如果符合这种特征代码的话，会将多个同步块合并成一个大的同步快,变粗了。 锁消除：如果对象不可能被多个对象访问到。通过逃逸分析，会对锁进行消除。比如只加在对象上的锁。对象的生命周期是线程调用周期，对象只被一个线程访问。此时会对锁进行消除。 还有一个典型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-05-18T16:03:27.804Z">
+<meta property="og:updated_time" content="2021-05-20T06:55:11.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列5】抽象队列同步器AQS Lock详解">
 <meta name="twitter:description" content="背景为了提升锁性能引入了 锁粗化技术。 锁粗化：多个同步都加统一个对象。反复不停进出一个对象。JVM会对这样的代码进行逃逸分析。对整个代码块进行扫描。如果符合这种特征代码的话，会将多个同步块合并成一个大的同步快,变粗了。 锁消除：如果对象不可能被多个对象访问到。通过逃逸分析，会对锁进行消除。比如只加在对象上的锁。对象的生命周期是线程调用周期，对象只被一个线程访问。此时会对锁进行消除。 还有一个典型">
@@ -416,7 +416,7 @@
 <p><strong>锁粗化：</strong><br>多个同步都加统一个对象。反复不停进出一个对象。JVM会对这样的代码进行逃逸分析。对整个代码块进行扫描。如果符合这种特征代码的话，会将多个同步块合并成一个大的同步快,变粗了。</p>
 <p><strong>锁消除：</strong><br>如果对象不可能被多个对象访问到。通过逃逸分析，会对锁进行消除。比如只加在对象上的锁。对象的生命周期是线程调用周期，对象只被一个线程访问。此时会对锁进行消除。</p>
 <p>还有一个典型的就是栈上分配的对象，符合逃逸分析的对象，分配在栈上。并且对这个对象进行了加锁。此时，也只有这个线程能对对象进行访问，就会进行锁消除。</p>
-<p>PS:逃逸分析后会做的优化:所消除，标量替换等。<br>八大基础类型-标量</p>
+<p>PS:逃逸分析后会做的优化:锁消除，锁粗化，标量替换等。<br>标量:八大基本类型。  </p>
 <h2 id="AQS-LOCK详解"><a href="#AQS-LOCK详解" class="headerlink" title="AQS LOCK详解"></a>AQS LOCK详解</h2><ol>
 <li>AQS还没出现之前，如果需要规定一个线程占用CPU使用时间的话，可能用到while循环。</li>
 </ol>
@@ -593,7 +593,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
