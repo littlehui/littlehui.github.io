@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/07/java/patterndesign/patterndesign_23/" itemprop="url">设计模式系列:解释器模式</a></h1>
+                <a class="post-title-link" href="/2020/04/07/java/patterndesign/patterndesign_21/" itemprop="url">设计模式系列:访问者模式</a></h1>
         
 
         <div class="post-meta">
@@ -401,17 +401,17 @@
         
           
           概念
-解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。
+访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。  
 
 实现类图
 代码
-Expression
+Coputer被访问者
 
-123456789101112package com.littlehui.design;/** * @Description TODO * @C
+12345678910111213141516171819202122/** * @Description TODO * @C
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="contents">
+            <a class="btn" href="/2020/04/07/java/patterndesign/patterndesign_21/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -630,7 +630,7 @@ SmartDevice 智能设备抽象
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_21/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/04/07/java/patterndesign/patterndesign_23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -649,7 +649,7 @@ SmartDevice 智能设备抽象
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/07/java/patterndesign/patterndesign_21/" itemprop="url">设计模式系列:访问者模式</a></h1>
+                <a class="post-title-link" href="/2020/04/07/java/patterndesign/patterndesign_23/" itemprop="url">设计模式系列:解释器模式</a></h1>
         
 
         <div class="post-meta">
@@ -736,17 +736,183 @@ SmartDevice 智能设备抽象
         
           
           概念
-访问者模式有点复杂。一般不轻易使用。他的主要任务是通过不同的访问器，访问问相同的对象，得到不同的信息生成不同的报表等。  
+解释器模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在 SQL 解析、符号处理引擎等。
 
 实现类图
 代码
-Coputer被访问者
+Expression
 
-12345678910111213141516171819202122/** * @Description TODO * @C
+123456789101112package com.littlehui.design;/** * @Description TODO * @C
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/07/java/patterndesign/patterndesign_21/" rel="contents">
+            <a class="btn" href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/01/08/java/patterndesign/patterndesign_19/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/08/java/patterndesign/patterndesign_19/" itemprop="url">设计模式系列:备忘录模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-08T16:07:44+08:00">
+                2020-01-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概念
+ 备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。  
+
+实现类图
+代码
+Originator执行者，封装备忘录具体属性信息。
+1234567891011121314151617181920212223242526272829303132333435package c
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -916,172 +1082,6 @@ Coputer被访问者
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/08/java/patterndesign/patterndesign_18/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2020/01/08/java/patterndesign/patterndesign_19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/08/java/patterndesign/patterndesign_19/" itemprop="url">设计模式系列:备忘录模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-08T16:07:44+08:00">
-                2020-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
- 备忘录保存的是类内部状态。在适当的时候可以用来恢复当时的类状态。还原现场。  
-
-实现类图
-代码
-Originator执行者，封装备忘录具体属性信息。
-1234567891011121314151617181920212223242526272829303132333435package c
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
