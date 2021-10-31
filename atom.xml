@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Littlehui&#39;s Notes</title>
+  
+  <subtitle>天地那么大，世界那么辽阔。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.lilhui.com/"/>
+  <updated>2021-09-01T06:00:09.000Z</updated>
+  <id>http://www.lilhui.com/</id>
+  
+  <author>
+    <name>Littlehui</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SP image 128G 1.0版本发布 RG350M专用</title>
+    <link href="http://www.lilhui.com/2021/08/29/opendingux/spimge1/"/>
+    <id>http://www.lilhui.com/2021/08/29/opendingux/spimge1/</id>
+    <published>2021-08-29T04:38:00.000Z</published>
+    <updated>2021-09-01T06:00:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="SP-image-1-0"><a href="#SP-image-1-0" class="headerlink" title="SP image 1.0"></a>SP image 1.0</h2><p>在开源掌机圈不误正业了很久，一直在寻找一款软件硬件兼备的理想掌机。但是以目前的市场状况,希望渺茫。与其等商家完善，不如自己动手，于是本人基于 Simplemenu 9.0 + 官方底包整合了一个 128G 镜像，完成很久了，虽然还有一些不完善的地方，但是玩着还不错。独乐乐，不如众乐乐，发布出来一起交流体验。感谢所有为开源软件做出努力的人。本镜像禁止商用！！</p><h2 id="镜像特性："><a href="#镜像特性：" class="headerlink" title="镜像特性："></a>镜像特性：</h2><h3 id="前端："><a href="#前端：" class="headerlink" title="前端："></a>前端：</h3><ul><li>底包基于官方包</li><li>基于Simplemenu9.0</li><li>支持中文游戏列表。</li><li>支持三种主题：EpicCody，GBA35Remix,OA</li></ul><h4 id="快捷键说明"><a href="#快捷键说明" class="headerlink" title="快捷键说明"></a>快捷键说明</h4><ol><li>开始：调出设置屏幕。</li><li>选择：Rom 选项。让我们选择自动启动、模拟器（如果为所选部分定义了多个模拟器）和超频。</li><li>上：选择上一场比赛/上一节/上一组</li><li>向下：选择下一场比赛/下一节/下一组</li><li>左：跳到当前部分的上一页。</li><li>右：跳到当前部分的下一页。</li><li>R1：在菜单和全屏模式之间切换。</li><li>R2：刷新当前部分（以防您在菜单运行时添加了一些 ROM）。在 RFW 中使用“B+R1”。</li><li>A：启动游戏/程序。</li><li>X：在常规列表，将游戏标记为收藏，在收藏夹部分，将其从收藏夹列表中删除。</li><li>L2 转到藏夹列表。</li><li>B：<br>如果按下并松开，它会将您带回一屏。<br>如果按住，则在游戏列表中时，它充当与其他键组合的热键</li><li>B + 左：跳到上一个字母。</li><li>B + 右：跳到下一个字母。</li><li>B + Up：转到上一部分，不显示徽标。</li><li>B + 向下：转到下一部分，不显示徽标。</li><li>B+选择：随机选择。</li><li>B + X：删除选定的 rom，无需确认。不适用于收藏夹部分或应用和游戏部分。</li><li>B + A：如果模拟器支持作为独立应用程序运行，则启动模拟器本身而不是 rom。</li><li>游戏列表页面按住select可以选择执行的模拟器。目前以下有多个模拟器选择<ol><li>MD</li><li>GBA</li><li>SNES</li><li>FBA</li></ol></li></ol><h3 id="模拟器："><a href="#模拟器：" class="headerlink" title="模拟器："></a>模拟器：</h3><ol><li>移植了fba-a320 三国战纪等游戏满帧。（可以在游戏列表按select进行切换模拟器）</li><li>pocketsnes 修复浪漫沙迦，圣剑传说3字体显示（感谢CC的技术支持）</li><li>picodrive 升级到1.97</li><li>fba 拳皇等游戏硬件拉升，可以全屏。不会有右边的竖纹。</li></ol><h3 id="ROM"><a href="#ROM" class="headerlink" title="ROM:"></a>ROM:</h3><ol><li>所有ROM名字以第一个拼音字母开头。在游戏列表按B+上，下 进行索引。</li><li>snes,nes，GBA,FBA 适配了几百个金手指。方便游玩。（部分金手指可能无效）</li></ol><h2 id="部分截图"><a href="#部分截图" class="headerlink" title="部分截图"></a>部分截图</h2><ul><li>游戏截图</li></ul><p><img src="http://images.lilhui.com/5e6c48f4407a1b7c8d60769d12690898" alt="图片"></p><ul><li>金手指</li></ul><p><img src="http://images.lilhui.com/f0cdf5d5e460317f3b455a5f61e108c4" alt="图片"></p><ul><li>拳皇97硬件拉升支持全屏</li></ul><p><img src="http://images.lilhui.com/67c67fc18d28785279aeff01ee206ccd" alt="图片"></p><ul><li><p>封面Logo<br><img src="http://images.lilhui.com/f78dd6c53989f836bfd91941ca0efd5e" alt="图片"></p></li><li><p>前端设置</p></li></ul><p><img src="http://images.lilhui.com/028e35ca11509b8882656dc8b2ed268f" alt="图片"></p><ul><li>选择模拟器（select)</li></ul><p><img src="http://images.lilhui.com/5d53d9f4bb6ce97abfbcafde7a37de0d" alt="图片"></p><ul><li>收藏夹（L2)</li></ul><p><img src="http://images.lilhui.com/604d1e36a9c847c4fa9ab524d2026ac5" alt="图片"></p><ul><li>FBA街机Logo</li></ul><p><img src="http://images.lilhui.com/c4fd3e9186227d32742ad50db2efdc69" alt="图片"></p><ul><li>游戏列表中文</li></ul><p><img src="http://images.lilhui.com/3466ad0aa40e58603f6ba02410f0c606" alt="图片"></p><h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p>链接：<a href="https://pan.baidu.com/s/1QkROboHxoFIjIm59sVGuhg" target="_blank" rel="noopener">https://pan.baidu.com/s/1QkROboHxoFIjIm59sVGuhg</a><br>提取码：87bs</p><p>本镜像用于玩家交流使用，禁止商用！！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;SP-image-1-0&quot;&gt;&lt;a href=&quot;#SP-image-1-0&quot; class=&quot;headerlink&quot; title=&quot;SP image 1.0&quot;&gt;&lt;/a&gt;SP image 1.0&lt;/h2&gt;&lt;p&gt;在开源掌机圈不误正业了很久，一直在寻找一款软件硬件兼备的理想
+      
+    
+    </summary>
+    
+      <category term="opendingux" scheme="http://www.lilhui.com/categories/opendingux/"/>
+    
+    
+      <category term="开源掌机" scheme="http://www.lilhui.com/tags/%E5%BC%80%E6%BA%90%E6%8E%8C%E6%9C%BA/"/>
+    
+      <category term="simplemenu" scheme="http://www.lilhui.com/tags/simplemenu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列8】Mysql慢查询工具</title>
+    <link href="http://www.lilhui.com/2021/06/01/mysql/mysql_deep_8/"/>
+    <id>http://www.lilhui.com/2021/06/01/mysql/mysql_deep_8/</id>
+    <published>2021-06-01T08:17:51.000Z</published>
+    <updated>2021-06-01T08:29:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="几个参数"><a href="#几个参数" class="headerlink" title="几个参数"></a>几个参数</h2><ul><li>slow_query_log</li></ul><p>这个参数设置为ON，可以捕获执行时间超过一定数值的SQL语句。</p><ul><li>long_query_time</li></ul><p>当SQL语句执行时间超过此数值时，就会被记录到日志中，建议设置为1或者更短。</p><ul><li>slow_query_log_file</li></ul><p>记录日志的文件名。</p><ul><li>log_queries_not_using_indexes</li></ul><p>这个参数设置为ON，可以捕获到所有未使用索引的SQL语句，尽管这个SQL语句有可能执行得挺快。</p><h2 id="几个命令"><a href="#几个命令" class="headerlink" title="几个命令"></a>几个命令</h2><ul><li>SHOW PROCESSLIST</li></ul><p><strong><em>Id列</em></strong>：一个标识，你要kill一个语句的时候很有用，用命令杀掉此查询 /*/mysqladmin kill 进程号。</p><p><strong><em>User列</em></strong>：显示单前用户，如果不是root，这个命令就只显示你权限范围内的sql语句。</p><p><strong><em>Host列</em></strong>：显示这个语句是从哪个ip的哪个端口上发出的。用于追踪出问题语句的用户。</p><p><strong><em>db列</em></strong>：显示这个进程目前连接的是哪个数据库。</p><p><strong><em>Command列</em></strong>：显示当前连接的执行的命令，一般就是休眠（sleep），查询（query），连接（connect）。</p><p><strong><em>Time列</em></strong>：此这个状态持续的时间，单位是秒。</p><p><strong><em>State列</em></strong>：显示使用当前连接的sql语句的状态，很重要的列，后续会有所有的状态的描述，请注意，state只是语句执行中的某一个状态，一个 sql语句，以查询为例，可能需要经过copying to tmp table，Sorting result，Sending data等状态才可以完成</p><p><strong><em>Info列</em></strong>；显示这个sql语句，因为长度有限，所以长的sql语句就显示不全，但是一个判断问题语句的重要依据。</p><p>这个命令中最关键的就是state列，MySQL列出的状态主要有以下几种：</p><p><strong><em>Checking table</em></strong>：正在检查数据表（这是自动的）。</p><p><strong><em>Closing tables</em></strong>：正在将表中修改的数据刷新到磁盘中，同时正在关闭已经用完的表。这是一个很快的操作，如果不是这样的话，就应该确认磁盘空间是否已经满了或者磁盘是否正处于重负中。</p><p><strong><em>Connect Out</em></strong>：复制从服务器正在连接主服务器。</p><p><strong><em>Copying to tmp table on disk</em></strong>：由于临时结果集大于tmp_table_size，正在将临时表从内存存储转为磁盘存储以此节省内存。</p><p><strong><em>Creating tmp table</em></strong>：正在创建临时表以存放部分查询结果。</p><p><strong><em>deleting from main table</em></strong>：服务器正在执行多表删除中的第一部分，刚删除第一个表。</p><p><strong><em>deleting from reference tables</em></strong>：服务器正在执行多表删除中的第二部分，正在删除其他表的记录。</p><p><strong><em>Flushing tables</em></strong>：正在执行FLUSH TABLES，等待其他线程关闭数据表。</p><p><strong><em>Killed</em></strong>：发送了一个kill请求给某线程，那么这个线程将会检查kill标志位，同时会放弃下一个kill请求。MySQL会在每次的主循环中检查kill标志位，不过有些情况下该线程可能会过一小段才能死掉。如果该线程程被其他线程锁住了，那么kill请求会在锁释放时马上生效。</p><p><strong><em>Locked</em></strong>：被其他查询锁住了。</p><p><strong><em>Sending data</em></strong>：正在处理SELECT查询的记录，同时正在把结果发送给客户端。</p><p><strong><em>Sorting for group</em></strong>：正在为GROUP BY做排序。</p><p><strong><em>Sorting for order</em></strong>：正在为ORDER BY做排序。</p><p><strong><em>Opening tables</em></strong>：这个过程应该会很快，除非受到其他因素的干扰。例如，在执ALTER TABLE或LOCK TABLE语句行完以前，数据表无法被其他线程打开。正尝试打开一个表。</p><p><strong><em>Removing duplicates</em></strong>：正在执行一个SELECT DISTINCT方式的查询，但是MySQL无法在前一个阶段优化掉那些重复的记录。因此，MySQL需要再次去掉重复的记录，然后再把结果发送给客户端。</p><p><strong><em>Reopen table</em></strong>：获得了对一个表的锁，但是必须在表结构修改之后才能获得这个锁。已经释放锁，关闭数据表，正尝试重新打开数据表。</p><p><strong><em>Repair by sorting</em></strong>：修复指令正在排序以创建索引。</p><p><strong><em>Repair with keycache</em></strong>：修复指令正在利用索引缓存一个一个地创建新索引。它会比Repair by sorting慢些。</p><p><strong><em>Searching rows for update</em></strong>：正在讲符合条件的记录找出来以备更新。它必须在UPDATE要修改相关的记录之前就完成了。</p><p><strong><em>Sleeping</em></strong>：正在等待客户端发送新请求.</p><p><strong><em>System lock</em></strong>：正在等待取得一个外部的系统锁。如果当前没有运行多个mysqld服务器同时请求同一个表，那么可以通过增加–skip-external-locking参数来禁止外部系统锁。</p><p><strong><em>Upgrading lock</em></strong>：INSERT DELAYED正在尝试取得一个锁表以插入新记录。</p><p><strong><em>Updating</em></strong>：正在搜索匹配的记录，并且修改它们。</p><p><strong><em>User Lock</em></strong>：正在等待GET_LOCK()。</p><p><strong><em>Waiting for tables</em></strong>：该线程得到通知，数据表结构已经被修改了，需要重新打开数据表以取得新的结构。然后，为了能的重新打开数据表，必须等到所有其他线程关闭这个表。以下几种情况下会产生这个通知：FLUSH TABLES tbl_name, ALTER TABLE, RENAME TABLE, REPAIR TABLE, ANALYZE TABLE,或OPTIMIZE TABLE。</p><p><strong><em>waiting for handler insert</em></strong>：INSERT DELAYED已经处理完了所有待处理的插入操作，正在等待新的请求。</p><p>大部分状态对应很快的操作，只要有一个线程保持同一个状态好几秒钟，那么可能是有问题发生了，需要检查一下。</p><p>还有其他的状态没在上面中列出来，不过它们大部分只是在查看服务器是否有存在错误是才用得着。</p><ul><li>explain</li></ul><p><strong><em>table列</em></strong>：显示这一行的数据是关于哪张表的</p><p><strong><em>type列</em></strong>：这是重要的列，显示连接使用了何种类型。从最好到最差的连接类型为const、eq_reg、ref、range、index和ALL</p><p><strong><em>possible_keys 列</em></strong>：显示可能应用在这张表中的索引。如果为空，没有可能的索引。可以为相关的域从WHERE语句中选择一个合适的语句</p><p><strong><em>key列</em></strong>：实际使用的索引。如果为NULL，则没有使用索引。很少的情况下，MYSQL会选择优化不足的索引。这种情况下，可以在SELECT语句 中使用USE INDEX（indexname）来强制使用一个索引或者用IGNORE INDEX（indexname）来强制MYSQL忽略索引</p><p><strong><em>key_len列</em></strong>：使用的索引的长度。在不损失精确性的情况下，长度越短越好</p><p><strong><em>ref列</em></strong>：显示索引的哪一列被使用了，如果可能的话，是一个常数</p><p><strong><em>rows列</em></strong>：MYSQL认为必须检查的用来返回请求数据的行数</p><p><strong><em>Extra列</em></strong>：关于MYSQL如何解析查询的额外信息。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;几个参数&quot;&gt;&lt;a href=&quot;#几个参数&quot; class=&quot;headerlink&quot; title=&quot;几个参数&quot;&gt;&lt;/a&gt;几个参数&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;slow_query_log&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个参数设置为ON，可以捕获执行时间超过一定数值的SQ
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="sql优化" scheme="http://www.lilhui.com/tags/sql%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列7】MVCC与BufferPool缓存机制</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_7/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_7/</id>
+    <published>2021-05-10T16:22:39.000Z</published>
+    <updated>2021-05-10T16:23:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="MVCC与BufferPool"><a href="#MVCC与BufferPool" class="headerlink" title="MVCC与BufferPool"></a>MVCC与BufferPool</h2><ol><li>Undo 日志版本链与ReadView机制详解。</li><li>MVCC多版本并发控制详解。</li><li>Innodb引擎BufferPoll缓存机制详解。</li><li>Redo与Undo日志详解。</li></ol><h2 id="MVCC多版本并发控制机制"><a href="#MVCC多版本并发控制机制" class="headerlink" title="MVCC多版本并发控制机制"></a>MVCC多版本并发控制机制</h2><ul><li><p>Undo日志版本链</p><p>事务开始时候会生成一个Undo日志。包括数据值，事务ID。<br>Redview活跃的事务列表。</p></li></ul><p>ReadView 可见，不可见</p><p><img src="http://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190" alt="图片"></p><p>在可重复读隔离级别，当事务开启，执行任何查询sql时会生成当前事务的一致性视图read-view，该视图在事务结束之前都不会变化(如果是读已提交隔离级别在每次执行查询sql时都会重新生成)，这个视图由执行查询时所有未提交事务id数组（数组里最小的id为min_id）和已创建的最大事务id（max_id）组成，事务里的任何sql查询结果需要从对应版本链里的最新数据开始逐条跟read-view做比对从而得到最终的快照结果。</p><p>Mysql会将Undo链分成三个集合</p><p>已提交事务，未提交与已提交事务，未开始事务。</p><p><img src="http://images.lilhui.com/53f7864bd44cbd2bf09196927571ea6a" alt="图片"></p><h3 id="版本链对比规则"><a href="#版本链对比规则" class="headerlink" title="版本链对比规则"></a>版本链对比规则</h3><ol><li>如果 row 的 trx_id 落在绿色部分( trx_id&lt;min_id )，表示这个版本是已提交的事务生成的，这个数据是可见的。<br>如果 row 的 trx_id 落在红色部分( trx_id&gt;max_id )，表示这个版本是由将来启动的事务生成的，是不可见的(若row 的 trx_id 就是当前自己的事务是可见的）。</li><li>如果 row 的 trx_id 落在黄色部分(min_id &lt;=trx_id&lt;= max_id)，那就包括两种情况：<br>a. 若 row 的 trx_id 在视图数组中，表示这个版本是由还没提交的事务生成的，不可见(若 row 的 trx_id 就是当前自己的事务是可见的)；<br>b. 若 row 的 trx_id 不在视图数组中，表示这个版本是已经提交了的事务生成的，可见。</li></ol><h3 id="Innodb引擎BufferPool"><a href="#Innodb引擎BufferPool" class="headerlink" title="Innodb引擎BufferPool"></a>Innodb引擎BufferPool</h3><h4 id="Redo与Undo"><a href="#Redo与Undo" class="headerlink" title="Redo与Undo"></a>Redo与Undo</h4><p>BufferPool是Innodb中的一块内存，缓存池。用于更新日志时缓存数据。</p><p><img src="http://images.lilhui.com/d2cca03ebe91a9727cd5bf1223a4f2e7" alt="图片"></p><p>update数据过程。</p><ol><li>加载叶子节点到innodb引擎中。 bufferPool</li><li>写undo日志</li><li>更新缓存日志。</li><li>写redo日志</li><li>准备提交事务，redo日志写入磁盘。（commit)</li><li>准备提交事务，写binlog。所有存储引擎都有些binlog日志的操作。</li><li>写一个commit标记到redo日志。为了redo与binlog数据一致。</li><li>随机写入磁盘以page为单位写入。</li></ol><p>当bufferPool丢失，redo日志可以用来还原。</p><p>BufferPool非常重要，整个mysql的增删改查都先进过BufferPool。为什么这么设计？提高效率。基于内存效率更高。</p><p>BufferPool过程中会进行undo和redo的读写。这样效率高吗？</p><p>undo,redo是顺序写。数据库是随机写。顺序效率&gt;随机 (2倍以上性能)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;MVCC与BufferPool&quot;&gt;&lt;a href=&quot;#MVCC与BufferPool&quot; class=&quot;headerlink&quot; title=&quot;MVCC与BufferPool&quot;&gt;&lt;/a&gt;MVCC与BufferPool&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Undo 日志版本链与R
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="MVCC" scheme="http://www.lilhui.com/tags/MVCC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列6】事务隔离级别</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_6/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_6/</id>
+    <published>2021-05-10T16:21:35.000Z</published>
+    <updated>2021-05-10T16:22:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="事务隔离级别深入理解"><a href="#事务隔离级别深入理解" class="headerlink" title="事务隔离级别深入理解"></a>事务隔离级别深入理解</h2><ol><li>Mysql事务级ACID特性详解</li><li>Mysql事务隔离级别详解</li><li>Mysql锁机制详解</li><li>Mysql锁优化建议</li></ol><h2 id="事务隔离级别ACID"><a href="#事务隔离级别ACID" class="headerlink" title="事务隔离级别ACID"></a>事务隔离级别ACID</h2><h3 id="事务及其ACID属性。"><a href="#事务及其ACID属性。" class="headerlink" title="事务及其ACID属性。"></a>事务及其ACID属性。</h3><p>事务的特性 ACID:</p><p>ACID是原子性，一致性，持久性，独立性的缩写。</p><p>原子性：一个操作不是成功就是失败，要么执行成功，要么执行失败。</p><p>一致性：事务的索引规则，约束等不受破坏。事务开始中，所有相关的数据结果都必须保持状态一致，比如一个事务对三个数据进行修改，事务结束后三个状态必须都是被修改过的，保持一致。</p><p>隔离性： 每个事务之间不要相互影响。A事务查的结果不要被别的影响。就是说A事务执行过程中，结果集不能变。</p><p>持久性：事务完成后的对结果产生影响要持久。不能一会儿变来变去。</p><h3 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h3><ol><li>更新丢失(脏写)</li></ol><p>事务A对数据进行+1，事务B对数据进行-1。B的更新操作把A覆盖掉了。</p><ol start="2"><li>脏读</li></ol><p>事务A读取了事务B还未提交的数据，但是事务B进行了回滚。事务A读到了脏数据。</p><ol start="3"><li>不可重复读</li></ol><p>事务A读取了数据1，但是被B修改成了2，事务A再读变成了2。与之前的不同。</p><ol start="5"><li>幻影读</li></ol><p>事务A，count了一个数据块，事务B插入了一条数据，事务A再进行count的 时候数据变了。</p><p>以上问题都是事务隔离性问题。所以要引入事务隔离级别来解决这些问题。</p><h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><p><img src="http://images.lilhui.com/0368e43298acb164abd6e8d86ede311a" alt="图片"></p><p>事务隔离级别是Mysql提供的预设的几种级别。</p><ol><li>未提交读：事务T在读取数据的时候并未对数据进行加锁，事务T在修改数据的时候对数据增加行级共享锁，这种隔离级别没解决脏读。</li><li>已提交读：事务T在读取数据时增加行级共享锁，读取一旦结束，立即释放；事务T在修改数据时增加行级排它锁，直到事务结束才释放，这种隔离级别解决了脏读。</li><li>可重复读：事务T在数据读取时，必须增加行级共享锁，直到事务结束；事务T在修改数据过程中，必须增加行级排它锁，直到数据结束；这种隔离级别没解决幻读。</li><li>序列化：事务T在读取数据时，必须先增加表级共享锁，直到事务结束时才释放；事务T在修改数据时，必须先增加表级排它锁，直到事务结束才释放。</li></ol><p>这些隔离级别采用的是<br>MVCC:multi version concurrency controller</p><h2 id="锁机制详解"><a href="#锁机制详解" class="headerlink" title="锁机制详解"></a>锁机制详解</h2><p>锁机制是事务隔离级别的实现方式</p><h3 id="锁分类"><a href="#锁分类" class="headerlink" title="锁分类"></a>锁分类</h3><p>性能上分：悲观锁，乐观锁。<br>数据库操作上分：读锁，写锁。<br>从数据库的操作力度来分：表锁，行锁。</p><ul><li>表锁<br>开销小，加锁快。锁力度大， 一般在离线操作数据迁移的时候进行，比较少会用。</li><li>读锁（s)<br>可以进行共享读。</li><li>写锁（x)<br>不能进行写。也不能进行读。</li></ul><p>重点</p><ul><li>行锁<br>开销大，加锁慢。<br>innodb支持行锁。支持事务。</li><li>间隙锁<br>innodb采用间隙锁，在可重复读级别解决了幻读问题。</li><li>临键锁（next-ke）<br>行锁 + 间隙锁</li></ul><h2 id="锁优化建议"><a href="#锁优化建议" class="headerlink" title="锁优化建议"></a>锁优化建议</h2><h3 id="行锁分析"><a href="#行锁分析" class="headerlink" title="行锁分析"></a>行锁分析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &apos;innodb_row_locks&apos;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 查看事务</span><br><span class="line">select * from INFORMATION_SCHEMA_INNODB_TRX</span><br><span class="line"></span><br><span class="line">-- 查看锁</span><br><span class="line"></span><br><span class="line">select * from INFORMATION_SCHEMA_INNODB_LOCKS</span><br><span class="line"></span><br><span class="line">-- 查看锁等待</span><br><span class="line"></span><br><span class="line">select * from INFORMATION_SCHEMA_INNODB_LOCK_WAITS</span><br><span class="line"></span><br><span class="line">-- 释放锁。trx_mysql_thread_id可以从INNODB_TRX表里查看到</span><br><span class="line"></span><br><span class="line">kill trx_mysql_thread_id</span><br></pre></td></tr></table></figure><h3 id="锁优化建议-1"><a href="#锁优化建议-1" class="headerlink" title="锁优化建议"></a>锁优化建议</h3><ol><li>尽可能让所有数据检索都通过索引来完成，避免误索引锁升级为表锁。</li><li>合理设计索引，尽量缩小锁的范围。</li><li>尽可能减少检索条件范围，避免间隙锁。</li><li>尽量控制事务大小，减少锁定资源和时间长度，涉及事务加锁的sql尽量放在事务后执行。</li><li>尽可能低级别事务隔离。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;事务隔离级别深入理解&quot;&gt;&lt;a href=&quot;#事务隔离级别深入理解&quot; class=&quot;headerlink&quot; title=&quot;事务隔离级别深入理解&quot;&gt;&lt;/a&gt;事务隔离级别深入理解&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Mysql事务级ACID特性详解&lt;/li&gt;
+&lt;li&gt;Mysql事
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="事务" scheme="http://www.lilhui.com/tags/%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列4】索引优化1</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/</id>
+    <published>2021-05-10T16:19:33.000Z</published>
+    <updated>2021-05-10T16:21:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ol><li>详解</li><li>优化索引选择探究</li><li>索引优化Orderby与Group byy</li><li>UsingfileSort文件排序详解。</li><li>索引设计原则与实战。</li></ol><h2 id="索引优化原则"><a href="#索引优化原则" class="headerlink" title="索引优化原则"></a>索引优化原则</h2><p>避免ALL权标扫描。即时没走索引也要避免回表</p><p>扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force dindex 不一定会更快)</p><p>PS:</p><ol><li>字符串不加单引号索引失效。<br>2.</li></ol><p>三个键的组合索引，范围查询放中间或者后面是可以走索引的。</p><p>1.</p><ol start="2"><li>强制走索引。扫描行数可能少了，但是执行时间并不一定减少。</li><li>覆盖索引优化。</li><li>in和or在表数量比较大的情况下回走索引，在表记录不多的情况下选择走权标扫描。</li><li><p>like kk%不管表数据量大小都会走索引。</p><p>概念：索引下推。like KK%就是用到了索引下推优化。</p></li></ol><p>索引下推5.6引入的。<br>索引下推查询：在二级索引树过滤完like的字段后会再过滤后面条件的内容。符合的话进行会标。所谓的索引下面在推断。<br>非下推（5.6之前）：在二级索引树过滤完like后没进行后面条件判断，直接回表，在回表的内容里在进行筛选。</p><p>索引下推意味着每次索引后，要再进行比对。like结果集少的话（like  xxx%)，比对就比较快。mysql会使用。如果数量非常大的话(column &gt; xxx)，每次都要比对，不一定比回表快。</p><p>使用 trace进行分析。列出explain sql执行的过程，mysql各个节点预估的消耗量。</p><h2 id="优化总结"><a href="#优化总结" class="headerlink" title="优化总结"></a>优化总结</h2><ol><li>mysql支持两种方式的排序filesort 和index, Using Index是指Mysql扫描索引本身完成排序，index效率高，filesort效率低。</li><li>order by 满足两种情况会使用Using index<ol><li>order by语句使用索引最左前列。</li><li>使用where子句与order by子句条件组合满足索引最左前列。</li></ol></li><li>尽量在索引列上完成排序，遵循索引建立的最左前缀法则。</li><li>如果 order by的条件不在索引列上，就会产生Using filesort</li><li>能用覆盖索引尽量用覆盖索引。</li><li>group by 与order by很类似。其实质是先排序后分组，遵照索引创建顺序的最左前缀法则。对group by的优化如果不需要排序的可以加上order by null禁止排序。注意，where高于having,能卸载where先定条件就不要去having限定。</li></ol><p>单路排序：<br>一次性取出满足条件行的所有字段，在sortbuffer中进行排序，用trace工具可以看到sort_mode信息显示。sort_key,additional_files或者 sort_key,packed_additional_fileds<br>不用回表。占用内存大。<br>双路排序：<br>根据条件取出相应的排序字段和可以直接定位行数据的ID,然后在sort buffer中进行爱旭。排序完后需要取回其他需要的字段、用trace工具可以看到sort_mode信息显示 sort_key,rowid。<br>需要回表，暂用内存小。</p><p>可设置max_length_for_sort_data默认1024 。如果参与排序的字段小于这个的话，使用单路排序。如果大于的话，会使用双路排序。一般不去设置。</p><p>sort_buffer 排序内存。如果它比较小的话可以适当把max_length_for_sort_data配置小点，让优化器选择双路排序。（双路排序用ID,不用tmpfile)</p><p>sort_buffer可以考虑配置更大的max_length_for_sort_data从而使用单路排序。</p><p>非DBA就不要去调整了。</p><h2 id="怎么建索引"><a href="#怎么建索引" class="headerlink" title="怎么建索引"></a>怎么建索引</h2><p>建完表后，一般主体的业务开发完后，把跟表相关的sql语句都拉出来。根据sql语句建索引。</p><p>原则：</p><ol><li>代码先行，主体业务完成后，建索引。</li><li>联合索引尽量覆盖到你业务的所有查询。order by group by这些都需要考虑。</li><li>不要在小基数字段上建立索引。</li><li>长字符串可以采用前缀索引。varchar(255) 建索引耗费太大的空间，可以 Key index（name(20),age,position)。前缀的一部分进行建索引</li><li>where 与order by冲突时优先where</li><li>基于慢sql查询进行建索引。slow_query_log=1</li></ol><p>（provice,city,sex,age)<br>age一般范围查询，放后面，在实际查询中，查询可以把 sex按照in塞进去，这样age就可以走索引。一般一个组合索引里保持只有一个范围查询的字段。<br><img src="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495" alt="图片"></p><p><img src="http://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67" alt="图片"></p><p>经验：10个字段左右的表。一个表里建2-3个组合二级索引就差不多了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;索引优化&quot;&gt;&lt;a href=&quot;#索引优化&quot; class=&quot;headerlink&quot; title=&quot;索引优化&quot;&gt;&lt;/a&gt;索引优化&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;详解&lt;/li&gt;
+&lt;li&gt;优化索引选择探究&lt;/li&gt;
+&lt;li&gt;索引优化Orderby与Group byy&lt;/li&gt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="索引优化" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列5】索引优化2</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/</id>
+    <published>2021-05-10T16:19:33.000Z</published>
+    <updated>2021-05-10T16:21:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>分页查询优化详解。</li><li>表JOIN关联原理以及优化。</li><li>表COUNT查询优化。</li><li>阿里巴巴MYSQL规范解读。</li><li>MYSQL数据类型选择分析。</li></ol><h2 id="分页查询优化"><a href="#分页查询优化" class="headerlink" title="分页查询优化"></a>分页查询优化</h2><p>一般的分页：<br>select * from employee limit 1,100</p><ul><li>优化方式：</li></ul><ol><li><p>根据自增连续主键排序的分页：<br>改成 id&gt;xxx limit 10;</p></li><li><p>用innerjoin来改写。<br>select <em> from employees order by name limit 90000,5可以改写成：<br>select </em> from employees e inner join(select id from employees order by name limit 90000,5) ed on e.id = ed.id</p></li></ol><h2 id="表JOIN关联"><a href="#表JOIN关联" class="headerlink" title="表JOIN关联"></a>表JOIN关联</h2><p>select * from t1 inner join t2 on t1.a = t2.a</p><p>在Mysql的实现中，Nested-Loop Join有3种实现的算法：</p><p>Simple Nested-Loop Join：SNLJ，简单嵌套循环连接<br>Index Nested-Loop Join：INLJ，索引嵌套循环连接<br>Block Nested-Loop Join：BNLJ，缓存块嵌套循环连接</p><ol><li><p>嵌套循环链接  Nested-LoopJoin</p></li><li><p>Simple Nested-Loop</p></li></ol><p>简单嵌套循环连接实际上就是简单粗暴的嵌套循环，如果table1有1万条数据，table2有1万条数据，那么数据比较的次数=1万 * 1万 =1亿次，这种查询效率会非常慢。</p><ol start="2"><li>Index Nested-Loop</li></ol><p>索引嵌套循环连接是基于索引进行连接的算法，索引是基于内层表的，通过外层表匹配条件直接与内层表索引进行匹配，避免和内层表的每条记录进行比较， 从而利用索引的查询减少了对内层表的匹配次数，优势极大的提升了 join的性能：</p><p>使用场景：只有内层表join的列有索引时，才能用到Index Nested-LoopJoin进行连接。<br>由于用到索引，如果索引是辅助索引而且返回的数据还包括内层表的其他数据，则会回内层表查询数据，多了一些IO操作。</p><p><img src="http://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a" alt="图片"></p><ol start="3"><li>基于块的嵌套循环链接Block Nested-Loop Join算法<br>把驱动表的数据读入到join_buffer然后被驱动表扫描，与join_buffer的数据做对比。<br>极端条件下，会过滤 t1 数量 * t2 数量词。</li></ol><p>缓存块嵌套循环连接通过一次性缓存多条数据，把参与查询的列缓存到Join Buffer 里，然后拿join buffer里的数据批量与内层表的数据进行匹配，从而减少了内层循环的次数（遍历一次内层表就可以批量匹配一次Join Buffer里面的外层表数据）。</p><p>当不使用Index Nested-Loop Join的时候，默认使用Block Nested-Loop Join。</p><p><img src="http://images.lilhui.com/9a0f921f3deb3e7b727b293323d809ca" alt="图片"></p><p>什么是Join Buffer？<br>（1）Join Buffer会缓存所有参与查询的列而不是只有Join的列。<br>（2）可以通过调整join_buffer_size缓存大小<br>（3）join_buffer_size的默认值是256K，join_buffer_size的最大值在MySQL 5.1.22版本前是4G-1，而之后的版本才能在64位操作系统下申请大于4G的Join Buffer空间。<br>（4）使用Block Nested-Loop Join算法需要开启优化器管理配置的optimizer_switch的设置block_nested_loop为on，默认为开启。</p><ul><li>优化JOIN</li></ul><ol><li>用小结果集驱动大结果集，减少外层循环的数据量，从而减少内层循环次数：<br>如果小结果集和大结果集连接的列都是索引列，mysql在内连接时也会选择用小结果集驱动大结果集，因为索引查询的成本是比较固定的，这时候外层的循环越少，join的速度便越快。</li><li><p>为匹配的条件增加索引：争取使用INLJ，减少内层表的循环次数</p></li><li><p>增大join buffer size的大小：当使用BNLJ时，一次缓存的数据越多，那么内层表循环的次数就越少</p></li><li><p>减少不必要的字段查询：<br>（1）当用到BNLJ时，字段越少，join buffer 所缓存的数据就越多，内层表的循环次数就越少；<br>（2）当用到INLJ时，如果可以不回表查询，即利用到覆盖索引，则可能可以提示速度。（未经验证，只是一个推论</p></li></ol><h2 id="in和exsits优化"><a href="#in和exsits优化" class="headerlink" title="in和exsits优化"></a>in和exsits优化</h2><p>exists少用，能用join替代用join。<br>记住。小表驱动大表。</p><h2 id="表COUNT执行"><a href="#表COUNT执行" class="headerlink" title="表COUNT执行"></a>表COUNT执行</h2><p>5.7版本 count(1),count(id),count(*)一样，几乎不用管。</p><p>分析：count(1) 不取值按行累加。count(*)也一样。count(字段) 拿出值走二级索引。count(id)走聚簇索引。<br>聚簇索引一般比二级索引大，所以count(字段有索引)比count(id)效率大一点点。</p><ul><li>常见优化方法<br>维护表数据量。</li></ul><p>innodb为什么不维护全表数量。是因为MVCC。多版本数据控制。不同的事务count（*）可能不一样。</p><ol><li>count(*)</li></ol><p>2.<br>对总记录数没有特别精确可以用：</p><pre><code>show table status like &apos;employees&apos;;</code></pre><ol start="3"><li>redis维护。数据库缓存双写一致代价很高。</li><li>增加数据库计数表。</li></ol><h2 id="阿里巴巴Mysql规范手册解读"><a href="#阿里巴巴Mysql规范手册解读" class="headerlink" title="阿里巴巴Mysql规范手册解读"></a>阿里巴巴Mysql规范手册解读</h2><p>单标行不要超过500万行，或者单标容量超过2G，推荐分表。<br>如果预计三年后的数据量根本达不到这个级别，就不要在建表时就进行分表。</p><ul><li>索引规约</li></ul><ol><li>有唯一键字段，即使是组合字段，也要建成唯一字段。</li><li>超过三个表不能进行join.</li><li>在varchar上建立索引，必须指定索引长度。</li><li>页面搜索严禁使用做模糊或者全模糊。这种场景适合走搜索引擎。</li></ol><ul><li>数据类型选择</li></ul><p><img src="http://images.lilhui.com/8a29aa20c1f33d5b34044ff19706cf61" alt="图片"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;分页查询优化详解。&lt;/li&gt;
+&lt;li&gt;表JOIN关联原理以及优化。&lt;/li&gt;
+&lt;li&gt;表COUNT查询优化。&lt;/li&gt;
+&lt;li&gt;阿里巴巴MYSQL规范解读。&lt;/li&gt;
+&lt;li&gt;MYSQL数据类型选择分析。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;分页查询优化&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="索引" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列3】执行原理</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_3/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_3/</id>
+    <published>2021-05-10T16:14:20.000Z</published>
+    <updated>2021-05-10T16:15:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="登录建立连接"><a href="#登录建立连接" class="headerlink" title="登录建立连接"></a>登录建立连接</h2><ol><li>登录维持session</li><li>建立连接，权限缓存<ul><li>权限缓存在链接里。不用每次查询都校验。效率高。</li></ul></li></ol><p>查看链接数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show processlist;</span><br></pre></td></tr></table></figure></p><p>my.conf</p><p>query_cache_type<br>一般不用。</p><p>查看缓存命中情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show status like &apos;%Qcache%&apos;&apos;</span><br></pre></td></tr></table></figure></p><p>为什么这种缓存是鸡肋？</p><p>缓存的时候会经常刷新，不适用热点业务。</p><p><img src="http://images.lilhui.com/28ffc030006c338903910a74f6106973" alt="图片"></p><h2 id="词法分析器"><a href="#词法分析器" class="headerlink" title="词法分析器"></a>词法分析器</h2><p>sql语句拆分成语法树。</p><p>语法树：结构化的存储。<br><img src="http://images.lilhui.com/52eb397078359404e10612797ab9fc85" alt="图片"></p><p>语法树拆分后的使用场景：<br>在分布式事务中 二阶段提交。<br>commit,rollback</p><ol><li>通过语法树会记录反向操作。在回滚的时候直接rollback。</li><li>补偿机制。构建补偿sql。进行回滚重放。<br>3.<h2 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h2></li></ol><p>条件查询，会判断哪种效率高用哪种，或者判断用哪种索引或者不用索引。</p><h2 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h2><p>调用响应的引擎执行操作。</p><h2 id="bin-log归档"><a href="#bin-log归档" class="headerlink" title="bin-log归档"></a>bin-log归档</h2><p>不小心删了库怎么找回来？</p><p>server层实现的 bin-log技术。</p><p>bin-log记录的逻辑语句的影响。</p><p>bin-log格式有三种statement，row，mixed</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">binlog-format=ROW</span><br><span class="line">sync-binlog=1</span><br></pre></td></tr></table></figure><p>statement:记录的是这条操作语句的逻辑， 产生结果的过程。<br>row: 记录这个语句影响那条记录之后的结果。<br>row: mixed两种都记录。</p><p>如果记录的是statement</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update * from xxx where h=xx or b=xxx</span><br></pre></td></tr></table></figure><p>优化器走的索引不一致，可能产生主从不一致。</p><p>所以最好bin-log用row</p><h2 id="bin-log恢复"><a href="#bin-log恢复" class="headerlink" title="bin-log恢复"></a>bin-log恢复</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush logs;</span><br></pre></td></tr></table></figure><p>重新开个bin-log文件进行记录。</p><p>恢复<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --no-defaults /**/*/mysql-bin.00001 | mysql -uroot -p xxx</span><br></pre></td></tr></table></figure></p><p>参数：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--start-position</span><br><span class="line">--end-position</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;登录建立连接&quot;&gt;&lt;a href=&quot;#登录建立连接&quot; class=&quot;headerlink&quot; title=&quot;登录建立连接&quot;&gt;&lt;/a&gt;登录建立连接&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;登录维持session&lt;/li&gt;
+&lt;li&gt;建立连接，权限缓存&lt;ul&gt;
+&lt;li&gt;权限缓存在链接里。
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="执行原理" scheme="http://www.lilhui.com/tags/%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列2】执行计划</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_2/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_2/</id>
+    <published>2021-05-10T16:13:11.000Z</published>
+    <updated>2021-05-10T16:15:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="执行计划"><a href="#执行计划" class="headerlink" title="执行计划"></a>执行计划</h2><p>分析sql执行数据<br>explain</p><p>语法：<br>explain ${sql}</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain extended select * from (select * from film where id = 1) tmp;</span><br><span class="line">show warnings;</span><br></pre></td></tr></table></figure><p>TYPE 类型：</p><ol><li><p>SYSTEM:查询的整张表只有1个 select （select 1 from)</p></li><li><p>const:查询的结果跟const有的比。select 1 from</p></li><li><p>eq_ref:使用的唯一索引，效率仅次于 const</p></li><li><p>ref:普通索引，可能查出多条。或者唯一索引的部分前缀。联合索引等。</p></li><li><p>range:索引查出了范围集。</p></li></ol><p>以上都是走索引。</p><p>优化的方向</p><ol start="6"><li><p>index:全索引扫描。尽量优化。</p></li><li><p>ALL:全聚簇索引扫描。</p></li></ol><p>索引选择有优化，有的全表扫描效率更高就不选择索引。</p><p>如果结果集二级索引和主键索引全包含的情况下：<br>有主键索引也有二级索引，会优先索引二级索引。主键索引比较大。</p><ul><li>key_len</li></ul><p>组合索引(联合索引)，说明用到了多长的索引。</p><p>key_len计算规则：</p><ol><li>字符串<br>char(n) :字节长短<br>varchar(n): 3n+2。 +2存储字符串长度。</li><li>数值类型<br>tinyint:1字节。<br>smallint:2字节。<br>int：4字节。<br>bigint: 8字节。</li><li>时间类型<br>date: 3字节<br>timestamp:4字节</li></ol><h2 id="extra"><a href="#extra" class="headerlink" title="extra"></a>extra</h2><ol><li>Using index说明<br>查询的结果集在索引里，不用回表。</li></ol><ul><li>覆盖索引<br>一种查找方式，结果集在一颗索引树里。不用回表。</li></ul><ol start="2"><li>Using where<br>使用了where但是没有被索引覆盖。</li><li>Using index condition<br>查询的列不完全被索引覆盖，where条件中是一个前导列的范围。</li><li>Using templrary,Using index<br>Using templrary 使用了临时表。</li></ol><p>查询语句有distint但是没有走索引的话，会在内存里建立临时表去重。如果有走索引的话，会在所以查询的时候直接进行distinc去重。变成</p><ol start="5"><li>Using fileSort</li></ol><p>查询里有order by。但是没有建立索引。<br>如果有建索引会变成 Using index。因为索引已经是排好序了。</p><p>将用外部排序二不是所以你排序，数据较小时从内存排序。否则需要在磁盘完成。</p><ol start="6"><li>select tables optimized away<br>有max,min查询。使用了索引。</li></ol><ul><li>like查询</li></ul><p>like ‘ts%’  会使用索引<br>like ‘%ts’  不会使用索引。但是可以优化成全覆盖索引</p><ul><li>原则：<br>少用or</li></ul><p>因为or一次就是扫描一次。or多次可能比全表扫还慢。</p><ul><li>范围查找优化</li></ul><p>select * from employee where age &gt; 10 and age &lt; 1000<br>可能不走索引，印为mysql判断后可能全表扫描会比较快。</p><h2 id="索引总结表"><a href="#索引总结表" class="headerlink" title="索引总结表"></a>索引总结表</h2><p><img src="http://images.lilhui.com/c6d412fcc1a203a0538fdd1c70c19c5a" alt="图片"></p><p>like kk%相当于=常量，%kk和%kk%相当于范围。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;执行计划&quot;&gt;&lt;a href=&quot;#执行计划&quot; class=&quot;headerlink&quot; title=&quot;执行计划&quot;&gt;&lt;/a&gt;执行计划&lt;/h2&gt;&lt;p&gt;分析sql执行数据&lt;br&gt;explain&lt;/p&gt;
+&lt;p&gt;语法：&lt;br&gt;explain ${sql}&lt;/p&gt;
+&lt;figure 
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="执行计划" scheme="http://www.lilhui.com/tags/%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列1】数据结构</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_1/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_1/</id>
+    <published>2021-05-10T16:11:18.000Z</published>
+    <updated>2021-05-10T16:13:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数据结构基础"><a href="#数据结构基础" class="headerlink" title="数据结构基础"></a>数据结构基础</h2><p><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank" rel="noopener">https://www.cs.usfca.edu/~galles/visualization/Algorithms.html</a></p><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul><li><p>二叉树：可能产生单边链，对查询效率就很低。</p></li><li><p>红黑树：二插平衡树。 树的高度会很高。</p></li><li><p>B树：<br><img src="http://images.lilhui.com/d618d928c25644e37922e3e6175a156a" alt="图片"></p></li></ul><ol><li>非叶子节点也有存data。一个元素占用1K。一个NODE最大 16个元素。</li><li>所以数量大的话，树高度也会很高。</li></ol><p>PS：大概估计是1kb 总共能存16个元素</p><ul><li>B+树：<br>平衡，且树矮<br>索引的基本结构：B+树</li></ul><ol><li>非叶子节点不存储data，只存储所以。</li><li>叶子节点包含所有索引字段</li><li>叶子节点用指针连接。提高访问的性能。</li></ol><p><img src="http://images.lilhui.com/27e421c5da22e9d5b06447d5212dff64" alt="图片"></p><p>一个NODE(树的节点） 16K</p><p>按照页来分配，一个16K。<br>一次磁盘IO很慢，内存很快。所以比较费时间的是从磁盘node到NODE查询。</p><p>一个索引8B<br>一个地址6B</p><p>16KB可以放  16KB/(8+6)个元素1170</p><p>那么2层的B+tree<br>1170 * 1170 = 1368900</p><p>叶子节点有data一个NODE放16个元素。一个元素1K.<br>算上叶子节点 1170 <em> 1170 </em> 16<br>个元素。<br>大概2000多万。<br>树的高度3</p><p>所以只要3次IO。根节点常住内存。</p><h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="mysam"><a href="#mysam" class="headerlink" title="mysam"></a>mysam</h3><p><img src="http://images.lilhui.com/58d102c4891d5aad217c14d7187c0a70" alt="图片"></p><p>叶子节点存的数据地址。</p><h3 id="innodb"><a href="#innodb" class="headerlink" title="innodb"></a>innodb</h3><p><img src="http://images.lilhui.com/a3cabd170f1ab82feabb8dad5119086c" alt="图片"></p><p>叶子节点存的是具体的data值。</p><h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>MyInSam<br>ID主键是非聚簇索引。</p><p>Inodb<br>ID主键是聚簇索引。</p><h2 id="关于主键"><a href="#关于主键" class="headerlink" title="关于主键"></a>关于主键</h2><ol><li><p>建立索引：<br>组织B+。如果没有索引的话，选择第一列所有元素都不相等的元素来组织。如果没找到，建立一个隐藏列。这个隐藏列是唯一ID 组织B+树。</p></li><li><p>整型ID的作用：<br>在建立索引和查询索引的过程中，会进行多次的比大小。Int效率高。如果是String的话必须每个字符都要对比。并且占用空间也小，节省固态硬盘，节省成本。</p></li><li><p>自增：<br>HASH索引下。很快可以对应到磁盘文件地址。<br><img src="http://images.lilhui.com/4ddc87ded96ce3bc73dc860621133b47" alt="图片"><br>优点：等值查询很快。<br>缺点：范围查询效率不好。并且会产生HAHD冲突。</p></li></ol><ol start="4"><li><p>聚簇索引和非聚簇索引那个快？<br>聚簇索引会比较快。</p></li><li><p>非主键索引：<br><img src="http://images.lilhui.com/7b45a9e7e7db9ddba1b4fea568e3401f" alt="图片"><br>非聚簇索引的叶子节点的数据放的是聚簇索引索引节点值。<br>PS：INODB只有一个聚簇索引。<br>为什么不直接放数据？节约存储空间，可以多存放非常多数据。</p></li></ol><h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><p>联合索引底层存储</p><ul><li>索引是帮助Mysql搞笑查询排好序的数据结构。</li></ul><p>联合索引也是排好序的数据结构。</p><p><img src="http://images.lilhui.com/ecea37f94b3fa604553ce6eb6c765788" alt="图片"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;数据结构基础&quot;&gt;&lt;a href=&quot;#数据结构基础&quot; class=&quot;headerlink&quot; title=&quot;数据结构基础&quot;&gt;&lt;/a&gt;数据结构基础&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.cs.usfca.edu/~galles/visualizatio
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="索引" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列6】OOM调优</title>
+    <link href="http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_6/"/>
+    <id>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_6/</id>
+    <published>2021-05-10T16:03:18.000Z</published>
+    <updated>2021-05-10T16:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="JVM-OOM"><a href="#JVM-OOM" class="headerlink" title="JVM OOM"></a>JVM OOM</h2><ul><li>堆区<br>Heap</li><li>方法区<br>Per</li><li>栈区<br>StackOverFlow</li></ul><h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><p>调优参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:MetaspaceSize=10m</span><br><span class="line">-XX:MaxMetaspaceSize=10m</span><br></pre></td></tr></table></figure><p>1、最大、最小设置成一样大。<br>2、程序运行起来后，通过visualVM、arthas查看占用了多少内存，向上调优，预留20%以上的空间。</p><h2 id="虚拟机堆"><a href="#虚拟机堆" class="headerlink" title="虚拟机堆"></a>虚拟机堆</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [PSYoungGen: 1344K-&gt;320K(2048K)] 7894K-&gt;7118K(9216K), 0.0071516 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] </span><br><span class="line"></span><br><span class="line">[GC类型 (GC原因) [新生代垃圾收集器: gc前新生代的内存使用情况-&gt;gc后新生代的内存使用情况(新生代总内存)] gc前堆内存的使用情况-&gt;gc后堆内存的使用情况(堆总内存), gc耗时] [Times: gc阶段用户空间耗时 gc阶段内核空间耗时, gc阶段实际耗时] </span><br><span class="line"></span><br><span class="line">[Full GC (Ergonomics) [PSYoungGen: 320K-&gt;0K(2048K)] [ParOldGen: 6798K-&gt;5930K(7168K)] 7118K-&gt;5930K(9216K), [Metaspace: 9296K-&gt;9233K(1058816K)], 0.6733958 secs] [Times: user=1.76 sys=0.00, real=0.68 secs] </span><br><span class="line"></span><br><span class="line">[GC类型 (GC原因) [新生代垃圾收集器: gc前新生代的内存使用情况-&gt;gc后新生代的内存使用情况(新生代总内存)] [老年代垃圾收集器: gc前老年代的内存使用情况-&gt;gc后老年代的内存使用情况(新生代总内存)] gc前堆内存的使用情况-&gt;gc后堆内存的使用情况(堆总内存), [Metaspace: gc前元空间的内存使用情况-&gt;gc后元空间的内存使用情况(元空间总内存)], gc耗时] [Times: gc阶段用户空间耗时 gc阶段内核空间耗时, gc阶段实际耗时]</span><br></pre></td></tr></table></figure><ul><li>调优参数</li></ul><p>-Xms10m -Xmx10m</p><p>1、预留30%以上的空间<br>2、周期性看日志，重点关注full gc频率</p><h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><ul><li>调优参数</li></ul><p>-Xmss200k</p><p>栈大小相同，栈深度不同，为什么？<br>因为栈上会分配数据。导致栈帧变大。深度会变浅。</p><h2 id="调优工具"><a href="#调优工具" class="headerlink" title="调优工具"></a>调优工具</h2><ol><li>jps</li></ol><p>-q：只显示Java进程的ID</p><p>-m：输出Java进程的ID + main函数所在类的名词 + 传递给main函数的参数</p><p>-l：输出Java进程的ID + main函数所在类的全限定名（包名 + 类名）</p><p>-v：输出Java进程的ID + main函数所在类的名称 + 传递给JVM的参数<br>应用：可通过此方式快速查看JVM参数是否设置成功</p><p>-V、hostid基本用不到，这里就不做介绍了，感兴趣的同学可以自行百度学习。</p><ul><li>如何识别Java进程</li></ul><p>jps输出的信息全是Java进程的信息，是如何做到的？</p><p>Java进程在创建的时候，会生成相应的文件，进程相关的信息会写入该文件中。Windows下默认理解是</p><ol start="2"><li>jstate</li></ol><p>Hotspot自带的工具，通过该工具可实时了解某个进程的class、compile、gc、memory的相关信息。具体可通过该工具查看哪些信息可通过jstat -options查看.</p><p>为什么说是实时呢，因为底层实现是mmap，及内存映射文件</p><ul><li><p>jstat输出的这些值从哪来的<br>PerfData文件<br>Windows下默认理解是C:\Users\username\AppData\Local\Temp\hsperfdata_username<br>Linux下默认路径是/tmp/hsperfdata_username</p></li><li><p>PerfData文件</p></li></ul><p>1、文件创建<br>取决于两个参数<br>-XX:-/+UsePerfData<br>默认是开启的<br>关闭方式：-XX:-UsePerfData。如果关闭了，就不会创建PerfData文件<br>-XX:-/+PerfDisableSharedMem（禁用共享内存）<br>默认是关闭的，即支持内存共享。如果禁用了，依赖于PerfData文件的工具就无法正常工作了<br>2、文件删除<br>默认情况下随Java进程的结束而销毁<br>3、文件更新<br>-XX:PerfDataSamplingInterval = 50ms<br>即内存与PerfData文件的数据延迟为50ms</p><p>纯Java编写<br>\openjdk\jdk\src\share\classes\sun\tools\jstat\Jstat.java</p><p>3、jinfo<br>4、jstack<br>5、jmap<br>6、jconsole<br>7、visualVM<br>8、arthas</p><h3 id="Java-agent"><a href="#Java-agent" class="headerlink" title="Java agent"></a>Java agent</h3><p>1、命令行<br>2、attach</p><h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>1、统计线程数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l 6972 | grep &apos;java.lang.Thread.State&apos; | wc -l</span><br></pre></td></tr></table></figure><p>2、检测死锁</p><p>可使用jstack、jconsle、visualVM</p><p>3、CPU占用过高</p><ol><li>定位到占用CPU最高的进程</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -H -p 6290</span><br></pre></td></tr></table></figure><p>线程ID由十进制转成十六进制，用Python</p><p>jstack 6290（进程ID）|grep 18a1（线程ID，十六进制） -A 30</p><p>问题：<br>模拟OOM并思考如何调优<br>死锁、CPU占用过高问题排查<br>Java Agent的两种实现方式自己写DEMO  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;JVM-OOM&quot;&gt;&lt;a href=&quot;#JVM-OOM&quot; class=&quot;headerlink&quot; title=&quot;JVM OOM&quot;&gt;&lt;/a&gt;JVM OOM&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;堆区&lt;br&gt;Heap&lt;/li&gt;
+&lt;li&gt;方法区&lt;br&gt;Per&lt;/li&gt;
+&lt;li&gt;栈区&lt;b
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列5】精通垃圾回收</title>
+    <link href="http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_5/"/>
+    <id>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_5/</id>
+    <published>2021-05-10T16:01:52.000Z</published>
+    <updated>2021-05-10T16:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="分代复制算法指针移动原理"><a href="#分代复制算法指针移动原理" class="headerlink" title="分代复制算法指针移动原理"></a>分代复制算法指针移动原理</h2><p>数据发生了移动，为什么依然能够访问到。</p><p>JVM四大层面</p><p>java语法<br>java字节码<br>openjdk原理</p><p>openJdk源码</p><h2 id="强软弱虚引用"><a href="#强软弱虚引用" class="headerlink" title="强软弱虚引用"></a>强软弱虚引用</h2><p>前提：<br>未发生GC 所有的对象都是白色。<br>发生GC时新建的对象都是hi黑色。</p><ul><li>标记阶段做的事情</li></ul><ol><li><p>初始化标记<br>只标记 GC Roots直接关联的对象</p><p>对象直接充当GC Root</p><p>只标记A,E 标记成灰色</p><p>会STW，耗时很少。</p></li><li><p>并发标记阶段 （三色标记）<br>不需要STW<br>耗时很久<br>将GC Roots直接关联的对象所有引用链全部跑一遍<br>一层一层遍历，正常所有被标记的都会变成黑色。</p></li></ol><ul><li>三色标记</li></ul><p>GC:<br>串行<br>用户线程会STW<br>一个Thread执行gc<br>并行<br>用户线程STW,多个GC线程运行<br>并发<br>不需要STW,用户线程，GC线程并发。（需要三色标记）</p><ol start="3"><li>最终标记</li></ol><p>并发标记会带来三个问题</p><ol><li>多标<br>A-&gt;B-C  A是黑色，B是灰色，C是白色，此时 A不引用B了。B还是灰色，没有变成黑色。 不会被回收。</li><li><p>少标<br>标记程序在运行的过程中，用户线程依然创建对象。</p><p>由于是新创建的所以是黑色的。<br>创建的对象会躲过这次GC,但是下次GC有可能会被回收。</p></li><li><p>漏标<br>GC标记程序运行过程中，引用链发生改变。</p><p>B（灰）对D引用取消了。<br>A（黑）引用了D.<br>这个会导致D被回收，执行就会报错。</p></li></ol><p>解决方法：增量更新，原始快照。</p><p>多标和少标在下轮GC会被回收掉。</p><p>如何解决漏标：</p><ol><li><p>当黑色对象直接引用了一个白色对象后，我们就将这个黑色对象记录下来（加入 oopMap)，在扫描完成后，重新对这个黑色对象扫描,这个就是<strong>增量更新</strong>（Incremental Update）</p></li><li><p>当删除了灰色对象到白色对象的直接或间接引用后，就将这个灰色对象记录下来，再以此灰色对象为根，重新扫描一次。这个就是<strong>原始快照</strong>（Snapshot At TheBeginning，SATB）</p></li></ol><ul><li>读写屏障</li></ul><p>原方法write</p><p>在执行前加上 pre_write,在执行之后执行 post_write。</p><h2 id="核心垃圾回收期"><a href="#核心垃圾回收期" class="headerlink" title="核心垃圾回收期"></a>核心垃圾回收期</h2><p>现在的垃圾回收期发展趋势：模块化，支持并发。<br>默认 Parallel Scvenge，Parallel Old</p><h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>分代<br>写屏障 + 增量更新</p><h3 id="G1"><a href="#G1" class="headerlink" title="G1"></a>G1</h3><p>基于region 默认2M，4M,8M,16,32M</p><p>2048个Regin<br>每个 region都可以是e,f,to老年代，但是一个region只能有一个角色。</p><p>控制耗时</p><p>Garbege First == G1</p><p>为什么耗内存？<br>20% - 30% 内存存一些数据结构。<br>优先队列维护一个 Region优先级数据。每次回收10ms。能回收几个region算几个。</p><p>空间换时间。</p><ul><li>记忆集与卡表</li></ul><p>首先跨代引用的问题？</p><p>存在跨代引用时，在进行YGC时，如果young generation的Y对象被old generation中O对象引用，那么称O对象存在跨代引用，而且Y对象应该在本次垃圾回收中存活下来，所以old generation的对象在YGC时也是Strong root的一部分，如果每次YGC都去扫描old generation中所有对象的话，肯定会非常耗时。</p><p>解决跨代引用<br>老年代引用新生代。<br>YGC时候对象被回收了。老年代会报错<br>新生代引用老年代。<br>YGC时候，也要扫描整个老年代，非常耗时。</p><p>记忆集：GenRemSet<br>卡表：CardTable</p><p>记忆集是一个理论，卡表是实现。</p><ul><li><p>卡表的实现原理<br>每个Region 2M.<br>卡表<br>卡页</p><p>卡表中有2048个卡页</p><p>一个卡页对应一个Region<br>一个卡页是512B</p><p>卡页中的一个B标识Region中的4KB(2M/512)<br>00000001<br>标记这个region是否有对年轻代的引用。</p></li></ul><p>如果没有记忆集：<br>需要遍历所有的老年代的region,遍历所有region中的所有对象。</p><p>说白了，记忆标记了某个region是否有引用年亲代引用，然后只遍历有年轻代引用的region。减少了遍历的region数量。</p><ul><li>savePoint</li></ul><p>安全点：</p><p>150 + 90 + 275 - 40 = </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;分代复制算法指针移动原理&quot;&gt;&lt;a href=&quot;#分代复制算法指针移动原理&quot; class=&quot;headerlink&quot; title=&quot;分代复制算法指针移动原理&quot;&gt;&lt;/a&gt;分代复制算法指针移动原理&lt;/h2&gt;&lt;p&gt;数据发生了移动，为什么依然能够访问到。&lt;/p&gt;
+&lt;p&gt;JVM
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列4】精通String</title>
+    <link href="http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_4/"/>
+    <id>http://www.lilhui.com/2021/05/11/java/jvm/jvm_deep_4/</id>
+    <published>2021-05-10T16:00:07.000Z</published>
+    <updated>2021-05-11T13:17:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h2><p>String s2 = “dd” + new String(“test”);<br>四个 string<br>3个char</p><h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>UseCompressedoops<br>压缩的是对象指针的长度</p><p>UseCompressedClassPointers<br>压缩的是klass对象指针的长度</p><p>如果不压缩，则在arrayOopDesc中声明的非静态字段之后分配，如果压缩，它将占用oopDesc中_klass字段的后半部分。</p><ul><li><p>数组长度怎么算</p><p>数组<br>对应的klass是：TypeArrayKlass实例<br>对应的oop：TypeArrayOop</p><p>对象的内存布局</p><pre><code>对象头    mark word    klass pointer实例数据填充</code></pre><p>不开启解压的情况：<br>Mark word 8B<br>klass point<br>metadata._compressed_klass<br>数组长度4B</p><pre><code>这种情况下，klass + 数组长度用了多少字节    12 = 8 + 4开启压缩的情况下：_metadata._compressed_klass 数组长度4Bklass + 数组长度= 4 + 4 = 8B</code></pre></li></ul><p>=====</p><h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><p>可重入锁很像 lock + 1 unlock -1 计数==0<br>释放</p><p>对象存活依据</p><ul><li><p>引用计数</p><p>例外，无法处理循环依赖。</p><p>初始化死锁</p></li><li><p>可达性分析</p><p>GC Roots<br>oop<br>局部变量表<br>字符串常量池</p></li></ul><p>JVM的GC</p><p>给存活的对象打标机，回收没有标记的对象。</p><h2 id="内存池"><a href="#内存池" class="headerlink" title="内存池"></a>内存池</h2><ul><li><p>内存分配算法<br>指针碰撞（openJdk, 无限CAS-失败就是已经被使用了 )</p><p>空闲列表：维护一个表存放 已用，空闲，已回收 描述。</p></li></ul><ol><li><p>Memory Pool内存池<br>管理内存块。<br>list<memorychunk *> m_chunks;<br>是一个列表，存放所有向OS申请的内存块。</memorychunk></p><ul><li><p>能做的事情<br>向OS要内存<br>mall哦错，calloc<br>释放内存<br>没有垃圾回收器，需要手动释放</p><p>其他<br>打印chunk信息</p></li></ul></li><li><p>Memory chunk<br>直接持有内存</p></li><li><p>Memory Cell<br>chunk中的单元。内存块。</p></li></ol><p>Memory Pool</p><ol><li>根据要的内存对齐后计算出要申请的内存大小。</li><li>向操作系统申请内存。</li><li><p>根据不同的垃圾回收算法填充不同的list<br>标记清除，标记-整理，回收的是整个chunk.</p><pre><code>m_avaliable_tablem_used_table</code></pre><p> 分代+复制算法，</p><pre><code>空闲可用已用待交换</code></pre></li></ol><ul><li><p>标记-清除算法<br>面向整个堆<br>产生碎片</p><p>如果你需要分配大对象，需要连续的空间。但是内存是碎片化的。</p></li><li><p>标记-整理算法<br>内存碎片合并<br>老年代基本属于这个算法。</p><p>合并内存，解决碎片问题。<br>耗CPU</p></li></ul><pre><code>Eden区，对象朝生夕死。碎片很多。碎片很多，合并碎片的时候需要STW。合并碎片的时候有两种对象需要处理：    1. 这个空间已被释放。直接合并    2. 这个空间的空间未被释放        对象搬家（合并内存，数据移动，指针移动）</code></pre><ul><li>分代-复制算法<br>JVM使用这个算法，解决标记合并碎片消耗性能过高、GC停止用户线程过长问题。<br>举例<ol><li>将内存分段。 一半用（0-10） from，一半闲（11-20）to</li><li>发生GC的时候不需要整理，交换空间标记，角色切换。<br>标记<br>角色切换<br>原先from区的内存处理<br>标记的对象清理。存活的对象需要移动到新的内存区域（to 区）<br>数据整理<br>指针整理</li></ol></li></ul><p>注意：<br>不管现在的9种垃圾回收器，还是以后出现的垃圾回收器，都是这三种垃圾回收算法。</p><p>指针移动，老的指针地址不能变，这个怎么做到？(对象的hashCode不变)<br>指针是动态计算出来的。<br>公式依赖的变量在变。</p><p>return (pvoid)((ulong)chunk-&gt;get_data() + get_start()* chunk-&gt;get_align_size() )<br>卡表，记忆集</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>内存池，JVM不需要手动释放内存，由垃圾回收器自动回收。</p><p>自动回收算法</p><p>标记-清除算法。面向整个堆，会产生碎片，在申请大对象时候，会有问题。</p><p>标记-整理算法。老年代常用，会在标记清理后整理内存，但是CPU耗费太大，STW时间会比较长。<br>标记，清理，数据整理，指针整理。</p><p>数据块(chunk cell)整理过程<br>从前到后合并一次<br>从后到前合并一次<br>分代-复制<br>解决整理算法性能太低，而且新生代的特点是朝生夕死。</p><pre><code>不需要清理，只需要转移数据和指针切换 from,to角色问题：      指针切换了以后为什么可以访问？    hashcode会一直变。运行时计算出来的，所以没影响。</code></pre><p>PS:对象模型，为什么要字节对齐。8B<br>CPU提升速率。<br>CPU读是 4</p><pre><code>当数据从1字节开始的时候，问题很复杂，首先先将前4个字节读到寄存器，并再次读取4-7字节的数据进寄存器，接着把0字节，4,6,7字节的数据剔除，最后合并1,2,3,4字节的数据进寄存器，对一个内存未对齐的寄存器进行了这么多额外操作，大大降低了CPU的性能。但是这还属于乐观情况，上文提到内存对齐的作用之一是平台的移植原因，因为只有部分CPU肯干，其他部分CPU遇到未对齐边界就直接罢工了。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;遗留问题&quot;&gt;&lt;a href=&quot;#遗留问题&quot; class=&quot;headerlink&quot; title=&quot;遗留问题&quot;&gt;&lt;/a&gt;遗留问题&lt;/h2&gt;&lt;p&gt;String s2 = “dd” + new String(“test”);&lt;br&gt;四个 string&lt;br&gt;3个char&lt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列3】底层优化</title>
+    <link href="http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_3/"/>
+    <id>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_3/</id>
+    <published>2021-05-10T15:58:06.000Z</published>
+    <updated>2021-05-10T16:00:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>对象布局</p><pre><code>对象头    Mark Word        32bit   4B        64bit   8B    类型指针    Klass pointer        对象所属类的元信息的实例指针            instanceKlass        指针压缩            开启后  4B            关闭    8B    数组长度        如果这个对象不是数组 占 0B        如果这个对象是数组 占4B 表示这个对象数组的元素个数实例数据    类的非静态属性，生成对象就是实例数据。    对象属性    boolean 2B    byte 1B    char 2B    int 4B    float 4B    double 8B    引用类型：4B(指针压缩) 8B(不压缩)    long 8B对齐填充    8B字节对齐，java中所有的对象都是8B字节对齐。    如果一个对象占3个字节，JVM会补2个字节凑成32B达到8字节对齐。    为什么要做填充？        1. 效率提高</code></pre><p>计算类大小</p><p>指针压缩<br>开启后指针压缩<br>16B = 8B（markword)+ 4B(klass point) + 0B + 0B = 12<br>需要补到16<br>关闭指针压缩<br>16B = 8 + 8 + 0 + 0</p><p>数组对象<br>开启指针压缩</p><p>数组对象在关闭指针压缩的情况下，会出现两端填充。<br>不止这一种情况。</p><p>一个OOP能标识最大堆空间</p><p>32bit内存最大 4G</p><p>一个OOP,存储的时候是3B,32bit<br>使用的时候胃部补了3个0， 35bit</p><p>OOP32G瓶颈</p><p>32G不够用了，需要扩容怎么办？<br>解决方法：8字节对齐 改成16字节对齐。</p><p>8 自己对齐，内存地址会补3个0.16字节对齐会补4个0<br>32G*2 = 64G<br>改源码。</p><p>JDK为什么没用16字节对齐</p><pre><code>1. 没必要32G已经极限了。GC耗费CPU资源。太大，暂停时间太长。2. 非空间</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>对象的两种内存结构 kclass,oop</li><li>计算三种类型的对象大小。</li><li>指针压缩</li></ol><h2 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h2><ol><li>项目上线前的预估调优。</li><li>项目上线初期，基于日志做一些基础调优。</li><li>发生oom，频繁full gc，做测地的调优</li></ol><ul><li>调优的点</li></ul><ol><li>jvm内存模型的调优。</li><li>热点代码缓冲区的调优。</li></ol><h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><ul><li>亿级流量项目的调优</li></ul><p>一个UV会访问20个左右的PV<br>500W用户。</p><p>下单转换率 10% = 50W</p><p>40%订单在前两小时四完成。<br>每分钟1200笔订单。<br>周边流量都加起来，大概</p><p>没妙产生200M对象<br>总共2700M</p><p>每个操作要3秒 200 * 3 = 600<br>每秒钟 600M对象进入Eden区</p><p>14秒发生一次young gc</p><p>600M对象还存活，无法被回收</p><p>触发空间担保。</p><p>老年代6400M<br>多长时间触发一次fullgc</p><p>9 * 14 = 126秒一次full gc</p><p>本质：<br>有对象在young gc时未被清理干净。<br>触发空间担保，动态年龄判断，15次<br>进入了老年代。</p><ul><li>解决之道：</li></ul><p>对象尽量在 young gc阶段回收掉。</p><p>堆最小是物理内存的64份之一，最大是物理内存的4分之一。</p><p>oop<br>java对象在JVM中的存在形式</p><pre><code>opp-klass模型</code></pre><p>两种对象内存结构<br>条虫</p><p>计算三种类型的对象<br>开启指针压缩<br>关闭指针压缩<br>指针压缩<br>实现原理<br>32G瓶颈<br>如何扩展<br>JDK源码，OS源码<br>何为JVM调优</p><ol><li>预估调优</li><li>小规模调优</li><li>OOM,full gc频繁<br>调什么？</li><li>方法区</li><li>虚拟机栈</li><li>堆区</li><li>热点代码缓冲区</li></ol><p>亿级流量预估调试实战</p><p>GC日志</p><p>减少fullgc stw时间太长。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对象布局&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;对象头
+    Mark Word
+        32bit   4B
+        64bit   8B
+    类型指针    Klass pointer
+        对象所属类的元信息的实例指针
+            
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列2】执行引擎</title>
+    <link href="http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_2/"/>
+    <id>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_2/</id>
+    <published>2021-05-10T15:52:31.000Z</published>
+    <updated>2021-05-10T16:00:32.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="执行引擎"><a href="#执行引擎" class="headerlink" title="执行引擎"></a>执行引擎</h2><p>JVM运行Java程序的一套子系统</p><pre><code>两种解释器字节码解释器    Java字节码-&gt; C++代码-&gt;硬件编码模板解释器    Java字节码-&gt;硬件编码    底层实现过程    1. 申请一块内存：可读可写可执行。2. 将处理new字节码的硬编码拿过来    3. 将处理new字节码的硬编码写入申请的内存。    4. 申请一个函数指针，用这个函数指针执行这块内存。    5. 调用的时候，直接通过这个指针调用。</code></pre><h2 id="三种运行模式"><a href="#三种运行模式" class="headerlink" title="三种运行模式"></a>三种运行模式</h2><ol><li>-Xint</li><li>-Xcomp</li><li>-Xmixed</li></ol><h2 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h2><p>正常的C++函数生成的硬编码都有堆栈操作。</p><ul><li><p>字节码解释器<br>解释执行的<br>和编译器没关系</p></li><li><p>模板解释器<br>执行的因编码是即时编译器编译的。</p></li></ul><h3 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h3><p>即时编译器</p><pre><code>C1    c1编译器在client模式下的即时编译器    1. 比C2搜集的数据少。触发宽松。    2. 编译优化比较浅。    3. C1编译器生成的代码执行效率低。C2    C2编译器是server模式下的即时编译器    1. 触发条件比较严格，程序运行一段时间后才执行。    2. 优化比较深。    3. 编译生成的代码比C1效率高混合编译器</code></pre><hr><pre><code>GraalVM</code></pre><ul><li><p>即时编译触发条件</p><p>硬编码<br>热点代码</p></li></ul><p>注意：即时编译的最小单位是代码块。</p><ul><li>N热度：</li></ul><p>生成热点代码<br>client，N默认是1500<br>server，N默认是10000</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -client -XX:+PrintFlagsFinal -version</span><br></pre></td></tr></table></figure><ul><li><p>热度衰减：<br>new 7000<br>一段时间么执行后会2倍速递减 -&gt; 3500</p></li><li><p>经典故障</p><p>  业务增长，加节点。热机切冷机</p></li></ul><p>冷机：刚运行不久<br>热机：运行了一段时间</p><ul><li>节点。相同配置节点加入。负载均衡平摊压力。</li></ul><p>热机有热点代码缓存了，并发更大。</p><ol><li>热机能承受的并发大于冷机。</li><li>冷机一边在增加流量一遍在即时编译。性能就降低。</li></ol><p>问题：热点代码缓存在哪里？<br>方法区：<br>CodeCache（调优方向之一）<br>server 2496 2M，<br>client模式下160k</p><h2 id="即时编译是如何运行的"><a href="#即时编译是如何运行的" class="headerlink" title="即时编译是如何运行的"></a>即时编译是如何运行的</h2><p>VM_THREAD<br>GC</p><p>队列存放及时编译任务。当触发即时编译时会将编译任务放到及时编译队列里。</p><p>1、 触发及时编译任务入队列。<br>2、 VM_THREAD执行队列任务。</p><p>异步。</p><p>即时编译的线程有多少，如何调优？</p><p>硬编码，热点代码<br>热点代码存在哪里？热点代码缓冲区在哪里？</p><p>热点代码缓冲区，在方法区。</p><ul><li>逃逸分析</li></ul><p>逃逸<br>是一种现象</p><pre><code>对象作用域    局部变量，非逃逸    非局部变量，逃逸。方法外，线程外。</code></pre><p>基于逃逸技术，JVM开发了三种优化技术。</p><pre><code>1. 栈上分配2. 标量替换    标量： 不可再分，java中的基本类型就是标量。3. 锁消除    没竞争的锁，会消除掉。</code></pre><ul><li>栈上分配</li></ul><p>如何通过代码测试？</p><pre><code>对象在兑取分配对象在虚拟机栈上分配。HSDBJDK8的栈上分配存在吗？生成一个对象100W次，在栈上是不是又100W个。如果没有，就存在栈上分配，不发生GC的情况下。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;执行引擎&quot;&gt;&lt;a href=&quot;#执行引擎&quot; class=&quot;headerlink&quot; title=&quot;执行引擎&quot;&gt;&lt;/a&gt;执行引擎&lt;/h2&gt;&lt;p&gt;JVM运行Java程序的一套子系统&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;两种解释器
+
+字节码解释器
+    Java字节码-&amp;gt
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【JVM深入理解系列1】JVM底层加载</title>
+    <link href="http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_1/"/>
+    <id>http://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_1/</id>
+    <published>2021-05-10T15:47:37.000Z</published>
+    <updated>2021-05-10T15:52:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="klass模型"><a href="#klass模型" class="headerlink" title="klass模型"></a>klass模型</h2><p>java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、方法信息</p><p>MetaspaceObj</p><pre><code>Metadata    klass        instanceKlass            instanceMirrorKlass买奥数java.lang.Class实例            instanceRefKlass描述java.lang.Reference的子类            instanceClassLoaderKlass        ArrayKlass            TypeArrayKlass描述java基本类型数组的数据结构            ObjectArrayKlass描述java中引用类型数组的数据结构。</code></pre><p>类的元信息是存储在元空间的。</p><p>普通的Java类在JVM对应的是instanceKlass的实例。三个类：</p><ol><li>InstanceMirrorKlass:用于表示java.lang.class, Java代码中获取到的class对象，实际上是这个C++类的实例。存储在堆区，学名镜像类。</li><li>InstanceRefClass：用于表示Java.lang.ref.Referece的子类。</li><li>InstanceClassLoader:用于遍历某个加载器加载的类。</li></ol><p>Java中的数组不是静态数组类型，是动态数据类型，既是运行时期生成的，Java数组的元信息用ArrayKlass的子类来表示</p><ol><li>TypeArrayKlass:表示基本类型的数组。</li><li>ObjectArrayKlass:表示引用类型的数组。</li></ol><h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p>七个过程：</p><p>loading -&gt; verification -preparation -&gt; resolution<br>-&gt; initialization -&gt; Using -&gt; Unloading</p><h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><ol><li>通过类的全限定名获取存储该类的class文件。</li><li>解析成运行时数据，InstanceKlasss实例。存放在方法区。</li><li>在堆区生成该类的class对象，InstanceMirrorKlass实例。</li></ol><p>程序怎么写都可以。只要满足上面三个效果就OK。改写OpenJdk源码，满足上面三个条件就Ok</p><ul><li>何时加载</li></ul><p>主动使用时</p><ol><li>new, getstatic, putstatic, invokestatic</li><li>反射</li><li>初始化一个类的子类去加载其父类。</li><li>启动类（main函数所在类）</li><li>当使用JDK1.7动态语言时，如果一个java.lang.invoke.MethodHandler实例最后的解析结果。REF_getStatic,REF_putStatic,REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行初始化，则需要先触发其初始化。</li></ol><ul><li>预加载：包装类，String, Thread</li></ul><p>因为没有指明必须从哪里获取class文件，脑洞大开的工程师开发了这些：</p><ol><li>从压缩包中读取，jar，war</li><li>从网络中读取，web applet</li><li>动态生成，如 动态代理，CGLIB</li><li>由其他文件生成，如JSP</li><li>从数据库读取。</li><li>从加密文件中读取</li></ol><h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><ol><li>文件格式验证</li><li>元数据验证</li><li>字节码验证</li><li>符号引用验证</li></ol><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为静态变量分配内存，赋初值。<br>实例变量是在创建对象的时候完成赋值的，没有赋初值一说。</p><p>int,long,short,char,byte,boolean,float,double,reference</p><p>如果被final修饰，在编译的时候会给属性添加ConstantValue属性，准备阶段直接完成赋值，既没有赋初值这一说。</p><h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>将常量池中的符号引用转为直接引用</p><p>解析后的信息存储在ConstantPoolCache类实例中</p><ol><li>类或接口的解析。</li><li>字段解析</li><li>方法解析</li><li>接口方法解析</li></ol><ul><li>何时解析</li></ul><p>思路：</p><ol><li>加载阶段解析常量池时</li><li>用的时候</li></ol><p>openjdk是第二种思路，在执行特定的字节码指令之前进行解析：</p><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>执行静态代码块，完成静态变量的赋值。<br>静态字段，静态代码段，字节码层面会生成clinit方法。<br>方法中语句的先手顺序与代码的编写顺序相关。</p><h2 id="类加载细节"><a href="#类加载细节" class="headerlink" title="类加载细节"></a>类加载细节</h2><p>有空了再补</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;klass模型&quot;&gt;&lt;a href=&quot;#klass模型&quot; class=&quot;headerlink&quot; title=&quot;klass模型&quot;&gt;&lt;/a&gt;klass模型&lt;/h2&gt;&lt;p&gt;java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="http://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="java" scheme="http://www.lilhui.com/tags/java/"/>
+    
+      <category term="jvm调优" scheme="http://www.lilhui.com/tags/jvm%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解并发编程系列5】抽象队列同步器AQS Lock详解</title>
+    <link href="http://www.lilhui.com/2021/04/01/java/concurrent/concurrent_5/"/>
+    <id>http://www.lilhui.com/2021/04/01/java/concurrent/concurrent_5/</id>
+    <published>2021-04-01T15:56:58.000Z</published>
+    <updated>2021-05-20T06:55:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>为了提升锁性能引入了 锁粗化技术。</p><p><strong>锁粗化：</strong><br>多个同步都加统一个对象。反复不停进出一个对象。JVM会对这样的代码进行逃逸分析。对整个代码块进行扫描。如果符合这种特征代码的话，会将多个同步块合并成一个大的同步快,变粗了。</p><p><strong>锁消除：</strong><br>如果对象不可能被多个对象访问到。通过逃逸分析，会对锁进行消除。比如只加在对象上的锁。对象的生命周期是线程调用周期，对象只被一个线程访问。此时会对锁进行消除。</p><p>还有一个典型的就是栈上分配的对象，符合逃逸分析的对象，分配在栈上。并且对这个对象进行了加锁。此时，也只有这个线程能对对象进行访问，就会进行锁消除。</p><p>PS:逃逸分析后会做的优化:锁消除，锁粗化，标量替换等。<br>标量:八大基本类型。  </p><h2 id="AQS-LOCK详解"><a href="#AQS-LOCK详解" class="headerlink" title="AQS LOCK详解"></a>AQS LOCK详解</h2><ol><li>AQS还没出现之前，如果需要规定一个线程占用CPU使用时间的话，可能用到while循环。</li></ol><p>或者用：lock.pack(); lock.Unpack(THread) 停止，阻塞方法。</p><p>unpack</p><h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>Lock三大核心：自旋，LockSupport,CAS,队列</p><p>队列的FIFO用来实现公平，非公平锁。</p><p>CAS依赖硬件元语：cmpxchg()</p><p>LockSupport:线程阻塞工具。底层是native的方法 UNSAFE.xx</p><p><strong><em>AQS具备特性：</em></strong></p><ul><li>阻塞等待队列</li><li>共享/独占</li><li>公平/非公平</li><li>可重入</li><li>允许中断</li></ul><p>除了Lock外，Java.concurrent.util当中同步器的实现如Latch,Barrier,BlockingQueue等， 都是基于AQS框架实现</p><p>AQS内部维护属性volatile int state (32位)</p><p><strong><em>state表示资源可用状态。</em></strong></p><ul><li>state三种访问方式：</li></ul><ol><li>getState()</li><li>setState(int)</li><li>compareAndSetState()</li></ol><ul><li>AQS定义两种资源共享方式</li></ul><ol><li>Exclusive-独占，只有一个线程能执行，如ReentrantLock。</li><li>Share-共享，多个线程可以同时执行，如Semaphore/CountDownLatch。</li><li>同步等待队列</li><li>同步等待队列</li></ol><ul><li>不同的自定义同步器争用共享资源的方式也不同。自定义同步器在实现时只需要实现共 享资源state的获取与释放方式即可，至于具体线程等待队列的维护（如获取资源失败入队/ 唤醒出队等），AQS已经在顶层实现好了。自定义同步器实现时主要实现以下几种方法：</li></ul><ol><li>isHeldExclusively()：该线程是否正在独占资源。只有用到condition才需要去 实现它。</li><li>tryAcquire(int)：独占方式。尝试获取资源，成功则返回true，失败则返回 false。</li><li>tryRelease(int)：独占方式。尝试释放资源，成功则返回true，失败则返回 false。</li><li>tryAcquireShared(int)：共享方式。尝试获取资源。负数表示失败；0表示成 功，但没有剩余可用资源；正数表示成功，且有剩余资源。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;为了提升锁性能引入了 锁粗化技术。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;锁粗化：&lt;/strong&gt;&lt;br&gt;多个同步都加统一个对象。反复不停进出一个
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解并发编程系列4】JVM内置锁 synchronized关键字详解</title>
+    <link href="http://www.lilhui.com/2021/03/29/java/concurrent/concurrent_4/"/>
+    <id>http://www.lilhui.com/2021/03/29/java/concurrent/concurrent_4/</id>
+    <published>2021-03-29T15:55:32.000Z</published>
+    <updated>2021-05-18T16:03:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>历史：李二狗看到Synchronized效率太低，自己实现了一套基于AQS的锁。支持可重入，公平，非公平等特性。</p><h2 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h2><p>历史：1.6之前效率低下，重量锁。<br>1.6之后进行了升级，追加了锁的升级过程。</p><p>偏向锁-&gt;轻量级锁-&gt;重量级锁。</p><p>效率和ReentrantLock差不多</p><p>一个图：</p><h3 id="锁升级过程"><a href="#锁升级过程" class="headerlink" title="锁升级过程"></a>锁升级过程</h3><p><img src="http://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d" alt="图片"></p><h3 id="JVM锁膨胀过程"><a href="#JVM锁膨胀过程" class="headerlink" title="JVM锁膨胀过程"></a>JVM锁膨胀过程</h3><p><img src="http://images.lilhui.com/91400ffa709aeb66905363f9634550e2" alt="图片"></p><p><img src="http://images.lilhui.com/fc76a51fb07d27428139cb33d207ae6b" alt="图片"></p><p>膨胀过程：</p><ol><li>新建实例： 匿名偏向锁。</li><li>第一个线程过来加锁，变成偏向锁。（高23位记录了对象的线程ID)</li><li>第二个线程来后，触发 偏向锁升级，轻量级锁。</li></ol><p>重量锁膨胀：</p><ol><li>新建实例，匿名偏向锁</li><li>第一个线程过来，变成偏向锁。</li><li>第二个线程过来，触发轻量级锁。（高30位，指向线程，栈中锁记录的指针-比偏向锁要精确）</li><li>轻量级锁一直被占用，第二个线程自旋无法获取。此时升级成重量级锁。 （高30位存互斥量指针）。</li></ol><p>加锁hashcode，会变成轻量级锁的原因：</p><p>偏向锁没有hashcode,轻量级锁有个叫replace lock record。在栈帧里。</p><p>轻量级锁升级的时候 高30位记录了线程栈上锁的块，lockrecord .hashcode存在这个lockrecord。并且初始的mark word也存在了线程栈上。</p><p>hashcode存的位置</p><p><img src="http://images.lilhui.com/c2a3567c7fa13ba332cb369db9212652" alt="图片"></p><p>什么是Monitor?</p><p>一种同步工具，是java的一个对象。所有的java对象天生就是monitor。所有对象在新建的时候都会有一把看不见的锁。叫做内部锁，或者Monitor锁。就是Synchronized锁。MarkWord锁标记为10.其中指针指向 的地址就是Monitor对象的起始地址。在java虚拟机中（hotspot)Monitor是由ObjectMonitor实现的。源码在C++的ObjectMonitor.http文件中。</p><p><img src="http://images.lilhui.com/6503f5eb91ced216a674c4cb4ccb57d4" alt="图片"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;ReentrantLock&quot;&gt;&lt;a href=&quot;#ReentrantLock&quot; class=&quot;headerlink&quot; title=&quot;ReentrantLock&quot;&gt;&lt;/a&gt;ReentrantLock&lt;/h2&gt;&lt;p&gt;历史：李二狗看到Synchronized效率太低，自
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解并发编程系列3】JMM-CPU缓存一致性协议MESI</title>
+    <link href="http://www.lilhui.com/2021/03/26/java/concurrent/concurrent_3/"/>
+    <id>http://www.lilhui.com/2021/03/26/java/concurrent/concurrent_3/</id>
+    <published>2021-03-26T15:53:18.000Z</published>
+    <updated>2021-05-18T15:54:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="volatile可见性实现的原理"><a href="#volatile可见性实现的原理" class="headerlink" title="volatile可见性实现的原理"></a>volatile可见性实现的原理</h2><p>编译后的汇编会增加一个lock前缀</p><p>CPU指令</p><p>lock前缀是总线锁</p><p><img src="http://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7" alt="图片"></p><p>CPU访问内存必须通过总线桥访问。lock前缀加了总线锁，其他CPU就无法通过总线桥获取内存数据。</p><p>这个是古老的CPU用的。这种方式会降低多核性能。</p><h2 id="MESI"><a href="#MESI" class="headerlink" title="MESI"></a>MESI</h2><p><img src="http://images.lilhui.com/9e3a302bce699c54dfa4a3265be70744" alt="图片"></p><p>M:modify<br>E:独占<br>S:share<br>I：已失效</p><p>总线嗅探：</p><p>CPU会嗅探Bus总线的通知状态。</p><p>当CPU都要进行对某个缓存行进行加锁的时候（64byte)会发一个消息出来。我要加锁了。让总线来判断，是否加锁成功。总线裁决。</p><p>LOCK的时候告诉CPU采用缓存一致性协议来处理这个被修饰的变量。</p><p>缓存行是最大64byte有时候变量大于64byte，这时候会升级总线锁。</p><p>缓存一致性协议无法对寄存器生效。所以如果已经被加载到了寄存器里面进行操作的话</p><p>CPU中有一个 StoreBufer。cpu修改变量后，会发送一个I信号给其他cpu，其他cpu信息收到后确认后会回复一个已经失效消息。这时后才进行storo操作。所以会先把操作后的数据存在storeBuffer.（内部CPU的ACK机制）</p><p>接收后 storeBuffer放回缓存行，在写到内存。</p><h2 id="Happens-before"><a href="#Happens-before" class="headerlink" title="Happens-before"></a>Happens-before</h2><p>指令重排需要遵循的规则。</p><p>Thread().start<br>Thread().interupt<br>这种是不会被重排的</p><p>八大规则：<br><img src="http://images.lilhui.com/0a2bc52ca5a013f7a2d53739a740761e" alt="图片"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;volatile可见性实现的原理&quot;&gt;&lt;a href=&quot;#volatile可见性实现的原理&quot; class=&quot;headerlink&quot; title=&quot;volatile可见性实现的原理&quot;&gt;&lt;/a&gt;volatile可见性实现的原理&lt;/h2&gt;&lt;p&gt;编译后的汇编会增加一个loc
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解并发编程系列2】JVM内存模型</title>
+    <link href="http://www.lilhui.com/2021/03/24/java/concurrent/concurrent_2/"/>
+    <id>http://www.lilhui.com/2021/03/24/java/concurrent/concurrent_2/</id>
+    <published>2021-03-24T07:14:12.000Z</published>
+    <updated>2021-05-18T15:55:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：</p><p><img src="http://images.lilhui.com/8a91c87d87bba98b171931924db362a9" alt="图片"></p><p>JVM的内存模型是JVM定义抽象的定义。<br>工作内存对应的JVM哪一个模块不重要因为，不同的JVM实现，实现的也不一样。</p><h2 id="数据八大原子操作"><a href="#数据八大原子操作" class="headerlink" title="数据八大原子操作"></a>数据八大原子操作</h2><ol><li>lock: 作用于主内存的变量，把一个变量标记为一条线程独占状态。</li><li>unlock：与loc相反的操作。</li><li>read： 作用于主内存的变量，把一个变量从主内存传输到线程的工作内存中，以便后续的load动作。</li><li>load: 作用于工作内存的操作，把read操作从主内存中得到的变量放入工作内存的变量副本中。</li><li>use： 作用于工作内存的操作，把工作内存中的一个变量值传给执行引擎。</li><li>assign： 作用于工作内存，把一个从执行引擎接收到的值赋值给工作内存的变量。</li><li>store： 作用于工作内存，把工作内存中的一个变量的值传送到主内存中，以便随后的write。</li><li>write：作用于工作内存，把store操作从工作内存中的一个变量的值传送到主内存变量中。</li></ol><p>来：lock-&gt;read-&gt;load-&gt;use<br>去：assign-&gt;store-&gt;write-&gt;unlock</p><p><img src="http://images.lilhui.com/82069c69691038f6e42241e677c5f027" alt="图片"></p><h3 id="内存可见性"><a href="#内存可见性" class="headerlink" title="内存可见性"></a>内存可见性</h3><p>关键词：MESI 协议</p><p>volatile 用于保证有序性 解决可见性问题<br>syncronized用于保证原子性   </p><p><strong><em>volatile</em></strong> 解决可见性问题  保证及时看到。不加的话，也有可能看到。只是不及时。<br>如何理解：<br>JVM定义的这些模型语义，不会去描述多线程程序如何执行，而是描述多线程程序于许表现出来的行为。任何执行策略，只要产生的是允许的行为，那他就是一个可以接受的策略。</p><p><img src="http://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21" alt="图片"></p><p>空循环优先级超高。</p><p><strong>synronized</strong>可以保证内存块操作的原子性。</p><h3 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h3><p><img src="http://images.lilhui.com/ff219959971893780f14c82af5225f9c" alt="图片"></p><ul><li><p>as-if-serial</p></li><li><p>happen-before</p></li></ul><h3 id="volatile指令重排优化"><a href="#volatile指令重排优化" class="headerlink" title="volatile指令重排优化"></a>volatile指令重排优化</h3><p>内存屏障是cpu指令，作用两个：</p><ol><li>保证特定操作的执行顺序。</li><li>保证某些变量的可见性。（volatile的可见性）</li></ol><p><img src="http://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08" alt="图片"></p><p>原理：内存屏障技术<br>ifence：  一种Load barrier读屏障。<br>sfence：   一种Store Barrier写屏障<br>mfence ： 全能型屏障，具备ifence和sfence能力。<br>Lock前缀  Lock不是一种内存屏障，但是它能完成类似内存屏障的功能。Lock会对CPU总线和高速缓存加锁，可以理解为PUC指令的一种锁。它后面可以跟 ADD，ADC,AND，BTC，BTR,BTS，CMPXCHG,CMPXCH8B,DEC,INC,NEG,NOT,OR,SBB,SUB,XOR,XADD,and XCHG指令。</p><h3 id="手动加内存屏障"><a href="#手动加内存屏障" class="headerlink" title="手动加内存屏障"></a>手动加内存屏障</h3><p>Unsafe.fullFence</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;内存模型&quot;&gt;&lt;a href=&quot;#内存模型&quot; class=&quot;headerlink&quot; title=&quot;内存模型&quot;&gt;&lt;/a&gt;内存模型&lt;/h2&gt;&lt;p&gt;Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：&lt;/p&gt;
+&lt;p&gt;&lt;im
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解并发编程系列1】操作系统与虚拟机</title>
+    <link href="http://www.lilhui.com/2021/03/21/java/concurrent/concurrent_1/"/>
+    <id>http://www.lilhui.com/2021/03/21/java/concurrent/concurrent_1/</id>
+    <published>2021-03-21T06:10:10.000Z</published>
+    <updated>2021-05-18T15:55:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><ol><li>冯诺依曼计算机模型</li><li>cpu缓存结构剖析。</li><li>操作系统内存管理与线程模型。</li><li>虚拟机指令集架构详解。</li></ol><h2 id="分诺依曼计算机体系"><a href="#分诺依曼计算机体系" class="headerlink" title="分诺依曼计算机体系"></a>分诺依曼计算机体系</h2><p><img src="http://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b" alt="图片"></p><h3 id="CPU缓存架构"><a href="#CPU缓存架构" class="headerlink" title="CPU缓存架构"></a>CPU缓存架构</h3><p><img src="http://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31" alt="图片"></p><p>多级缓存：</p><ol><li>L1 cache 数据缓存和指令缓存，逻辑独占。一般 256K</li><li>L2 cache 物理核独占，逻辑核共享。 一般1M左右</li><li>L3 cache， 所有物理核共享 一般8M</li></ol><p>缓存由缓存行构成（cacheline)64byte大小</p><p>CPU读取内存数据的过程：  </p><ol><li>L1-&gt;l2-&gt;L3 一次判断，如果有，直接读取到寄存器。</li><li>如果L1,2,3都没有，从内存，读到L3，从L3复制到L2,从L2复制到L1。L1读到寄存器。</li></ol><ul><li>CPU读取数据的特性</li></ul><ol><li>空间局部性<br> CPU从内存拿数据，不仅是拿目标数据，紧邻的一片一次性加载到L3缓存里。</li><li>时间局部性<br> 如果一个信息正在被访问那么近期它还可能被访问，比如循环，递归方法的反复调用。</li></ol><h2 id="操作系统内存管理"><a href="#操作系统内存管理" class="headerlink" title="操作系统内存管理"></a>操作系统内存管理</h2><p>操作系统内存空间分为  </p><ol><li>用户空间  </li><li>内核空间  </li></ol><p>为什么进行内存空间的划分？  </p><pre><code>目的是为了做到程序运行的安全隔离与稳定。32G 4G大小内存为例。内核空间 1G用户空间3G</code></pre><p><img src="http://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1" alt="图片"></p><h2 id="CPU运行的安全等级"><a href="#CPU运行的安全等级" class="headerlink" title="CPU运行的安全等级"></a>CPU运行的安全等级</h2><p>ring0：<br>    内核态，权限最高。各种操作都可以做。</p><p>ring1<br>ring2<br>ring3<br>权限一次降低。</p><p>运用运行的级别一般在用户态。JVM,app等等。</p><p><img src="http://images.lilhui.com/dbefca81e04794cb7181cc34444004c5" alt="图片"></p><h3 id="内核线程模型"><a href="#内核线程模型" class="headerlink" title="内核线程模型"></a>内核线程模型</h3><p>内核线程（KLT) ，系统内核管理线程内核保存线程额上下文信息，线程阻塞不会引起进程阻塞。在多处理器系统上，多线程在多处理器上并行执行。线程的创建调度和管理由内核完成。效率比ULT要慢，比进程操作快。</p><h3 id="用户线程模型"><a href="#用户线程模型" class="headerlink" title="用户线程模型"></a>用户线程模型</h3><p><img src="http://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8" alt="图片"></p><h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><p>现代操作系统在运行一个程序时，会为其创建一个进程，例如：启动一个java<br>程序，操作系统就会创建一个java进程。进程是OS操作系统资源分配的最小单位</p><p>线程是OS操作系统调度CPU的最小单元。也叫轻量级进程（Light Weight Process)，<br>在一个进程里可以创建多个线程。这些线程拥有各自的计数器，堆栈，局部变量<br>等属性。并且能够访问共享的内存变量，CPU在这些线程上高速切换。让使用者感觉到这些<br>线程在同时执行，既并发的感觉。相似的还有并行</p><p>线程上下文切换过程：<br><img src="http://images.lilhui.com/57daf7d4695424cce11032ad6e029672" alt="图片"></p><h1 id="虚拟机指令集架构"><a href="#虚拟机指令集架构" class="headerlink" title="虚拟机指令集架构"></a>虚拟机指令集架构</h1><p>CPU执行架构分两种，指令集架构和，寄存器指令集架构。</p><h2 id="指令集架构"><a href="#指令集架构" class="headerlink" title="指令集架构"></a>指令集架构</h2><ol><li>设计和实现更简单，适用于资源受限的系统。</li><li>避开了寄存器分配难题，使用零地址指令方式分配。</li><li>指令流中的指令大部分是零地址指令，其执行过程依赖于操作栈，指令集更小，编译器容易实现。</li><li>不需要硬件支持，可移植性更好，更容易实现跨平台。</li></ol><h2 id="寄存器指令集架构"><a href="#寄存器指令集架构" class="headerlink" title="寄存器指令集架构"></a>寄存器指令集架构</h2><ol><li>典型的应用如二进制指令集。传统的PC一级Android的Davilk虚拟机。</li><li>指令集架构则完全依赖硬件，可移植性差。</li><li>性能优秀和执行更高效。</li><li>花费更少的指令去完成一项操作。</li><li>在大部分情况下，基于寄存器架构的指令集往往都以一地址，二地址指令和三地址指令为主。而基于栈架构的指令集涉及出栈入栈等操作。<br>Java，Python，GO</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;概要&quot;&gt;&lt;a href=&quot;#概要&quot; class=&quot;headerlink&quot; title=&quot;概要&quot;&gt;&lt;/a&gt;概要&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;冯诺依曼计算机模型&lt;/li&gt;
+&lt;li&gt;cpu缓存结构剖析。&lt;/li&gt;
+&lt;li&gt;操作系统内存管理与线程模型。&lt;/li&gt;
+&lt;li&gt;虚
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
+    
+      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+</feed>
