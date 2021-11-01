@@ -131,36 +131,6 @@
   </entry>
   
   <entry>
-    <title>【Mysql深入理解系列4】索引优化1</title>
-    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/"/>
-    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/</id>
-    <published>2021-05-10T16:19:33.000Z</published>
-    <updated>2021-05-10T16:21:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ol><li>详解</li><li>优化索引选择探究</li><li>索引优化Orderby与Group byy</li><li>UsingfileSort文件排序详解。</li><li>索引设计原则与实战。</li></ol><h2 id="索引优化原则"><a href="#索引优化原则" class="headerlink" title="索引优化原则"></a>索引优化原则</h2><p>避免ALL权标扫描。即时没走索引也要避免回表</p><p>扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force dindex 不一定会更快)</p><p>PS:</p><ol><li>字符串不加单引号索引失效。<br>2.</li></ol><p>三个键的组合索引，范围查询放中间或者后面是可以走索引的。</p><p>1.</p><ol start="2"><li>强制走索引。扫描行数可能少了，但是执行时间并不一定减少。</li><li>覆盖索引优化。</li><li>in和or在表数量比较大的情况下回走索引，在表记录不多的情况下选择走权标扫描。</li><li><p>like kk%不管表数据量大小都会走索引。</p><p>概念：索引下推。like KK%就是用到了索引下推优化。</p></li></ol><p>索引下推5.6引入的。<br>索引下推查询：在二级索引树过滤完like的字段后会再过滤后面条件的内容。符合的话进行会标。所谓的索引下面在推断。<br>非下推（5.6之前）：在二级索引树过滤完like后没进行后面条件判断，直接回表，在回表的内容里在进行筛选。</p><p>索引下推意味着每次索引后，要再进行比对。like结果集少的话（like  xxx%)，比对就比较快。mysql会使用。如果数量非常大的话(column &gt; xxx)，每次都要比对，不一定比回表快。</p><p>使用 trace进行分析。列出explain sql执行的过程，mysql各个节点预估的消耗量。</p><h2 id="优化总结"><a href="#优化总结" class="headerlink" title="优化总结"></a>优化总结</h2><ol><li>mysql支持两种方式的排序filesort 和index, Using Index是指Mysql扫描索引本身完成排序，index效率高，filesort效率低。</li><li>order by 满足两种情况会使用Using index<ol><li>order by语句使用索引最左前列。</li><li>使用where子句与order by子句条件组合满足索引最左前列。</li></ol></li><li>尽量在索引列上完成排序，遵循索引建立的最左前缀法则。</li><li>如果 order by的条件不在索引列上，就会产生Using filesort</li><li>能用覆盖索引尽量用覆盖索引。</li><li>group by 与order by很类似。其实质是先排序后分组，遵照索引创建顺序的最左前缀法则。对group by的优化如果不需要排序的可以加上order by null禁止排序。注意，where高于having,能卸载where先定条件就不要去having限定。</li></ol><p>单路排序：<br>一次性取出满足条件行的所有字段，在sortbuffer中进行排序，用trace工具可以看到sort_mode信息显示。sort_key,additional_files或者 sort_key,packed_additional_fileds<br>不用回表。占用内存大。<br>双路排序：<br>根据条件取出相应的排序字段和可以直接定位行数据的ID,然后在sort buffer中进行爱旭。排序完后需要取回其他需要的字段、用trace工具可以看到sort_mode信息显示 sort_key,rowid。<br>需要回表，暂用内存小。</p><p>可设置max_length_for_sort_data默认1024 。如果参与排序的字段小于这个的话，使用单路排序。如果大于的话，会使用双路排序。一般不去设置。</p><p>sort_buffer 排序内存。如果它比较小的话可以适当把max_length_for_sort_data配置小点，让优化器选择双路排序。（双路排序用ID,不用tmpfile)</p><p>sort_buffer可以考虑配置更大的max_length_for_sort_data从而使用单路排序。</p><p>非DBA就不要去调整了。</p><h2 id="怎么建索引"><a href="#怎么建索引" class="headerlink" title="怎么建索引"></a>怎么建索引</h2><p>建完表后，一般主体的业务开发完后，把跟表相关的sql语句都拉出来。根据sql语句建索引。</p><p>原则：</p><ol><li>代码先行，主体业务完成后，建索引。</li><li>联合索引尽量覆盖到你业务的所有查询。order by group by这些都需要考虑。</li><li>不要在小基数字段上建立索引。</li><li>长字符串可以采用前缀索引。varchar(255) 建索引耗费太大的空间，可以 Key index（name(20),age,position)。前缀的一部分进行建索引</li><li>where 与order by冲突时优先where</li><li>基于慢sql查询进行建索引。slow_query_log=1</li></ol><p>（provice,city,sex,age)<br>age一般范围查询，放后面，在实际查询中，查询可以把 sex按照in塞进去，这样age就可以走索引。一般一个组合索引里保持只有一个范围查询的字段。<br><img src="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495" alt="图片"></p><p><img src="http://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67" alt="图片"></p><p>经验：10个字段左右的表。一个表里建2-3个组合二级索引就差不多了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;索引优化&quot;&gt;&lt;a href=&quot;#索引优化&quot; class=&quot;headerlink&quot; title=&quot;索引优化&quot;&gt;&lt;/a&gt;索引优化&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;详解&lt;/li&gt;
-&lt;li&gt;优化索引选择探究&lt;/li&gt;
-&lt;li&gt;索引优化Orderby与Group byy&lt;/li&gt;
-      
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
-    
-      <category term="索引优化" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【Mysql深入理解系列5】索引优化2</title>
     <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/"/>
     <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/</id>
@@ -191,6 +161,36 @@
       <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
     
       <category term="索引" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Mysql深入理解系列4】索引优化1</title>
+    <link href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/"/>
+    <id>http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/</id>
+    <published>2021-05-10T16:19:33.000Z</published>
+    <updated>2021-05-10T16:21:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ol><li>详解</li><li>优化索引选择探究</li><li>索引优化Orderby与Group byy</li><li>UsingfileSort文件排序详解。</li><li>索引设计原则与实战。</li></ol><h2 id="索引优化原则"><a href="#索引优化原则" class="headerlink" title="索引优化原则"></a>索引优化原则</h2><p>避免ALL权标扫描。即时没走索引也要避免回表</p><p>扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force dindex 不一定会更快)</p><p>PS:</p><ol><li>字符串不加单引号索引失效。<br>2.</li></ol><p>三个键的组合索引，范围查询放中间或者后面是可以走索引的。</p><p>1.</p><ol start="2"><li>强制走索引。扫描行数可能少了，但是执行时间并不一定减少。</li><li>覆盖索引优化。</li><li>in和or在表数量比较大的情况下回走索引，在表记录不多的情况下选择走权标扫描。</li><li><p>like kk%不管表数据量大小都会走索引。</p><p>概念：索引下推。like KK%就是用到了索引下推优化。</p></li></ol><p>索引下推5.6引入的。<br>索引下推查询：在二级索引树过滤完like的字段后会再过滤后面条件的内容。符合的话进行会标。所谓的索引下面在推断。<br>非下推（5.6之前）：在二级索引树过滤完like后没进行后面条件判断，直接回表，在回表的内容里在进行筛选。</p><p>索引下推意味着每次索引后，要再进行比对。like结果集少的话（like  xxx%)，比对就比较快。mysql会使用。如果数量非常大的话(column &gt; xxx)，每次都要比对，不一定比回表快。</p><p>使用 trace进行分析。列出explain sql执行的过程，mysql各个节点预估的消耗量。</p><h2 id="优化总结"><a href="#优化总结" class="headerlink" title="优化总结"></a>优化总结</h2><ol><li>mysql支持两种方式的排序filesort 和index, Using Index是指Mysql扫描索引本身完成排序，index效率高，filesort效率低。</li><li>order by 满足两种情况会使用Using index<ol><li>order by语句使用索引最左前列。</li><li>使用where子句与order by子句条件组合满足索引最左前列。</li></ol></li><li>尽量在索引列上完成排序，遵循索引建立的最左前缀法则。</li><li>如果 order by的条件不在索引列上，就会产生Using filesort</li><li>能用覆盖索引尽量用覆盖索引。</li><li>group by 与order by很类似。其实质是先排序后分组，遵照索引创建顺序的最左前缀法则。对group by的优化如果不需要排序的可以加上order by null禁止排序。注意，where高于having,能卸载where先定条件就不要去having限定。</li></ol><p>单路排序：<br>一次性取出满足条件行的所有字段，在sortbuffer中进行排序，用trace工具可以看到sort_mode信息显示。sort_key,additional_files或者 sort_key,packed_additional_fileds<br>不用回表。占用内存大。<br>双路排序：<br>根据条件取出相应的排序字段和可以直接定位行数据的ID,然后在sort buffer中进行爱旭。排序完后需要取回其他需要的字段、用trace工具可以看到sort_mode信息显示 sort_key,rowid。<br>需要回表，暂用内存小。</p><p>可设置max_length_for_sort_data默认1024 。如果参与排序的字段小于这个的话，使用单路排序。如果大于的话，会使用双路排序。一般不去设置。</p><p>sort_buffer 排序内存。如果它比较小的话可以适当把max_length_for_sort_data配置小点，让优化器选择双路排序。（双路排序用ID,不用tmpfile)</p><p>sort_buffer可以考虑配置更大的max_length_for_sort_data从而使用单路排序。</p><p>非DBA就不要去调整了。</p><h2 id="怎么建索引"><a href="#怎么建索引" class="headerlink" title="怎么建索引"></a>怎么建索引</h2><p>建完表后，一般主体的业务开发完后，把跟表相关的sql语句都拉出来。根据sql语句建索引。</p><p>原则：</p><ol><li>代码先行，主体业务完成后，建索引。</li><li>联合索引尽量覆盖到你业务的所有查询。order by group by这些都需要考虑。</li><li>不要在小基数字段上建立索引。</li><li>长字符串可以采用前缀索引。varchar(255) 建索引耗费太大的空间，可以 Key index（name(20),age,position)。前缀的一部分进行建索引</li><li>where 与order by冲突时优先where</li><li>基于慢sql查询进行建索引。slow_query_log=1</li></ol><p>（provice,city,sex,age)<br>age一般范围查询，放后面，在实际查询中，查询可以把 sex按照in塞进去，这样age就可以走索引。一般一个组合索引里保持只有一个范围查询的字段。<br><img src="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495" alt="图片"></p><p><img src="http://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67" alt="图片"></p><p>经验：10个字段左右的表。一个表里建2-3个组合二级索引就差不多了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;索引优化&quot;&gt;&lt;a href=&quot;#索引优化&quot; class=&quot;headerlink&quot; title=&quot;索引优化&quot;&gt;&lt;/a&gt;索引优化&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;详解&lt;/li&gt;
+&lt;li&gt;优化索引选择探究&lt;/li&gt;
+&lt;li&gt;索引优化Orderby与Group byy&lt;/li&gt;
+      
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.lilhui.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://www.lilhui.com/tags/mysql/"/>
+    
+      <category term="索引优化" scheme="http://www.lilhui.com/tags/%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
