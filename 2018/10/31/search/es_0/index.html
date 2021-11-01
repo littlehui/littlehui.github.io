@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="es,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="背景ES的版本迭代较快每个版本启动和运行方式有所差异，本文以6.4.2版本说明。6.4.2版本下载地址：https://www.elastic.co/downloads/elasticsearch 启动步骤ES启动是通过下载包的 ./bin/elasticsearch叫本进行启动的。脚本定义了一些es和java的默认参数。可以通过修改脚本参数内容方式启动，控制台运行，比如修改esJVM大小等等。">
+<meta name="keywords" content="es">
+<meta property="og:type" content="article">
+<meta property="og:title" content="elasticsearch 启动步骤">
+<meta property="og:url" content="http://www.lilhui.com/2018/10/31/search/es_0/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="背景ES的版本迭代较快每个版本启动和运行方式有所差异，本文以6.4.2版本说明。6.4.2版本下载地址：https://www.elastic.co/downloads/elasticsearch 启动步骤ES启动是通过下载包的 ./bin/elasticsearch叫本进行启动的。脚本定义了一些es和java的默认参数。可以通过修改脚本参数内容方式启动，控制台运行，比如修改esJVM大小等等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-31T08:48:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="elasticsearch 启动步骤">
+<meta name="twitter:description" content="背景ES的版本迭代较快每个版本启动和运行方式有所差异，本文以6.4.2版本说明。6.4.2版本下载地址：https://www.elastic.co/downloads/elasticsearch 启动步骤ES启动是通过下载包的 ./bin/elasticsearch叫本进行启动的。脚本定义了一些es和java的默认参数。可以通过修改脚本参数内容方式启动，控制台运行，比如修改esJVM大小等等。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.lilhui.com/2018/10/31/search/es_0/">
+
+
+
+
+
+  <title>elasticsearch 启动步骤 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2018/10/31/search/es_0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">elasticsearch 启动步骤</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T14:17:34+08:00">
+                2018-10-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搜索/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/31/search/es_0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/10/31/search/es_0/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>ES的版本迭代较快每个版本启动和运行方式有所差异，本文以6.4.2版本说明。<br>6.4.2版本下载地址：<a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/downloads/elasticsearch</a></p>
+<h2 id="启动步骤"><a href="#启动步骤" class="headerlink" title="启动步骤"></a>启动步骤</h2><p>ES启动是通过下载包的 ./bin/elasticsearch叫本进行启动的。脚本定义了一些es和java的默认参数。可以通过修改脚本参数内容方式启动，控制台运行，比如修改esJVM大小等等。</p>
+<p>Elasticsearch启动后 Elasticsearch类解析</p>
+<p>Elasticsearch类启动时候运行main()函数，如下:</p>
+<p>Elasticsearch初始化各种Option</p>
+<h3 id="Elasticsearch内部"><a href="#Elasticsearch内部" class="headerlink" title="Elasticsearch内部"></a>Elasticsearch内部</h3><p>解释：</p>
+<ol>
+<li>运行System.setSecurityManager 配置默认管理器，默认使用的是 $JAVA_HOME/jre/lib/security/java.policy</li>
+<li>注册Errorlistener,LogConfigurator.registerErrorListener();用于在失败的时候报错。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Main entry point for starting elasticsearch</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">// we want the JVM to think there is a security manager installed so that if internal policy decisions that would be based on the</span></span><br><span class="line">    <span class="comment">// presence of a security manager or lack thereof act as if there is a security manager present (e.g., DNS cache policy)</span></span><br><span class="line">    System.setSecurityManager(<span class="keyword">new</span> SecurityManager() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkPermission</span><span class="params">(Permission perm)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// grant all permissions so that we can later set the security manager to the one that we want</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    LogConfigurator.registerErrorListener();</span><br><span class="line">    <span class="keyword">final</span> Elasticsearch elasticsearch = <span class="keyword">new</span> Elasticsearch();</span><br><span class="line">    <span class="keyword">int</span> status = main(args, elasticsearch, Terminal.DEFAULT);</span><br><span class="line">    <span class="keyword">if</span> (status != ExitCodes.OK) &#123;</span><br><span class="line">        exit(status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>启动Elasticsearch命令行客户端EnvironmentAwareCommand和对应用来输入Terminal</li>
+</ol>
+<p>Elasticsearch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[] args, <span class="keyword">final</span> Elasticsearch elasticsearch, <span class="keyword">final</span> Terminal terminal)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> elasticsearch.main(args, terminal);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>EnvironmentAwareCommand</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Terminal terminal, OptionSet options)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Map&lt;String, String&gt; settings = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">final</span> KeyValuePair kvp : settingOption.values(options)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (kvp.value.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UserException(ExitCodes.USAGE, <span class="string">"setting ["</span> + kvp.key + <span class="string">"] must not be empty"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (settings.containsKey(kvp.key)) &#123;</span><br><span class="line">            <span class="keyword">final</span> String message = String.format(</span><br><span class="line">                    Locale.ROOT,</span><br><span class="line">                    <span class="string">"setting [%s] already set, saw [%s] and [%s]"</span>,</span><br><span class="line">                    kvp.key,</span><br><span class="line">                    settings.get(kvp.key),</span><br><span class="line">                    kvp.value);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> UserException(ExitCodes.USAGE, message);</span><br><span class="line">        &#125;</span><br><span class="line">        settings.put(kvp.key, kvp.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    putSystemPropertyIfSettingIsMissing(settings, <span class="string">"path.data"</span>, <span class="string">"es.path.data"</span>);</span><br><span class="line">    putSystemPropertyIfSettingIsMissing(settings, <span class="string">"path.home"</span>, <span class="string">"es.path.home"</span>);</span><br><span class="line">    putSystemPropertyIfSettingIsMissing(settings, <span class="string">"path.logs"</span>, <span class="string">"es.path.logs"</span>);</span><br><span class="line"></span><br><span class="line">    execute(terminal, options, createEnv(terminal, settings));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Elasticsearch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Elasticsearch() &#123;</span><br><span class="line">    <span class="keyword">super</span>(<span class="string">"starts elasticsearch"</span>, () -&gt; &#123;&#125;); <span class="comment">// we configure logging later so we override the base class from configuring logging</span></span><br><span class="line">    versionOption = parser.acceptsAll(Arrays.asList(<span class="string">"V"</span>, <span class="string">"version"</span>),</span><br><span class="line">        <span class="string">"Prints elasticsearch version information and exits"</span>);</span><br><span class="line">    daemonizeOption = parser.acceptsAll(Arrays.asList(<span class="string">"d"</span>, <span class="string">"daemonize"</span>),</span><br><span class="line">        <span class="string">"Starts Elasticsearch in the background"</span>)</span><br><span class="line">        .availableUnless(versionOption);</span><br><span class="line">    pidfileOption = parser.acceptsAll(Arrays.asList(<span class="string">"p"</span>, <span class="string">"pidfile"</span>),</span><br><span class="line">        <span class="string">"Creates a pid file in the specified path on start"</span>)</span><br><span class="line">        .availableUnless(versionOption)</span><br><span class="line">        .withRequiredArg()</span><br><span class="line">        .withValuesConvertedBy(<span class="keyword">new</span> PathConverter());</span><br><span class="line">    quietOption = parser.acceptsAll(Arrays.asList(<span class="string">"q"</span>, <span class="string">"quiet"</span>),</span><br><span class="line">        <span class="string">"Turns off standard output/error streams logging in console"</span>)</span><br><span class="line">        .availableUnless(versionOption)</span><br><span class="line">        .availableUnless(daemonizeOption);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>创建Setting（HashMap)设置Elasticsearch配置</p>
+</li>
+<li><p>进行命令行相关的设置，初始化之后，跳转到Bootstrap中进行操作 init</p>
+</li>
+</ol>
+<p>Elasticsearch</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Terminal terminal, OptionSet options, Environment env)</span> <span class="keyword">throws</span> UserException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (options.nonOptionArguments().isEmpty() == <span class="keyword">false</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UserException(ExitCodes.USAGE, <span class="string">"Positional arguments not allowed, found "</span> + options.nonOptionArguments());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (options.has(versionOption)) &#123;</span><br><span class="line">        <span class="keyword">final</span> String versionOutput = String.format(</span><br><span class="line">                Locale.ROOT,</span><br><span class="line">                <span class="string">"Version: %s, Build: %s/%s/%s/%s, JVM: %s"</span>,</span><br><span class="line">                Version.displayVersion(Version.CURRENT, Build.CURRENT.isSnapshot()),</span><br><span class="line">                Build.CURRENT.flavor().displayName(),</span><br><span class="line">                Build.CURRENT.type().displayName(),</span><br><span class="line">                Build.CURRENT.shortHash(),</span><br><span class="line">                Build.CURRENT.date(),</span><br><span class="line">                JvmInfo.jvmInfo().version());</span><br><span class="line">        terminal.println(versionOutput);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> daemonize = options.has(daemonizeOption);</span><br><span class="line">    <span class="keyword">final</span> Path pidFile = pidfileOption.value(options);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> quiet = options.has(quietOption);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// a misconfigured java.io.tmpdir can cause hard-to-diagnose problems later, so reject it immediately</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        env.validateTmpFile();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UserException(ExitCodes.CONFIG, e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        init(daemonize, pidFile, quiet, env);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (NodeValidationException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UserException(ExitCodes.CONFIG, e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">final</span> <span class="keyword">boolean</span> daemonize, <span class="keyword">final</span> Path pidFile, <span class="keyword">final</span> <span class="keyword">boolean</span> quiet, Environment initialEnv)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> NodeValidationException, UserException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Bootstrap.init(!daemonize, pidFile, quiet, initialEnv);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (BootstrapException | RuntimeException e) &#123;</span><br><span class="line">        <span class="comment">// format exceptions to the console in a special way</span></span><br><span class="line">        <span class="comment">// to avoid 2MB stacktraces from guice, etc.</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> StartupException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Bootstrap内部"><a href="#Bootstrap内部" class="headerlink" title="Bootstrap内部"></a>Bootstrap内部</h3><ol>
+<li>初始化一个KeepAlive线程，内部的countDownLatch用于启动之后的心跳。保证节点运行期间Bootstrap一直存在。可以接受相关的命令退出</li>
+<li>做了一些检查，SSL加密customConfFile</li>
+<li>创建PID文件</li>
+<li>checkLucene版本</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * This method is invoked by &#123;<span class="doctag">@link</span> Elasticsearch#main(String[])&#125; to startup elasticsearch.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">final</span> <span class="keyword">boolean</span> foreground,</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">final</span> Path pidFile,</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">final</span> <span class="keyword">boolean</span> quiet,</span></span></span><br><span class="line"><span class="function"><span class="params">          <span class="keyword">final</span> Environment initialEnv)</span> <span class="keyword">throws</span> BootstrapException, NodeValidationException, UserException </span>&#123;</span><br><span class="line">      <span class="comment">// force the class initializer for BootstrapInfo to run before</span></span><br><span class="line">      <span class="comment">// the security manager is installed</span></span><br><span class="line">      BootstrapInfo.init();</span><br><span class="line"></span><br><span class="line">      INSTANCE = <span class="keyword">new</span> Bootstrap();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> SecureSettings keystore = loadSecureSettings(initialEnv);</span><br><span class="line">      <span class="keyword">final</span> Environment environment = createEnvironment(foreground, pidFile, keystore, initialEnv.settings(), initialEnv.configFile());</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          LogConfigurator.configure(environment);</span><br><span class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> BootstrapException(e);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (environment.pidFile() != <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              PidFile.create(environment.pidFile(), <span class="keyword">true</span>);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">              <span class="keyword">throw</span> <span class="keyword">new</span> BootstrapException(e);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">final</span> <span class="keyword">boolean</span> closeStandardStreams = (foreground == <span class="keyword">false</span>) || quiet;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (closeStandardStreams) &#123;</span><br><span class="line">              <span class="keyword">final</span> Logger rootLogger = ESLoggerFactory.getRootLogger();</span><br><span class="line">              <span class="keyword">final</span> Appender maybeConsoleAppender = Loggers.findAppender(rootLogger, ConsoleAppender<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">              <span class="keyword">if</span> (maybeConsoleAppender != <span class="keyword">null</span>) &#123;</span><br><span class="line">                  Loggers.removeAppender(rootLogger, maybeConsoleAppender);</span><br><span class="line">              &#125;</span><br><span class="line">              closeSystOut();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// fail if somebody replaced the lucene jars</span></span><br><span class="line">          checkLucene();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// install the default uncaught exception handler; must be done before security is</span></span><br><span class="line">          <span class="comment">// initialized as we do not want to grant the runtime permission</span></span><br><span class="line">          <span class="comment">// setDefaultUncaughtExceptionHandler</span></span><br><span class="line">          Thread.setDefaultUncaughtExceptionHandler(</span><br><span class="line">              <span class="keyword">new</span> ElasticsearchUncaughtExceptionHandler(() -&gt; Node.NODE_NAME_SETTING.get(environment.settings())));</span><br><span class="line"></span><br><span class="line">          INSTANCE.setup(<span class="keyword">true</span>, environment);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="comment">// any secure settings must be read during node construction</span></span><br><span class="line">              IOUtils.close(keystore);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">              <span class="keyword">throw</span> <span class="keyword">new</span> BootstrapException(e);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          INSTANCE.start();</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (closeStandardStreams) &#123;</span><br><span class="line">              closeSysError();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (NodeValidationException | RuntimeException e) &#123;</span><br><span class="line">          <span class="comment">// disable console logging, so user does not see the exception twice (jvm will show it already)</span></span><br><span class="line">          <span class="keyword">final</span> Logger rootLogger = ESLoggerFactory.getRootLogger();</span><br><span class="line">          <span class="keyword">final</span> Appender maybeConsoleAppender = Loggers.findAppender(rootLogger, ConsoleAppender<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">          <span class="keyword">if</span> (foreground &amp;&amp; maybeConsoleAppender != <span class="keyword">null</span>) &#123;</span><br><span class="line">              Loggers.removeAppender(rootLogger, maybeConsoleAppender);</span><br><span class="line">          &#125;</span><br><span class="line">          Logger logger = Loggers.getLogger(Bootstrap<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">          <span class="keyword">if</span> (INSTANCE.node != <span class="keyword">null</span>) &#123;</span><br><span class="line">              logger = Loggers.getLogger(Bootstrap<span class="class">.<span class="keyword">class</span>, <span class="title">Node</span>.<span class="title">NODE_NAME_SETTING</span>.<span class="title">get</span>(<span class="title">INSTANCE</span>.<span class="title">node</span>.<span class="title">settings</span>()))</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// HACK, it sucks to do this, but we will run users out of disk space otherwise</span></span><br><span class="line">          <span class="keyword">if</span> (e <span class="keyword">instanceof</span> CreationException) &#123;</span><br><span class="line">              <span class="comment">// guice: log the shortened exc to the log file</span></span><br><span class="line">              ByteArrayOutputStream os = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">              PrintStream ps = <span class="keyword">null</span>;</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                  ps = <span class="keyword">new</span> PrintStream(os, <span class="keyword">false</span>, <span class="string">"UTF-8"</span>);</span><br><span class="line">              &#125; <span class="keyword">catch</span> (UnsupportedEncodingException uee) &#123;</span><br><span class="line">                  <span class="keyword">assert</span> <span class="keyword">false</span>;</span><br><span class="line">                  e.addSuppressed(uee);</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">new</span> StartupException(e).printStackTrace(ps);</span><br><span class="line">              ps.flush();</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                  logger.error(<span class="string">"Guice Exception: &#123;&#125;"</span>, os.toString(<span class="string">"UTF-8"</span>));</span><br><span class="line">              &#125; <span class="keyword">catch</span> (UnsupportedEncodingException uee) &#123;</span><br><span class="line">                  <span class="keyword">assert</span> <span class="keyword">false</span>;</span><br><span class="line">                  e.addSuppressed(uee);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> NodeValidationException) &#123;</span><br><span class="line">              logger.error(<span class="string">"node validation exception\n&#123;&#125;"</span>, e.getMessage());</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">// full exception</span></span><br><span class="line">              logger.error(<span class="string">"Exception"</span>, e);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// re-enable it if appropriate, so they can see any logging during the shutdown process</span></span><br><span class="line">          <span class="keyword">if</span> (foreground &amp;&amp; maybeConsoleAppender != <span class="keyword">null</span>) &#123;</span><br><span class="line">              Loggers.addAppender(rootLogger, maybeConsoleAppender);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">throw</span> e;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Node节点"><a href="#Node节点" class="headerlink" title="Node节点"></a>Node节点</h3><ol>
+<li>根据Pid和是否守护进程等信息和之前是setting，创建运行时环境environment和pid文件。</li>
+<li>检查所需的Lucene jar包</li>
+<li>根据之前的environment,为每个plugin创建本地插件控制器：spawner</li>
+<li>初始化本地资源（native方法进行一些OS调用和JVM信息，比如mlock/系统最大资源之类的）</li>
+<li>初始化两种probes（探测），将提供给ES start时所需的一些进程信息和OS层面信息。</li>
+<li>检查重复的jar包，并打印在日志中（JarHell.checkJarHell())</li>
+</ol>
+<h3 id="初始化Node节点（本地节点）"><a href="#初始化Node节点（本地节点）" class="headerlink" title="初始化Node节点（本地节点）"></a>初始化Node节点（本地节点）</h3><ol>
+<li>配置一个检查非回路的IP监测点</li>
+<li>初始化nodeId和nodeName(new NodeEnvironment)</li>
+<li>促使华ES各个功能模块的Service和module，并将service和module绑定</li>
+</ol>
+<h3 id="核心：真正启动Node和keeplive线程"><a href="#核心：真正启动Node和keeplive线程" class="headerlink" title="核心：真正启动Node和keeplive线程"></a>核心：真正启动Node和keeplive线程</h3><p>node启动是在node中各个模块的胡同，通过guice获取各个module的service接口并启动<br>内部包括了master选举机制等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es/" rel="tag"># es</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/27/article/article_1/" rel="next" title="【好文】滴滴出行技术总监：关于技术选型的那些事儿">
+                <i class="fa fa-chevron-left"></i> 【好文】滴滴出行技术总监：关于技术选型的那些事儿
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/31/search/es_1/" rel="prev" title="elasticsearch 配置解释">
+                elasticsearch 配置解释 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动步骤"><span class="nav-number">2.</span> <span class="nav-text">启动步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elasticsearch内部"><span class="nav-number">2.1.</span> <span class="nav-text">Elasticsearch内部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bootstrap内部"><span class="nav-number">2.2.</span> <span class="nav-text">Bootstrap内部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node节点"><span class="nav-number">2.3.</span> <span class="nav-text">Node节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化Node节点（本地节点）"><span class="nav-number">2.4.</span> <span class="nav-text">初始化Node节点（本地节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心：真正启动Node和keeplive线程"><span class="nav-number">2.5.</span> <span class="nav-text">核心：真正启动Node和keeplive线程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
