@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.lilhui.com/"/>
-  <updated>2021-09-01T06:00:09.000Z</updated>
+  <updated>2021-11-15T03:33:02.762Z</updated>
   <id>http://www.lilhui.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.lilhui.com/2021/11/15/article/util/util_1/"/>
+    <id>http://www.lilhui.com/2021/11/15/article/util/util_1/</id>
+    <published>2021-11-15T03:32:06.799Z</published>
+    <updated>2021-11-15T03:33:02.762Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title:  【工具】IDEA配置注释<br>date: 2021/11/15 11:32:02<br>categories: [idea]  </p><h2 id="tags-注释"><a href="#tags-注释" class="headerlink" title="tags: [注释]"></a>tags: [注释]</h2><h2 id="File-and-Code-Templates"><a href="#File-and-Code-Templates" class="headerlink" title="File and Code Templates"></a>File and Code Templates</h2><ul><li>Class</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#if ($&#123;PACKAGE_NAME&#125; &amp;&amp; $&#123;PACKAGE_NAME&#125; != &quot;&quot;)package $&#123;PACKAGE_NAME&#125;;#end</span><br><span class="line">#parse(&quot;File Header.java&quot;)</span><br><span class="line">/*</span><br><span class="line"> * @className $&#123;NAME&#125;</span><br><span class="line"> * @description TODO </span><br><span class="line"> * @author littlehui</span><br><span class="line"> * @date $&#123;DATE&#125; $&#123;TIME&#125;</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br><span class="line">public class $&#123;NAME&#125; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="Live-Templates"><a href="#Live-Templates" class="headerlink" title="Live Templates"></a>Live Templates</h2><ol><li>新建 Templates Group</li><li>新建 * Template</li><li>新建 ** Template</li></ol><ul><li>*<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">** </span><br><span class="line"> * @description $description$</span><br><span class="line">$params$</span><br><span class="line"> * @author littlehui</span><br><span class="line"> * @date $date$ $time$</span><br><span class="line"> * @return $returns$</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></li></ul><p>params 参数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groovyScript(&quot;def result=&apos;&apos;;def fourspace=&apos;&apos;; def params=\&quot;$&#123;_1&#125;\&quot;.replaceAll(&apos;[\\\\[|\\\\]|\\\\s]&apos;, &apos;&apos;).split(&apos;,&apos;).toList(); for(i = 0; i &lt; params.size(); i++) &#123;if (i&gt;0)fourspace=&apos;    &apos;;result+=fourspace+&apos; * @param &apos; + params[i] + ((i &lt; params.size() - 1) ? &apos;\\n&apos; : &apos;&apos;)&#125;; return result&quot;, methodParameters())</span><br></pre></td></tr></table></figure><ul><li>**</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">**</span><br><span class="line"> * @description: TODO</span><br><span class="line"> * @author littlehui</span><br><span class="line"> * @date $date$ $time$</span><br><span class="line"> * @version 1.0</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;title:  【工具】IDEA配置注释&lt;br&gt;date: 2021/11/15 11:32:02&lt;br&gt;categories: [idea]  &lt;/p&gt;
+&lt;h2 id=&quot;tags-注释&quot;&gt;&lt;a href=&quot;#tags-注释&quot; class=&quot;headerlink&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>SP image 128G 1.0版本发布 RG350M专用</title>
@@ -566,37 +589,6 @@
       
         &lt;h2 id=&quot;内存模型&quot;&gt;&lt;a href=&quot;#内存模型&quot; class=&quot;headerlink&quot; title=&quot;内存模型&quot;&gt;&lt;/a&gt;内存模型&lt;/h2&gt;&lt;p&gt;Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：&lt;/p&gt;
 &lt;p&gt;&lt;im
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://www.lilhui.com/categories/java/"/>
-    
-      <category term="并发" scheme="http://www.lilhui.com/categories/java/%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="并发编程" scheme="http://www.lilhui.com/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【深入理解并发编程系列1】操作系统与虚拟机</title>
-    <link href="http://www.lilhui.com/2021/03/21/java/concurrent/concurrent_1/"/>
-    <id>http://www.lilhui.com/2021/03/21/java/concurrent/concurrent_1/</id>
-    <published>2021-03-21T06:10:10.000Z</published>
-    <updated>2021-05-18T15:55:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h1><ol><li>冯诺依曼计算机模型</li><li>cpu缓存结构剖析。</li><li>操作系统内存管理与线程模型。</li><li>虚拟机指令集架构详解。</li></ol><h2 id="分诺依曼计算机体系"><a href="#分诺依曼计算机体系" class="headerlink" title="分诺依曼计算机体系"></a>分诺依曼计算机体系</h2><p><img src="http://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b" alt="图片"></p><h3 id="CPU缓存架构"><a href="#CPU缓存架构" class="headerlink" title="CPU缓存架构"></a>CPU缓存架构</h3><p><img src="http://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31" alt="图片"></p><p>多级缓存：</p><ol><li>L1 cache 数据缓存和指令缓存，逻辑独占。一般 256K</li><li>L2 cache 物理核独占，逻辑核共享。 一般1M左右</li><li>L3 cache， 所有物理核共享 一般8M</li></ol><p>缓存由缓存行构成（cacheline)64byte大小</p><p>CPU读取内存数据的过程：  </p><ol><li>L1-&gt;l2-&gt;L3 一次判断，如果有，直接读取到寄存器。</li><li>如果L1,2,3都没有，从内存，读到L3，从L3复制到L2,从L2复制到L1。L1读到寄存器。</li></ol><ul><li>CPU读取数据的特性</li></ul><ol><li>空间局部性<br> CPU从内存拿数据，不仅是拿目标数据，紧邻的一片一次性加载到L3缓存里。</li><li>时间局部性<br> 如果一个信息正在被访问那么近期它还可能被访问，比如循环，递归方法的反复调用。</li></ol><h2 id="操作系统内存管理"><a href="#操作系统内存管理" class="headerlink" title="操作系统内存管理"></a>操作系统内存管理</h2><p>操作系统内存空间分为  </p><ol><li>用户空间  </li><li>内核空间  </li></ol><p>为什么进行内存空间的划分？  </p><pre><code>目的是为了做到程序运行的安全隔离与稳定。32G 4G大小内存为例。内核空间 1G用户空间3G</code></pre><p><img src="http://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1" alt="图片"></p><h2 id="CPU运行的安全等级"><a href="#CPU运行的安全等级" class="headerlink" title="CPU运行的安全等级"></a>CPU运行的安全等级</h2><p>ring0：<br>    内核态，权限最高。各种操作都可以做。</p><p>ring1<br>ring2<br>ring3<br>权限一次降低。</p><p>运用运行的级别一般在用户态。JVM,app等等。</p><p><img src="http://images.lilhui.com/dbefca81e04794cb7181cc34444004c5" alt="图片"></p><h3 id="内核线程模型"><a href="#内核线程模型" class="headerlink" title="内核线程模型"></a>内核线程模型</h3><p>内核线程（KLT) ，系统内核管理线程内核保存线程额上下文信息，线程阻塞不会引起进程阻塞。在多处理器系统上，多线程在多处理器上并行执行。线程的创建调度和管理由内核完成。效率比ULT要慢，比进程操作快。</p><h3 id="用户线程模型"><a href="#用户线程模型" class="headerlink" title="用户线程模型"></a>用户线程模型</h3><p><img src="http://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8" alt="图片"></p><h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><p>现代操作系统在运行一个程序时，会为其创建一个进程，例如：启动一个java<br>程序，操作系统就会创建一个java进程。进程是OS操作系统资源分配的最小单位</p><p>线程是OS操作系统调度CPU的最小单元。也叫轻量级进程（Light Weight Process)，<br>在一个进程里可以创建多个线程。这些线程拥有各自的计数器，堆栈，局部变量<br>等属性。并且能够访问共享的内存变量，CPU在这些线程上高速切换。让使用者感觉到这些<br>线程在同时执行，既并发的感觉。相似的还有并行</p><p>线程上下文切换过程：<br><img src="http://images.lilhui.com/57daf7d4695424cce11032ad6e029672" alt="图片"></p><h1 id="虚拟机指令集架构"><a href="#虚拟机指令集架构" class="headerlink" title="虚拟机指令集架构"></a>虚拟机指令集架构</h1><p>CPU执行架构分两种，指令集架构和，寄存器指令集架构。</p><h2 id="指令集架构"><a href="#指令集架构" class="headerlink" title="指令集架构"></a>指令集架构</h2><ol><li>设计和实现更简单，适用于资源受限的系统。</li><li>避开了寄存器分配难题，使用零地址指令方式分配。</li><li>指令流中的指令大部分是零地址指令，其执行过程依赖于操作栈，指令集更小，编译器容易实现。</li><li>不需要硬件支持，可移植性更好，更容易实现跨平台。</li></ol><h2 id="寄存器指令集架构"><a href="#寄存器指令集架构" class="headerlink" title="寄存器指令集架构"></a>寄存器指令集架构</h2><ol><li>典型的应用如二进制指令集。传统的PC一级Android的Davilk虚拟机。</li><li>指令集架构则完全依赖硬件，可移植性差。</li><li>性能优秀和执行更高效。</li><li>花费更少的指令去完成一项操作。</li><li>在大部分情况下，基于寄存器架构的指令集往往都以一地址，二地址指令和三地址指令为主。而基于栈架构的指令集涉及出栈入栈等操作。<br>Java，Python，GO</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;概要&quot;&gt;&lt;a href=&quot;#概要&quot; class=&quot;headerlink&quot; title=&quot;概要&quot;&gt;&lt;/a&gt;概要&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;冯诺依曼计算机模型&lt;/li&gt;
-&lt;li&gt;cpu缓存结构剖析。&lt;/li&gt;
-&lt;li&gt;操作系统内存管理与线程模型。&lt;/li&gt;
-&lt;li&gt;虚
       
     
     </summary>
