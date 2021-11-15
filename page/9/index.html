@@ -459,7 +459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_10/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2017/11/09/java/patterndesign/patterndesign_12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -478,7 +478,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_10/" itemprop="url">设计模式系列:桥接模式</a></h1>
+                <a class="post-title-link" href="/2017/11/09/java/patterndesign/patterndesign_12/" itemprop="url">设计模式系列:享元模式</a></h1>
         
 
         <div class="post-meta">
@@ -565,14 +565,16 @@
         
           
           概念
-类的继承是类本身的垂直维度变化。如果需要水平维度上的变化扩展。继承是不好实现的。这时候我们可以引入桥接方式。桥接模式的做法是把变化部分抽象出来，使变化部分与主类分离开来，从而将多个维度的变化彻底分离。最后，提供一个管理类来组合不同维度上的变化，通过这种组合来满足业务的需要。
+一个类的实例有多种 “虚拟实例”。 虚拟实例通过共享数据的方式存在。
 
 实现
-Fruit
+类图：
+
+Tree:1234567891011121314151617181920212223242526272829303132333435363738394041424344package com.littleh
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_10/" rel="contents">
+            <a class="btn" href="/2017/11/09/java/patterndesign/patterndesign_12/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2016,7 +2018,7 @@ P
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2027,7 +2029,7 @@ P
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
