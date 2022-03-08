@@ -446,7 +446,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -465,7 +465,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_6/" itemprop="url">【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析</a></h1>
         
 
         <div class="post-meta">
@@ -562,15 +562,23 @@
       
         
           
-          目的
-自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
-对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
+          核心实现责任链模式责任链模式介绍-扩展链接
+时序图
+限流功能-基于FlowSlot
 
-流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
+
+SoltChain源码解析
+类图
+
+
+
+SoltChain内部
+
+12345678910public interface ProcessorSlot&lt;T&gt; &#123;    void entry(C
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -792,7 +800,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -811,7 +819,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" itemprop="url">【流量控制系列2】流量控制的基础方法和算法</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_3/" itemprop="url">【流量控制系列3】Semaphore信号量介绍</a></h1>
         
 
         <div class="post-meta">
@@ -908,15 +916,11 @@
       
         
           
-          流量控制的方法白名单机制：
-可以采用白名单的机制来限制访问，没有加入白名单的用户不让访问系统
-
-令牌池机制也叫令牌桶
-用户访问系统必须获得令牌池中的令牌，才能进行访问。令牌池每秒钟，阀门开启一次，所有的请求去令牌池中并发的抢夺令牌，获得令牌的可以访问系统，没有获得的返回“系统正忙”或者让该请求加入队
+          简介Semaphore当前在多线程环境下被扩放使用，操作系统的信号量是个很重要的概念，在进程控制方面都有应用。Java 并发库 的Semaphore 可以很轻松完成信号量控制，Semaphore可以控制某个资源可被同时访问的个数，通过 acquire() 获取一个许可，如果没有就等待，而 relea
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_3/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1334,7 +1338,7 @@ Sentinel dashboard改造默认是支持单机，现在需要改造成集群配�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_6/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1353,7 +1357,7 @@ Sentinel dashboard改造默认是支持单机，现在需要改造成集群配�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_6/" itemprop="url">【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" itemprop="url">【流量控制系列2】流量控制的基础方法和算法</a></h1>
         
 
         <div class="post-meta">
@@ -1450,23 +1454,15 @@ Sentinel dashboard改造默认是支持单机，现在需要改造成集群配�
       
         
           
-          核心实现责任链模式责任链模式介绍-扩展链接
-时序图
-限流功能-基于FlowSlot
+          流量控制的方法白名单机制：
+可以采用白名单的机制来限制访问，没有加入白名单的用户不让访问系统
 
-
-SoltChain源码解析
-类图
-
-
-
-SoltChain内部
-
-12345678910public interface ProcessorSlot&lt;T&gt; &#123;    void entry(C
+令牌池机制也叫令牌桶
+用户访问系统必须获得令牌池中的令牌，才能进行访问。令牌池每秒钟，阀门开启一次，所有的请求去令牌池中并发的抢夺令牌，获得令牌的可以访问系统，没有获得的返回“系统正忙”或者让该请求加入队
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1517,7 +1513,7 @@ SoltChain内部
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_3/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1536,7 +1532,7 @@ SoltChain内部
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_3/" itemprop="url">【流量控制系列3】Semaphore信号量介绍</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
         
 
         <div class="post-meta">
@@ -1633,11 +1629,15 @@ SoltChain内部
       
         
           
-          简介Semaphore当前在多线程环境下被扩放使用，操作系统的信号量是个很重要的概念，在进程控制方面都有应用。Java 并发库 的Semaphore 可以很轻松完成信号量控制，Semaphore可以控制某个资源可被同时访问的个数，通过 acquire() 获取一个许可，如果没有就等待，而 relea
+          目的
+自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
+对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
+
+流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_3/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
