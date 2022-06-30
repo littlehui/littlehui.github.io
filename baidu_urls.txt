@@ -1,3 +1,7 @@
+http://www.lilhui.com/2022/06/29/redis/redis_core_2/
+http://www.lilhui.com/2022/06/29/redis/redis_core_1/
+http://www.lilhui.com/2022/04/28/java/spring/spring_deep_3/
+http://www.lilhui.com/2022/03/08/redis/redis_deep_1/
 http://www.lilhui.com/2022/03/03/java/dubbo/dubbo_6/
 http://www.lilhui.com/2022/03/03/java/midware/druid_1/
 http://www.lilhui.com/2022/02/18/java/dubbo/dubbo_5/
@@ -14,7 +18,3 @@ http://www.lilhui.com/2022/02/10/java/io/netty_1/
 http://www.lilhui.com/2022/02/10/java/dubbo/dubbo_2/
 http://www.lilhui.com/2022/01/15/java/distributed/distributed_3/
 http://www.lilhui.com/2022/01/14/java/dubbo/dubbo_1/
-http://www.lilhui.com/2021/12/03/java/distributed/distributed_2/
-http://www.lilhui.com/2021/12/02/java/distributed/distributed_1/
-http://www.lilhui.com/2021/12/02/java/spring/spring_deep_2/
-http://www.lilhui.com/2021/11/17/java/spring/spring_deep_1/

@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21">
 <meta property="og:image" content="http://images.lilhui.com/ff219959971893780f14c82af5225f9c">
 <meta property="og:image" content="http://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08">
-<meta property="og:updated_time" content="2021-05-18T15:55:13.000Z">
+<meta property="og:updated_time" content="2022-06-16T10:53:01.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列2】JVM内存模型">
 <meta name="twitter:description" content="内存模型Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：  JVM的内存模型是JVM定义抽象的定义。工作内存对应的JVM哪一个模块不重要因为，不同的JVM实现，实现的也不一样。 数据八大原子操作 lock: 作用于主内存的变量，把一个变量标记为一条线程独占状态。 unlock：与loc相反的操作。 read： 作用于主内存的变量，把一个变量从主">
@@ -451,7 +451,12 @@
 </ol>
 <p><img src="http://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08" alt="图片"></p>
 <p>原理：内存屏障技术<br>ifence：  一种Load barrier读屏障。<br>sfence：   一种Store Barrier写屏障<br>mfence ： 全能型屏障，具备ifence和sfence能力。<br>Lock前缀  Lock不是一种内存屏障，但是它能完成类似内存屏障的功能。Lock会对CPU总线和高速缓存加锁，可以理解为PUC指令的一种锁。它后面可以跟 ADD，ADC,AND，BTC，BTR,BTS，CMPXCHG,CMPXCH8B,DEC,INC,NEG,NOT,OR,SBB,SUB,XOR,XADD,and XCHG指令。</p>
-<h3 id="手动加内存屏障"><a href="#手动加内存屏障" class="headerlink" title="手动加内存屏障"></a>手动加内存屏障</h3><p>Unsafe.fullFence</p>
+<h3 id="手动加内存屏障"><a href="#手动加内存屏障" class="headerlink" title="手动加内存屏障"></a>手动加内存屏障</h3><p>Unsafe.fullFence<br>java中的可见性如何保证：<br>归类有两种：</p>
+<ol>
+<li>OrderAccess::storeLoad<br> lock; addl xxxx X86架构 lock替代mfence<br> java: volatile,final,syncronized,sleep</li>
+<li>上下文切换 Thread.yield</li>
+</ol>
+<p>CPU 等待唤醒。所有切换都是 park,unpark。操作系统库函数：<br>Linux： pthread_cond_timewait<br>spl.park</p>
 
       
     </div>
@@ -580,7 +585,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">125</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -591,7 +596,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -602,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

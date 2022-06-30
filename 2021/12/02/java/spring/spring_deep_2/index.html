@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="自动装配,">
 
 
 
@@ -89,13 +89,14 @@
 
 
 <meta name="description" content="Spring 四中bean装配模型 NObyTypebyNamebyConstructor 官网说是针对 xml配置的。其实不完全正确。应该是：xml提供了配置入口。 @Autowire 这个可以通过后置处理器，在beandefinitioan里设置autowireMode(int) @Autowired与上面四种的区别是，他可以通过field.set 反射来装配。其他的需要 setXXX方法。">
+<meta name="keywords" content="自动装配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【深入理解Spring系列2】自动装配Bean初始化">
 <meta property="og:url" content="http://www.lilhui.com/2021/12/02/java/spring/spring_deep_2/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Spring 四中bean装配模型 NObyTypebyNamebyConstructor 官网说是针对 xml配置的。其实不完全正确。应该是：xml提供了配置入口。 @Autowire 这个可以通过后置处理器，在beandefinitioan里设置autowireMode(int) @Autowired与上面四种的区别是，他可以通过field.set 反射来装配。其他的需要 setXXX方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-10T06:19:31.275Z">
+<meta property="og:updated_time" content="2022-04-28T06:12:40.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解Spring系列2】自动装配Bean初始化">
 <meta name="twitter:description" content="Spring 四中bean装配模型 NObyTypebyNamebyConstructor 官网说是针对 xml配置的。其实不完全正确。应该是：xml提供了配置入口。 @Autowire 这个可以通过后置处理器，在beandefinitioan里设置autowireMode(int) @Autowired与上面四种的区别是，他可以通过field.set 反射来装配。其他的需要 setXXX方法。">
@@ -442,6 +443,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/自动装配/" rel="tag"># 自动装配</a>
+          
+        </div>
+      
 
       
       
@@ -540,7 +547,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">125</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +558,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -562,7 +569,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
