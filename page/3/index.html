@@ -1711,7 +1711,7 @@ ACID是原子性，一致性，持久性，独立性的缩写。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_4/">
+    <link itemprop="mainEntityOfPage" href="http://www.lilhui.com/2021/05/11/mysql/mysql_deep_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1730,7 +1730,7 @@ ACID是原子性，一致性，持久性，独立性的缩写。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/05/11/mysql/mysql_deep_4/" itemprop="url">【Mysql深入理解系列4】索引优化1</a></h1>
+                <a class="post-title-link" href="/2021/05/11/mysql/mysql_deep_5/" itemprop="url">【Mysql深入理解系列5】索引优化2</a></h1>
         
 
         <div class="post-meta">
@@ -1805,19 +1805,23 @@ ACID是原子性，一致性，持久性，独立性的缩写。
       
         
           
-          索引优化
-详解
-优化索引选择探究
-索引优化Orderby与Group byy
-UsingfileSort文件排序详解。
-索引设计原则与实战。
+          
+分页查询优化详解。
+表JOIN关联原理以及优化。
+表COUNT查询优化。
+阿里巴巴MYSQL规范解读。
+MYSQL数据类型选择分析。
 
-索引优化原则避免ALL权标扫描。即时没走索引也要避免回表
-扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force
+分页查询优化一般的分页：select * from employee limit 1,100
+
+优化方式：
+
+
+根据自增连续主键排序的分页：改成 id&gt;xx
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/11/mysql/mysql_deep_4/" rel="contents">
+            <a class="btn" href="/2021/05/11/mysql/mysql_deep_5/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
