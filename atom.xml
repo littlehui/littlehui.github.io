@@ -5,9 +5,9 @@
   <subtitle>天地那么大，世界那么辽阔。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.lilhui.com/"/>
+  <link href="https://www.lilhui.com/"/>
   <updated>2022-06-30T16:31:02.594Z</updated>
-  <id>http://www.lilhui.com/</id>
+  <id>https://www.lilhui.com/</id>
   
   <author>
     <name>Littlehui</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>【Redis学习2】redis持久化，主从，哨兵架构</title>
-    <link href="http://www.lilhui.com/2022/06/29/redis/redis_core_2/"/>
-    <id>http://www.lilhui.com/2022/06/29/redis/redis_core_2/</id>
+    <link href="https://www.lilhui.com/2022/06/29/redis/redis_core_2/"/>
+    <id>https://www.lilhui.com/2022/06/29/redis/redis_core_2/</id>
     <published>2022-06-29T07:35:00.000Z</published>
     <updated>2022-06-30T16:31:02.594Z</updated>
     
@@ -34,17 +34,17 @@
     
     </summary>
     
-      <category term="redis" scheme="http://www.lilhui.com/categories/redis/"/>
+      <category term="redis" scheme="https://www.lilhui.com/categories/redis/"/>
     
     
-      <category term="redis，哨兵" scheme="http://www.lilhui.com/tags/redis%EF%BC%8C%E5%93%A8%E5%85%B5/"/>
+      <category term="redis，哨兵" scheme="https://www.lilhui.com/tags/redis%EF%BC%8C%E5%93%A8%E5%85%B5/"/>
     
   </entry>
   
   <entry>
     <title>【Redis学习1】核心数据结构与高性能原理</title>
-    <link href="http://www.lilhui.com/2022/06/29/redis/redis_core_1/"/>
-    <id>http://www.lilhui.com/2022/06/29/redis/redis_core_1/</id>
+    <link href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/"/>
+    <id>https://www.lilhui.com/2022/06/29/redis/redis_core_1/</id>
     <published>2022-06-29T07:14:58.000Z</published>
     <updated>2022-06-29T08:11:36.172Z</updated>
     
@@ -59,17 +59,17 @@
     
     </summary>
     
-      <category term="redis" scheme="http://www.lilhui.com/categories/redis/"/>
+      <category term="redis" scheme="https://www.lilhui.com/categories/redis/"/>
     
     
-      <category term="redis" scheme="http://www.lilhui.com/tags/redis/"/>
+      <category term="redis" scheme="https://www.lilhui.com/tags/redis/"/>
     
   </entry>
   
   <entry>
     <title>【深入理解Spring系列2】动态代理</title>
-    <link href="http://www.lilhui.com/2022/04/28/java/spring/spring_deep_3/"/>
-    <id>http://www.lilhui.com/2022/04/28/java/spring/spring_deep_3/</id>
+    <link href="https://www.lilhui.com/2022/04/28/java/spring/spring_deep_3/"/>
+    <id>https://www.lilhui.com/2022/04/28/java/spring/spring_deep_3/</id>
     <published>2022-04-28T06:11:53.000Z</published>
     <updated>2022-04-28T06:19:58.855Z</updated>
     
@@ -84,17 +84,17 @@
     
     </summary>
     
-      <category term="spring" scheme="http://www.lilhui.com/categories/spring/"/>
+      <category term="spring" scheme="https://www.lilhui.com/categories/spring/"/>
     
     
-      <category term="动态代理" scheme="http://www.lilhui.com/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+      <category term="动态代理" scheme="https://www.lilhui.com/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>【Redis核心原理1】</title>
-    <link href="http://www.lilhui.com/2022/03/08/redis/redis_deep_1/"/>
-    <id>http://www.lilhui.com/2022/03/08/redis/redis_deep_1/</id>
+    <link href="https://www.lilhui.com/2022/03/08/redis/redis_deep_1/"/>
+    <id>https://www.lilhui.com/2022/03/08/redis/redis_deep_1/</id>
     <published>2022-03-08T10:51:11.000Z</published>
     <updated>2022-03-11T06:16:50.096Z</updated>
     
@@ -109,17 +109,17 @@
     
     </summary>
     
-      <category term="Redis" scheme="http://www.lilhui.com/categories/Redis/"/>
+      <category term="Redis" scheme="https://www.lilhui.com/categories/Redis/"/>
     
     
-      <category term="Redis" scheme="http://www.lilhui.com/tags/Redis/"/>
+      <category term="Redis" scheme="https://www.lilhui.com/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列6】Duboo 服务调用源码解析</title>
-    <link href="http://www.lilhui.com/2022/03/03/java/dubbo/dubbo_6/"/>
-    <id>http://www.lilhui.com/2022/03/03/java/dubbo/dubbo_6/</id>
+    <link href="https://www.lilhui.com/2022/03/03/java/dubbo/dubbo_6/"/>
+    <id>https://www.lilhui.com/2022/03/03/java/dubbo/dubbo_6/</id>
     <published>2022-03-03T10:49:42.000Z</published>
     <updated>2022-03-07T03:52:10.265Z</updated>
     
@@ -135,17 +135,17 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="服务调用" scheme="http://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/"/>
+      <category term="服务调用" scheme="https://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/"/>
     
   </entry>
   
   <entry>
     <title>Druid连接池 communications link failure问题</title>
-    <link href="http://www.lilhui.com/2022/03/03/java/midware/druid_1/"/>
-    <id>http://www.lilhui.com/2022/03/03/java/midware/druid_1/</id>
+    <link href="https://www.lilhui.com/2022/03/03/java/midware/druid_1/"/>
+    <id>https://www.lilhui.com/2022/03/03/java/midware/druid_1/</id>
     <published>2022-03-03T01:46:31.000Z</published>
     <updated>2022-03-08T08:30:35.843Z</updated>
     
@@ -160,17 +160,17 @@
     
     </summary>
     
-      <category term="druid" scheme="http://www.lilhui.com/categories/druid/"/>
+      <category term="druid" scheme="https://www.lilhui.com/categories/druid/"/>
     
     
-      <category term="druid" scheme="http://www.lilhui.com/tags/druid/"/>
+      <category term="druid" scheme="https://www.lilhui.com/tags/druid/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列5】Duboo 服务引入</title>
-    <link href="http://www.lilhui.com/2022/02/18/java/dubbo/dubbo_5/"/>
-    <id>http://www.lilhui.com/2022/02/18/java/dubbo/dubbo_5/</id>
+    <link href="https://www.lilhui.com/2022/02/18/java/dubbo/dubbo_5/"/>
+    <id>https://www.lilhui.com/2022/02/18/java/dubbo/dubbo_5/</id>
     <published>2022-02-18T06:39:10.000Z</published>
     <updated>2022-03-07T03:57:02.915Z</updated>
     
@@ -185,17 +185,17 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="服务引入" scheme="http://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E5%BC%95%E5%85%A5/"/>
+      <category term="服务引入" scheme="https://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E5%BC%95%E5%85%A5/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列4】Duboo 服务导出</title>
-    <link href="http://www.lilhui.com/2022/02/18/java/dubbo/dubbo_4/"/>
-    <id>http://www.lilhui.com/2022/02/18/java/dubbo/dubbo_4/</id>
+    <link href="https://www.lilhui.com/2022/02/18/java/dubbo/dubbo_4/"/>
+    <id>https://www.lilhui.com/2022/02/18/java/dubbo/dubbo_4/</id>
     <published>2022-02-18T06:38:07.000Z</published>
     <updated>2022-03-03T08:54:59.219Z</updated>
     
@@ -212,17 +212,17 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="服务导出" scheme="http://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E5%AF%BC%E5%87%BA/"/>
+      <category term="服务导出" scheme="https://www.lilhui.com/tags/%E6%9C%8D%E5%8A%A1%E5%AF%BC%E5%87%BA/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列3】Duboo 可扩展机制SPI源码解析</title>
-    <link href="http://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/"/>
-    <id>http://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/</id>
+    <link href="https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/"/>
+    <id>https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/</id>
     <published>2022-02-16T06:12:39.000Z</published>
     <updated>2022-02-17T03:59:09.869Z</updated>
     
@@ -237,17 +237,17 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="SPI" scheme="http://www.lilhui.com/tags/SPI/"/>
+      <category term="SPI" scheme="https://www.lilhui.com/tags/SPI/"/>
     
   </entry>
   
   <entry>
     <title>shardingsphere简单源码解析</title>
-    <link href="http://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_2/"/>
-    <id>http://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_2/</id>
+    <link href="https://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_2/"/>
+    <id>https://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_2/</id>
     <published>2022-02-14T07:41:01.000Z</published>
     <updated>2022-02-14T07:45:25.650Z</updated>
     
@@ -266,17 +266,17 @@
     
     </summary>
     
-      <category term="shardingsphere" scheme="http://www.lilhui.com/categories/shardingsphere/"/>
+      <category term="shardingsphere" scheme="https://www.lilhui.com/categories/shardingsphere/"/>
     
     
-      <category term="分表" scheme="http://www.lilhui.com/tags/%E5%88%86%E8%A1%A8/"/>
+      <category term="分表" scheme="https://www.lilhui.com/tags/%E5%88%86%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>分库分表垂直详解与框架介绍</title>
-    <link href="http://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_1/"/>
-    <id>http://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_1/</id>
+    <link href="https://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_1/"/>
+    <id>https://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_1/</id>
     <published>2022-02-14T07:40:12.000Z</published>
     <updated>2022-02-14T07:40:48.962Z</updated>
     
@@ -292,17 +292,17 @@
     
     </summary>
     
-      <category term="shardingsphere" scheme="http://www.lilhui.com/categories/shardingsphere/"/>
+      <category term="shardingsphere" scheme="https://www.lilhui.com/categories/shardingsphere/"/>
     
     
-      <category term="分表" scheme="http://www.lilhui.com/tags/%E5%88%86%E8%A1%A8/"/>
+      <category term="分表" scheme="https://www.lilhui.com/tags/%E5%88%86%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>监控URL返回非200后执行重启脚本</title>
-    <link href="http://www.lilhui.com/2022/02/11/tools/tools_1/"/>
-    <id>http://www.lilhui.com/2022/02/11/tools/tools_1/</id>
+    <link href="https://www.lilhui.com/2022/02/11/tools/tools_1/"/>
+    <id>https://www.lilhui.com/2022/02/11/tools/tools_1/</id>
     <published>2022-02-11T10:53:43.000Z</published>
     <updated>2022-02-11T10:56:21.902Z</updated>
     
@@ -317,17 +317,17 @@
     
     </summary>
     
-      <category term="tools" scheme="http://www.lilhui.com/categories/tools/"/>
+      <category term="tools" scheme="https://www.lilhui.com/categories/tools/"/>
     
     
-      <category term="shell" scheme="http://www.lilhui.com/tags/shell/"/>
+      <category term="shell" scheme="https://www.lilhui.com/tags/shell/"/>
     
   </entry>
   
   <entry>
     <title>【Java IO详解5】Netty实践2</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/io/netty_5/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/io/netty_5/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_5/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/io/netty_5/</id>
     <published>2022-02-10T07:13:57.000Z</published>
     <updated>2022-02-14T07:37:47.149Z</updated>
     
@@ -345,19 +345,19 @@
     
     </summary>
     
-      <category term="io" scheme="http://www.lilhui.com/categories/io/"/>
+      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
     
     
-      <category term="netty" scheme="http://www.lilhui.com/tags/netty/"/>
+      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
     
-      <category term="rpc" scheme="http://www.lilhui.com/tags/rpc/"/>
+      <category term="rpc" scheme="https://www.lilhui.com/tags/rpc/"/>
     
   </entry>
   
   <entry>
     <title>【Java IO详解4】Netty实践</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/io/netty_4/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/io/netty_4/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_4/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/io/netty_4/</id>
     <published>2022-02-10T07:10:32.000Z</published>
     <updated>2022-02-10T07:13:47.391Z</updated>
     
@@ -373,19 +373,19 @@
     
     </summary>
     
-      <category term="io" scheme="http://www.lilhui.com/categories/io/"/>
+      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
     
     
-      <category term="netty" scheme="http://www.lilhui.com/tags/netty/"/>
+      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
     
-      <category term="rpc" scheme="http://www.lilhui.com/tags/rpc/"/>
+      <category term="rpc" scheme="https://www.lilhui.com/tags/rpc/"/>
     
   </entry>
   
   <entry>
     <title>【Java IO详解3】Netty进阶</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/io/netty_3/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/io/netty_3/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_3/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/io/netty_3/</id>
     <published>2022-02-10T07:07:09.000Z</published>
     <updated>2022-02-10T07:12:20.505Z</updated>
     
@@ -401,17 +401,17 @@
     
     </summary>
     
-      <category term="io" scheme="http://www.lilhui.com/categories/io/"/>
+      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
     
     
-      <category term="netty" scheme="http://www.lilhui.com/tags/netty/"/>
+      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
     
   </entry>
   
   <entry>
     <title>【Java IO详解2】Netty初识</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/io/netty_2/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/io/netty_2/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_2/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/io/netty_2/</id>
     <published>2022-02-10T07:05:19.000Z</published>
     <updated>2022-02-10T07:12:20.542Z</updated>
     
@@ -427,17 +427,17 @@
     
     </summary>
     
-      <category term="io" scheme="http://www.lilhui.com/categories/io/"/>
+      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
     
     
-      <category term="netty" scheme="http://www.lilhui.com/tags/netty/"/>
+      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
     
   </entry>
   
   <entry>
     <title>【Java IO详解1】基础知识</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/io/netty_1/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/io/netty_1/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_1/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/io/netty_1/</id>
     <published>2022-02-10T06:59:28.000Z</published>
     <updated>2022-02-11T03:54:19.435Z</updated>
     
@@ -453,19 +453,19 @@
     
     </summary>
     
-      <category term="io" scheme="http://www.lilhui.com/categories/io/"/>
+      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
     
     
-      <category term="tcp" scheme="http://www.lilhui.com/tags/tcp/"/>
+      <category term="tcp" scheme="https://www.lilhui.com/tags/tcp/"/>
     
-      <category term="udp" scheme="http://www.lilhui.com/tags/udp/"/>
+      <category term="udp" scheme="https://www.lilhui.com/tags/udp/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列2】基础应用和高级应用</title>
-    <link href="http://www.lilhui.com/2022/02/10/java/dubbo/dubbo_2/"/>
-    <id>http://www.lilhui.com/2022/02/10/java/dubbo/dubbo_2/</id>
+    <link href="https://www.lilhui.com/2022/02/10/java/dubbo/dubbo_2/"/>
+    <id>https://www.lilhui.com/2022/02/10/java/dubbo/dubbo_2/</id>
     <published>2022-02-10T06:23:58.000Z</published>
     <updated>2022-02-14T07:37:04.423Z</updated>
     
@@ -480,17 +480,17 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="泛化调用" scheme="http://www.lilhui.com/tags/%E6%B3%9B%E5%8C%96%E8%B0%83%E7%94%A8/"/>
+      <category term="泛化调用" scheme="https://www.lilhui.com/tags/%E6%B3%9B%E5%8C%96%E8%B0%83%E7%94%A8/"/>
     
   </entry>
   
   <entry>
     <title>【分库分表1】分布式主键1</title>
-    <link href="http://www.lilhui.com/2022/01/15/java/distributed/distributed_3/"/>
-    <id>http://www.lilhui.com/2022/01/15/java/distributed/distributed_3/</id>
+    <link href="https://www.lilhui.com/2022/01/15/java/distributed/distributed_3/"/>
+    <id>https://www.lilhui.com/2022/01/15/java/distributed/distributed_3/</id>
     <published>2022-01-15T03:00:57.000Z</published>
     <updated>2022-02-14T07:45:56.028Z</updated>
     
@@ -506,21 +506,21 @@
     
     </summary>
     
-      <category term="电商" scheme="http://www.lilhui.com/categories/%E7%94%B5%E5%95%86/"/>
+      <category term="电商" scheme="https://www.lilhui.com/categories/%E7%94%B5%E5%95%86/"/>
     
-      <category term="微服务" scheme="http://www.lilhui.com/categories/%E7%94%B5%E5%95%86/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+      <category term="微服务" scheme="https://www.lilhui.com/categories/%E7%94%B5%E5%95%86/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-      <category term="亿级流量" scheme="http://www.lilhui.com/tags/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F/"/>
+      <category term="亿级流量" scheme="https://www.lilhui.com/tags/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F/"/>
     
-      <category term="分库分表" scheme="http://www.lilhui.com/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/"/>
+      <category term="分库分表" scheme="https://www.lilhui.com/tags/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
     <title>【Dubbo源码系列1】框架介绍</title>
-    <link href="http://www.lilhui.com/2022/01/14/java/dubbo/dubbo_1/"/>
-    <id>http://www.lilhui.com/2022/01/14/java/dubbo/dubbo_1/</id>
+    <link href="https://www.lilhui.com/2022/01/14/java/dubbo/dubbo_1/"/>
+    <id>https://www.lilhui.com/2022/01/14/java/dubbo/dubbo_1/</id>
     <published>2022-01-14T06:05:57.000Z</published>
     <updated>2022-02-10T06:23:00.132Z</updated>
     
@@ -538,12 +538,12 @@
     
     </summary>
     
-      <category term="dubbo" scheme="http://www.lilhui.com/categories/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/categories/dubbo/"/>
     
     
-      <category term="dubbo" scheme="http://www.lilhui.com/tags/dubbo/"/>
+      <category term="dubbo" scheme="https://www.lilhui.com/tags/dubbo/"/>
     
-      <category term="SPI" scheme="http://www.lilhui.com/tags/SPI/"/>
+      <category term="SPI" scheme="https://www.lilhui.com/tags/SPI/"/>
     
   </entry>
   
