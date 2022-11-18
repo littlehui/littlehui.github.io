@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lilhui.com/"/>
-  <updated>2022-07-06T09:24:34.085Z</updated>
+  <updated>2022-10-27T07:08:59.961Z</updated>
   <id>https://www.lilhui.com/</id>
   
   <author>
@@ -15,6 +15,125 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>云原生下的Java虚拟机 GraalVM</title>
+    <link href="https://www.lilhui.com/2022/10/27/java/jvm_tuning/tuning_2/"/>
+    <id>https://www.lilhui.com/2022/10/27/java/jvm_tuning/tuning_2/</id>
+    <published>2022-10-27T03:44:31.000Z</published>
+    <updated>2022-10-27T07:08:59.961Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>java 的编译器<br>C1,C2<br>C1不进行优化，C2会进行优化。热点代码缓存,JIT等等。</p><p>C2 C++写的，太复杂，不维护，而且有bug<br>java语言一直在进步，C2没有办法维护，需要一种新的编译器来进行支持，所以有了GraalVM</p><ul><li><p>事实<br>JIT,性能优化、垃圾回收等代表的特性需要一段时间来达到最佳性能。<br>java是面向大规模、长时间的服务应而设计。</p></li><li><p>矛盾<br>  微服务时代对启动速度、达到高性能的时间提出了新的要求。</p></li></ul><h3 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h3><p>Java离不开虚拟机（JVM)</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p><strong>革命派：</strong> 直接而干掉Java和Java生态。（Golang的诞生）<br><strong>保守派：</strong> 保留原有主流Java生态和技术资产，朝着微服务、云原生环境靠拢（GraalVM)</p><h2 id="GraalVM的技术"><a href="#GraalVM的技术" class="headerlink" title="GraalVM的技术"></a>GraalVM的技术</h2><p><strong>AOT技术：</strong> ahead of time</p><p>编译成native代码花费时间太大，这部分时间无法节省，所以引入AOT，减少这部分时间。</p><h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><ul><li>C++<br>  微软的Stackless模式单台1000万个链接。<br>  腾讯微信团队：libco</li><li>Java<br>  JVM（Loom:fibers轻量级用户线程）<br>  基于JNI<br>  操控字节码</li></ul><h2 id="GraalVM介绍"><a href="#GraalVM介绍" class="headerlink" title="GraalVM介绍"></a>GraalVM介绍</h2><p>C2编译器比较缓和，GraalVM比较激进</p><p><img src="https://images.lilhui.com/a0c5bf2ee63b97dcd762ee4843e6a734" alt="图片"></p><p>JVMCI: JVM compile interface</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;java 的编译器&lt;br&gt;C1,C2&lt;br&gt;C1不进行优化，C2会进行优化。热点代码缓存,JIT等等。&lt;/p&gt;
+&lt;p&gt;C2 C++写的，太复
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://www.lilhui.com/categories/java/"/>
+    
+    
+      <category term="GraalVM" scheme="https://www.lilhui.com/tags/GraalVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM调优系列1:ZGC详解</title>
+    <link href="https://www.lilhui.com/2022/10/26/java/jvm_tuning/tuning_1/"/>
+    <id>https://www.lilhui.com/2022/10/26/java/jvm_tuning/tuning_1/</id>
+    <published>2022-10-26T07:49:32.000Z</published>
+    <updated>2022-10-27T02:38:19.283Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>逃逸分析</li><li>标量替换</li><li><p>栈上分配</p></li><li><p>锁消除</p></li><li>锁粗化</li></ul><h2 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h2><p>JVM 语言无关性<br>字节码执行</p><pre><code>- 解释执行- 即时编译 JIT</code></pre><p>JIT是编译成本地字节码。非java字节码，是机器直接运行的本地编码，可能是汇编等。</p><p><img src="https://images.lilhui.com/7e6500afac4a1919f2d8d780657aa187" alt="图片"></p><h3 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h3><p>C1 class -&gt; 本地编码（不做优化）<br>C2 性能优化</p><ul><li>热点探测技术<ul><li>方法内联<br>热点探测技术<br>方法体大小限制</li><li>栈上分配</li></ul></li></ul><p>C2比较难维护，Java 10 以后开发了新的Graal（java写的）</p><ul><li>分层编译</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;逃逸分析&lt;/li&gt;
+&lt;li&gt;标量替换&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;栈上分配&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;锁消除&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;锁粗化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;JIT&quot;&gt;&lt;a href=&quot;#JIT&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://www.lilhui.com/categories/java/"/>
+    
+      <category term="jvm" scheme="https://www.lilhui.com/categories/java/jvm/"/>
+    
+    
+      <category term="jvm" scheme="https://www.lilhui.com/tags/jvm/"/>
+    
+      <category term="调优" scheme="https://www.lilhui.com/tags/%E8%B0%83%E4%BC%98/"/>
+    
+      <category term="ZGC" scheme="https://www.lilhui.com/tags/ZGC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【深入理解Spring系列4】BeanDefinition</title>
+    <link href="https://www.lilhui.com/2022/07/12/java/spring/spring_deep_4/"/>
+    <id>https://www.lilhui.com/2022/07/12/java/spring/spring_deep_4/</id>
+    <published>2022-07-12T07:31:17.000Z</published>
+    <updated>2022-07-12T07:43:09.243Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>Spring Bean的 四种装配模式外，还有一种自动策略。</p><p>当只有一个 构造方法，并且构造方法里有参数。<br>会进行 aurowireConstructor(beanName, mdb, ctors, args)</p><ul><li>spring扫描不能直接new的方法</li></ul><p>@DependsOn</p><p>@Prototype 执行的时候new</p><p>所以需要先解析验证。</p><p>scan-parse（会变成BeaDefinition）-validate(info)-new(开始spring的生命周期)</p><p>可以这么理解：</p><p>beanDefinition之于Spring<br>相当于class之于java对象</p><ul><li>常量（BeanDefinition)<br>-<br>SCOPE_SINGLETON</li></ul><p>ROLE_APPLICATION</p><p>setParentName</p><p>//自动装配候选对象 ，被装配<br>setAutowireCandidate<br>//候选对象最高级<br>setPrimary</p><p>BeanDefinition所有属性都能找到与之匹配的 xml配置。</p><p>ac.getBean(XXX);是从DefaultSingletonBeanRegistry.singletonObjects.get(XXX)</p><ul><li>abstractApplicationContext</li></ul><p>abstractApplicationContext.refresh()</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这里初始化对象。还未装配</span><br><span class="line">finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">//这里装配。</span><br><span class="line">finishRefresh()</span><br></pre></td></tr></table></figure><ol><li>扫描</li><li>parse</li><li>validate</li><li>life  遍历map得到BeanDefinition实例化。</li></ol><h2 id="BeanDefinition"><a href="#BeanDefinition" class="headerlink" title="BeanDefinition"></a>BeanDefinition</h2><p>各方法说明：</p><p>setPrimary:<br>多个接口实现的时候，自动注入候选的时候排第一。</p><ul><li>关键父类<br>AbstractBeanDefinition</li></ul><p>ChildBeanDefinition,RootBeanDefinition Spring 2.5的时候用</p><p>GenericBeanDefinition<br>现在常用。</p><p>xml 配置里的<bean></bean>描述的就是 beanDefinition的属性。<br>spring容器会进行扫描。扫描后会根据bendefinition里描述的进行实例化。</p><p>abstract = true 必须要有 beanClass</p><ul><li>RootBeanDefinition</li></ul><p>减少不同 bean配置多种相同相同属性值的 工作量 abstract=true</p><p>parent = ‘xxx’</p><p>spring 2.5之前有这种写法。后面更方便了用扫描，用标签。</p><p>问题：RootBeanDefinition也有 setParentName()，为什么要多一个ChildBeanDefinition ?</p><p>RootBeanDefinition一般作为父出现，或者一般BD出现。但是不作为子BD出现。<br>为什么要这样规定？为什么设置Root的Parent要抛出异常？</p><p>合并BeanDefinition？</p><ul><li>AnnotatedBeanDefinitionReader</li></ul><p>作用：解析@Configuration 这标签会去扫描</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public AnnotationConfigApplicationContext() &#123;</span><br><span class="line">this.reader = new AnnotatedBeanDefinitionReader(this);</span><br><span class="line">this.scanner = new ClassPathBeanDefinitionScanner(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>beanReader = AnnotatedBeanDefinitionReader(this);<br>把 配置的AppConfig 变成 BeanDefinition</p><p>其他的 要完成扫描的时候去new 其他BD.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.reader = new AnnotatedBeanDefinitionReader(this);  这么写是为了后面能通过 context.register.registBean(标签) 来扩展自定义标签。</span><br></pre></td></tr></table></figure></p><p>注意这里是为了扩展，spring启动的时候并不是用这个scaner去扫描。<br>实际上用的是,在BeanDefinitionRegistry这个后置处理器。</p><p>ConfigutationClassPostProcessor.postProcessBanDefinitionRegistry(registry)</p><p>-&gt;<br>这里找到 registry里初始化的BeanDefinition，进行parse<br>ConfigurationClassParser.parse(Set<beandefinitionholder> candidates)<br>这个方法里会判断 参数是否实现了 AnnotatedBeanDefinition</beandefinitionholder></p><p>bd instanceof AnnotatedBeanDefinition</p><p>-</p><p>ConfigurationClassParser.processConfigurationClass</p><p>//这段很有意思，扫描结束后会将sourceClass设置为null。说明所有的BeanDefinition都扫描出来了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">sourceClass = doProcessConfigurationClass(configClass, sourceClass);</span><br><span class="line">&#125;</span><br><span class="line">while (sourceClass != null);</span><br></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass)</span><br></pre></td></tr></table></figure><p>doProcessConfigurationClass<br>这里是实现。<br>实际识别了@Component  @ComponentScan @ImportSource 等标签。</p><p>然后在<br>ComponentScanAnnotationParser<br>类里的<br>public Set<beandefinitionholder> parse(AnnotationAttributes componentScan, final String declaringClass)</beandefinitionholder></p><p>进行实际的扫描，先new 出了<br>ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(this.registry,</p><p>再判断各种includerFilter excluderFilter<br>最后根据 标签配置的 包路径进行文件扫描。<br>从而扫描出Beandefinition 放到BeanDeinitionMap</p><p>小总结：<br>Beandefinition决定了spring 中Bean的各种特征。<br>class-beandefinition-springbean。<br>通过beandefinition spring定义了一套 spring bean的属性特征。</p><p>GenericBeanDefinition追加了setBeanClass</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h2&gt;&lt;p&gt;Spring Bean的 四种装配模式外，还有一种自动策略。&lt;/p&gt;
+&lt;p&gt;当只有一个 构造方法，并且构造方法里有参数。&lt;b
+      
+    
+    </summary>
+    
+      <category term="spring" scheme="https://www.lilhui.com/categories/spring/"/>
+    
+    
+      <category term="bean" scheme="https://www.lilhui.com/tags/bean/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【rabbitMq学习1】MQ的基本概念</title>
+    <link href="https://www.lilhui.com/2022/07/11/mq/rabbitmq_core_1/"/>
+    <id>https://www.lilhui.com/2022/07/11/mq/rabbitmq_core_1/</id>
+    <published>2022-07-11T07:00:32.000Z</published>
+    <updated>2022-07-11T07:03:49.781Z</updated>
+    
+    <content type="html"><![CDATA[<p>##MQ的基本概念</p><p>MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##MQ的基本概念&lt;/p&gt;
+&lt;p&gt;MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="mq" scheme="https://www.lilhui.com/categories/mq/"/>
+    
+    
+      <category term="rabbitMq" scheme="https://www.lilhui.com/tags/rabbitMq/"/>
+    
+  </entry>
   
   <entry>
     <title>【Redis学习7】开发规范和性能优化</title>
@@ -423,116 +542,6 @@
     
     
       <category term="shell" scheme="https://www.lilhui.com/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Java IO详解5】Netty实践2</title>
-    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_5/"/>
-    <id>https://www.lilhui.com/2022/02/10/java/io/netty_5/</id>
-    <published>2022-02-10T07:13:57.000Z</published>
-    <updated>2022-02-14T07:37:47.149Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="RPC实践"><a href="#RPC实践" class="headerlink" title="RPC实践"></a>RPC实践</h2><ul><li>http服务</li></ul><p>Netty实现了完整的http协议 HttpHandler只要在channelHandler初始化的时候设置就行。FullHttpServerHandler</p><ul><li>服务推送技术</li></ul><p>WebSocket</p><p><img src="http://images.lilhui.com/2e200872f8eac314980765e2adba30c0" alt="图片"></p><p>1：建立http请求<br>2：建立WebSocket握手</p><p>协议升级</p><p>子协议：STOMP<br>文本定向消息协议<br>生产者，消息代理，消费者。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;RPC实践&quot;&gt;&lt;a href=&quot;#RPC实践&quot; class=&quot;headerlink&quot; title=&quot;RPC实践&quot;&gt;&lt;/a&gt;RPC实践&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;http服务&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Netty实现了完整的http协议 HttpHandler只要
-      
-    
-    </summary>
-    
-      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
-    
-    
-      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
-    
-      <category term="rpc" scheme="https://www.lilhui.com/tags/rpc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Java IO详解4】Netty实践</title>
-    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_4/"/>
-    <id>https://www.lilhui.com/2022/02/10/java/io/netty_4/</id>
-    <published>2022-02-10T07:10:32.000Z</published>
-    <updated>2022-02-10T07:13:47.391Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ByteBuf回顾"><a href="#ByteBuf回顾" class="headerlink" title="ByteBuf回顾"></a>ByteBuf回顾</h2><p>ByteBuf</p><p>协议 nagle合并包<br>应用层  包大于套接字缓冲区<br>网络层 tcp分片 帧<br>路由器，硬件设备等等</p><ul><li><p>编码器</p></li><li><p>解码器</p></li></ul><p>netty基于ChannelInboudHandlerAdater和ChannelOutboudHanlderAdapter实现了一些编解码抽象类，我们在使用的过程中就只要关注编解码的业务实现。<br>MessageToMessageDecoder<i>：把某种对象解码成另外一种对象。泛型I对应的是第一个Message类型。<br>ByteToMessageDecoder：把ByteBuf解码成某一种对象。<br>MessageToMessageEncoder<i>：把某种对象编码成另一种对象。泛型I对应的是第一个Message类型。<br>MessageToByteEncoder<i>:把某对象编码成另一种对象。泛型I对应的是第一个Message类型。</i></i></i></p><h2 id="RPC框架实现"><a href="#RPC框架实现" class="headerlink" title="RPC框架实现"></a>RPC框架实现</h2><p><img src="http://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b" alt="图片"></p><p>需要使用到的技术：<br>1、动态代理<br>通过java Proxy技术拿到代理对象，invocationHandler实现数据协议包装和通讯。<br>2、序列化、反序列化<br>3、网络通讯<br>基于netty的客户端和服务端进行通讯可以获得很好的IO性能<br>4、反射<br>根据客户端请求参数通过反射技术实现服务端对应实例的方法调用</p><p>使用netty实现客户端发送需要注意的点<br>通过Netty的channel调用写数据writeAndFlush 写的事件以及收到响应之后的channelRead事件都是会异步执行，所以需要注意线程协作的问题。可以使用countdowlacth来实现主线程等待channelread执行完之后才去获取收到的响应对象。</p><p><img src="http://images.lilhui.com/b6572ded990e4a9459d844d8d16bc69b" alt="图片"></p><p><img src="http://images.lilhui.com/4c692c1d48f22b4f25fe19af825c8702" alt="图片"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;ByteBuf回顾&quot;&gt;&lt;a href=&quot;#ByteBuf回顾&quot; class=&quot;headerlink&quot; title=&quot;ByteBuf回顾&quot;&gt;&lt;/a&gt;ByteBuf回顾&lt;/h2&gt;&lt;p&gt;ByteBuf&lt;/p&gt;
-&lt;p&gt;协议 nagle合并包&lt;br&gt;应用层  包大于套接字缓
-      
-    
-    </summary>
-    
-      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
-    
-    
-      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
-    
-      <category term="rpc" scheme="https://www.lilhui.com/tags/rpc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Java IO详解3】Netty进阶</title>
-    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_3/"/>
-    <id>https://www.lilhui.com/2022/02/10/java/io/netty_3/</id>
-    <published>2022-02-10T07:07:09.000Z</published>
-    <updated>2022-02-10T07:12:20.505Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Reactor模型"><a href="#Reactor模型" class="headerlink" title="Reactor模型"></a>Reactor模型</h2><ul><li>管件类和概念<br>Channel, ChannelHandler，ChannelHandlerContext<br>ChannelHandler的执行规则  INBound,OutBound<br>Pipline里的ChannelHandlerContext<br>OutBoundHandler也有read，是为了校验，因为OutBound是在前面。</li></ul><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>outChannelHandler.write触发fireChannelRead的时候<br>inHandler会writeAndFlash,会触发outChannelHandler的 write形成死循环。<br>所以在OutHandler的write里不能fireChannelRead<br>会OverStackFlow</p><h2 id="Bytebuf"><a href="#Bytebuf" class="headerlink" title="Bytebuf"></a>Bytebuf</h2><p>Unpooled.xxx</p><ul><li>申请方式</li></ul><p>ByteBufAllocator heapBuffer() directBuffer()<br>compositeBuffer()</p><ul><li>两套索引</li></ul><p>readIndex和writeIndex</p><p>调用get<em> set</em>不会移动索引。调用read<em>, write</em>会移动相应的索引。<br>forEachByte 查找。</p><ul><li>派生缓冲区</li></ul><p>为Bytebuf提供了专门的方式来呈现其内容的试图。通过以下方法被创建：</p><p>dumplicate(), slice(), slice(int, int);</p><p>Unpooled.unmodifiableBuffer(…);<br>order(ByteOrder);<br>readSlice()</p><p>每个方法都返回一个新的ByteBuf实例，它具有自己的读索引、写索引和标记索引。<br>派生的缓冲区和原缓冲区的数据是共享的。</p><ul><li>引用计数</li></ul><p>release 计数减一。减到0后会进行回收。<br>减少GC。</p><p>池化的对象如果不释放，可能会引起内存溢出。</p><p>writeAndFlush会释放资源</p><p>SimpleChannelInboundHandler实现了 release。</p><ul><li>粘包，半包</li></ul><p><img src="http://images.lilhui.com/f6c05cc6032dad053d0a41f8811dc4c8" alt="图片"></p><p>假设客户端分别发送了两个数据包D1和D2给服务器，由于服务器一次读取的字节数是不确定的。所以可能会有以下4种情况。<br>从用户空间到内存空间。累计几个包后进行flash一起发送。</p><p>1：服务端分两次读取到两个独立的数据包，分别是D1和D2，没有粘包和拆包。<br>2：服务端一次接收到了两个数据包，D1和D2粘在一起，被称为TCP粘包。<br>3：服务端分两次读取到了两个数据包，第一次读取到了完整的D1和D2部分内容，第二次读取到了D2的剩余内容。这个叫做TCP拆包。<br>4：服务端分两次读取到了两个数据包，第一次读取到了D1包的部分内容D1_1，第二次读取到了D1包剩余内容和D2包的完整包。<br>如果此时服务端TCP接收滑窗非常小，而数据D1和D2比较大，很有可能会发生第五种可能，既服务端分多次才能将D1和D2包接收完成。期间发生多次拆包。</p><ul><li>TCP粘包/半包发生的原因</li></ul><p><img src="http://images.lilhui.com/3487c1c6c200dbd7c746550f82911bbe" alt="图片"></p><p>TCP的Nagle算法，会合并小包，统一发送。如此，服务端无法区分哪些数据包是需要分开的，这就产生了粘包。</p><p>UDP：作为连接不可靠的传输协议。不会对数据包进行合并发送。没有Nogle算法。<br>UDP的包是 数据+UDP头+IP头一次封装，没有粘包。<br>分包产生的原因：</p><p>IP分片传输导致。传输过程丢失部分包。或者一个包被分成了多个，接收端顺序打乱了。<br>整理有几种情况：<br>1：数据大于套接字发送缓冲区。<br>2：进行MSS大小的TCP分段，MSS最大报文段长度的缩写。MSS是TCP报文段中数据段的最大长度。数据字段加上TCP首部才等于整个TCP报文段。所以MSS并不是TCP报文长度的最大长度。而是：MSS=TCP报文头长度-TCP首部长度。</p><p>1、两次请求，每个请求一个包<br>2、两次请求和成了一个包<br>3、第二个包被分成了两个包D2-2、D2-1 ，被分割的包D2-1的包有可能会跟D1合成一个包<br>4、第一个包分成了两个包，第二部分的包D1-2跟D2合成了一个包</p><ul><li>如何解决粘包半包问题</li></ul><p>1：包尾巴追加分隔符。 LineBasedFrameDecoder和DelimiterBasedFrameDecoder<br>2：消息定长。不够的补空格FixedLengthFrameDecoder<br>3：消息协议氛围消息头和消息体，消息头中包含标识消息总长度。通常设计思路为消息头的第一个字段使用int32来表示消息的总长度，LengthFieldBasedFrameDecoder。</p><ul><li>编解码<br>加密解密\序列化 反序列化</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;Reactor模型&quot;&gt;&lt;a href=&quot;#Reactor模型&quot; class=&quot;headerlink&quot; title=&quot;Reactor模型&quot;&gt;&lt;/a&gt;Reactor模型&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;管件类和概念&lt;br&gt;Channel, ChannelHandler，Ch
-      
-    
-    </summary>
-    
-      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
-    
-    
-      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Java IO详解2】Netty初识</title>
-    <link href="https://www.lilhui.com/2022/02/10/java/io/netty_2/"/>
-    <id>https://www.lilhui.com/2022/02/10/java/io/netty_2/</id>
-    <published>2022-02-10T07:05:19.000Z</published>
-    <updated>2022-02-10T07:12:20.542Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><p>BIO, NIO, AIO<br>其中：  AIO中 linux在 内核绑定 CompleteChandle</p><h2 id="netty"><a href="#netty" class="headerlink" title="netty"></a>netty</h2><p>Reactor 模式，事件驱动实现方式</p><h3 id="Reactor模型"><a href="#Reactor模型" class="headerlink" title="Reactor模型"></a>Reactor模型</h3><ul><li>多线程<br>在selector加入了多线程支持。<br><img src="http://images.lilhui.com/5633cd5e1b23d8493684fe91229938dc" alt="图片"></li></ul><ul><li>主从</li></ul><p>selector加入到线程池</p><p><img src="http://images.lilhui.com/1a7d3c04ed76989cb06257a1e7424f8d" alt="图片"></p><h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><ul><li>Bootstrap</li></ul><p>EventLoop   selector保持器<br>EventLoopGroup  Reactor主反应</p><p>结合实现多个selector</p><p><img src="http://images.lilhui.com/db1eea4b563ad1eab4a6df70ef9e9e58" alt="图片"></p><ul><li>Channel</li></ul><p>管道，充当用户空间与内核间的沟通</p><p><img src="http://images.lilhui.com/99f24ec74332fa18d9db568f50476f6a" alt="图片"></p><p>ChannelHandler</p><p><img src="http://images.lilhui.com/c21f2895d82cd0015a2eb35e4c129a37" alt="图片"></p><p>协作处理</p><p><img src="http://images.lilhui.com/f47ef15cbbeb00d3a7e12a79ca237363" alt="图片"></p><ul><li>ChannelHandlerContext</li></ul><p><img src="http://images.lilhui.com/3be250bdb608d37702227d534f4b0509" alt="图片"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;IO模型&quot;&gt;&lt;a href=&quot;#IO模型&quot; class=&quot;headerlink&quot; title=&quot;IO模型&quot;&gt;&lt;/a&gt;IO模型&lt;/h2&gt;&lt;p&gt;BIO, NIO, AIO&lt;br&gt;其中：  AIO中 linux在 内核绑定 CompleteChandle&lt;/p&gt;
-&lt;h2
-      
-    
-    </summary>
-    
-      <category term="io" scheme="https://www.lilhui.com/categories/io/"/>
-    
-    
-      <category term="netty" scheme="https://www.lilhui.com/tags/netty/"/>
     
   </entry>
   
