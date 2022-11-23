@@ -96,25 +96,25 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="常见的分布式事务方案 2PC 两阶段提交角色定义： TM：TransactionManager协调者RM：RresourceManager参与者 从字面上理解两阶段提交分两个阶段提交的事务。 阶段一：TM通知RM准备提交他们的事务分支，如果RM判断自己进行的工作可以被提交，就对工作内容进行持久化再回复TM,否则异常。Mysql是这样做的：事务管理器向所有涉及到的数据库发出prepare 准备提交请">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/aff38186038103177cb12abc59492773">
-<meta property="og:image" content="http://images.lilhui.com/926fc561b6ea8c0c8e5304b7281c5596">
-<meta property="og:image" content="http://images.lilhui.com/9b81d334f266e632772648638da6e6c6">
-<meta property="og:image" content="http://images.lilhui.com/bd850c07c83c6ec78265a4bc15af9786">
-<meta property="og:image" content="http://images.lilhui.com/33ae92e7385a402bd7be89fd1b5d0022">
-<meta property="og:image" content="http://images.lilhui.com/ba2d7021ccb83903ed03b390b2524301">
-<meta property="og:image" content="http://images.lilhui.com/df9e0ab532d5b31a27ee48a608359442">
-<meta property="og:image" content="http://images.lilhui.com/b151157caa0e6674a218c4a78d825dbd">
-<meta property="og:image" content="http://images.lilhui.com/611c9e22f3a2a606410887f5d30cf71f">
-<meta property="og:image" content="http://images.lilhui.com/257ca2a2ead452ea870ef8a3324dc6d0">
-<meta property="og:image" content="http://images.lilhui.com/197864dc504ab51310d5111de069170f">
-<meta property="og:image" content="http://images.lilhui.com/42887bcf2282a910d82a046444b1f94d">
-<meta property="og:image" content="http://images.lilhui.com/bb6a1ee6f9abcfe697ebcb3a57604af0">
-<meta property="og:image" content="http://images.lilhui.com/c72ea521f4efbadc03c2c31bc6a03888">
-<meta property="og:updated_time" content="2022-02-10T06:12:44.469Z">
+<meta property="og:image" content="https://images.lilhui.com/aff38186038103177cb12abc59492773">
+<meta property="og:image" content="https://images.lilhui.com/926fc561b6ea8c0c8e5304b7281c5596">
+<meta property="og:image" content="https://images.lilhui.com/9b81d334f266e632772648638da6e6c6">
+<meta property="og:image" content="https://images.lilhui.com/bd850c07c83c6ec78265a4bc15af9786">
+<meta property="og:image" content="https://images.lilhui.com/33ae92e7385a402bd7be89fd1b5d0022">
+<meta property="og:image" content="https://images.lilhui.com/ba2d7021ccb83903ed03b390b2524301">
+<meta property="og:image" content="https://images.lilhui.com/df9e0ab532d5b31a27ee48a608359442">
+<meta property="og:image" content="https://images.lilhui.com/b151157caa0e6674a218c4a78d825dbd">
+<meta property="og:image" content="https://images.lilhui.com/611c9e22f3a2a606410887f5d30cf71f">
+<meta property="og:image" content="https://images.lilhui.com/257ca2a2ead452ea870ef8a3324dc6d0">
+<meta property="og:image" content="https://images.lilhui.com/197864dc504ab51310d5111de069170f">
+<meta property="og:image" content="https://images.lilhui.com/42887bcf2282a910d82a046444b1f94d">
+<meta property="og:image" content="https://images.lilhui.com/bb6a1ee6f9abcfe697ebcb3a57604af0">
+<meta property="og:image" content="https://images.lilhui.com/c72ea521f4efbadc03c2c31bc6a03888">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【微服务电商平台关键技术1】分布式事务">
 <meta name="twitter:description" content="常见的分布式事务方案 2PC 两阶段提交角色定义： TM：TransactionManager协调者RM：RresourceManager参与者 从字面上理解两阶段提交分两个阶段提交的事务。 阶段一：TM通知RM准备提交他们的事务分支，如果RM判断自己进行的工作可以被提交，就对工作内容进行持久化再回复TM,否则异常。Mysql是这样做的：事务管理器向所有涉及到的数据库发出prepare 准备提交请">
-<meta name="twitter:image" content="http://images.lilhui.com/aff38186038103177cb12abc59492773">
+<meta name="twitter:image" content="https://images.lilhui.com/aff38186038103177cb12abc59492773">
 
 
 
@@ -425,13 +425,13 @@
       
 
       
-        <h2 id="常见的分布式事务方案"><a href="#常见的分布式事务方案" class="headerlink" title="常见的分布式事务方案"></a>常见的分布式事务方案</h2><p><img src="http://images.lilhui.com/aff38186038103177cb12abc59492773" alt="图片"></p>
+        <h2 id="常见的分布式事务方案"><a href="#常见的分布式事务方案" class="headerlink" title="常见的分布式事务方案"></a>常见的分布式事务方案</h2><p><img src="https://images.lilhui.com/aff38186038103177cb12abc59492773" alt="图片"></p>
 <h3 id="2PC-两阶段提交"><a href="#2PC-两阶段提交" class="headerlink" title="2PC 两阶段提交"></a>2PC 两阶段提交</h3><p><strong>角色定义：</strong></p>
 <p>TM：TransactionManager协调者<br>RM：RresourceManager参与者</p>
 <p>从字面上理解两阶段提交分两个阶段提交的事务。</p>
 <p><strong>阶段一：</strong><br>TM通知RM准备提交他们的事务分支，如果RM判断自己进行的工作可以被提交，就对工作内容进行持久化<br>再回复TM,否则异常。<br>Mysql是这样做的：事务管理器向所有涉及到的数据库发出prepare 准备提交请求，数据库收到请求后<br>执行修改和日志记录处理，处理完后把事务的状态标记成 可以提交，然后返回结果。</p>
 <p><strong>阶段二：</strong><br>TM根据阶段一各个RM prepare的结果，决定提交还是回滚操作。所有的prepare都成功，就提交。如果有prepare失败的<br>则TM通知所有RM回滚自己的事务。<br>Mysql是这样做的：第一阶段提交的prepare成功，那么事务管理器向数据库服务器发出 确认提交 请求，数据库服务器把事务<br>的状态改成 提交完成 状态，然后返回。如果第一阶段内有任何一个数据库操作发生了错误，或者事务管理器收不到某个数据库的<br>响应，则认为事务失败，回滚所有的事务，数据库服务器收不到第二阶段的确认提交，也会把  可以提交的事务 回滚。</p>
-<p><img src="http://images.lilhui.com/926fc561b6ea8c0c8e5304b7281c5596" alt="图片"></p>
+<p><img src="https://images.lilhui.com/926fc561b6ea8c0c8e5304b7281c5596" alt="图片"></p>
 <p><strong>二阶段提交存在的问题：</strong></p>
 <ul>
 <li>同步阻塞</li>
@@ -448,7 +448,7 @@
 <h3 id="JTA-XA-规范实现"><a href="#JTA-XA-规范实现" class="headerlink" title="JTA/XA 规范实现"></a>JTA/XA 规范实现</h3><p>java对于事务的规范实现。管理多个connection事务的封装。有阻塞。</p>
 <h2 id="补偿机制"><a href="#补偿机制" class="headerlink" title="补偿机制"></a>补偿机制</h2><p>为了解决阻塞的问题，引入了补偿机制。</p>
 <h3 id="Seata-AT模式实现"><a href="#Seata-AT模式实现" class="headerlink" title="Seata AT模式实现"></a>Seata AT模式实现</h3><p>补偿机制实现的 应用层面的分布式事务框架。</p>
-<p><img src="http://images.lilhui.com/9b81d334f266e632772648638da6e6c6" alt="图片"></p>
+<p><img src="https://images.lilhui.com/9b81d334f266e632772648638da6e6c6" alt="图片"></p>
 <p>TC，事务协调，独立出来。存储全局事务和分支事务信息。</p>
 <p>开启事务的时候通过RPC向TC发送一个请求生成XID 全局事务ID。</p>
 <p>RM:资源管理器</p>
@@ -464,7 +464,7 @@
 <li>commit</li>
 <li>After local TX</li>
 </ol>
-<p><img src="http://images.lilhui.com/bd850c07c83c6ec78265a4bc15af9786" alt="图片"></p>
+<p><img src="https://images.lilhui.com/bd850c07c83c6ec78265a4bc15af9786" alt="图片"></p>
 <ul>
 <li>第二阶段<br>如果成功：  </li>
 </ul>
@@ -473,7 +473,7 @@
 <li>Delete Undo log</li>
 <li>commit</li>
 </ol>
-<p><img src="http://images.lilhui.com/33ae92e7385a402bd7be89fd1b5d0022" alt="图片"></p>
+<p><img src="https://images.lilhui.com/33ae92e7385a402bd7be89fd1b5d0022" alt="图片"></p>
 <p>如果失败：  </p>
 <ol>
 <li>Find Undo log</li>
@@ -483,7 +483,7 @@
 <li>Commit</li>
 <li>After Local TX</li>
 </ol>
-<p><img src="http://images.lilhui.com/ba2d7021ccb83903ed03b390b2524301" alt="图片"></p>
+<p><img src="https://images.lilhui.com/ba2d7021ccb83903ed03b390b2524301" alt="图片"></p>
 <ul>
 <li>设计优点  </li>
 </ul>
@@ -524,13 +524,13 @@
 <li>EasyTransaction</li>
 <li>SeataTCC</li>
 </ul>
-<p><img src="http://images.lilhui.com/df9e0ab532d5b31a27ee48a608359442" alt="图片"></p>
+<p><img src="https://images.lilhui.com/df9e0ab532d5b31a27ee48a608359442" alt="图片"></p>
 <p>XA是资源层面的分布式事务，强一致性，在两阶段提交的过程中，一直会持有资源的锁。<br>TCC是业务层的分布式事务，最终一致性，不会一直持有资源的锁。  </p>
 <p><strong>优点:</strong> XA两阶段提交是资源层面的，而TCC是提升到了应用层面，避免了XA两阶段提交占用<br>资源锁时间过长导致的性能低下问题。<br><strong>缺点:</strong> 主业务和从业务服务都需要改造，从业务改造成本更高，原来只需要提供一个接口，现在需要改造try,confirm,cancel三<br>个接口。开发成本高。</p>
 <h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>TCC需要把事务在应用层面切成两个阶段。</p>
-<p><img src="http://images.lilhui.com/b151157caa0e6674a218c4a78d825dbd" alt="图片"></p>
+<p><img src="https://images.lilhui.com/b151157caa0e6674a218c4a78d825dbd" alt="图片"></p>
 <p>三种方法设计不好有很大bug，一般用以下方式：</p>
-<p><img src="http://images.lilhui.com/611c9e22f3a2a606410887f5d30cf71f" alt="图片"></p>
+<p><img src="https://images.lilhui.com/611c9e22f3a2a606410887f5d30cf71f" alt="图片"></p>
 <h4 id="TCC设计"><a href="#TCC设计" class="headerlink" title="TCC设计"></a>TCC设计</h4><ul>
 <li>TCC异常控制<br>网络问题，重发，机器宕机等一系列问题。出现空回滚，幂等，悬挂问题。</li>
 </ul>
@@ -539,7 +539,7 @@
 <li>TCC 防悬挂控制<br>要运行空回滚，必须拒绝空回滚之后的try操作。<br>案例：<br>try方法超时，这时候触发了cancel后try才到达。try是减少数据操作。这时候数据就出错了。</li>
 </ul>
 <p>此时try方法不能被执行。</p>
-<p><img src="http://images.lilhui.com/257ca2a2ead452ea870ef8a3324dc6d0" alt="图片"></p>
+<p><img src="https://images.lilhui.com/257ca2a2ead452ea870ef8a3324dc6d0" alt="图片"></p>
 <ul>
 <li>TCC 幂等</li>
 </ul>
@@ -553,9 +553,9 @@
 <h3 id="柔性事务，可靠消息最终一致性方案"><a href="#柔性事务，可靠消息最终一致性方案" class="headerlink" title="柔性事务，可靠消息最终一致性方案"></a>柔性事务，可靠消息最终一致性方案</h3><p>可靠性消息最终一致性的方案是指当事务发起执行完成本地食物后并发出一条消息，事务参与方（消息消费者）一定能接受消息并处理事务成功，<br>此方案强调的是只要消息发给事务参与方最终事务要达成一致。</p>
 <p>TCC比较难，业务侵入比较大。控制力比较强，适合金融类产品。<br>可靠新消息方案是从架构上避免分布式事务！</p>
 <h4 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h4><p>本地消息表，这个方案是ebay提出。核心是通过保证本地事务操作和消息的一致性。</p>
-<p><img src="http://images.lilhui.com/197864dc504ab51310d5111de069170f" alt="图片"></p>
+<p><img src="https://images.lilhui.com/197864dc504ab51310d5111de069170f" alt="图片"></p>
 <ul>
-<li>RockMq事务消息的方案<br><img src="http://images.lilhui.com/42887bcf2282a910d82a046444b1f94d" alt="图片"></li>
+<li>RockMq事务消息的方案<br><img src="https://images.lilhui.com/42887bcf2282a910d82a046444b1f94d" alt="图片"></li>
 </ul>
 <p>事务消息也有2PC,存在MqProducer RocketMq 4.3开始支持。</p>
 <p>关键点，事务回查。</p>
@@ -563,9 +563,9 @@
 <li>消息重复通知机制</li>
 <li>消息校对机制<br> 可查消息最终状态</li>
 </ol>
-<p>场景：比如公司内部实现了短信平台，所有的业务都接入这个短信平台，来实现发送短信的功能。<br><img src="http://images.lilhui.com/bb6a1ee6f9abcfe697ebcb3a57604af0" alt="图片"></p>
+<p>场景：比如公司内部实现了短信平台，所有的业务都接入这个短信平台，来实现发送短信的功能。<br><img src="https://images.lilhui.com/bb6a1ee6f9abcfe697ebcb3a57604af0" alt="图片"></p>
 <p>场景2：充值</p>
-<p><img src="http://images.lilhui.com/c72ea521f4efbadc03c2c31bc6a03888" alt="图片"></p>
+<p><img src="https://images.lilhui.com/c72ea521f4efbadc03c2c31bc6a03888" alt="图片"></p>
 <p>最大通知与可靠新消息最终一致性的区别？</p>
 <ul>
 <li>思想不同<br>  可靠消息最终一致性，发起通知方需要保证消息发出去，并且将消息发送到接收方，消息的<br>可靠性关键由发起通知放来保证。</li>
@@ -702,7 +702,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -724,7 +724,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

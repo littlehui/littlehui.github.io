@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="volatile可见性实现的原理编译后的汇编会增加一个lock前缀 CPU指令 lock前缀是总线锁  CPU访问内存必须通过总线桥访问。lock前缀加了总线锁，其他CPU就无法通过总线桥获取内存数据。 这个是古老的CPU用的。这种方式会降低多核性能。 MESI M:modifyE:独占S:shareI:已失效 总线嗅探： CPU会嗅探Bus总线的通知状态。 当CPU都要进行对某个缓存行进行加锁的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7">
-<meta property="og:image" content="http://images.lilhui.com/9e3a302bce699c54dfa4a3265be70744">
-<meta property="og:image" content="http://images.lilhui.com/0a2bc52ca5a013f7a2d53739a740761e">
-<meta property="og:updated_time" content="2022-06-17T06:40:03.711Z">
+<meta property="og:image" content="https://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7">
+<meta property="og:image" content="https://images.lilhui.com/9e3a302bce699c54dfa4a3265be70744">
+<meta property="og:image" content="https://images.lilhui.com/0a2bc52ca5a013f7a2d53739a740761e">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列3】JMM-CPU缓存一致性协议MESI">
 <meta name="twitter:description" content="volatile可见性实现的原理编译后的汇编会增加一个lock前缀 CPU指令 lock前缀是总线锁  CPU访问内存必须通过总线桥访问。lock前缀加了总线锁，其他CPU就无法通过总线桥获取内存数据。 这个是古老的CPU用的。这种方式会降低多核性能。 MESI M:modifyE:独占S:shareI:已失效 总线嗅探： CPU会嗅探Bus总线的通知状态。 当CPU都要进行对某个缓存行进行加锁的">
-<meta name="twitter:image" content="http://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7">
+<meta name="twitter:image" content="https://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7">
 
 
 
@@ -417,10 +417,10 @@
         <h2 id="volatile可见性实现的原理"><a href="#volatile可见性实现的原理" class="headerlink" title="volatile可见性实现的原理"></a>volatile可见性实现的原理</h2><p>编译后的汇编会增加一个lock前缀</p>
 <p>CPU指令</p>
 <p>lock前缀是总线锁</p>
-<p><img src="http://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7" alt="图片"></p>
+<p><img src="https://images.lilhui.com/838fe54717d996b8cd7a0c720fcfbfb7" alt="图片"></p>
 <p>CPU访问内存必须通过总线桥访问。lock前缀加了总线锁，其他CPU就无法通过总线桥获取内存数据。</p>
 <p>这个是古老的CPU用的。这种方式会降低多核性能。</p>
-<h2 id="MESI"><a href="#MESI" class="headerlink" title="MESI"></a>MESI</h2><p><img src="http://images.lilhui.com/9e3a302bce699c54dfa4a3265be70744" alt="图片"></p>
+<h2 id="MESI"><a href="#MESI" class="headerlink" title="MESI"></a>MESI</h2><p><img src="https://images.lilhui.com/9e3a302bce699c54dfa4a3265be70744" alt="图片"></p>
 <p>M:modify<br>E:独占<br>S:share<br>I:已失效</p>
 <p>总线嗅探：</p>
 <p>CPU会嗅探Bus总线的通知状态。</p>
@@ -432,7 +432,7 @@
 <p>接收后 storeBuffer放回缓存行，在写到内存。</p>
 <h2 id="Happens-before"><a href="#Happens-before" class="headerlink" title="Happens-before"></a>Happens-before</h2><p>指令重排需要遵循的规则。</p>
 <p>Thread().start<br>Thread().interupt<br>这种是不会被重排的</p>
-<p>八大规则：<br><img src="http://images.lilhui.com/0a2bc52ca5a013f7a2d53739a740761e" alt="图片"></p>
+<p>八大规则：<br><img src="https://images.lilhui.com/0a2bc52ca5a013f7a2d53739a740761e" alt="图片"></p>
 
       
     </div>
@@ -561,7 +561,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +583,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

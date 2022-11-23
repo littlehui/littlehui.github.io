@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="SDSsimple dynamic stringredis 3.2以前1234567struct sdshdr &amp;#123;    int len; //32 bit 0-2 32次方-1    int free;    char buf[];&amp;#125;;typedef char *sds redis3.2以后 123456typedef char *sds;sdshdr5sdshdr8sdsh">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf">
-<meta property="og:updated_time" content="2022-07-06T08:28:40.746Z">
+<meta property="og:image" content="https://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Redis学习4】redis底层核心设计原理">
 <meta name="twitter:description" content="SDSsimple dynamic stringredis 3.2以前1234567struct sdshdr &amp;#123;    int len; //32 bit 0-2 32次方-1    int free;    char buf[];&amp;#125;;typedef char *sds redis3.2以后 123456typedef char *sds;sdshdr5sdshdr8sdsh">
-<meta name="twitter:image" content="http://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf">
+<meta name="twitter:image" content="https://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf">
 
 
 
@@ -381,7 +381,7 @@
         <h2 id="SDS"><a href="#SDS" class="headerlink" title="SDS"></a>SDS</h2><p>simple dynamic string<br>redis 3.2以前<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sdshdr</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> len; <span class="comment">//32 bit 0-2 32次方-1</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">free</span>;</span><br><span class="line">    <span class="keyword">char</span> buf[];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *sds</span><br></pre></td></tr></table></figure></p>
 <p>redis3.2以后</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *sds;</span><br><span class="line">sdshdr5</span><br><span class="line">sdshdr8</span><br><span class="line">sdshdr16</span><br><span class="line">sdshdr32</span><br><span class="line">sdshdr64</span><br></pre></td></tr></table></figure>
-<p>对sdshdr做了优化和细分;<br>内存对齐：<br><img src="http://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf" alt="图片"></p>
+<p>对sdshdr做了优化和细分;<br>内存对齐：<br><img src="https://images.lilhui.com/054ba99b9267ed34e17460afff4d24bf" alt="图片"></p>
 <h3 id="key类型"><a href="#key类型" class="headerlink" title="key类型"></a>key类型</h3><p>string</p>
 <h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><p>string,hash,set, sorted set,list</p>
 <ul>
@@ -527,7 +527,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +549,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -293,6 +293,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/11/23/tomcat/tomcat_4/" itemprop="url">【tomcat调优系列4】Tomcat 类加载机制，和热部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-23T14:55:17+08:00">
+                2022-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。
+
+BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。
+ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/11/23/tomcat/tomcat_4/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/22/tomcat/tomcat_3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/11/22/tomcat/tomcat_3/" itemprop="url">【tomcat调优系列3】Tomcat底层BIO和NIO实现原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-22T11:02:16+08:00">
+                2022-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Tomcat IO选择历史
+Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
+
+12&lt;Connector port="8080" protocol="org.apache.coyote.http11.Http11Ni oProtocol" connectionTimeout=
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/11/22/tomcat/tomcat_3/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/18/tomcat/tomcat_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1524,283 +1828,6 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/06/redis/redis_core_5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/06/redis/redis_core_5/" itemprop="url">【Redis学习5】redis新版本特性</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-06T16:38:00+08:00">
-                2022-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/07/06/redis/redis_core_5/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/06/redis/redis_core_4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/06/redis/redis_core_4/" itemprop="url">【Redis学习4】redis底层核心设计原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-06T16:26:45+08:00">
-                2022-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SDSsimple dynamic stringredis 3.2以前1234567struct sdshdr &#123;    int len; //32 bit 0-2 32次方-1    int free;    char buf[];&#125;;typedef char *sds
-red
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/07/06/redis/redis_core_4/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1853,7 +1880,7 @@ red
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1875,7 +1902,7 @@ red
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

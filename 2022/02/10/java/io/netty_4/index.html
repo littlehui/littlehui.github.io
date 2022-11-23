@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="ByteBuf回顾ByteBuf 协议 nagle合并包应用层  包大于套接字缓冲区网络层 tcp分片 帧路由器，硬件设备等等  编码器  解码器   netty基于ChannelInboudHandlerAdater和ChannelOutboudHanlderAdapter实现了一些编解码抽象类，我们在使用的过程中就只要关注编解码的业务实现。MessageToMessageDecoder：把某种">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b">
-<meta property="og:image" content="http://images.lilhui.com/b6572ded990e4a9459d844d8d16bc69b">
-<meta property="og:image" content="http://images.lilhui.com/4c692c1d48f22b4f25fe19af825c8702">
-<meta property="og:updated_time" content="2022-02-10T07:13:47.391Z">
+<meta property="og:image" content="https://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b">
+<meta property="og:image" content="https://images.lilhui.com/b6572ded990e4a9459d844d8d16bc69b">
+<meta property="og:image" content="https://images.lilhui.com/4c692c1d48f22b4f25fe19af825c8702">
+<meta property="og:updated_time" content="2022-11-20T02:27:23.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Java IO详解4】Netty实践">
 <meta name="twitter:description" content="ByteBuf回顾ByteBuf 协议 nagle合并包应用层  包大于套接字缓冲区网络层 tcp分片 帧路由器，硬件设备等等  编码器  解码器   netty基于ChannelInboudHandlerAdater和ChannelOutboudHanlderAdapter实现了一些编解码抽象类，我们在使用的过程中就只要关注编解码的业务实现。MessageToMessageDecoder：把某种">
-<meta name="twitter:image" content="http://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b">
+<meta name="twitter:image" content="https://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b">
 
 
 
@@ -412,11 +412,11 @@
 </li>
 </ul>
 <p>netty基于ChannelInboudHandlerAdater和ChannelOutboudHanlderAdapter实现了一些编解码抽象类，我们在使用的过程中就只要关注编解码的业务实现。<br>MessageToMessageDecoder<i>：把某种对象解码成另外一种对象。泛型I对应的是第一个Message类型。<br>ByteToMessageDecoder：把ByteBuf解码成某一种对象。<br>MessageToMessageEncoder<i>：把某种对象编码成另一种对象。泛型I对应的是第一个Message类型。<br>MessageToByteEncoder<i>:把某对象编码成另一种对象。泛型I对应的是第一个Message类型。</i></i></i></p>
-<h2 id="RPC框架实现"><a href="#RPC框架实现" class="headerlink" title="RPC框架实现"></a>RPC框架实现</h2><p><img src="http://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b" alt="图片"></p>
+<h2 id="RPC框架实现"><a href="#RPC框架实现" class="headerlink" title="RPC框架实现"></a>RPC框架实现</h2><p><img src="https://images.lilhui.com/1c673683597bcd34f4636c8d569ca45b" alt="图片"></p>
 <p>需要使用到的技术：<br>1、动态代理<br>通过java Proxy技术拿到代理对象，invocationHandler实现数据协议包装和通讯。<br>2、序列化、反序列化<br>3、网络通讯<br>基于netty的客户端和服务端进行通讯可以获得很好的IO性能<br>4、反射<br>根据客户端请求参数通过反射技术实现服务端对应实例的方法调用</p>
 <p>使用netty实现客户端发送需要注意的点<br>通过Netty的channel调用写数据writeAndFlush 写的事件以及收到响应之后的channelRead事件都是会异步执行，所以需要注意线程协作的问题。可以使用countdowlacth来实现主线程等待channelread执行完之后才去获取收到的响应对象。</p>
-<p><img src="http://images.lilhui.com/b6572ded990e4a9459d844d8d16bc69b" alt="图片"></p>
-<p><img src="http://images.lilhui.com/4c692c1d48f22b4f25fe19af825c8702" alt="图片"></p>
+<p><img src="https://images.lilhui.com/b6572ded990e4a9459d844d8d16bc69b" alt="图片"></p>
+<p><img src="https://images.lilhui.com/4c692c1d48f22b4f25fe19af825c8702" alt="图片"></p>
 
       
     </div>
@@ -547,7 +547,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +569,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

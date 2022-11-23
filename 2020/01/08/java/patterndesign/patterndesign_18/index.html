@@ -96,13 +96,13 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="概念 命令模式将命令的执行和发送命令的责任分隔开，委派给不同的对象执行。   ###涉及角色   客户端(Client)角色：创建一个具体命令(ConcreteCommand)对象并确定其接收者。 命令(Command)角色：声明了一个给所有具体命令类的抽象接口。 具体命令(ConcreteCommand)角色：定义一个接收者和行为之间的弱耦合；实现execute()方法，负责调用接收者的相应操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b">
-<meta property="og:image" content="http://images.lilhui.com/35c615bb6cee34ebf6f8ad578a7c57e0">
-<meta property="og:updated_time" content="2020-04-10T01:35:37.000Z">
+<meta property="og:image" content="https://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b">
+<meta property="og:image" content="https://images.lilhui.com/35c615bb6cee34ebf6f8ad578a7c57e0">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:命令模式">
 <meta name="twitter:description" content="概念 命令模式将命令的执行和发送命令的责任分隔开，委派给不同的对象执行。   ###涉及角色   客户端(Client)角色：创建一个具体命令(ConcreteCommand)对象并确定其接收者。 命令(Command)角色：声明了一个给所有具体命令类的抽象接口。 具体命令(ConcreteCommand)角色：定义一个接收者和行为之间的弱耦合；实现execute()方法，负责调用接收者的相应操作">
-<meta name="twitter:image" content="http://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b">
+<meta name="twitter:image" content="https://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b">
 
 
 
@@ -426,8 +426,8 @@
 <li>请求者(Invoker)角色：负责调用命令对象执行请求，相关的方法叫做行动方法。</li>
 <li>接收者(Receiver)角色：负责具体实施和执行一个请求。任何一个类都可以成为接收者，实施和执行请求的方法叫做行动方法。</li>
 </ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b" alt="图片"></p>
-<p><img src="http://images.lilhui.com/35c615bb6cee34ebf6f8ad578a7c57e0" alt="图片"></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="https://images.lilhui.com/6d1454b9046f34f6d1a20dc0de9eb98b" alt="图片"></p>
+<p><img src="https://images.lilhui.com/35c615bb6cee34ebf6f8ad578a7c57e0" alt="图片"></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><ul>
 <li><p>客户端<br>FishCommander</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.littlehui.design.command;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 鱼长官</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Client</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/1/8 16:29</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FishCommander</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        FishSoldier fishSoldier = <span class="keyword">new</span> FishSoldier();</span><br><span class="line">        Command huntingFishCommand = <span class="keyword">new</span> HuntingFishCommand(fishSoldier);</span><br><span class="line">        Command cookingFishCommand = <span class="keyword">new</span> CookingFishCommand(fishSoldier);</span><br><span class="line">        CommandBrodCast commandBrodCast = <span class="keyword">new</span> CommandBrodCast();</span><br><span class="line">        commandBrodCast.setCookingFishCommand(cookingFishCommand);</span><br><span class="line">        commandBrodCast.setHuntingFishCommand(huntingFishCommand);</span><br><span class="line">        commandBrodCast.huntingFish();</span><br><span class="line">        commandBrodCast.cookingFish();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -484,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="next" title="设计模式系列:备忘录模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:备忘录模式
+              <a href="/2020/01/08/java/patterndesign/patterndesign_20/" rel="next" title="设计模式系列:状态模式">
+                <i class="fa fa-chevron-left"></i> 设计模式系列:状态模式
               </a>
             
           </div>
@@ -494,8 +494,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/07/java/patterndesign/patterndesign_23/" rel="prev" title="设计模式系列:解释器模式">
-                设计模式系列:解释器模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/08/java/patterndesign/patterndesign_19/" rel="prev" title="设计模式系列:备忘录模式">
+                设计模式系列:备忘录模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -582,7 +582,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -604,7 +604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

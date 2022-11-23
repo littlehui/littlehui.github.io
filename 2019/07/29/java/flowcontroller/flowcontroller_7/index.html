@@ -96,12 +96,12 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="sentinel的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private Dyna">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
-<meta property="og:updated_time" content="2019-07-31T03:57:00.000Z">
+<meta property="og:image" content="https://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列7】Sentinel实践">
 <meta name="twitter:description" content="sentinel的使用架构方式 Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。 页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualifier(&amp;quot;flowRuleNacosProvider&amp;quot;)private Dyna">
-<meta name="twitter:image" content="http://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
+<meta name="twitter:image" content="https://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901">
 
 
 
@@ -423,7 +423,7 @@
       
 
       
-        <h2 id="sentinel的使用"><a href="#sentinel的使用" class="headerlink" title="sentinel的使用"></a>sentinel的使用</h2><h2 id="架构方式"><a href="#架构方式" class="headerlink" title="架构方式"></a>架构方式</h2><p><img src="http://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901" alt="图片"></p>
+        <h2 id="sentinel的使用"><a href="#sentinel的使用" class="headerlink" title="sentinel的使用"></a>sentinel的使用</h2><h2 id="架构方式"><a href="#架构方式" class="headerlink" title="架构方式"></a>架构方式</h2><p><img src="https://images.lilhui.com/48aaae65471cb1e9c45876ae2ddfe901" alt="图片"></p>
 <h2 id="Sentinel-dashboard改造"><a href="#Sentinel-dashboard改造" class="headerlink" title="Sentinel dashboard改造"></a>Sentinel dashboard改造</h2><p>默认是支持单机，现在需要改造成集群配置方式。</p>
 <h3 id="页面controller改造"><a href="#页面controller改造" class="headerlink" title="页面controller改造"></a>页面controller改造</h3><p>将test下的nacos文件夹复制到包rule下<br>启用类：FlowControllerV2<br>provider注入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">@Qualifier(&quot;flowRuleNacosProvider&quot;)</span><br><span class="line">private DynamicRuleProvider&lt;List&lt;FlowRuleEntity&gt;&gt; ruleProvider;</span><br><span class="line">@Autowired</span><br><span class="line">@Qualifier(&quot;flowRuleNacosPublisher&quot;)</span><br><span class="line">private DynamicRulePublisher&lt;List&lt;FlowRuleEntity&gt;&gt; rulePublisher;</span><br></pre></td></tr></table></figure></p>
 <p>前端页面sidebar替换<br>app.js</p>
@@ -499,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/28/java/patterndesign/patterndesign_16/" rel="next" title="设计模式系列:迭代器模式">
-                <i class="fa fa-chevron-left"></i> 设计模式系列:迭代器模式
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="next" title="【流量控制系列5】Sentinal 详细介绍">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列5】Sentinal 详细介绍
               </a>
             
           </div>
@@ -509,8 +509,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="prev" title="【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析">
-                【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_4/" rel="prev" title="【流量控制系列4】Sentinel和Hystrix对比">
+                【流量控制系列4】Sentinel和Hystrix对比 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -597,7 +597,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

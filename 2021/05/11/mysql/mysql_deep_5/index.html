@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="分页查询优化详解。 表JOIN关联原理以及优化。 表COUNT查询优化。 阿里巴巴MYSQL规范解读。 MYSQL数据类型选择分析。  分页查询优化一般的分页：select * from employee limit 1,100  优化方式：   根据自增连续主键排序的分页：改成 id&amp;gt;xxx limit 10;  用innerjoin来改写。select  from employees">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a">
-<meta property="og:image" content="http://images.lilhui.com/9a0f921f3deb3e7b727b293323d809ca">
-<meta property="og:image" content="http://images.lilhui.com/8a29aa20c1f33d5b34044ff19706cf61">
-<meta property="og:updated_time" content="2021-05-10T16:21:24.000Z">
+<meta property="og:image" content="https://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a">
+<meta property="og:image" content="https://images.lilhui.com/9a0f921f3deb3e7b727b293323d809ca">
+<meta property="og:image" content="https://images.lilhui.com/8a29aa20c1f33d5b34044ff19706cf61">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Mysql深入理解系列5】索引优化2">
 <meta name="twitter:description" content="分页查询优化详解。 表JOIN关联原理以及优化。 表COUNT查询优化。 阿里巴巴MYSQL规范解读。 MYSQL数据类型选择分析。  分页查询优化一般的分页：select * from employee limit 1,100  优化方式：   根据自增连续主键排序的分页：改成 id&amp;gt;xxx limit 10;  用innerjoin来改写。select  from employees">
-<meta name="twitter:image" content="http://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a">
+<meta name="twitter:image" content="https://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a">
 
 
 
@@ -435,13 +435,13 @@
 </ol>
 <p>索引嵌套循环连接是基于索引进行连接的算法，索引是基于内层表的，通过外层表匹配条件直接与内层表索引进行匹配，避免和内层表的每条记录进行比较， 从而利用索引的查询减少了对内层表的匹配次数，优势极大的提升了 join的性能：</p>
 <p>使用场景：只有内层表join的列有索引时，才能用到Index Nested-LoopJoin进行连接。<br>由于用到索引，如果索引是辅助索引而且返回的数据还包括内层表的其他数据，则会回内层表查询数据，多了一些IO操作。</p>
-<p><img src="http://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a" alt="图片"></p>
+<p><img src="https://images.lilhui.com/0f2bfaffe86c00fb7e8c28bf07b0b22a" alt="图片"></p>
 <ol start="3">
 <li>基于块的嵌套循环链接Block Nested-Loop Join算法<br>把驱动表的数据读入到join_buffer然后被驱动表扫描，与join_buffer的数据做对比。<br>极端条件下，会过滤 t1 数量 * t2 数量词。</li>
 </ol>
 <p>缓存块嵌套循环连接通过一次性缓存多条数据，把参与查询的列缓存到Join Buffer 里，然后拿join buffer里的数据批量与内层表的数据进行匹配，从而减少了内层循环的次数（遍历一次内层表就可以批量匹配一次Join Buffer里面的外层表数据）。</p>
 <p>当不使用Index Nested-Loop Join的时候，默认使用Block Nested-Loop Join。</p>
-<p><img src="http://images.lilhui.com/9a0f921f3deb3e7b727b293323d809ca" alt="图片"></p>
+<p><img src="https://images.lilhui.com/9a0f921f3deb3e7b727b293323d809ca" alt="图片"></p>
 <p>什么是Join Buffer？<br>（1）Join Buffer会缓存所有参与查询的列而不是只有Join的列。<br>（2）可以通过调整join_buffer_size缓存大小<br>（3）join_buffer_size的默认值是256K，join_buffer_size的最大值在MySQL 5.1.22版本前是4G-1，而之后的版本才能在64位操作系统下申请大于4G的Join Buffer空间。<br>（4）使用Block Nested-Loop Join算法需要开启优化器管理配置的optimizer_switch的设置block_nested_loop为on，默认为开启。</p>
 <ul>
 <li>优化JOIN</li>
@@ -484,7 +484,7 @@
 <ul>
 <li>数据类型选择</li>
 </ul>
-<p><img src="http://images.lilhui.com/8a29aa20c1f33d5b34044ff19706cf61" alt="图片"></p>
+<p><img src="https://images.lilhui.com/8a29aa20c1f33d5b34044ff19706cf61" alt="图片"></p>
 
       
     </div>
@@ -615,7 +615,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -637,7 +637,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

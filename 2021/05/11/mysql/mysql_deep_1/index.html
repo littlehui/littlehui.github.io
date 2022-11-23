@@ -96,18 +96,18 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="数据结构基础https://www.cs.usfca.edu/~galles/visualization/Algorithms.html 数据结构 二叉树：可能产生单边链，对查询效率就很低。  红黑树：二插平衡树。 树的高度会很高。  B树：    非叶子节点也有存data。一个元素占用1K。一个NODE最大 16个元素。 所以数量大的话，树高度也会很高。  PS：大概估计是1kb 总共能存16个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/d618d928c25644e37922e3e6175a156a">
-<meta property="og:image" content="http://images.lilhui.com/27e421c5da22e9d5b06447d5212dff64">
-<meta property="og:image" content="http://images.lilhui.com/58d102c4891d5aad217c14d7187c0a70">
-<meta property="og:image" content="http://images.lilhui.com/a3cabd170f1ab82feabb8dad5119086c">
-<meta property="og:image" content="http://images.lilhui.com/4ddc87ded96ce3bc73dc860621133b47">
-<meta property="og:image" content="http://images.lilhui.com/7b45a9e7e7db9ddba1b4fea568e3401f">
-<meta property="og:image" content="http://images.lilhui.com/ecea37f94b3fa604553ce6eb6c765788">
-<meta property="og:updated_time" content="2021-05-10T16:13:35.000Z">
+<meta property="og:image" content="https://images.lilhui.com/d618d928c25644e37922e3e6175a156a">
+<meta property="og:image" content="https://images.lilhui.com/27e421c5da22e9d5b06447d5212dff64">
+<meta property="og:image" content="https://images.lilhui.com/58d102c4891d5aad217c14d7187c0a70">
+<meta property="og:image" content="https://images.lilhui.com/a3cabd170f1ab82feabb8dad5119086c">
+<meta property="og:image" content="https://images.lilhui.com/4ddc87ded96ce3bc73dc860621133b47">
+<meta property="og:image" content="https://images.lilhui.com/7b45a9e7e7db9ddba1b4fea568e3401f">
+<meta property="og:image" content="https://images.lilhui.com/ecea37f94b3fa604553ce6eb6c765788">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Mysql深入理解系列1】数据结构">
 <meta name="twitter:description" content="数据结构基础https://www.cs.usfca.edu/~galles/visualization/Algorithms.html 数据结构 二叉树：可能产生单边链，对查询效率就很低。  红黑树：二插平衡树。 树的高度会很高。  B树：    非叶子节点也有存data。一个元素占用1K。一个NODE最大 16个元素。 所以数量大的话，树高度也会很高。  PS：大概估计是1kb 总共能存16个">
-<meta name="twitter:image" content="http://images.lilhui.com/d618d928c25644e37922e3e6175a156a">
+<meta name="twitter:image" content="https://images.lilhui.com/d618d928c25644e37922e3e6175a156a">
 
 
 
@@ -413,7 +413,7 @@
 </li>
 <li><p>红黑树：二插平衡树。 树的高度会很高。</p>
 </li>
-<li><p>B树：<br><img src="http://images.lilhui.com/d618d928c25644e37922e3e6175a156a" alt="图片"></p>
+<li><p>B树：<br><img src="https://images.lilhui.com/d618d928c25644e37922e3e6175a156a" alt="图片"></p>
 </li>
 </ul>
 <ol>
@@ -429,7 +429,7 @@
 <li>叶子节点包含所有索引字段</li>
 <li>叶子节点用指针连接。提高访问的性能。</li>
 </ol>
-<p><img src="http://images.lilhui.com/27e421c5da22e9d5b06447d5212dff64" alt="图片"></p>
+<p><img src="https://images.lilhui.com/27e421c5da22e9d5b06447d5212dff64" alt="图片"></p>
 <p>一个NODE(树的节点） 16K</p>
 <p>按照页来分配，一个16K。<br>一次磁盘IO很慢，内存很快。所以比较费时间的是从磁盘node到NODE查询。</p>
 <p>一个索引8B<br>一个地址6B</p>
@@ -437,9 +437,9 @@
 <p>那么2层的B+tree<br>1170 * 1170 = 1368900</p>
 <p>叶子节点有data一个NODE放16个元素。一个元素1K.<br>算上叶子节点 1170 <em> 1170 </em> 16<br>个元素。<br>大概2000多万。<br>树的高度3</p>
 <p>所以只要3次IO。根节点常住内存。</p>
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="mysam"><a href="#mysam" class="headerlink" title="mysam"></a>mysam</h3><p><img src="http://images.lilhui.com/58d102c4891d5aad217c14d7187c0a70" alt="图片"></p>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="mysam"><a href="#mysam" class="headerlink" title="mysam"></a>mysam</h3><p><img src="https://images.lilhui.com/58d102c4891d5aad217c14d7187c0a70" alt="图片"></p>
 <p>叶子节点存的数据地址。</p>
-<h3 id="innodb"><a href="#innodb" class="headerlink" title="innodb"></a>innodb</h3><p><img src="http://images.lilhui.com/a3cabd170f1ab82feabb8dad5119086c" alt="图片"></p>
+<h3 id="innodb"><a href="#innodb" class="headerlink" title="innodb"></a>innodb</h3><p><img src="https://images.lilhui.com/a3cabd170f1ab82feabb8dad5119086c" alt="图片"></p>
 <p>叶子节点存的是具体的data值。</p>
 <h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><h3 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h3><p>MyInSam<br>ID主键是非聚簇索引。</p>
 <p>Inodb<br>ID主键是聚簇索引。</p>
@@ -448,13 +448,13 @@
 </li>
 <li><p>整型ID的作用：<br>在建立索引和查询索引的过程中，会进行多次的比大小。Int效率高。如果是String的话必须每个字符都要对比。并且占用空间也小，节省固态硬盘，节省成本。</p>
 </li>
-<li><p>自增：<br>HASH索引下。很快可以对应到磁盘文件地址。<br><img src="http://images.lilhui.com/4ddc87ded96ce3bc73dc860621133b47" alt="图片"><br>优点：等值查询很快。<br>缺点：范围查询效率不好。并且会产生HAHD冲突。</p>
+<li><p>自增：<br>HASH索引下。很快可以对应到磁盘文件地址。<br><img src="https://images.lilhui.com/4ddc87ded96ce3bc73dc860621133b47" alt="图片"><br>优点：等值查询很快。<br>缺点：范围查询效率不好。并且会产生HAHD冲突。</p>
 </li>
 </ol>
 <ol start="4">
 <li><p>聚簇索引和非聚簇索引那个快？<br>聚簇索引会比较快。</p>
 </li>
-<li><p>非主键索引：<br><img src="http://images.lilhui.com/7b45a9e7e7db9ddba1b4fea568e3401f" alt="图片"><br>非聚簇索引的叶子节点的数据放的是聚簇索引索引节点值。<br>PS：INODB只有一个聚簇索引。<br>为什么不直接放数据？节约存储空间，可以多存放非常多数据。</p>
+<li><p>非主键索引：<br><img src="https://images.lilhui.com/7b45a9e7e7db9ddba1b4fea568e3401f" alt="图片"><br>非聚簇索引的叶子节点的数据放的是聚簇索引索引节点值。<br>PS：INODB只有一个聚簇索引。<br>为什么不直接放数据？节约存储空间，可以多存放非常多数据。</p>
 </li>
 </ol>
 <h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><p>联合索引底层存储</p>
@@ -462,7 +462,7 @@
 <li>索引是帮助Mysql搞笑查询排好序的数据结构。</li>
 </ul>
 <p>联合索引也是排好序的数据结构。</p>
-<p><img src="http://images.lilhui.com/ecea37f94b3fa604553ce6eb6c765788" alt="图片"></p>
+<p><img src="https://images.lilhui.com/ecea37f94b3fa604553ce6eb6c765788" alt="图片"></p>
 
       
     </div>
@@ -593,7 +593,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +615,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

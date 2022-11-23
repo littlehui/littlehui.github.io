@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="tomcat,类加载，热部署,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
+<meta name="keywords" content="tomcat,类加载，热部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【tomcat调优系列4】Tomcat 类加载机制，和热部署">
+<meta property="og:url" content="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.lilhui.com/c9cdb1fc55bcbd323b25aa274b6f2916">
+<meta property="og:image" content="https://images.lilhui.com/23455a00f586de4dcebe1e4dd8453b05">
+<meta property="og:image" content="https://images.lilhui.com/a4bfcb6f0ae2ddbd691e12746461c7cc">
+<meta property="og:image" content="https://images.lilhui.com/0121b5252cd38720749f046807893124">
+<meta property="og:image" content="https://images.lilhui.com/5c90f19905daff7d323025a58de15ebd">
+<meta property="og:updated_time" content="2022-11-23T13:54:40.278Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【tomcat调优系列4】Tomcat 类加载机制，和热部署">
+<meta name="twitter:description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
+<meta name="twitter:image" content="https://images.lilhui.com/c9cdb1fc55bcbd323b25aa274b6f2916">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
+
+
+
+
+
+  <title>【tomcat调优系列4】Tomcat 类加载机制，和热部署 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【tomcat调优系列4】Tomcat 类加载机制，和热部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-23T14:55:17+08:00">
+                2022-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tomcat/" itemprop="url" rel="index">
+                    <span itemprop="name">tomcat</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/11/23/tomcat/tomcat_4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/11/23/tomcat/tomcat_4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Tomcat类加载机制"><a href="#Tomcat类加载机制" class="headerlink" title="Tomcat类加载机制"></a>Tomcat类加载机制</h2><h3 id="JVM类加载器"><a href="#JVM类加载器" class="headerlink" title="JVM类加载器"></a>JVM类加载器</h3><p>Java中有3个类加载器，并且你可以自定义加载器。</p>
+<ul>
+<li>BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。</li>
+<li>ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的<br>父类加载器就是启动类加载器。</li>
+<li>AppClassLoader是系统类加载器，用来加载ClassPath下的类。应用程序默认用它来加载类。程序可以通过#getSystemClassLoader()来获取系统类加载器。</li>
+<li>自定义加载器，用来加载自定义路径下的类。</li>
+</ul>
+<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p>加载某个类时会先委派父类加载器寻找目标类，找不到再委托上层父加载器，如果所有父加载器都找不到目标类，则在自己的类加载器路径中查找，并载入目标类。</p>
+<p><img src="https://images.lilhui.com/c9cdb1fc55bcbd323b25aa274b6f2916" alt="图片"></p>
+<p><img src="https://images.lilhui.com/23455a00f586de4dcebe1e4dd8453b05" alt="图片"></p>
+<p>上图：ClassLoader#loadClass加载过程</p>
+<p>问题： 为什么要设计双亲委派机制？</p>
+<ul>
+<li><strong>沙箱安全机制</strong>：自己写的java.lang.String.class类不会被夹在，防止API库被篡改。</li>
+<li><strong>避免类的重复加载</strong>：当父亲已经加载了该类，就没有必要子ClassLoader再加载一次，保证加载类的唯一性。</li>
+</ul>
+<h3 id="Tomcat类加载机制-1"><a href="#Tomcat类加载机制-1" class="headerlink" title="Tomcat类加载机制"></a>Tomcat类加载机制</h3><p>Tomcat作为Servlet容器，它负责加载我们的Servlet类，此外还负责加载Servlet所依赖的Jar包。并且Tomcat本身也是一个Java程序。<br>因此它需要加载自己的类和依赖的Jar包。</p>
+<p>问题：Tomcat如何隔离Web应用的？</p>
+<p>Tomcat 自定义了一个类加载器WebAppClassLoader，并且给每个Web应用创建一个类加载器实例，每个Context容器负责创建和维护一个<br>WebAppClassLoader加载器实例。其实现的原理就是<strong>不同的类加载器实例加载的类被认为是不同的类，即使它们的类名相同（不同类加载器<br>实例加载的类是相互隔离的）</strong>。</p>
+<p>Tomcat的自定义类加载器WebAppClassLoader打破了双亲委派机制。它首先自己尝试加载某个类，如果找不到再代理给父类加载器，其目的是<br>优先加载Web应用自己定义的类。具体实现就是重写ClassLoader的2个方法：findClass和loadClass.</p>
+<p>findClass步骤：</p>
+<ol>
+<li>在Web应用本地目录下查找要加载的类。</li>
+<li>如果没有找到，交给父加载器去查找，它的付加载器就是上面提到的系统类加载器。AppClassLoader.</li>
+<li>如果父加载器也没找到这个类，抛出ClassNotFound异常。</li>
+</ol>
+<p>loadClass有6个步骤：</p>
+<ol>
+<li>现在本地Cache查找该类是否加载过，也就是说Tomcat的类加载器是否已经加载过这个类。</li>
+<li>如果Tomcat加载器没加载过这个类，再看系统类加载器是否加载过。</li>
+<li>如果都没有，就让ExtClassLoader去加载，这一步比较关键，目的防止 Web 应用自己的类覆盖 JRE 的核心类。因为 Tomcat 需要打破双<br>亲委托机制，假如 Web 应用里自定义了一个叫 Object 的类，如果先加载这个 Object 类，就会覆盖 JRE 里面的那个 Object 类，这就<br>是为什么 Tomcat 的类加载器会优先尝试用 ExtClassLoader 去加载，因为 ExtClassLoader 会委托给 BootstrapClassLoader 去加载，BootstrapClassLoader 发现自己已经加载了 Object 类，直接返回给 Tomcat 的类加载器，这样 Tomcat 的类加载器就不会去加载 Web 应用下的 Object 类了，也就避免了覆盖 JRE 核心类的问题。</li>
+<li>如果 ExtClassLoader 加载器加载失败，也就是说 JRE 核心类中没有这类，那么就在本地 Web 应用目录下查找并加载。</li>
+<li>如果本地目录下没有这个类，说明不是 Web 应用自己定义的类，那么由系统类加载器去加载。这里请你注意，Web 应用是通过Class.forName调用交给系统类加载器的，因为Class.forName的默认加载器就是系统类加载器。</li>
+<li>如果上述加载过程全部失败，抛出 ClassNotFound 异常。</li>
+</ol>
+<p>本地cache -&gt; ExtendClassLoader -&gt; WebAppClassLoader -&gt; AppClassLoader</p>
+<p>所以本地可以覆盖jar包里的实现。</p>
+<h3 id="Tomcat类加载器的层次结构"><a href="#Tomcat类加载器的层次结构" class="headerlink" title="Tomcat类加载器的层次结构"></a>Tomcat类加载器的层次结构</h3><p>Tomcat 拥有不同的自定义类加载器，以实现对各种资源库的控制。 Tomcat 主要用类加载器解决以下 4 个问题：<br>同一个 Web 服务器里，各个 Web 项目之间各自使用的 Java 类库要互相隔离。</p>
+<ul>
+<li>同一个 Web 服务器里，各个 Web 项目之间各自使用的 Java 类库要互相隔离。</li>
+<li>同一个 Web 服务器里，各个 Web 项目之间可以提供共享的 Java 类库 。</li>
+<li>为了使服务器不受 Web 项目的影响，应该使服务器的类库与应用程序的类库互相独立。</li>
+<li>对于支持 JSP 的 Web 服务器，应该支持热插拔（ HotSwap ）功能 。  </li>
+</ul>
+<p>Tomcat提供了四组目录供用户存放第三方类库：</p>
+<ul>
+<li>放置在/common目录中：类库可被Tomcat和所有的 Web应用程序共同使用。</li>
+<li>放置在/server目录中：类库可被Tomcat使用，对所有的Web应用程序都不可见。</li>
+<li>放置在/shared目录中：类库可被所有的Web应用程序共同使用，但对 Tomcat自己不可见。</li>
+<li>放置在/WebApp/WEB-INF目录中：类库仅仅可以被此Web应用程序使用，对 Tomcat和其他Web应用程序都不可见。</li>
+</ul>
+<p>Tomcat自定义了多个类加载器</p>
+<ol>
+<li>CommonClassLoader   加载 /common</li>
+<li>CatalinaClassLoader 加载 /server/</li>
+<li>SharedClassLoader  加载 /shared/</li>
+<li>WebappClassLoader  加载 /WebApp/WEB-INF/</li>
+</ol>
+<p><img src="https://images.lilhui.com/a4bfcb6f0ae2ddbd691e12746461c7cc" alt="图片"></p>
+<h3 id="线程上下文加载器"><a href="#线程上下文加载器" class="headerlink" title="线程上下文加载器"></a>线程上下文加载器</h3><p>在 JVM 的实现中有一条隐含的规则，默认情况下，如果一个类由类加载器 A 加载，那么这个类的依赖类也是由相同的类加载器加载。比如 Spring 作为一个 Bean 工厂，它需要创建业务类的实例，并且在创建业务类实例之前需要加载这些类。<br>思考：如果spring作为共享第三方jar包，交给SharedClassLoader加载，但是业务类在web目录下，不在SharedClassLoader的加载路径下，那spring如何加载web应用目录下的业务bean呢？</p>
+<p>问题： 如果spring作为共享第三方jar包，交给SharedClassLoader加载，但是业务类在web目录下，不在SharedClassLoader的加载路径下，那spring如何加载web应用目录下的业务bean呢？</p>
+<p>Tomcat为每个Web应用创建一个WebAppClassLoader加载器，并在启动Web应用的线程设置上下文加载器。这样Spring在启动时就将现成上下文加载器取出来，用来加载Bean。</p>
+<p>线程上下文加载器是一种类加载器传递机制，因为这个类加载器保存在线程私有数据里，只要是同一个线程，一旦设置了线程上下文加载器，在线程后续执行过程中就能把这个类加载器取出来用。<br>Thread.currentThread().getContextClassLoader()</p>
+<p>线程上下文加载器不仅仅可以用在 Tomcat 和 Spring 类加载的场景里，核心框架类需要加载具体实现类时都可以用到它，比如我们熟悉的 JDBC 就是通过上下文类加载器来加载不同的数据库驱动的</p>
+<p>线程上下文加载器，在SPI实现上用的比较多。</p>
+<h2 id="Tomcat热加载和热部署"><a href="#Tomcat热加载和热部署" class="headerlink" title="Tomcat热加载和热部署"></a>Tomcat热加载和热部署</h2><p>在项目开发过程中，经常要改动Java/JSP 文件，但是又不想重新启动Tomcat，有两种方式:热加载和热部署。热部署表示重新部署应⽤，它的执⾏主体是Host。 热加载表示重新加载class，它的执⾏主体是Context。<br>热加载：在server.xml -&gt; context 标签中 设置 reloadable=”true”</p>
+<ul>
+<li>热加载：在server.xml -&gt; context 标签中 设置 reloadable=”true”</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\mvc"</span> <span class="attr">path</span>=<span class="string">"/mvc"</span>  <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">热部署：在server.xml -&gt; Host标签中 设置  autoDeploy="true"</span><br></pre></td></tr></table></figure>
+<ul>
+<li>热部署：在server.xml -&gt; Host标签中 设置  autoDeploy=”true”</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"localhost"</span>  <span class="attr">appBase</span>=<span class="string">"webapps"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">unpackWARs</span>=<span class="string">"true"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>他们的区别</strong></p>
+<ul>
+<li>热加载的实现方式是 Web 容器启动一个后台线程，定期检测类文件的变化，如果有变化，就重新加载类，在这个过程中不会清空 Session ，一般用在开发环境。</li>
+<li>热部署原理类似，也是由后台线程定时检测 Web 应用的变化，但它会重新加载整个 Web 应用。这种方式会清空 Session，比热加载更加干净、彻底，一般用在生产环境。</li>
+</ul>
+<p>问题： Tomcat是如何用后台线程来实现热加载和热部署的</p>
+<h3 id="Tomcat开启后台线程执行周期性任务"><a href="#Tomcat开启后台线程执行周期性任务" class="headerlink" title="Tomcat开启后台线程执行周期性任务"></a>Tomcat开启后台线程执行周期性任务</h3><p>Tomcat 通过开启后台线程ContainerBase.ContainerBackgroundProcessor，使得各个层次的容器组件都有机会完成一些周期性任务。我们在实际工作中，往往也需要执行一些周期性的任务，比如监控程序周期性拉取系统的健康状态，就可以借鉴这种设计。<br>Tomcat9 是通过ScheduledThreadPoolExecutor来开启后台线程的，它除了具有线程池的功能，还能够执行周期性的任务。</p>
+<p><img src="https://images.lilhui.com/0121b5252cd38720749f046807893124" alt="图片"></p>
+<p>此后台线程会调用当前容器的 backgroundProcess 方法，以及递归调用子孙的 backgroundProcess 方法，backgroundProcess 方法会触发容器的周期性任务。</p>
+<p><img src="https://images.lilhui.com/5c90f19905daff7d323025a58de15ebd" alt="图片"></p>
+<p>有了 ContainerBase 中的后台线程和 backgroundProcess 方法，各种子容器和通用 组件不需要各自弄一个后台线程来处理周期性任务，这样的设计显得优雅和整洁。</p>
+<h3 id="热加载实现原理"><a href="#热加载实现原理" class="headerlink" title="热加载实现原理"></a>热加载实现原理</h3><p>有了 ContainerBase 的周期性任务处理“框架”，作为具体容器子类，只需要实现自 己的周期性任务就行。而 Tomcat 的热加载，就是在 Context 容器中实现的。Context 容 器的 backgroundProcess 方法是这样实现的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  StandardContext#backgroundProcess</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//WebappLoader 周期性的检查 WEB-INF/classes 和 WEB-INF/lib 目录下的类文件</span></span><br><span class="line"><span class="comment">// 热加载</span></span><br><span class="line">Loader loader = getLoader();</span><br><span class="line"><span class="keyword">if</span> (loader != <span class="keyword">null</span>) &#123;</span><br><span class="line">    loader.backgroundProcess();        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WebappLoader 实现热加载的逻辑：它主要是调用了 Context 容器的 reload 方法，先stop Context容器，再start Context容器。具体的实现：<br>停止和销毁 Context 容器及其所有子容器，子容器其实就是 Wrapper，也就是说 Wrapper 里面 Servlet 实例也被销毁了。</p>
+<ol>
+<li>停止和销毁 Context 容器及其所有子容器，子容器其实就是 Wrapper，也就是说 Wrapper 里面 Servlet 实例也被销毁了。</li>
+<li>停止和销毁 Context 容器关联的 Listener 和 Filter。</li>
+<li>停止和销毁 Context 下的 Pipeline 和各种 Valve。</li>
+<li>停止和销毁 Context 的类加载器，以及类加载器加载的类文件资源。</li>
+<li>启动 Context 容器，在这个过程中会重新创建前面四步被销毁的资源。</li>
+</ol>
+<p>在这个过程中，类加载器发挥着关键作用。一个 Context 容器对应一个类加载器，类加载器在销毁的过程中会把它加载的所有类也全部销毁。Context 容器在启动过程中，会创建一个新的类加载器来加载新的类文件。</p>
+<h3 id="Tomcat热部署原理"><a href="#Tomcat热部署原理" class="headerlink" title="Tomcat热部署原理"></a>Tomcat热部署原理</h3><p>热部署跟热加载的本质区别是，热部署会重新部署 Web 应用，原来的 Context 对象会整个被销毁掉，因此这个 Context 所关联的一切资源都会被销毁，包括 Session。<br>Host 容器并没有在 backgroundProcess 方法中实现周期性检测的任务，而是通过监听器 HostConfig 来实现的</p>
+<p>Host 容器并没有在 backgroundProcess 方法中实现周期性检测的任务，而是通过监听器 HostConfig 来实现的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HostConfig#lifecycleEvent</span></span><br><span class="line"><span class="comment">// 周期性任务</span></span><br><span class="line"><span class="keyword">if</span> (event.getType().equals(Lifecycle.PERIODIC_EVENT)) &#123;</span><br><span class="line">    check();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (host.getAutoDeploy()) &#123;</span><br><span class="line">        <span class="comment">// Check for resources modification to trigger redeployment</span></span><br><span class="line">        DeployedApplication[] apps = deployed.values().toArray(<span class="keyword">new</span> DeployedApplication[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span> (DeployedApplication app : apps) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tryAddServiced(app.name)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 检查 Web 应用目录是否有变化</span></span><br><span class="line">                    checkResources(app, <span class="keyword">false</span>);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    removeServiced(app.name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Check for old versions of applications that can now be undeployed</span></span><br><span class="line">        <span class="keyword">if</span> (host.getUndeployOldVersions()) &#123;</span><br><span class="line">            checkUndeploy();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Hotdeploy applications</span></span><br><span class="line">        <span class="comment">//热部署</span></span><br><span class="line">        deployApps();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>HostConfig 会检查 webapps 目录下的所有 Web 应用：</p>
+<ul>
+<li>如果原来 Web 应用目录被删掉了，就把相应 Context 容器整个销毁掉。</li>
+<li>是否有新的 Web 应用目录放进来了，或者有新的 WAR 包放进来了，就部署相应的 Web 应用。</li>
+</ul>
+<p>因此 HostConfig 做的事情都是比较“宏观”的，它不会去检查具体类文件或者资源文件是否有变化，而是检查 Web 应用目录级别的变化。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag"># tomcat</a>
+          
+            <a href="/tags/类加载，热部署/" rel="tag"># 类加载，热部署</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/11/22/tomcat/tomcat_3/" rel="next" title="【tomcat调优系列3】Tomcat底层BIO和NIO实现原理">
+                <i class="fa fa-chevron-left"></i> 【tomcat调优系列3】Tomcat底层BIO和NIO实现原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat类加载机制"><span class="nav-number">1.</span> <span class="nav-text">Tomcat类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM类加载器"><span class="nav-number">1.1.</span> <span class="nav-text">JVM类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派机制"><span class="nav-number">1.2.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat类加载机制-1"><span class="nav-number">1.3.</span> <span class="nav-text">Tomcat类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat类加载器的层次结构"><span class="nav-number">1.4.</span> <span class="nav-text">Tomcat类加载器的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程上下文加载器"><span class="nav-number">1.5.</span> <span class="nav-text">线程上下文加载器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat热加载和热部署"><span class="nav-number">2.</span> <span class="nav-text">Tomcat热加载和热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat开启后台线程执行周期性任务"><span class="nav-number">2.1.</span> <span class="nav-text">Tomcat开启后台线程执行周期性任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热加载实现原理"><span class="nav-number">2.2.</span> <span class="nav-text">热加载实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat热部署原理"><span class="nav-number">2.3.</span> <span class="nav-text">Tomcat热部署原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

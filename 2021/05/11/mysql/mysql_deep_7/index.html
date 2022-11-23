@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="MVCC与BufferPool Undo 日志版本链与ReadView机制详解。 MVCC多版本并发控制详解。 Innodb引擎BufferPoll缓存机制详解。 Redo与Undo日志详解。  MVCC多版本并发控制机制 Undo日志版本链 事务开始时候会生成一个Undo日志。包括数据值，事务ID。Redview活跃的事务列表。   ReadView 可见，不可见  在可重复读隔离级别，当事务开">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190">
-<meta property="og:image" content="http://images.lilhui.com/53f7864bd44cbd2bf09196927571ea6a">
-<meta property="og:image" content="http://images.lilhui.com/d2cca03ebe91a9727cd5bf1223a4f2e7">
-<meta property="og:updated_time" content="2021-05-10T16:23:45.000Z">
+<meta property="og:image" content="https://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190">
+<meta property="og:image" content="https://images.lilhui.com/53f7864bd44cbd2bf09196927571ea6a">
+<meta property="og:image" content="https://images.lilhui.com/d2cca03ebe91a9727cd5bf1223a4f2e7">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Mysql深入理解系列7】MVCC与BufferPool缓存机制">
 <meta name="twitter:description" content="MVCC与BufferPool Undo 日志版本链与ReadView机制详解。 MVCC多版本并发控制详解。 Innodb引擎BufferPoll缓存机制详解。 Redo与Undo日志详解。  MVCC多版本并发控制机制 Undo日志版本链 事务开始时候会生成一个Undo日志。包括数据值，事务ID。Redview活跃的事务列表。   ReadView 可见，不可见  在可重复读隔离级别，当事务开">
-<meta name="twitter:image" content="http://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190">
+<meta name="twitter:image" content="https://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190">
 
 
 
@@ -415,17 +415,17 @@
 </li>
 </ul>
 <p>ReadView 可见，不可见</p>
-<p><img src="http://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190" alt="图片"></p>
+<p><img src="https://images.lilhui.com/594f8a7c21a2fb8500ab6bf155f8e190" alt="图片"></p>
 <p>在可重复读隔离级别，当事务开启，执行任何查询sql时会生成当前事务的一致性视图read-view，该视图在事务结束之前都不会变化(如果是读已提交隔离级别在每次执行查询sql时都会重新生成)，这个视图由执行查询时所有未提交事务id数组（数组里最小的id为min_id）和已创建的最大事务id（max_id）组成，事务里的任何sql查询结果需要从对应版本链里的最新数据开始逐条跟read-view做比对从而得到最终的快照结果。</p>
 <p>Mysql会将Undo链分成三个集合</p>
 <p>已提交事务，未提交与已提交事务，未开始事务。</p>
-<p><img src="http://images.lilhui.com/53f7864bd44cbd2bf09196927571ea6a" alt="图片"></p>
+<p><img src="https://images.lilhui.com/53f7864bd44cbd2bf09196927571ea6a" alt="图片"></p>
 <h3 id="版本链对比规则"><a href="#版本链对比规则" class="headerlink" title="版本链对比规则"></a>版本链对比规则</h3><ol>
 <li>如果 row 的 trx_id 落在绿色部分( trx_id&lt;min_id )，表示这个版本是已提交的事务生成的，这个数据是可见的。<br>如果 row 的 trx_id 落在红色部分( trx_id&gt;max_id )，表示这个版本是由将来启动的事务生成的，是不可见的(若row 的 trx_id 就是当前自己的事务是可见的）。</li>
 <li>如果 row 的 trx_id 落在黄色部分(min_id &lt;=trx_id&lt;= max_id)，那就包括两种情况：<br>a. 若 row 的 trx_id 在视图数组中，表示这个版本是由还没提交的事务生成的，不可见(若 row 的 trx_id 就是当前自己的事务是可见的)；<br>b. 若 row 的 trx_id 不在视图数组中，表示这个版本是已经提交了的事务生成的，可见。</li>
 </ol>
 <h3 id="Innodb引擎BufferPool"><a href="#Innodb引擎BufferPool" class="headerlink" title="Innodb引擎BufferPool"></a>Innodb引擎BufferPool</h3><h4 id="Redo与Undo"><a href="#Redo与Undo" class="headerlink" title="Redo与Undo"></a>Redo与Undo</h4><p>BufferPool是Innodb中的一块内存，缓存池。用于更新日志时缓存数据。</p>
-<p><img src="http://images.lilhui.com/d2cca03ebe91a9727cd5bf1223a4f2e7" alt="图片"></p>
+<p><img src="https://images.lilhui.com/d2cca03ebe91a9727cd5bf1223a4f2e7" alt="图片"></p>
 <p>update数据过程。</p>
 <ol>
 <li>加载叶子节点到innodb引擎中。 bufferPool</li>
@@ -571,7 +571,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -593,7 +593,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

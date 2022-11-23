@@ -96,12 +96,12 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="概念 模板方法模式 在意个方法中定义一个算法的骨架，而将这些具体步骤实现延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。  实现 类图：    AbstractProjectDesign: 123456789101112131415161718192021222324252627package com.littlehui.design.templatemeth">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777">
-<meta property="og:updated_time" content="2019-10-12T07:32:40.000Z">
+<meta property="og:image" content="https://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式系列:模板方法模式">
 <meta name="twitter:description" content="概念 模板方法模式 在意个方法中定义一个算法的骨架，而将这些具体步骤实现延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。  实现 类图：    AbstractProjectDesign: 123456789101112131415161718192021222324252627package com.littlehui.design.templatemeth">
-<meta name="twitter:image" content="http://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777">
+<meta name="twitter:image" content="https://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777">
 
 
 
@@ -418,7 +418,7 @@
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
 <li>类图：</li>
 </ul>
-<p><img src="http://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777" alt="图片"></p>
+<p><img src="https://images.lilhui.com/1c1244dfa6a432afc52fea2020aa8777" alt="图片"></p>
 <ul>
 <li><p>AbstractProjectDesign:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.littlehui.design.templatemethod;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> AbstractProjectDesign</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> littlehui</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/10/9 11:12</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractProjectDesign</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">tempateMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//需求分析</span></span><br><span class="line">        demandAnalysis();</span><br><span class="line">        <span class="comment">//架构设计</span></span><br><span class="line">        architecturalDesign();</span><br><span class="line">        <span class="comment">//代码编写</span></span><br><span class="line">        coding();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">demandAnalysis</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">architecturalDesign</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">coding</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -565,7 +565,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -587,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

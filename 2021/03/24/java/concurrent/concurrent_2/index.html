@@ -96,16 +96,16 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="内存模型Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：  JVM的内存模型是JVM定义抽象的定义。工作内存对应的JVM哪一个模块不重要因为，不同的JVM实现，实现的也不一样。 数据八大原子操作 lock: 作用于主内存的变量，把一个变量标记为一条线程独占状态。 unlock：与loc相反的操作。 read： 作用于主内存的变量，把一个变量从主">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/8a91c87d87bba98b171931924db362a9">
-<meta property="og:image" content="http://images.lilhui.com/82069c69691038f6e42241e677c5f027">
-<meta property="og:image" content="http://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21">
-<meta property="og:image" content="http://images.lilhui.com/ff219959971893780f14c82af5225f9c">
-<meta property="og:image" content="http://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08">
-<meta property="og:updated_time" content="2022-06-16T10:53:01.738Z">
+<meta property="og:image" content="https://images.lilhui.com/8a91c87d87bba98b171931924db362a9">
+<meta property="og:image" content="https://images.lilhui.com/82069c69691038f6e42241e677c5f027">
+<meta property="og:image" content="https://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21">
+<meta property="og:image" content="https://images.lilhui.com/ff219959971893780f14c82af5225f9c">
+<meta property="og:image" content="https://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列2】JVM内存模型">
 <meta name="twitter:description" content="内存模型Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：  JVM的内存模型是JVM定义抽象的定义。工作内存对应的JVM哪一个模块不重要因为，不同的JVM实现，实现的也不一样。 数据八大原子操作 lock: 作用于主内存的变量，把一个变量标记为一条线程独占状态。 unlock：与loc相反的操作。 read： 作用于主内存的变量，把一个变量从主">
-<meta name="twitter:image" content="http://images.lilhui.com/8a91c87d87bba98b171931924db362a9">
+<meta name="twitter:image" content="https://images.lilhui.com/8a91c87d87bba98b171931924db362a9">
 
 
 
@@ -417,7 +417,7 @@
 
       
         <h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>Java原生支持多线程，这种模型是为了适配不同操作系统架构。屏蔽掉系统和底层硬件的差异。工作模型如下：</p>
-<p><img src="http://images.lilhui.com/8a91c87d87bba98b171931924db362a9" alt="图片"></p>
+<p><img src="https://images.lilhui.com/8a91c87d87bba98b171931924db362a9" alt="图片"></p>
 <p>JVM的内存模型是JVM定义抽象的定义。<br>工作内存对应的JVM哪一个模块不重要因为，不同的JVM实现，实现的也不一样。</p>
 <h2 id="数据八大原子操作"><a href="#数据八大原子操作" class="headerlink" title="数据八大原子操作"></a>数据八大原子操作</h2><ol>
 <li>lock: 作用于主内存的变量，把一个变量标记为一条线程独占状态。</li>
@@ -430,14 +430,14 @@
 <li>write：作用于工作内存，把store操作从工作内存中的一个变量的值传送到主内存变量中。</li>
 </ol>
 <p>来：lock-&gt;read-&gt;load-&gt;use<br>去：assign-&gt;store-&gt;write-&gt;unlock</p>
-<p><img src="http://images.lilhui.com/82069c69691038f6e42241e677c5f027" alt="图片"></p>
+<p><img src="https://images.lilhui.com/82069c69691038f6e42241e677c5f027" alt="图片"></p>
 <h3 id="内存可见性"><a href="#内存可见性" class="headerlink" title="内存可见性"></a>内存可见性</h3><p>关键词：MESI 协议</p>
 <p>volatile 用于保证有序性 解决可见性问题<br>syncronized用于保证原子性   </p>
 <p><strong><em>volatile</em></strong> 解决可见性问题  保证及时看到。不加的话，也有可能看到。只是不及时。<br>如何理解：<br>JVM定义的这些模型语义，不会去描述多线程程序如何执行，而是描述多线程程序于许表现出来的行为。任何执行策略，只要产生的是允许的行为，那他就是一个可以接受的策略。</p>
-<p><img src="http://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21" alt="图片"></p>
+<p><img src="https://images.lilhui.com/888b6e0ac95b919baf7304e8b2778c21" alt="图片"></p>
 <p>空循环优先级超高。</p>
 <p><strong>synronized</strong>可以保证内存块操作的原子性。</p>
-<h3 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h3><p><img src="http://images.lilhui.com/ff219959971893780f14c82af5225f9c" alt="图片"></p>
+<h3 id="指令重排"><a href="#指令重排" class="headerlink" title="指令重排"></a>指令重排</h3><p><img src="https://images.lilhui.com/ff219959971893780f14c82af5225f9c" alt="图片"></p>
 <ul>
 <li><p>as-if-serial</p>
 </li>
@@ -449,7 +449,7 @@
 <li>保证特定操作的执行顺序。</li>
 <li>保证某些变量的可见性。（volatile的可见性）</li>
 </ol>
-<p><img src="http://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08" alt="图片"></p>
+<p><img src="https://images.lilhui.com/9dba804c353b8adf0c3c9cefd06fce08" alt="图片"></p>
 <p>原理：内存屏障技术<br>ifence：  一种Load barrier读屏障。<br>sfence：   一种Store Barrier写屏障<br>mfence ： 全能型屏障，具备ifence和sfence能力。<br>Lock前缀  Lock不是一种内存屏障，但是它能完成类似内存屏障的功能。Lock会对CPU总线和高速缓存加锁，可以理解为PUC指令的一种锁。它后面可以跟 ADD，ADC,AND，BTC，BTR,BTS，CMPXCHG,CMPXCH8B,DEC,INC,NEG,NOT,OR,SBB,SUB,XOR,XADD,and XCHG指令。</p>
 <h3 id="手动加内存屏障"><a href="#手动加内存屏障" class="headerlink" title="手动加内存屏障"></a>手动加内存屏障</h3><p>Unsafe.fullFence<br>java中的可见性如何保证：<br>归类有两种：</p>
 <ol>
@@ -585,7 +585,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

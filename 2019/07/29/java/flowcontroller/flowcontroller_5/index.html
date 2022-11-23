@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源。 现在的版本1.6.1 特性功能组成:  基本概念 资源    资源是 Sentinel 的关键概">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c">
-<meta property="og:image" content="http://images.lilhui.com/1fa76486ed2514ef49369c490b3cb83b">
-<meta property="og:image" content="http://images.lilhui.com/475d519f2749add285155ba9f2832cae">
-<meta property="og:updated_time" content="2019-07-30T10:36:19.000Z">
+<meta property="og:image" content="https://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c">
+<meta property="og:image" content="https://images.lilhui.com/1fa76486ed2514ef49369c490b3cb83b">
+<meta property="og:image" content="https://images.lilhui.com/475d519f2749add285155ba9f2832cae">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【流量控制系列5】Sentinal 详细介绍">
 <meta name="twitter:description" content="Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源。 现在的版本1.6.1 特性功能组成:  基本概念 资源    资源是 Sentinel 的关键概">
-<meta name="twitter:image" content="http://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c">
+<meta name="twitter:image" content="https://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c">
 
 
 
@@ -428,7 +428,7 @@
         <h2 id="Sentinal-详细介绍"><a href="#Sentinal-详细介绍" class="headerlink" title="Sentinal 详细介绍"></a>Sentinal 详细介绍</h2><h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>2012 年，Sentinel 诞生，主要功能为入口流量控制。<br>2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。<br>2018 年，Sentinel 开源。</p>
 <p>现在的版本1.6.1</p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><p>功能组成:</p>
-<p><img src="http://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c" alt="图片"></p>
+<p><img src="https://images.lilhui.com/9ca7d8666de1c1396010d6922965d61c" alt="图片"></p>
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
 <li>资源  </li>
 </ul>
@@ -438,7 +438,7 @@
 <li>规则  </li>
 </ul>
 <p>围绕资源的实时状态设定的规则，可以包括流量控制规则、熔断降级规则以及系统保护规则。所有规则可以动态实时调整。</p>
-<h2 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h2><h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p><img src="http://images.lilhui.com/1fa76486ed2514ef49369c490b3cb83b" alt="图片"></p>
+<h2 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h2><h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p><img src="https://images.lilhui.com/1fa76486ed2514ef49369c490b3cb83b" alt="图片"></p>
 <h3 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h3><p>除了流量控制以外，对调用链路中不稳定的资源进行熔断降级也是保障高可用的重要措施之一。由于调用关系的复杂性，如果调用链路中的某个资源不稳定，最终会导致请求发生堆积。Sentinel 熔断降级会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其它的资源而导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 DegradeException）。</p>
 <h4 id="降级策略"><a href="#降级策略" class="headerlink" title="降级策略"></a>降级策略</h4><p>我们通常用以下几种方式来衡量资源是否处于稳定的状态：</p>
 <ul>
@@ -448,7 +448,7 @@
 </ul>
 <p>注意：异常降级仅针对业务异常，对 Sentinel 限流降级本身的异常（BlockException）不生效。为了统计异常比例或异常数，需要通过 Tracer.trace(ex) 记录业务异常。示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Entry entry = null;</span><br><span class="line">try &#123;</span><br><span class="line">  entry = SphU.entry(key, EntryType.IN, key);</span><br><span class="line"></span><br><span class="line">  // Write your biz code here.</span><br><span class="line">  // &lt;&lt;BIZ CODE&gt;&gt;</span><br><span class="line">&#125; catch (Throwable t) &#123;</span><br><span class="line">  if (!BlockException.isBlockException(t)) &#123;</span><br><span class="line">    Tracer.trace(t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  if (entry != null) &#123;</span><br><span class="line">    entry.exit();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="集群方案"><a href="#集群方案" class="headerlink" title="集群方案"></a>集群方案</h2><p><img src="http://images.lilhui.com/475d519f2749add285155ba9f2832cae" alt="图片"></p>
+<h2 id="集群方案"><a href="#集群方案" class="headerlink" title="集群方案"></a>集群方案</h2><p><img src="https://images.lilhui.com/475d519f2749add285155ba9f2832cae" alt="图片"></p>
 <p>基于nacos配置中心：</p>
 <ol>
 <li>在 Sentinel 控制台配置项中需要指定 nacos 的地址，启动时即创建nacos链接。</li>
@@ -491,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_6/" rel="next" title="【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析">
-                <i class="fa fa-chevron-left"></i> 【流量控制系列6】Sentinal 详细介绍-SlotChain源码解析
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_2/" rel="next" title="【流量控制系列2】流量控制的基础方法和算法">
+                <i class="fa fa-chevron-left"></i> 【流量控制系列2】流量控制的基础方法和算法
               </a>
             
           </div>
@@ -501,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/29/java/flowcontroller/flowcontroller_4/" rel="prev" title="【流量控制系列4】Sentinel和Hystrix对比">
-                【流量控制系列4】Sentinel和Hystrix对比 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="prev" title="【流量控制系列7】Sentinel实践">
+                【流量控制系列7】Sentinel实践 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,7 +589,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -611,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

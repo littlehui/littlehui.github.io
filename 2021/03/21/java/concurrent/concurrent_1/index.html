@@ -96,17 +96,17 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="概要 冯诺依曼计算机模型 cpu缓存结构剖析。 操作系统内存管理与线程模型。 虚拟机指令集架构详解。  冯诺依曼计算机体系 CPU缓存架构 多级缓存：  L1 cache 数据缓存和指令缓存，逻辑独占。一般 256K L2 cache 物理核独占，逻辑核共享。 一般1M左右 L3 cache， 所有物理核共享 一般8M  缓存由缓存行构成（cacheline)64byte大小 CPU读取内存数据的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b">
-<meta property="og:image" content="http://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31">
-<meta property="og:image" content="http://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1">
-<meta property="og:image" content="http://images.lilhui.com/dbefca81e04794cb7181cc34444004c5">
-<meta property="og:image" content="http://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8">
-<meta property="og:image" content="http://images.lilhui.com/57daf7d4695424cce11032ad6e029672">
-<meta property="og:updated_time" content="2022-04-19T10:15:59.191Z">
+<meta property="og:image" content="https://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b">
+<meta property="og:image" content="https://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31">
+<meta property="og:image" content="https://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1">
+<meta property="og:image" content="https://images.lilhui.com/dbefca81e04794cb7181cc34444004c5">
+<meta property="og:image" content="https://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8">
+<meta property="og:image" content="https://images.lilhui.com/57daf7d4695424cce11032ad6e029672">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列1】操作系统与虚拟机">
 <meta name="twitter:description" content="概要 冯诺依曼计算机模型 cpu缓存结构剖析。 操作系统内存管理与线程模型。 虚拟机指令集架构详解。  冯诺依曼计算机体系 CPU缓存架构 多级缓存：  L1 cache 数据缓存和指令缓存，逻辑独占。一般 256K L2 cache 物理核独占，逻辑核共享。 一般1M左右 L3 cache， 所有物理核共享 一般8M  缓存由缓存行构成（cacheline)64byte大小 CPU读取内存数据的">
-<meta name="twitter:image" content="http://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b">
+<meta name="twitter:image" content="https://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b">
 
 
 
@@ -423,8 +423,8 @@
 <li>操作系统内存管理与线程模型。</li>
 <li>虚拟机指令集架构详解。</li>
 </ol>
-<h2 id="冯诺依曼计算机体系"><a href="#冯诺依曼计算机体系" class="headerlink" title="冯诺依曼计算机体系"></a>冯诺依曼计算机体系</h2><p><img src="http://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b" alt="图片"></p>
-<h3 id="CPU缓存架构"><a href="#CPU缓存架构" class="headerlink" title="CPU缓存架构"></a>CPU缓存架构</h3><p><img src="http://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31" alt="图片"></p>
+<h2 id="冯诺依曼计算机体系"><a href="#冯诺依曼计算机体系" class="headerlink" title="冯诺依曼计算机体系"></a>冯诺依曼计算机体系</h2><p><img src="https://images.lilhui.com/cf75937f11435b5ff7fc6a55c000c72b" alt="图片"></p>
+<h3 id="CPU缓存架构"><a href="#CPU缓存架构" class="headerlink" title="CPU缓存架构"></a>CPU缓存架构</h3><p><img src="https://images.lilhui.com/85288ff26f1f5c0a69cf28336ef02a31" alt="图片"></p>
 <p>多级缓存：</p>
 <ol>
 <li>L1 cache 数据缓存和指令缓存，逻辑独占。一般 256K</li>
@@ -451,16 +451,16 @@
 </ol>
 <p>为什么进行内存空间的划分？  </p>
 <pre><code>目的是为了做到程序运行的安全隔离与稳定。32G 4G大小内存为例。内核空间 1G用户空间3G
-</code></pre><p><img src="http://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1" alt="图片"></p>
+</code></pre><p><img src="https://images.lilhui.com/6d5b5c00e9c8e4966c517817f50393a1" alt="图片"></p>
 <h2 id="CPU运行的安全等级"><a href="#CPU运行的安全等级" class="headerlink" title="CPU运行的安全等级"></a>CPU运行的安全等级</h2><p>ring0：<br>    内核态，权限最高。各种操作都可以做。</p>
 <p>ring1<br>ring2<br>ring3<br>权限一次降低。</p>
 <p>运用运行的级别一般在用户态。JVM,app等等。</p>
-<p><img src="http://images.lilhui.com/dbefca81e04794cb7181cc34444004c5" alt="图片"></p>
+<p><img src="https://images.lilhui.com/dbefca81e04794cb7181cc34444004c5" alt="图片"></p>
 <h3 id="内核线程模型"><a href="#内核线程模型" class="headerlink" title="内核线程模型"></a>内核线程模型</h3><p>内核线程（KLT) ，系统内核管理线程内核保存线程额上下文信息，线程阻塞不会引起进程阻塞。在多处理器系统上，多线程在多处理器上并行执行。线程的创建调度和管理由内核完成。效率比ULT要慢，比进程操作快。</p>
-<h3 id="用户线程模型"><a href="#用户线程模型" class="headerlink" title="用户线程模型"></a>用户线程模型</h3><p><img src="http://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8" alt="图片"></p>
+<h3 id="用户线程模型"><a href="#用户线程模型" class="headerlink" title="用户线程模型"></a>用户线程模型</h3><p><img src="https://images.lilhui.com/9120839a4ae5a71190ec251f91d3bce8" alt="图片"></p>
 <h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><p>现代操作系统在运行一个程序时，会为其创建一个进程，例如：启动一个java<br>程序，操作系统就会创建一个java进程。进程是OS操作系统资源分配的最小单位</p>
 <p>线程是OS操作系统调度CPU的最小单元。也叫轻量级进程（Light Weight Process)，<br>在一个进程里可以创建多个线程。这些线程拥有各自的计数器，堆栈，局部变量<br>等属性。并且能够访问共享的内存变量，CPU在这些线程上高速切换。让使用者感觉到这些<br>线程在同时执行，既并发的感觉。相似的还有并行</p>
-<p>线程上下文切换过程：<br><img src="http://images.lilhui.com/57daf7d4695424cce11032ad6e029672" alt="图片"></p>
+<p>线程上下文切换过程：<br><img src="https://images.lilhui.com/57daf7d4695424cce11032ad6e029672" alt="图片"></p>
 <h1 id="虚拟机指令集架构"><a href="#虚拟机指令集架构" class="headerlink" title="虚拟机指令集架构"></a>虚拟机指令集架构</h1><p>CPU执行架构分两种，指令集架构和，寄存器指令集架构。</p>
 <h2 id="指令集架构"><a href="#指令集架构" class="headerlink" title="指令集架构"></a>指令集架构</h2><ol>
 <li>设计和实现更简单，适用于资源受限的系统。</li>
@@ -603,7 +603,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -625,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

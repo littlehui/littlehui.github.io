@@ -96,16 +96,16 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="ReentrantLock历史：李二狗看到Synchronized效率太低，自己实现了一套基于AQS的锁。支持可重入，公平，非公平等特性。 Synchronized历史：1.6之前效率低下，重量锁。1.6之后进行了升级，追加了锁的升级过程。 偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁。 效率和ReentrantLock差不多 一个图： 锁升级过程 JVM锁膨胀过程  膨胀过程：  新建实例： 匿名">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d">
-<meta property="og:image" content="http://images.lilhui.com/91400ffa709aeb66905363f9634550e2">
-<meta property="og:image" content="http://images.lilhui.com/fc76a51fb07d27428139cb33d207ae6b">
-<meta property="og:image" content="http://images.lilhui.com/c2a3567c7fa13ba332cb369db9212652">
-<meta property="og:image" content="http://images.lilhui.com/6503f5eb91ced216a674c4cb4ccb57d4">
-<meta property="og:updated_time" content="2021-05-18T16:03:27.000Z">
+<meta property="og:image" content="https://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d">
+<meta property="og:image" content="https://images.lilhui.com/91400ffa709aeb66905363f9634550e2">
+<meta property="og:image" content="https://images.lilhui.com/fc76a51fb07d27428139cb33d207ae6b">
+<meta property="og:image" content="https://images.lilhui.com/c2a3567c7fa13ba332cb369db9212652">
+<meta property="og:image" content="https://images.lilhui.com/6503f5eb91ced216a674c4cb4ccb57d4">
+<meta property="og:updated_time" content="2022-11-20T02:27:24.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【深入理解并发编程系列4】JVM内置锁 synchronized关键字详解">
 <meta name="twitter:description" content="ReentrantLock历史：李二狗看到Synchronized效率太低，自己实现了一套基于AQS的锁。支持可重入，公平，非公平等特性。 Synchronized历史：1.6之前效率低下，重量锁。1.6之后进行了升级，追加了锁的升级过程。 偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁。 效率和ReentrantLock差不多 一个图： 锁升级过程 JVM锁膨胀过程  膨胀过程：  新建实例： 匿名">
-<meta name="twitter:image" content="http://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d">
+<meta name="twitter:image" content="https://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d">
 
 
 
@@ -421,9 +421,9 @@
 <p>偏向锁-&gt;轻量级锁-&gt;重量级锁。</p>
 <p>效率和ReentrantLock差不多</p>
 <p>一个图：</p>
-<h3 id="锁升级过程"><a href="#锁升级过程" class="headerlink" title="锁升级过程"></a>锁升级过程</h3><p><img src="http://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d" alt="图片"></p>
-<h3 id="JVM锁膨胀过程"><a href="#JVM锁膨胀过程" class="headerlink" title="JVM锁膨胀过程"></a>JVM锁膨胀过程</h3><p><img src="http://images.lilhui.com/91400ffa709aeb66905363f9634550e2" alt="图片"></p>
-<p><img src="http://images.lilhui.com/fc76a51fb07d27428139cb33d207ae6b" alt="图片"></p>
+<h3 id="锁升级过程"><a href="#锁升级过程" class="headerlink" title="锁升级过程"></a>锁升级过程</h3><p><img src="https://images.lilhui.com/396c23c6c4ebbe1a5d1f4c8af2c8f33d" alt="图片"></p>
+<h3 id="JVM锁膨胀过程"><a href="#JVM锁膨胀过程" class="headerlink" title="JVM锁膨胀过程"></a>JVM锁膨胀过程</h3><p><img src="https://images.lilhui.com/91400ffa709aeb66905363f9634550e2" alt="图片"></p>
+<p><img src="https://images.lilhui.com/fc76a51fb07d27428139cb33d207ae6b" alt="图片"></p>
 <p>膨胀过程：</p>
 <ol>
 <li>新建实例： 匿名偏向锁。</li>
@@ -441,10 +441,10 @@
 <p>偏向锁没有hashcode,轻量级锁有个叫replace lock record。在栈帧里。</p>
 <p>轻量级锁升级的时候 高30位记录了线程栈上锁的块，lockrecord .hashcode存在这个lockrecord。并且初始的mark word也存在了线程栈上。</p>
 <p>hashcode存的位置</p>
-<p><img src="http://images.lilhui.com/c2a3567c7fa13ba332cb369db9212652" alt="图片"></p>
+<p><img src="https://images.lilhui.com/c2a3567c7fa13ba332cb369db9212652" alt="图片"></p>
 <p>什么是Monitor?</p>
 <p>一种同步工具，是java的一个对象。所有的java对象天生就是monitor。所有对象在新建的时候都会有一把看不见的锁。叫做内部锁，或者Monitor锁。就是Synchronized锁。MarkWord锁标记为10.其中指针指向 的地址就是Monitor对象的起始地址。在java虚拟机中（hotspot)Monitor是由ObjectMonitor实现的。源码在C++的ObjectMonitor.http文件中。</p>
-<p><img src="http://images.lilhui.com/6503f5eb91ced216a674c4cb4ccb57d4" alt="图片"></p>
+<p><img src="https://images.lilhui.com/6503f5eb91ced216a674c4cb4ccb57d4" alt="图片"></p>
 
       
     </div>
@@ -573,7 +573,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

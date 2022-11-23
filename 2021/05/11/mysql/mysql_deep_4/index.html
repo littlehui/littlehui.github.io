@@ -96,13 +96,13 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="索引优化 详解 优化索引选择探究 索引优化Orderby与Group byy UsingfileSort文件排序详解。 索引设计原则与实战。  索引优化原则避免ALL权标扫描。即时没走索引也要避免回表 扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force dindex 不一定会更快) PS:  字符串不加单引号索引失效。2.  三个键的组合索引，范围查">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495">
-<meta property="og:image" content="http://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67">
-<meta property="og:updated_time" content="2021-05-10T16:21:17.000Z">
+<meta property="og:image" content="https://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495">
+<meta property="og:image" content="https://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67">
+<meta property="og:updated_time" content="2022-11-20T02:27:23.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Mysql深入理解系列4】索引优化1">
 <meta name="twitter:description" content="索引优化 详解 优化索引选择探究 索引优化Orderby与Group byy UsingfileSort文件排序详解。 索引设计原则与实战。  索引优化原则避免ALL权标扫描。即时没走索引也要避免回表 扫描行数不决定查询快慢，还有回表啊什么的影响。大多情况下不用去改mysql的优化查询。（force dindex 不一定会更快) PS:  字符串不加单引号索引失效。2.  三个键的组合索引，范围查">
-<meta name="twitter:image" content="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495">
+<meta name="twitter:image" content="https://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495">
 
 
 
@@ -455,8 +455,8 @@
 <li>where 与order by冲突时优先where</li>
 <li>基于慢sql查询进行建索引。slow_query_log=1</li>
 </ol>
-<p>（provice,city,sex,age)<br>age一般范围查询，放后面，在实际查询中，查询可以把 sex按照in塞进去，这样age就可以走索引。一般一个组合索引里保持只有一个范围查询的字段。<br><img src="http://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495" alt="图片"></p>
-<p><img src="http://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67" alt="图片"></p>
+<p>（provice,city,sex,age)<br>age一般范围查询，放后面，在实际查询中，查询可以把 sex按照in塞进去，这样age就可以走索引。一般一个组合索引里保持只有一个范围查询的字段。<br><img src="https://images.lilhui.com/aa90f7ad0a50d0a3deda306e02928495" alt="图片"></p>
+<p><img src="https://images.lilhui.com/ed89b7e3209bc61303bd845e73385d67" alt="图片"></p>
 <p>经验：10个字段左右的表。一个表里建2-3个组合二级索引就差不多了。</p>
 
       
@@ -588,7 +588,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -610,7 +610,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&amp;lt;Protocol&amp;gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http = extensionLoader.getExtension(&quot;dubbo&quot;);Sys">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
-<meta property="og:image" content="http://images.lilhui.com/d917674e8a07d8f91ed5a9e4ebf49e04">
-<meta property="og:image" content="http://images.lilhui.com/265316c207746d158fcfe520beebd065">
-<meta property="og:updated_time" content="2022-02-17T03:59:09.869Z">
+<meta property="og:image" content="https://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
+<meta property="og:image" content="https://images.lilhui.com/d917674e8a07d8f91ed5a9e4ebf49e04">
+<meta property="og:image" content="https://images.lilhui.com/265316c207746d158fcfe520beebd065">
+<meta property="og:updated_time" content="2022-11-20T02:27:23.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Dubbo源码系列3】Duboo 可扩展机制SPI源码解析">
 <meta name="twitter:description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&amp;lt;Protocol&amp;gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http = extensionLoader.getExtension(&quot;dubbo&quot;);Sys">
-<meta name="twitter:image" content="http://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
+<meta name="twitter:image" content="https://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
 
 
 
@@ -403,7 +403,7 @@
       
 
       
-        <h2 id="Dubbo-SPI架构图"><a href="#Dubbo-SPI架构图" class="headerlink" title="Dubbo SPI架构图"></a>Dubbo SPI架构图</h2><p><img src="http://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc" alt="图片"></p>
+        <h2 id="Dubbo-SPI架构图"><a href="#Dubbo-SPI架构图" class="headerlink" title="Dubbo SPI架构图"></a>Dubbo SPI架构图</h2><p><img src="https://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc" alt="图片"></p>
 <ul>
 <li>Demo获取Dubbo的protocol扩展点</li>
 </ul>
@@ -428,7 +428,7 @@
 <p>其中，什么是自适应扩展点实例？它其实就是当前这个接口的一个代理对象。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">Protocol protocol = extensionLoader.getExtension(<span class="string">"dubbo"</span>);</span><br></pre></td></tr></table></figure></p>
 <p>当我们调用上述代码，我们会将得到一个DubboProtocol的实例对象，但在getExtension()方法中，Dubbo会对DubboProtocol对象进行依赖注入（也就是自动给属性赋值，属性的类型为一个接口，记为A接口），这个时候，对于Dubbo来说它并不知道该给这个属性赋什么值，换句话说，Dubbo并不知道在进行依赖注入时该找一个什么的的扩展点对象给这个属性，这时就会预先赋值一个A接口的自适应扩展点实例，也就是A接口的一个代理对象。</p>
 <p>后续，在A接口的代理对象被真正用到时，才会结合URL信息找到真正的A接口对应的扩展点实例进行调用。</p>
-<p><img src="http://images.lilhui.com/d917674e8a07d8f91ed5a9e4ebf49e04" alt="图片"></p>
+<p><img src="https://images.lilhui.com/d917674e8a07d8f91ed5a9e4ebf49e04" alt="图片"></p>
 <h3 id="getExtension-String-name-方法"><a href="#getExtension-String-name-方法" class="headerlink" title="getExtension(String name)方法"></a>getExtension(String name)方法</h3><p>在调用getExtension去获取一个扩展点实例后，会对实例进行缓存，下次再获取同样名字的扩展点实例时就会从缓存中拿了。</p>
 <h3 id="createExtension-String-name-方法"><a href="#createExtension-String-name-方法" class="headerlink" title="createExtension(String name)方法"></a>createExtension(String name)方法</h3><p>在调用createExtension(String name)方法去创建一个扩展点实例时，要经过以下几个步骤：</p>
 <ol>
@@ -438,7 +438,7 @@
 <li>对依赖注入后的实例进行AOP（Wrapper）,把当前接口类的所有的Wrapper全部一层一层包裹在实例对象上，没包裹个Wrapper后，也会对Wrapper对象进行依赖注入</li>
 <li>返回最终的Wrapper对象</li>
 </ol>
-<p><img src="http://images.lilhui.com/265316c207746d158fcfe520beebd065" alt="图片"></p>
+<p><img src="https://images.lilhui.com/265316c207746d158fcfe520beebd065" alt="图片"></p>
 <h3 id="getExtensionClasses"><a href="#getExtensionClasses" class="headerlink" title="getExtensionClasses"></a>getExtensionClasses</h3><p>getExtensionClasses()是用来加载当前接口所有的扩展点实现类的，返回一个Map。之后可以从这个Map中按照指定的name获取对应的扩展点实现类。</p>
 <p>当把当前接口的所有扩展点实现类都加载出来后也会进行缓存，下次需要加载时直接拿缓存中的。</p>
 <p>Dubbo在加载一个接口的扩展点时，思路是这样的：</p>
@@ -625,7 +625,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -647,7 +647,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
