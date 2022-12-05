@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="##背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 d">
+<meta name="description" content="背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 dat">
 <meta name="keywords" content="dubbo,bug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多数据源项目下dubbo调用，获取的数据源不正确">
 <meta property="og:url" content="https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="##背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 d">
+<meta property="og:description" content="背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 dat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-12-05T06:51:21.996Z">
+<meta property="og:updated_time" content="2022-12-05T06:53:16.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多数据源项目下dubbo调用，获取的数据源不正确">
-<meta name="twitter:description" content="##背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 d">
+<meta name="twitter:description" content="背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。 初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource 1：如果 schema.xxx操作的话用 dat">
 
 
 
@@ -399,7 +399,7 @@
       
 
       
-        <p>##背景<br>每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。</p>
 <p>初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource</p>
 <p>1：如果 schema.xxx操作的话用 dataSource。<br>2：非schema.xxx操作的 用shardingDataSource。</p>
 <p>在线程执行的时候通过ThreadLocal变量缓存dataSource。但是忘记cleanThreadLocal值了。<br>在短连接的时候是正常的，在长链接的调用下会有以下错误逻辑发生比如dubbo调用下的异常：</p>
@@ -615,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bug修复"><span class="nav-number">1.</span> <span class="nav-text">bug修复</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bug修复"><span class="nav-number">2.</span> <span class="nav-text">bug修复</span></a></li></ol></div>
             
 
           </div>
