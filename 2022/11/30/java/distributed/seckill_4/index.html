@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="限流，熔断,">
 
 
 
@@ -88,16 +88,20 @@
 
 
 
-<meta name="description" content="今晚月光那么美，你说是的。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="https://www.lilhui.com/tags/类加载，热部署/index.html">
+<meta name="description" content="高并发场景下实现系统稳定运行微服务网关常见限流方案客户端限流 服务端限流 网关限流 应用层限流 微服务网关限流详情页入口流量保护，黑订单，限制一个IP访问频率。 基于Redis + Lua的脚本限流RequestRateLimiter过滤工厂。算法：令牌桶。 初始化令牌数量。每次请求过来获取一个令牌，请求完成后，令牌返回桶。 网关整合 Sentinel Route &amp;amp; API维度限流主要功">
+<meta name="keywords" content="限流，熔断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【秒杀系统4】订单链路兜底方案，限流和熔断降级">
+<meta property="og:url" content="https://www.lilhui.com/2022/11/30/java/distributed/seckill_4/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="今晚月光那么美，你说是的。">
+<meta property="og:description" content="高并发场景下实现系统稳定运行微服务网关常见限流方案客户端限流 服务端限流 网关限流 应用层限流 微服务网关限流详情页入口流量保护，黑订单，限制一个IP访问频率。 基于Redis + Lua的脚本限流RequestRateLimiter过滤工厂。算法：令牌桶。 初始化令牌数量。每次请求过来获取一个令牌，请求完成后，令牌返回桶。 网关整合 Sentinel Route &amp;amp; API维度限流主要功">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.lilhui.com/b2c1ecaebba2d0509d9f167867db4b98">
+<meta property="og:updated_time" content="2022-12-05T05:52:22.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Littlehui&#39;s Notes">
-<meta name="twitter:description" content="今晚月光那么美，你说是的。">
+<meta name="twitter:title" content="【秒杀系统4】订单链路兜底方案，限流和熔断降级">
+<meta name="twitter:description" content="高并发场景下实现系统稳定运行微服务网关常见限流方案客户端限流 服务端限流 网关限流 应用层限流 微服务网关限流详情页入口流量保护，黑订单，限制一个IP访问频率。 基于Redis + Lua的脚本限流RequestRateLimiter过滤工厂。算法：令牌桶。 初始化令牌数量。每次请求过来获取一个令牌，请求完成后，令牌返回桶。 网关整合 Sentinel Route &amp;amp; API维度限流主要功">
+<meta name="twitter:image" content="https://images.lilhui.com/b2c1ecaebba2d0509d9f167867db4b98">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/tags/类加载，热部署/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/11/30/java/distributed/seckill_4/">
 
 
 
 
 
-  <title>标签: 类加载，热部署 | Littlehui's Notes</title>
+  <title>【秒杀系统4】订单链路兜底方案，限流和熔断降级 | Littlehui's Notes</title>
   
 
 
@@ -152,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,52 +282,222 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>类加载，热部署<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/30/java/distributed/seckill_4/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2022/11/23/tomcat/tomcat_4/" itemprop="url">
-              
-                <span itemprop="name">【tomcat调优系列4】Tomcat 类加载机制，和热部署</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">【秒杀系统4】订单链路兜底方案，限流和熔断降级</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2022-11-23T14:55:17+08:00" content="2022-11-23">
-          11-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-30T10:54:26+08:00">
+                2022-11-30
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/11/30/java/distributed/seckill_4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/11/30/java/distributed/seckill_4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="高并发场景下实现系统稳定运行"><a href="#高并发场景下实现系统稳定运行" class="headerlink" title="高并发场景下实现系统稳定运行"></a>高并发场景下实现系统稳定运行</h2><h2 id="微服务网关常见限流方案"><a href="#微服务网关常见限流方案" class="headerlink" title="微服务网关常见限流方案"></a>微服务网关常见限流方案</h2><p>客户端限流</p>
+<p>服务端限流</p>
+<p>网关限流</p>
+<p>应用层限流</p>
+<h3 id="微服务网关限流"><a href="#微服务网关限流" class="headerlink" title="微服务网关限流"></a>微服务网关限流</h3><p>详情页入口流量保护，黑订单，限制一个IP访问频率。</p>
+<h4 id="基于Redis-Lua的脚本限流"><a href="#基于Redis-Lua的脚本限流" class="headerlink" title="基于Redis + Lua的脚本限流"></a>基于Redis + Lua的脚本限流</h4><p>RequestRateLimiter过滤工厂。算法：令牌桶。</p>
+<p>初始化令牌数量。每次请求过来获取一个令牌，请求完成后，令牌返回桶。</p>
+<h4 id="网关整合-Sentinel-Route-amp-API维度限流"><a href="#网关整合-Sentinel-Route-amp-API维度限流" class="headerlink" title="网关整合 Sentinel Route &amp; API维度限流"></a>网关整合 Sentinel Route &amp; API维度限流</h4><p>主要功能：<br>根据API流控，根据热点参数进行流控。</p>
+<p>流控规则配置在Sentinel后台，分发到网关各节点。网关加入Sentinel jar包。<br>在接受请求时候，通过SlotChain记录并计算流控的结果。</p>
+<h2 id="Sentinel-生产环境引入"><a href="#Sentinel-生产环境引入" class="headerlink" title="Sentinel 生产环境引入"></a>Sentinel 生产环境引入</h2><ul>
+<li>2个维度</li>
+</ul>
+<ol>
+<li>API维度。api流控。</li>
+<li>Route维度。整个为服务进行流控</li>
+</ol>
+<ul>
+<li>持久化<br>改造Senitnel支持Nacos持久化。规则从nacos分发到微服务网关。</li>
+</ul>
+<h2 id="下单引入Sentinel熔断"><a href="#下单引入Sentinel熔断" class="headerlink" title="下单引入Sentinel熔断"></a>下单引入Sentinel熔断</h2><ol>
+<li>秒杀确认页，配置排队等待。匀速器设置。</li>
+<li>热点参数限流。进行流控。<ol>
+<li>商品ID进行流控。</li>
+<li>用户ID为参数，针对一段时间频繁访问的用户ID进行限制。</li>
+</ol>
+</li>
+</ol>
+<p>PS:<br>热点参数规则需要使用@SentinalResource(“resourceName”)进行注解。<br>参数必须是7中基本数据类型才行。</p>
+<h2 id="电商系统自适应保护方案"><a href="#电商系统自适应保护方案" class="headerlink" title="电商系统自适应保护方案"></a>电商系统自适应保护方案</h2><h3 id="降级"><a href="#降级" class="headerlink" title="降级"></a>降级</h3><p>系统容量达到一定程度时，限制或者关闭系统的某些非核心功能。把有限的资源保留给核心业务。<br>降级方案例子：</p>
+<ol>
+<li>当秒杀流量达到5w/s时，把成交记录的获取从展示20条降级到只展示5条。从20 到5，通过开关来配置实现。<br>降级的核心目标是，牺牲次要的功能和用户体验来保证核心业务流程的稳定。不得已为之的举措。例如：在双11时如果优惠券<br>系统扛不住，可能会临时降级商品详情的优惠券信息展示。把有限的资源用在保障交易系统正确展示优惠信息上。既保证用户<br>整整下单时的价格是正确的。</li>
+</ol>
+<h4 id="服务降级的策略"><a href="#服务降级的策略" class="headerlink" title="服务降级的策略"></a>服务降级的策略</h4><p><img src="https://images.lilhui.com/b2c1ecaebba2d0509d9f167867db4b98" alt="图片"></p>
+<h3 id="熔断"><a href="#熔断" class="headerlink" title="熔断"></a>熔断</h3><p>对返回失败的借口，或者借口请求返回慢的。进行降级熔断。直接返回。不请求到后端服务。降低服务端的压力。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/限流，熔断/" rel="tag"># 限流，熔断</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/11/30/java/distributed/seckill_3/" rel="next" title="【秒杀系统3】优化订单交易全链路优化">
+                <i class="fa fa-chevron-left"></i> 【秒杀系统3】优化订单交易全链路优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/12/01/java/distributed/concurrent_read_write/" rel="prev" title="大型网站的高并发读写总结">
+                大型网站的高并发读写总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -331,6 +505,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -351,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -437,6 +631,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#高并发场景下实现系统稳定运行"><span class="nav-number">1.</span> <span class="nav-text">高并发场景下实现系统稳定运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务网关常见限流方案"><span class="nav-number">2.</span> <span class="nav-text">微服务网关常见限流方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务网关限流"><span class="nav-number">2.1.</span> <span class="nav-text">微服务网关限流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于Redis-Lua的脚本限流"><span class="nav-number">2.1.1.</span> <span class="nav-text">基于Redis + Lua的脚本限流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网关整合-Sentinel-Route-amp-API维度限流"><span class="nav-number">2.1.2.</span> <span class="nav-text">网关整合 Sentinel Route &amp; API维度限流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel-生产环境引入"><span class="nav-number">3.</span> <span class="nav-text">Sentinel 生产环境引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下单引入Sentinel熔断"><span class="nav-number">4.</span> <span class="nav-text">下单引入Sentinel熔断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电商系统自适应保护方案"><span class="nav-number">5.</span> <span class="nav-text">电商系统自适应保护方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#降级"><span class="nav-number">5.1.</span> <span class="nav-text">降级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务降级的策略"><span class="nav-number">5.1.1.</span> <span class="nav-text">服务降级的策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熔断"><span class="nav-number">5.2.</span> <span class="nav-text">熔断</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -598,6 +808,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -647,6 +861,30 @@
     
 
     
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
@@ -666,6 +904,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
