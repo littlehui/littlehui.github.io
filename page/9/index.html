@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_5/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -312,7 +312,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" itemprop="url">【流量控制系列5】Sentinal 详细介绍</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" itemprop="url">【流量控制系列7】Sentinel实践</a></h1>
         
 
         <div class="post-meta">
@@ -409,11 +409,13 @@
       
         
           
-          Sentinal 详细介绍历史2012 年，Sentinel 诞生，主要功能为入口流量控制。2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。2018 年，Sentinel 开源
+          sentinel的使用架构方式
+Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。
+页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualif
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_5/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -464,7 +466,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -483,7 +485,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" itemprop="url">【流量控制系列2】流量控制的基础方法和算法</a></h1>
         
 
         <div class="post-meta">
@@ -580,15 +582,15 @@
       
         
           
-          目的
-自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
-对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
+          流量控制的方法白名单机制：
+可以采用白名单的机制来限制访问，没有加入白名单的用户不让访问系统
 
-流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
+令牌池机制也叫令牌桶
+用户访问系统必须获得令牌池中的令牌，才能进行访问。令牌池每秒钟，阀门开启一次，所有的请求去令牌池中并发的抢夺令牌，获得令牌的可以访问系统，没有获得的返回“系统正忙”或者让该请求加入队
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_2/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -833,7 +835,7 @@ sentinel的特色1. 轻量，高性能
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_7/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/29/java/flowcontroller/flowcontroller_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -852,7 +854,7 @@ sentinel的特色1. 轻量，高性能
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" itemprop="url">【流量控制系列7】Sentinel实践</a></h1>
+                <a class="post-title-link" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" itemprop="url">【流量控制系列1】引言和索引</a></h1>
         
 
         <div class="post-meta">
@@ -949,13 +951,180 @@ sentinel的特色1. 轻量，高性能
       
         
           
-          sentinel的使用架构方式
-Sentinel dashboard改造默认是支持单机，现在需要改造成集群配置方式。
-页面controller改造将test下的nacos文件夹复制到包rule下启用类：FlowControllerV2provider注入123456@Autowired@Qualif
+          目的
+自底向上构建流量控制知识体系。在后面遇到流量控制相关问题，可以举一反三快速得到解决方案。
+对sentinel流控产品有一定的了解，在使用的时候能够快速入手，并且根据具体业务场景开发和扩展。
+
+流量控制背景在平时的正常的访问流量下，系统可以正常运行，但是当遇到热点事件，流量突然间增大的情况下。但
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_7/" rel="contents">
+            <a class="btn" href="/2019/07/29/java/flowcontroller/flowcontroller_1/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/28/java/patterndesign/patterndesign_17/" itemprop="url">设计模式系列:责任链模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-28T18:01:09+08:00">
+                2019-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概念
+责任链模式顾名思义，它是由一连串单一职责的对象构成链式结构。此结构一般为请求接受者做前置业务处理，主要目的是为发送者和接收者进行解耦。其特点是，每个对象都只处理自己成处理的请求，如果处理不了，会把请求传给下一个接收者。以此类推。
+
+实现一个简单的日志记录链
+类图
+代码AbstractLogge
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/28/java/patterndesign/patterndesign_17/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1123,171 +1292,6 @@ Iterator
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/28/java/patterndesign/patterndesign_16/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_17/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/28/java/patterndesign/patterndesign_17/" itemprop="url">设计模式系列:责任链模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-28T18:01:09+08:00">
-                2019-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概念
-责任链模式顾名思义，它是由一连串单一职责的对象构成链式结构。此结构一般为请求接受者做前置业务处理，主要目的是为发送者和接收者进行解耦。其特点是，每个对象都只处理自己成处理的请求，如果处理不了，会把请求传给下一个接收者。以此类推。
-
-实现一个简单的日志记录链
-类图
-代码AbstractLogge
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/28/java/patterndesign/patterndesign_17/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1819,7 +1823,7 @@ Iterator
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/06/11/article/worker/worker_1/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/06/11/article/worker/worker_0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1838,7 +1842,7 @@ Iterator
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/06/11/article/worker/worker_1/" itemprop="url">【更好工作的 tips2】会议的要点</a></h1>
+                <a class="post-title-link" href="/2019/06/11/article/worker/worker_0/" itemprop="url">【更好工作的 tips1】临时工作的安排</a></h1>
         
 
         <div class="post-meta">
@@ -1914,14 +1918,14 @@ Iterator
         
           
           
-会议的要点
+临时工作的安排
 
-会议或大，或小，或长或短，目的要明确。要明确要解决的问题、确认的问题、达成的共识等。当会议快结束时候确认会议达成的共识或者解决问题的方案，分配相应的任务。特别是技术类、需求类会议。最终都需要达成一个超目标迈进的可执行方案。
+口头，或者会议结论提出的临时工作任务。在安排好手上的工作后，立即着手对临时达成协议内容进行安排，花五分钟时间进行记录和规划，上报。
 
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/06/11/article/worker/worker_1/" rel="contents">
+            <a class="btn" href="/2019/06/11/article/worker/worker_0/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
