@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/02/java/distributed/big_data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -312,7 +312,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/11/23/tomcat/tomcat_4/" itemprop="url">【tomcat调优系列4】Tomcat 类加载机制，和热部署</a></h1>
+                <a class="post-title-link" href="/2022/12/02/java/distributed/big_data/" itemprop="url">海量数据查询和存储</a></h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-23T14:55:17+08:00">
-                2022-11-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-02T17:19:55+08:00">
+                2022-12-02
               </time>
             
 
@@ -347,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -387,14 +387,20 @@
       
         
           
-          Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。
+          存储选型存储系统的选择，决定了系统的性能上限。
+Mysql: 1000W以内
+如何技术选型技术选型不能脱离业务，业务决定技术选型。
 
-BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。
-ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
+业务系统类型在线业务系统OLTP,分析系统OLAP
+
+选型步骤
+评估规模评估规模，一般估两年以后的量。实际的量，跟老板的期望会有折扣。
+
+数据库选择如果数据数量在千万
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/11/23/tomcat/tomcat_4/" rel="contents">
+            <a class="btn" href="/2022/12/02/java/distributed/big_data/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -445,7 +451,7 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/22/tomcat/tomcat_3/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/02/java/distributed/rocksDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -464,7 +470,7 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/11/22/tomcat/tomcat_3/" itemprop="url">【tomcat调优系列3】Tomcat底层BIO和NIO实现原理</a></h1>
+                <a class="post-title-link" href="/2022/12/02/java/distributed/rocksDB/" itemprop="url">RocksDB详解</a></h1>
         
 
         <div class="post-meta">
@@ -476,8 +482,8 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-22T11:02:16+08:00">
-                2022-11-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-02T14:39:04+08:00">
+                2022-12-02
               </time>
             
 
@@ -499,8 +505,8 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -539,14 +545,16 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
       
         
           
-          Tomcat IO选择历史
-Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
+          RocksDB 详解
+性能好，支持事务。
 
-12&lt;Connector port="8080" protocol="org.apache.coyote.http11.Http11Ni oProtocol" connectionTimeout=
+秒杀库存扣减中使用了缓存 + Write-Ahead Logging 技术。
+事务随机读写。Redo日志是追加文件顺序读写，性能差异有30-40倍。
+事务的实现上，MySQL使用的是WAL机制来的。所有的修改都先被写到日志中，然后再被应用到系统重。包括re
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/11/22/tomcat/tomcat_3/" rel="contents">
+            <a class="btn" href="/2022/12/02/java/distributed/rocksDB/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -597,7 +605,7 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/18/tomcat/tomcat_2/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -616,7 +624,7 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/11/18/tomcat/tomcat_2/" itemprop="url">【tomcat调优系列2】Tomcat响应数据过程</a></h1>
+                <a class="post-title-link" href="/2022/12/01/bugfix/bugfix_0/" itemprop="url">多数据源项目下dubbo调用，获取的数据源不正确</a></h1>
         
 
         <div class="post-meta">
@@ -628,8 +636,8 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-18T15:30:18+08:00">
-                2022-11-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T14:51:37+08:00">
+                2022-12-01
               </time>
             
 
@@ -651,8 +659,8 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
+                  <a href="/categories/bug/" itemprop="url" rel="index">
+                    <span itemprop="name">bug</span>
                   </a>
                 </span>
 
@@ -691,15 +699,12 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
       
         
           
-          Tomcat响应数据过程关键部件解释
-OutputStream： 用于response的输出流。Tomcat这里是CoyoteOutputStream
-OutputBuffer: 输出流的缓冲
-ByteChunk: OutputBuffer的一个对象，缓冲的，缓冲区。
-ByteChunk的buff构
+          ##背景每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。
+初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，sh
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/11/18/tomcat/tomcat_2/" rel="contents">
+            <a class="btn" href="/2022/12/01/bugfix/bugfix_0/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -750,7 +755,7 @@ ByteChunk的buff构
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/18/tomcat/tomcat_1/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -769,7 +774,7 @@ ByteChunk的buff构
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/11/18/tomcat/tomcat_1/" itemprop="url">【tomcat调优系列1】Tomcat的请求过程</a></h1>
+                <a class="post-title-link" href="/2022/12/01/bugfix/bugfix_1/" itemprop="url">Spring boot gateway 网关压测时配置异常，导致服务返回405</a></h1>
         
 
         <div class="post-meta">
@@ -781,8 +786,8 @@ ByteChunk的buff构
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-18T14:57:04+08:00">
-                2022-11-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T14:47:11+08:00">
+                2022-12-01
               </time>
             
 
@@ -804,8 +809,8 @@ ByteChunk的buff构
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
+                  <a href="/categories/bug/" itemprop="url" rel="index">
+                    <span itemprop="name">bug</span>
                   </a>
                 </span>
 
@@ -844,16 +849,13 @@ ByteChunk的buff构
       
         
           
-          Tomcat请求过程几个部件：
-Endpoint： tomcat接收socket链接的组件。
-Socket：请求的通道链接
-InputBuffer. InternalInputBuffer,AbstractInputBuffer：缓冲内存
-Request：请求对象
-MessageBytes: 请求对
+          背景网关选用的是Spring-boot-gateway，网关配置使用nacos持久化。
+Spring的网关源码分析通过网关的源码分析，StripPrefixGatewayFilterFactory 通过parts值来截断请求的前缀。正常的是1，在执行过程中被刷新成了5。导致截断请求错误。
+12345
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/11/18/tomcat/tomcat_1/" rel="contents">
+            <a class="btn" href="/2022/12/01/bugfix/bugfix_1/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -904,7 +906,7 @@ MessageBytes: 请求对
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/10/27/java/jvm_tuning/tuning_2/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/java/practice/trade_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -923,7 +925,7 @@ MessageBytes: 请求对
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/10/27/java/jvm_tuning/tuning_2/" itemprop="url">云原生下的Java虚拟机 GraalVM</a></h1>
+                <a class="post-title-link" href="/2022/12/01/java/practice/trade_1/" itemprop="url">电商项目数据高可用架构设计</a></h1>
         
 
         <div class="post-meta">
@@ -935,8 +937,8 @@ MessageBytes: 请求对
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-27T11:44:31+08:00">
-                2022-10-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T14:37:30+08:00">
+                2022-12-01
               </time>
             
 
@@ -958,8 +960,8 @@ MessageBytes: 请求对
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/practice/" itemprop="url" rel="index">
+                    <span itemprop="name">practice</span>
                   </a>
                 </span>
 
@@ -998,14 +1000,14 @@ MessageBytes: 请求对
       
         
           
-          背景java 的编译器C1,C2C1不进行优化，C2会进行优化。热点代码缓存,JIT等等。
-C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C2没有办法维护，需要一种新的编译器来进行支持，所以有了GraalVM
-
-事实JIT,性能优化、垃圾回收等代表的特性需要一段时间来达到最佳
+          缓存数据库一致Canal : 基于Binlog的同步中间件。
+Canal伪装成Mysql的从节点。收到Binlog 解析变更的binlog。
+Canal Server - 接收Mysql 日志流。Canal Client - 处理解析后的操作。可以在业务进行实现。
+Canal也可以推送到Mq,kaf
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/10/27/java/jvm_tuning/tuning_2/" rel="contents">
+            <a class="btn" href="/2022/12/01/java/practice/trade_1/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1056,7 +1058,7 @@ C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/10/26/java/jvm_tuning/tuning_1/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/java/distributed/concurrent_read_write/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1075,7 +1077,7 @@ C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/10/26/java/jvm_tuning/tuning_1/" itemprop="url">JVM调优系列1:ZGC详解</a></h1>
+                <a class="post-title-link" href="/2022/12/01/java/distributed/concurrent_read_write/" itemprop="url">大型网站的高并发读写总结</a></h1>
         
 
         <div class="post-meta">
@@ -1087,8 +1089,8 @@ C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-26T15:49:32+08:00">
-                2022-10-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T14:22:20+08:00">
+                2022-12-01
               </time>
             
 
@@ -1110,19 +1112,8 @@ C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/jvm/" itemprop="url" rel="index">
-                    <span itemprop="name">jvm</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -1161,27 +1152,17 @@ C2 C++写的，太复杂，不维护，而且有bugjava语言一直在进步，C
       
         
           
-          
-逃逸分析
-标量替换
-栈上分配
+          高并发的读写场景解析不管什么系统，都是做读和写。
+侧重”高并发读”的系统存储引擎 ES,solr等终端用户-搜索（读）-&gt; 搜索引擎 &lt;-发布（写）- 内容生产者
 
-锁消除
+数量级的差别：终端用户成千上百万个。生产者是公司内部产生，数量级不会太高。
+响应时间。读的响应时间要求在毫秒级。
 
-锁粗化
-
-JITJVM 语言无关性字节码执行
-- 解释执行
-- 即时编译 JIT
-JIT是编译成本地字节码。非java字节码，是机器直接运行的本地编码，可能是汇编等。
-
-编译器C1 class -&gt; 本地编码（不做优化）C2 性能优化
-
-热点探测技术
+侧重”
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/10/26/java/jvm_tuning/tuning_1/" rel="contents">
+            <a class="btn" href="/2022/12/01/java/distributed/concurrent_read_write/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1232,7 +1213,7 @@ JIT是编译成本地字节码。非java字节码，是机器直接运行的本�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/12/java/spring/spring_deep_4/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/30/java/distributed/seckill_4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1251,7 +1232,7 @@ JIT是编译成本地字节码。非java字节码，是机器直接运行的本�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/07/12/java/spring/spring_deep_4/" itemprop="url">【深入理解Spring系列4】BeanDefinition</a></h1>
+                <a class="post-title-link" href="/2022/11/30/java/distributed/seckill_4/" itemprop="url">【秒杀系统4】订单链路兜底方案，限流和熔断降级</a></h1>
         
 
         <div class="post-meta">
@@ -1263,8 +1244,8 @@ JIT是编译成本地字节码。非java字节码，是机器直接运行的本�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-12T15:31:17+08:00">
-                2022-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-30T10:54:26+08:00">
+                2022-11-30
               </time>
             
 
@@ -1286,8 +1267,8 @@ JIT是编译成本地字节码。非java字节码，是机器直接运行的本�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
                   </a>
                 </span>
 
@@ -1326,17 +1307,17 @@ JIT是编译成本地字节码。非java字节码，是机器直接运行的本�
       
         
           
-          前情提要Spring Bean的 四种装配模式外，还有一种自动策略。
-当只有一个 构造方法，并且构造方法里有参数。会进行 aurowireConstructor(beanName, mdb, ctors, args)
-
-spring扫描不能直接new的方法
-
-@DependsOn
-@Prototyp
+          高并发场景下实现系统稳定运行微服务网关常见限流方案客户端限流
+服务端限流
+网关限流
+应用层限流
+微服务网关限流详情页入口流量保护，黑订单，限制一个IP访问频率。
+基于Redis + Lua的脚本限流RequestRateLimiter过滤工厂。算法：令牌桶。
+初始化令牌数量。每次请求过来获取一个令牌
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/07/12/java/spring/spring_deep_4/" rel="contents">
+            <a class="btn" href="/2022/11/30/java/distributed/seckill_4/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1387,7 +1368,7 @@ spring扫描不能直接new的方法
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/11/mq/rabbitmq_core_1/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/30/java/distributed/seckill_3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1406,7 +1387,7 @@ spring扫描不能直接new的方法
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/07/11/mq/rabbitmq_core_1/" itemprop="url">【rabbitMq学习1】MQ的基本概念</a></h1>
+                <a class="post-title-link" href="/2022/11/30/java/distributed/seckill_3/" itemprop="url">【秒杀系统3】优化订单交易全链路优化</a></h1>
         
 
         <div class="post-meta">
@@ -1418,8 +1399,8 @@ spring扫描不能直接new的方法
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-11T15:00:32+08:00">
-                2022-07-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-30T10:04:17+08:00">
+                2022-11-30
               </time>
             
 
@@ -1441,8 +1422,8 @@ spring扫描不能直接new的方法
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mq/" itemprop="url" rel="index">
-                    <span itemprop="name">mq</span>
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
                   </a>
                 </span>
 
@@ -1481,13 +1462,15 @@ spring扫描不能直接new的方法
       
         
           
-          ##MQ的基本概念
-MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。
+          下单定时检查的优化RocketMq事务消息
+Redis扣减库存优化
+分布式锁，存在锁竞争，一个商品对应一个锁。几百个商品同时秒杀，Redis压力巨大。
 
-          
+优化方案： 分布式锁变成本地锁。秒杀服务开始前，由配置中心给每个应用服务实例下发一个库存数胡亮。然后每次下单，每个服务器只管自己的库存数量。与其他
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/07/11/mq/rabbitmq_core_1/" rel="contents">
+            <a class="btn" href="/2022/11/30/java/distributed/seckill_3/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1538,7 +1521,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/06/redis/redis_core_7/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/29/java/distributed/seckill_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1557,7 +1540,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/07/06/redis/redis_core_7/" itemprop="url">【Redis学习7】开发规范和性能优化</a></h1>
+                <a class="post-title-link" href="/2022/11/29/java/distributed/seckill_2/" itemprop="url">【秒杀系统2】设计与实现下</a></h1>
         
 
         <div class="post-meta">
@@ -1569,8 +1552,8 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-06T16:58:52+08:00">
-                2022-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-29T14:56:26+08:00">
+                2022-11-29
               </time>
             
 
@@ -1592,8 +1575,8 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
                   </a>
                 </span>
 
@@ -1632,14 +1615,18 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
       
         
           
-          键值设计key名设计(1)【建议】: 可读性和可管理性以业务名(或数据库名)为前缀(防止key冲突)，用冒号分隔，比如业务名:表名:id
-1trade:order:1
-(2)【建议】：简洁性保证语义的前提下，控制key的长度，当key较多时，内存占用也不容忽视，例如：
-1user:&#123;uid
+          秒杀前的流量控制预约开放预约获得资格后才能参与秒杀。    预约也有高并发所以需要一些设计：
+
+预约管理后台。
+预约短信和消息提醒。
+面向终端的雨夜核心微服务，提供给用户预约和取消资格能力。
+详情页在展示时获取预约信息的能力，比如商品是否预约，当前预约人数等等。
+秒杀下单时检查预约资格的能力。
+核心
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/07/06/redis/redis_core_7/" rel="contents">
+            <a class="btn" href="/2022/11/29/java/distributed/seckill_2/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1690,7 +1677,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/07/06/redis/redis_core_6/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/29/java/distributed/seckill_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -1709,7 +1696,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/07/06/redis/redis_core_6/" itemprop="url">【Redis学习5】redis缓存设计和性能优化</a></h1>
+                <a class="post-title-link" href="/2022/11/29/java/distributed/seckill_1/" itemprop="url">【秒杀系统1】设计与实现上</a></h1>
         
 
         <div class="post-meta">
@@ -1721,8 +1708,8 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-06T16:38:47+08:00">
-                2022-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-29T09:58:14+08:00">
+                2022-11-29
               </time>
             
 
@@ -1744,8 +1731,8 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/redis/" itemprop="url" rel="index">
-                    <span itemprop="name">redis</span>
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
                   </a>
                 </span>
 
@@ -1784,13 +1771,23 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
       
         
           
-          缓存设计
-缓存穿透缓存穿透是指查询一个根本不存在的数据， 缓存层和存储层都不会命中， 通常出于容错的考虑， 如果从存储层查不到数据则不写入缓存层。缓存穿透将导致不存在的数据每次请求都要到存储层去查询， 失去了缓存保护后端存储的意义。
-造成缓存穿透的基本原因有两个：第一， 自身业务代码或者数据出现问题
+          业务分析 系统挑战
+瞬时流量
+库存有限
+持续时间短
+预约，限购
+涉及 商品详情页，订单结算，支付
+
+要解决的问题
+瞬时流量带来的服务端压力，造成单个请求增加。打挂服务器，用户体验不佳。
+库存有限。造成多卖，超卖。
+刷子流量，黄牛抢单，刷订单。黑产！道高一尺魔高一丈。
+
+通用秒杀架构问题分析解决大流量
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2022/07/06/redis/redis_core_6/" rel="contents">
+            <a class="btn" href="/2022/11/29/java/distributed/seckill_1/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1832,7 +1829,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1880,7 +1877,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-count">148</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1891,7 +1888,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1902,7 +1899,7 @@ MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

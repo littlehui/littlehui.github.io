@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="秒杀,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="秒杀前的流量控制预约开放预约获得资格后才能参与秒杀。    预约也有高并发所以需要一些设计：  预约管理后台。 预约短信和消息提醒。 面向终端的雨夜核心微服务，提供给用户预约和取消资格能力。 详情页在展示时获取预约信息的能力，比如商品是否预约，当前预约人数等等。 秒杀下单时检查预约资格的能力。 核心在两个维度： 预约活动和用户预约关系。所以需要2张表。预约活动表信息表，记录预约活动本身。预约活动开">
+<meta name="keywords" content="秒杀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【秒杀系统2】设计与实现下">
+<meta property="og:url" content="https://www.lilhui.com/2022/11/29/java/distributed/seckill_2/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="秒杀前的流量控制预约开放预约获得资格后才能参与秒杀。    预约也有高并发所以需要一些设计：  预约管理后台。 预约短信和消息提醒。 面向终端的雨夜核心微服务，提供给用户预约和取消资格能力。 详情页在展示时获取预约信息的能力，比如商品是否预约，当前预约人数等等。 秒杀下单时检查预约资格的能力。 核心在两个维度： 预约活动和用户预约关系。所以需要2张表。预约活动表信息表，记录预约活动本身。预约活动开">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.lilhui.com/2b1147408ad1ebece871df0d32ae979b">
+<meta property="og:image" content="https://images.lilhui.com/b957e25c0046c74e56476b84ba3d032b">
+<meta property="og:updated_time" content="2022-12-01T08:15:06.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【秒杀系统2】设计与实现下">
+<meta name="twitter:description" content="秒杀前的流量控制预约开放预约获得资格后才能参与秒杀。    预约也有高并发所以需要一些设计：  预约管理后台。 预约短信和消息提醒。 面向终端的雨夜核心微服务，提供给用户预约和取消资格能力。 详情页在展示时获取预约信息的能力，比如商品是否预约，当前预约人数等等。 秒杀下单时检查预约资格的能力。 核心在两个维度： 预约活动和用户预约关系。所以需要2张表。预约活动表信息表，记录预约活动本身。预约活动开">
+<meta name="twitter:image" content="https://images.lilhui.com/2b1147408ad1ebece871df0d32ae979b">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/11/29/java/distributed/seckill_2/">
+
+
+
+
+
+  <title>【秒杀系统2】设计与实现下 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/29/java/distributed/seckill_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【秒杀系统2】设计与实现下</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-29T14:56:26+08:00">
+                2022-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/seckill/" itemprop="url" rel="index">
+                    <span itemprop="name">seckill</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/11/29/java/distributed/seckill_2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/11/29/java/distributed/seckill_2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="秒杀前的流量控制"><a href="#秒杀前的流量控制" class="headerlink" title="秒杀前的流量控制"></a>秒杀前的流量控制</h2><h3 id="预约"><a href="#预约" class="headerlink" title="预约"></a>预约</h3><p>开放预约获得资格后才能参与秒杀。<br>    预约也有高并发所以需要一些设计：</p>
+<ol>
+<li>预约管理后台。</li>
+<li>预约短信和消息提醒。</li>
+<li>面向终端的雨夜核心微服务，提供给用户预约和取消资格能力。</li>
+<li>详情页在展示时获取预约信息的能力，比如商品是否预约，当前预约人数等等。</li>
+<li>秒杀下单时检查预约资格的能力。</li>
+<li>核心在两个维度：<ol>
+<li>预约活动和用户预约关系。所以需要2张表。预约活动表信息表，记录预约活动本身。预约活动开始和结束时间，<br>预约活动对应的秒杀信息，预约商品信息等。另一张表 用户预约关系表，用户的ID,预约的活动ID，预约商品等。</li>
+</ol>
+</li>
+</ol>
+<h3 id="预约系统优化"><a href="#预约系统优化" class="headerlink" title="预约系统优化"></a>预约系统优化</h3><p>用户预约关系表量非常大。方法：</p>
+<ol>
+<li>分库分表。用户预约关系表，写热点。</li>
+<li>前置缓存。预约活动信息，读热点。</li>
+</ol>
+<p>计算预约量：</p>
+<ol>
+<li>用redis记录。</li>
+<li>本地缓存累加，批量写入redis。</li>
+</ol>
+<h2 id="秒杀中流量控制-削峰"><a href="#秒杀中流量控制-削峰" class="headerlink" title="秒杀中流量控制-削峰"></a>秒杀中流量控制-削峰</h2><h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p>无损削峰：限流技术是有损。<br>有损削峰：验证码，问答题，以及一部消息队列。</p>
+<p>加验证码的作用：本来需要0.1秒完成的操作，拉长到10秒或者更长时间。拉长了时间<br>降低的最高的峰值。</p>
+<h3 id="流量削峰"><a href="#流量削峰" class="headerlink" title="流量削峰"></a>流量削峰</h3><p>异步下单：<br>引入消息队列：kafka,RocketMQ,RabbitMQ</p>
+<p>异步支付和订单不一致如何解决？</p>
+<p>订单支付页，定时检查秒杀订单是否已经生成！WebSocket 等等。下单查库问题不大，比访问量第很多。</p>
+<h3 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h3><h2 id="秒杀中的流量控制-限流"><a href="#秒杀中的流量控制-限流" class="headerlink" title="秒杀中的流量控制-限流"></a>秒杀中的流量控制-限流</h2><p>自我保护的直接手段，整个链路都可以进行限流：逐级限流、分层过滤。</p>
+<p>常用算法：令牌桶和漏铜。</p>
+<p><img src="https://images.lilhui.com/2b1147408ad1ebece871df0d32ae979b" alt="图片"></p>
+<h3 id="nginx限流"><a href="#nginx限流" class="headerlink" title="nginx限流"></a>nginx限流</h3><p>HttpLimitZone,HttpLimitRequest<br>HttpLimitZone: 用来限制一个客户端的并发连接数。<br>HttpLimitRequest: 通过漏桶算法进行限制用户的链接频率。</p>
+<p><img src="https://images.lilhui.com/b957e25c0046c74e56476b84ba3d032b" alt="图片"></p>
+<p>limit_req_zone: 指令名称，关键字，只能在http块中使用。<br>$binary_remote_addr Nginx内置绑定变量，比如$remote_port是指客户端端口号。<br>zone=one：规则名称zai limit_req_zone申明过。<br>burst=2: 制定最大突然请求数，超过这个数目的请求会被延迟。<br>nodelay: 突发请求大于burst时候，立即返回503.不排队了。<br>rate:每秒允许通过的请求，每个IP。<br>zone=one:10m :1M可以支持 16000个链接。 10M就是160000个会话链接。</p>
+<h3 id="线程池限流"><a href="#线程池限流" class="headerlink" title="线程池限流"></a>线程池限流</h3><p>Java，Tomcat原生线程池，配置最大连接数，请求处理队列长度以及拒绝策略来达到限流的目的。</p>
+<h3 id="API限流"><a href="#API限流" class="headerlink" title="API限流"></a>API限流</h3><p>线程池限流是一种并发限流。并发恒定的情况下，处理速度越快。QPS越高。</p>
+<p>大部分情况是根据QPS来限流。可以使用Google的RateLimiter开源包。基于令牌桶的算法实现。</p>
+<p>开源的组件Sentinel整合了流量控制、流量整型、流量路由、熔断升级、系统自适应。</p>
+<h3 id="自定义限流"><a href="#自定义限流" class="headerlink" title="自定义限流"></a>自定义限流</h3><p>订单的重复下单问题。订单结算也的时候进行判断（生成ID服务）。下单的时候用这个订单来校验下单是否重复。<br>如果高并发回拖慢秒杀的速度，所以需要进行改造：</p>
+<ol>
+<li>OrderId预生成，放在队列里。缓存在本地。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OrderIdList = <span class="keyword">new</span> ConcurrentLinkedQueue();</span><br><span class="line">OrderItemList = <span class="keyword">new</span> ConcurrentLinkedQueue();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>100毫秒产生200个订单号。所以1秒内只能有2000个订单过来。类似令牌桶限流。更精细的可以控制某个商品的发放速度。</p>
+<ol start="2">
+<li>商品库存分发到本地。</li>
+</ol>
+<h2 id="限购、秒杀的库存与降级、热点"><a href="#限购、秒杀的库存与降级、热点" class="headerlink" title="限购、秒杀的库存与降级、热点"></a>限购、秒杀的库存与降级、热点</h2><p>重点问题：</p>
+<ol>
+<li>库存超卖，库存扣减的热点。</li>
+</ol>
+<p>在库存服务里解决。</p>
+<h3 id="限购"><a href="#限购" class="headerlink" title="限购"></a>限购</h3><p>全部流量不能直接打到库存服务。需要有个系统来承接大流量没并且脂肪商品库存和匹配的请求到库存服务。限购就是这样的角色。<br>限购之于库存，就像秒杀之于下单。欠着都是后者的滤网和保护伞。</p>
+<p>限购： 做商品的限制购买。因为参加秒杀活动的商品都是爆品、稀缺品，所以为了让更多的用户参与进来，并让有限的投放量汇集<br>更多的人，所以往往会对商品的售卖做限制，一般限制的维度包括两个方面。</p>
+<p><strong>商品维度限购</strong>：每次参加秒杀的活动商品投放量。针对不同地区投放。</p>
+<p><strong>个人维度限购</strong>：校验个人是否能购买数量。</p>
+<h3 id="库存扣减"><a href="#库存扣减" class="headerlink" title="库存扣减"></a>库存扣减</h3><p>如何不超卖 -&gt; 查询用户库存。</p>
+<p>库存扣减必须实现原子性和一致性，如何实现呢？<br>两个操作</p>
+<h4 id="利用乐观锁"><a href="#利用乐观锁" class="headerlink" title="利用乐观锁"></a>利用乐观锁</h4><ol>
+<li><p>查询库存。<br>乐观锁 version 每次扣减的时候带上这个版本号比如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> stock,<span class="keyword">version</span> <span class="keyword">from</span> product <span class="keyword">where</span> <span class="keyword">id</span> = ? ;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>扣减库存</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> product <span class="keyword">set</span> stock = stock - ?,<span class="keyword">version</span> = <span class="keyword">version</span> + <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = ? <span class="keyword">and</span> <span class="keyword">version</span> = ?</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="利用数据库特性"><a href="#利用数据库特性" class="headerlink" title="利用数据库特性"></a>利用数据库特性</h4><p><strong>数据库方案：</strong> 行锁。查询和扣减放在一个事务，for update。事务结束后进行释放锁。<br><strong>通过SQL语句</strong>: where条件，保证库存不会被溅到0以下。</p>
+<h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><p>redis分布式锁可以实现。<br>弊端：需要超时机制。但是有超时机制，又占用时间，与高并发的秒杀系统是相悖的。不建议使用。</p>
+<h4 id="高并发扣减"><a href="#高并发扣减" class="headerlink" title="高并发扣减"></a>高并发扣减</h4><p>流量洪峰来临时，TP99指标变差，CPU升高，IO等待边长。系统变得不稳定。需要对非核心服务进行降级，减轻<br>系统负担，这种降级一般是有损的。属于 ‘弃卒保帅’</p>
+<p>秒杀的核心问题是解决单个商品搞并发读和写的问题。是典型的热点数据问题。我们需要响应的机制，避免热点数据打垮<br>系统。</p>
+<p>Redis库存扣减。宁可少卖，不可超卖。</p>
+<p>如何实现：</p>
+<ol>
+<li>对缓存进行扣减。<br>redis lua eval原子脚本：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">local c_s = redis.call(&apos;get&apos;, KEYS[1])</span><br><span class="line">if (not c_s or  tonumber(c_s) &lt; tonumber(KEYS[2]) then</span><br><span class="line">    return 0</span><br><span class="line">end</span><br><span class="line">redis.call(&apos;decrby&apos;,KEYS[1],KEYS[2])</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>下单失败需要还原数量。</p>
+<p>问题：Redis挂了怎么办?<br>快速持久化扣减记录，采用WAL机制实现。保存到本地RockDB数据库。</p>
+<h4 id="降级"><a href="#降级" class="headerlink" title="降级"></a>降级</h4><ul>
+<li>写服务降级</li>
+</ul>
+<p>Redis高并发扣减就是一种写降级</p>
+<ul>
+<li>读服务降级</li>
+</ul>
+<p>在不影响正常购买的流程中。将一些无关紧要的信息隐藏。完成读降级。<br>例子：</p>
+<p>问题：双11时登录后，切换几分钟后需要重新登陆。平时并不用重新登陆。</p>
+<p>登录信息缓存失效时间减少。腾出缓存资源。<br><strong>牢记：</strong>微服务资深所依赖的外服中间件或者系统跟本身可用性无关。</p>
+<h2 id="秒杀的防刷，风控，容灾"><a href="#秒杀的防刷，风控，容灾" class="headerlink" title="秒杀的防刷，风控，容灾"></a>秒杀的防刷，风控，容灾</h2><h3 id="防刷"><a href="#防刷" class="headerlink" title="防刷"></a>防刷</h3><p>秒杀商品有限，防止黄牛<br>有效流量： 6：1：3</p>
+<p>6： 黄牛用户<br>1： 错误用户<br>3： 正常请求  </p>
+<p>防刷方法有：</p>
+<ol>
+<li>Nginx限流机制。限制IP高频访问。</li>
+<li>Token机制，用来做鉴权。防止直接访问下单接口。在订单详情页时候获取Token，在下单时候带上原Token并再产生一个Token,每个环节进行校验。保证用户的操作是连续的。<br> 例子：在header_filter_by_lua_block 返回 的header里增加流程Token</li>
+</ol>
+<h3 id="风控"><a href="#风控" class="headerlink" title="风控"></a>风控</h3><p>如果已经有风控系统，可以拿到黑名单列表。进行封闭。</p>
+<h3 id="容灾"><a href="#容灾" class="headerlink" title="容灾"></a>容灾</h3><p>防天灾，机房容灾。</p>
+<p>异地双活：跨城市备份。有物理时延比较难实现。（招行实现）<br>同城双活：同城双活，物理距离比价近，延迟低。同城机房，同事承担部分流量。主机房承担写，部分读，备份机房部分读。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/秒杀/" rel="tag"># 秒杀</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/11/29/java/distributed/seckill_1/" rel="next" title="【秒杀系统1】设计与实现上">
+                <i class="fa fa-chevron-left"></i> 【秒杀系统1】设计与实现上
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/11/30/java/distributed/seckill_3/" rel="prev" title="【秒杀系统3】优化订单交易全链路优化">
+                【秒杀系统3】优化订单交易全链路优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#秒杀前的流量控制"><span class="nav-number">1.</span> <span class="nav-text">秒杀前的流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预约"><span class="nav-number">1.1.</span> <span class="nav-text">预约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预约系统优化"><span class="nav-number">1.2.</span> <span class="nav-text">预约系统优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秒杀中流量控制-削峰"><span class="nav-number">2.</span> <span class="nav-text">秒杀中流量控制-削峰</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#削峰"><span class="nav-number">2.1.</span> <span class="nav-text">削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量削峰"><span class="nav-number">2.2.</span> <span class="nav-text">流量削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流"><span class="nav-number">2.3.</span> <span class="nav-text">限流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秒杀中的流量控制-限流"><span class="nav-number">3.</span> <span class="nav-text">秒杀中的流量控制-限流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx限流"><span class="nav-number">3.1.</span> <span class="nav-text">nginx限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池限流"><span class="nav-number">3.2.</span> <span class="nav-text">线程池限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API限流"><span class="nav-number">3.3.</span> <span class="nav-text">API限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义限流"><span class="nav-number">3.4.</span> <span class="nav-text">自定义限流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限购、秒杀的库存与降级、热点"><span class="nav-number">4.</span> <span class="nav-text">限购、秒杀的库存与降级、热点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#限购"><span class="nav-number">4.1.</span> <span class="nav-text">限购</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库存扣减"><span class="nav-number">4.2.</span> <span class="nav-text">库存扣减</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用乐观锁"><span class="nav-number">4.2.1.</span> <span class="nav-text">利用乐观锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用数据库特性"><span class="nav-number">4.2.2.</span> <span class="nav-text">利用数据库特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式锁"><span class="nav-number">4.2.3.</span> <span class="nav-text">分布式锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高并发扣减"><span class="nav-number">4.2.4.</span> <span class="nav-text">高并发扣减</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#降级"><span class="nav-number">4.2.5.</span> <span class="nav-text">降级</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秒杀的防刷，风控，容灾"><span class="nav-number">5.</span> <span class="nav-text">秒杀的防刷，风控，容灾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#防刷"><span class="nav-number">5.1.</span> <span class="nav-text">防刷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#风控"><span class="nav-number">5.2.</span> <span class="nav-text">风控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容灾"><span class="nav-number">5.3.</span> <span class="nav-text">容灾</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
