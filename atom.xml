@@ -75,7 +75,7 @@
     <link href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/"/>
     <id>https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/</id>
     <published>2022-12-01T06:51:37.000Z</published>
-    <updated>2022-12-01T06:53:22.596Z</updated>
+    <updated>2022-12-05T06:51:21.996Z</updated>
     
     <content type="html"><![CDATA[<p>##背景<br>每天定时任务会跑一次下个月的表是否存在，然后进行建表。dubbo调用。在线程上配置了 datasource选取规则。</p><p>初始化的时候会判断是否有建下个月的表，这个操作需要通过schema.xxx操作。但是shardingsphere不支持schema.xxx操作。所以我们创建了两个数据源，shardingDatasource和dataSource</p><p>1：如果 schema.xxx操作的话用 dataSource。<br>2：非schema.xxx操作的 用shardingDataSource。</p><p>在线程执行的时候通过ThreadLocal变量缓存dataSource。但是忘记cleanThreadLocal值了。<br>在短连接的时候是正常的，在长链接的调用下会有以下错误逻辑发生比如dubbo调用下的异常：</p><p>1：如果某次执行 获取了一个 dubboThread1，这个线程执行 先获取了未分表的数据源。并缓存了，如果没有清除数据源，下次拿到的还是这个数据源。</p><p>2：dubbo 协议的provider-consumer 链接是1：1，所以执行一次后，这个链接并没有被销毁，某个下单请求获取到了 这个dubboThread1，由于这个线程链接已经在1 操作中获取到了未分表的数据源 dataSource。就在母表上进行了业务操作。创建订单成功，但是订单所在的表示错误的。</p><p>3：回调来的请求操作是另外一个节点进行处理，获取到的是 dubboThread2 这个dubboThread2 未获取到数据源，所以按照上面的规则进行初始化数据源并缓存 得到shardingDatasource。根据订单号选择的是订单号归属的分表，此时无法找到这个订单。所以报错。</p><h2 id="bug修复"><a href="#bug修复" class="headerlink" title="bug修复"></a>bug修复</h2><p>在定时任务结束后清理dataSource类型缓存。</p>]]></content>
     

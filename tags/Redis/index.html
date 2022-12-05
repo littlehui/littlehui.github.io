@@ -91,7 +91,7 @@
 <meta name="description" content="今晚月光那么美，你说是的。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Littlehui&#39;s Notes">
-<meta property="og:url" content="https://www.lilhui.com/tags/Redis/index.html">
+<meta property="og:url" content="https://www.lilhui.com/tags/redis/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="今晚月光那么美，你说是的。">
 <meta property="og:locale" content="zh-Hans">
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/tags/Redis/">
+  <link rel="canonical" href="https://www.lilhui.com/tags/redis/">
 
 
 
 
 
-  <title>标签: Redis | Littlehui's Notes</title>
+  <title>标签: redis | Littlehui's Notes</title>
   
 
 
@@ -285,7 +285,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Redis<small>标签</small>
+        <h1>redis<small>标签</small>
         </h1>
       </div>
 
@@ -297,17 +297,95 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/09/18/redis/Redisshujujiegou/" itemprop="url">
+            <a class="post-title-link" href="/2022/07/06/redis/redis_core_7/" itemprop="url">
               
-                <span itemprop="name">Redis数据结构介绍</span>
+                <span itemprop="name">【Redis学习7】开发规范和性能优化</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-09-18T17:20:47+08:00" content="2017-09-18">
-          09-18
+        <time class="post-time" itemprop="dateCreated" datetime="2022-07-06T16:58:52+08:00" content="2022-07-06">
+          07-06
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2022/07/06/redis/redis_core_6/" itemprop="url">
+              
+                <span itemprop="name">【Redis学习5】redis缓存设计和性能优化</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2022-07-06T16:38:47+08:00" content="2022-07-06">
+          07-06
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2022/07/02/redis/redis_core_3/" itemprop="url">
+              
+                <span itemprop="name">【Redis学习3】redis集群和高可用</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2022-07-02T11:26:40+08:00" content="2022-07-02">
+          07-02
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2022/06/29/redis/redis_core_1/" itemprop="url">
+              
+                <span itemprop="name">【Redis学习1】核心数据结构与高性能原理</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2022-06-29T15:14:58+08:00" content="2022-06-29">
+          06-29
         </time>
       </div>
 
@@ -939,94 +1017,6 @@
                 }
               });
               var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-            var searchResultList = '<ul class=\"search-result-list\">';
               resultItems.forEach(function (result) {
                 searchResultList += result.item;
               })
