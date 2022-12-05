@@ -1,3 +1,4 @@
+https://www.lilhui.com/2022/12/05/article/worker/learn_tool/
 https://www.lilhui.com/2022/12/02/java/distributed/big_data/
 https://www.lilhui.com/2022/12/02/java/distributed/rocksDB/
 https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/
@@ -17,4 +18,3 @@ https://www.lilhui.com/2022/10/26/java/jvm_tuning/tuning_1/
 https://www.lilhui.com/2022/07/12/java/spring/spring_deep_4/
 https://www.lilhui.com/2022/07/11/mq/rabbitmq_core_1/
 https://www.lilhui.com/2022/07/06/redis/redis_core_7/
-https://www.lilhui.com/2022/07/06/redis/redis_core_6/
