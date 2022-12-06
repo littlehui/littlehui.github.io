@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="分表,">
+  <meta name="keywords" content="分表,分库,">
 
 
 
@@ -89,16 +89,16 @@
 
 
 <meta name="description" content="源码分析解析-&amp;gt;路由-&amp;gt;改写-&amp;gt;执行-&amp;gt;归并  初始化过程  ShardingDataSourceFactory.createDataSource  ShardingRule 分片规则通过配置加载到内存中   SQL执行过程(上下文)ShardingStatement.executeQuery Statement   SqlRoutestatementEngine.rout">
-<meta name="keywords" content="分表">
+<meta name="keywords" content="分表,分库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shardingsphere简单源码解析">
+<meta property="og:title" content="【ShardingSphere 2】shardingsphere简单源码解析">
 <meta property="og:url" content="https://www.lilhui.com/2022/02/14/java/shardingsphere/shardingsphere_2/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="源码分析解析-&amp;gt;路由-&amp;gt;改写-&amp;gt;执行-&amp;gt;归并  初始化过程  ShardingDataSourceFactory.createDataSource  ShardingRule 分片规则通过配置加载到内存中   SQL执行过程(上下文)ShardingStatement.executeQuery Statement   SqlRoutestatementEngine.rout">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-14T07:45:25.650Z">
+<meta property="og:updated_time" content="2022-12-06T07:51:31.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shardingsphere简单源码解析">
+<meta name="twitter:title" content="【ShardingSphere 2】shardingsphere简单源码解析">
 <meta name="twitter:description" content="源码分析解析-&amp;gt;路由-&amp;gt;改写-&amp;gt;执行-&amp;gt;归并  初始化过程  ShardingDataSourceFactory.createDataSource  ShardingRule 分片规则通过配置加载到内存中   SQL执行过程(上下文)ShardingStatement.executeQuery Statement   SqlRoutestatementEngine.rout">
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>shardingsphere简单源码解析 | Littlehui's Notes</title>
+  <title>【ShardingSphere 2】shardingsphere简单源码解析 | Littlehui's Notes</title>
   
 
 
@@ -311,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">shardingsphere简单源码解析</h1>
+          <h1 class="post-title" itemprop="name headline">【ShardingSphere 2】shardingsphere简单源码解析</h1>
         
 
         <div class="post-meta">
@@ -458,6 +458,8 @@
           
             <a href="/tags/分表/" rel="tag"># 分表</a>
           
+            <a href="/tags/分库/" rel="tag"># 分库</a>
+          
         </div>
       
 
@@ -469,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/02/14/java/shardingsphere/shardingsphere_1/" rel="next" title="分库分表垂直详解与框架介绍">
-                <i class="fa fa-chevron-left"></i> 分库分表垂直详解与框架介绍
+              <a href="/2022/02/14/java/shardingsphere/shardingsphere_1/" rel="next" title="【ShardingSphere 1】分库分表介绍">
+                <i class="fa fa-chevron-left"></i> 【ShardingSphere 1】分库分表介绍
               </a>
             
           </div>
@@ -567,7 +569,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">149</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +591,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">118</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
