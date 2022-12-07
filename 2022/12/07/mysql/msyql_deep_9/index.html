@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="mysql,高可用,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
+<meta name="keywords" content="mysql,高可用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Mysql深入理解系列8】Mysql高可用">
+<meta property="og:url" content="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320">
+<meta property="og:image" content="https://images.lilhui.com/b133024aff1b96e4a6bc438f2c080c2e">
+<meta property="og:image" content="https://images.lilhui.com/68f65942245478c912d6083c3fb9c278">
+<meta property="og:image" content="https://images.lilhui.com/649680b1ad101aa9f1a86d24bd4185fa">
+<meta property="og:image" content="https://images.lilhui.com/4ac069d810ed32dea205783c892860cd">
+<meta property="og:image" content="https://images.lilhui.com/55a30bd9b2d84ec0086b708659253daa">
+<meta property="og:image" content="https://images.lilhui.com/141ac99dd42b48a659cec324e4718762">
+<meta property="og:image" content="https://images.lilhui.com/f00cfe2e202e067d638856b6dc26811a">
+<meta property="og:image" content="https://images.lilhui.com/f8963d1418d45bf84345b7a05e01f1f5">
+<meta property="og:image" content="https://images.lilhui.com/b50a3d36a6c93aae470f46f4b234efb2">
+<meta property="og:image" content="https://images.lilhui.com/029f1e4978303c9df5af7d712300f566">
+<meta property="og:image" content="https://images.lilhui.com/ae88bde6c6041b35e0020dbe154fc763">
+<meta property="og:image" content="https://images.lilhui.com/efdeaf0c52e81f1413425212b2c1f1e3">
+<meta property="og:image" content="https://images.lilhui.com/1c78691b2e62fe88bc76ab061fc70da5">
+<meta property="og:image" content="https://images.lilhui.com/ed5dfe0ae24e7ec263c406ccdb3faee0">
+<meta property="og:image" content="https://images.lilhui.com/1edc12784bd872eddc63cdb8ee972a42">
+<meta property="og:image" content="https://images.lilhui.com/c1c667ae26e91ecd6f8a2834363b8b26">
+<meta property="og:updated_time" content="2022-12-07T09:16:51.659Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Mysql深入理解系列8】Mysql高可用">
+<meta name="twitter:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
+<meta name="twitter:image" content="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/">
+
+
+
+
+
+  <title>【Mysql深入理解系列8】Mysql高可用 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Mysql深入理解系列8】Mysql高可用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-07T16:41:47+08:00">
+                2022-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/12/07/mysql/msyql_deep_9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/07/mysql/msyql_deep_9/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、MySQL高可用集群介绍"><a href="#一、MySQL高可用集群介绍" class="headerlink" title="一、MySQL高可用集群介绍"></a>一、MySQL高可用集群介绍</h1><h2 id="1、数据库主从架构与分库分表"><a href="#1、数据库主从架构与分库分表" class="headerlink" title="1、数据库主从架构与分库分表"></a>1、数据库主从架构与分库分表</h2><p>随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。</p>
+<p>而要提升数据库的性能，一种思路，当然是对数据库本身进行优化，例如对MySQL进行优化配置，或者干脆换成ClickHouse这一类的针对大数据的产品。另一方面就是跟微服务架构的思路一样，从单体架构升级到集群架构，这样才能真正全方位解放数据库的性能瓶颈。而我们后续要学习的分库分表就是一种非常常见的数据库集群架构管理方案。</p>
+<p>但是就像微服务架构并不是简单的将服务从单机升级为就能一样，分库分表也并不只是字面意义上的将数据分到多个库或者多个表这么简单，他也是基于数据库产品的一系列分布式解决方案。在不同的应用场景下，针对不同的数据库产品，分库分表也有不同的落地方式。而我们后续，会以最为常见的MySQL数据库以及ShardingSphere框架来了解分库分表要如何进行。</p>
+<h2 id="2、MySQL主从同步原理"><a href="#2、MySQL主从同步原理" class="headerlink" title="2、MySQL主从同步原理"></a>2、MySQL主从同步原理</h2><p>既然要解决MySQL数据库的分布式集群化问题，那就不能不先了解MySQL自身提供的主从同步原理。这是构建MySQL集群的基础，也是后续进行分库分表的基础，更是MySQL进行生产环境部署的基础。</p>
+<p>其实数据库的主从同步，就是为了要保证多个数据库之间的数据保持一致。最简单的方式就是使用数据库的导入导出工具，定时将主库的数据导出，再导入到从库当中。这是一种很常见，也很简单易行的数据库集群方式。也有很多的工具帮助我们来做这些事情。但是这种方式进行数据同步的实时性比较差。</p>
+<p>而如果要保证数据能够实时同步，对于MySQL，通常就要用到他自身提供的一套通过Binlog日志在多个MySQL服务之间进行同步的集群方案。基于这种集群方案，一方面可以提高数据的安全性，另外也可以以此为基础，提供读写分离、故障转移等其他高级的功能。</p>
+<p><img src="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320" alt="image"></p>
+<p>即在主库上打开Binlog日志，记录对数据的每一步操作。然后在从库上打开RelayLog日志，用来记录跟主库一样的Binlog日志，并将RelayLog中的操作日志在自己数据库中进行重演。这样就能够更加实时的保证主库与从库的数据一致。</p>
+<blockquote>
+<p>MySQL的Binlog默认是不打开的。</p>
+</blockquote>
+<p>他的实现过程是在从库上启动一系列IO线程，负责与主库建立TCP连接，请求主库在写入Binlog日志时，也往从库传输一份。这时，主库上会有一个IO Dump线程，负责将Binlog日志通过这些TCP连接传输给从库的IO线程。而从库为了保证日志接收的稳定性，并不会立即重演Binlog数据操作，而是先将接收到的Binlog日志写入到自己的RelayLog日志当中。然后再异步的重演RelayLog中的数据操作。</p>
+<p>MySQL的BinLog日志能够比较实时的记录主库上的所有日志操作，因此他也被很多其他工具用来实时监控MySQL的数据变化。例如Canal框架，可以模拟一个slave节点，同步MySQL的Binlog，然后将具体的数据操作按照定制的逻辑进行转发。例如转发到Redis实现缓存一致，转发到Kafka实现数据实时流转等。而ClickHouse也支持将自己模拟成一个MySQL的从节点，接收MySQL的Binlog日志，实时同步MySQL的数据。<code>这个功能目前还在实验阶段。</code></p>
+<h1 id="二、动手搭建MySQL主从集群"><a href="#二、动手搭建MySQL主从集群" class="headerlink" title="二、动手搭建MySQL主从集群"></a>二、动手搭建MySQL主从集群</h1><h2 id="1、基础环境搭建"><a href="#1、基础环境搭建" class="headerlink" title="1、基础环境搭建"></a>1、基础环境搭建</h2><p>以下实验准备两台服务器，来搭建一个MySQL的主从集群。均安装CentOS7操作系统。 192.168.232.128将作为MySQL主节点，192.168.232.129将作为MySQL的从节点。</p>
+<p>然后在两台服务器上均安装MySQL服务，MySQL版本采用mysql-8.0.20版本。</p>
+<h2 id="2、安装MySQL服务"><a href="#2、安装MySQL服务" class="headerlink" title="2、安装MySQL服务"></a>2、安装MySQL服务</h2><p>这里强调下，我们下面的示例是带大家在Linux上搭建MySQL服务。但是在Linux上安装MySQL经常会遇到各种各样的环境问题，这些环境问题大都只能通过百度加经验的方式来解决。大家根据自己的实际情况，如果在Linux上搭建MySQL有困难的话，可以改为用Windows来安装MySQL。Windows上安装MySQL会简单很多，并且也不影响我们后续ShardingSphere的学习。</p>
+<h3 id="1》初始化MySQL"><a href="#1》初始化MySQL" class="headerlink" title="1》初始化MySQL"></a>1》初始化MySQL</h3><p>MySQL的安装有很多种方式，具体可以参考官网手册：<a href="https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html</a></p>
+<p>我们这里采用对系统环境依赖最低，出问题的可能性最小的tar包方式来安装。</p>
+<p>上传mysql压缩包到worker2机器的root用户工作目录/root下，然后按照下面的指令，解压安装mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -r -g mysql -s /bin/false mysql  #这里是创建一个mysql用户用于承载mysql服务，但是不需要登录权限。</span><br><span class="line">tar -zxvf mysql-8.0.20-el7-x86_64.tar.gz #解压</span><br><span class="line">ln -s mysql-8.0.20-el7-x86_64 mysql #建立软链接</span><br><span class="line">cd mysql</span><br><span class="line">mkdir mysql-files</span><br><span class="line">chown mysql:mysql mysql-files</span><br><span class="line">chmod 750 mysql-files</span><br><span class="line">bin/mysqld --initialize --user=mysql #初始化mysql数据文件 注意点1</span><br><span class="line">bin/mysql_ssl_rsa_setup</span><br><span class="line">bin/mysqld_safe --user=mysql </span><br><span class="line"></span><br><span class="line">cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> <strong>注意点：</strong></p>
+<p> 1、初始化过程中会初始化一些mysql的数据文件，经常会出现一些文件或者文件夹权限不足的问题。如果有文件权限不足的问题，需要根据他的报错信息，创建对应的文件或者文件夹，并配置对应的文件权限。</p>
+<p> 2、初始化过程如果正常完成，日志中会打印出一个root用户的默认密码。这个密码需要记录下来。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;  2020-12-10T06:05:28.948043Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: P6kigsT6Lg&gt;=</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2》启动mysql"><a href="#2》启动mysql" class="headerlink" title="2》启动mysql"></a>2》启动mysql</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/mysqld --user=mysql</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> <strong>注意点：</strong></p>
+<p> 1、这个启动过程会独占当前命令行窗口，如果要后台执行可以在后面添加一个 &amp;。但是一般第一次启动mysql服务时，经常会出现一些错误，所以建议用独占窗口的模式跟踪下日志。</p>
+<p> Linux上安装软件经常会出现各种各样的环境问题，很难全部概括。大部分的问题，需要查百度，根据别人的经验来修改。如果安装有困难的同学，可以改为在Windows上安装MySQL，整个过程会简单很多，不会影响后续ShardingSpehre的学习。</p>
+</blockquote>
+<p>3、连接MySQL</p>
+<p>MySQL服务启动完成后，默认是只能从本机登录，远程是无法访问的。所以需要用root用户登录下，配置远程访问的权限。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /root/mysql</span><br><span class="line">bin/mysql -uroot -p #然后用之前记录的默认密码登录</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> <strong>注意点：</strong></p>
+<p> 1、如果有同学遇到  <strong>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</strong>  这个报错信息，可以参照下面的配置，修改下/etc/my.cnf配置文件，来配置下socket连接文件的地址。主要是下面client部分。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt;  [mysqld]</span><br><span class="line">&gt;  datadir=/var/lib/mysql</span><br><span class="line">&gt;  socket=/var/lib/mysql/mysql.sock</span><br><span class="line">&gt;  user=mysql</span><br><span class="line">&gt;  # Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">&gt;  symbolic-links=0</span><br><span class="line">&gt;  # Settings user and group are ignored when systemd is used.</span><br><span class="line">&gt;  # If you need to run mysqld under a different user or group,</span><br><span class="line">&gt;  # customize your systemd unit file for mariadb according to the</span><br><span class="line">&gt;  # instructions in http://fedoraproject.org/wiki/Systemd</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  [mysqld_safe]</span><br><span class="line">&gt;  log-error=/var/log/mariadb/mariadb.log</span><br><span class="line">&gt;  pid-file=/var/run/mariadb/mariadb.pid</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  #</span><br><span class="line">&gt;  # include all files from the config directory</span><br><span class="line">&gt;  #</span><br><span class="line">&gt;  !includedir /etc/my.cnf.d</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  [client]</span><br><span class="line">&gt;  port=3306</span><br><span class="line">&gt;  socket=/var/lib/mysql/mysql.sock</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>登录进去后，需要配置远程登录权限：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'123456'</span>; <span class="comment">#修改root用户的密码</span></span><br><span class="line"><span class="keyword">use</span> mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host=<span class="string">'%'</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<p>这样，Linux机器上的MySQL服务就搭建完成了。可以使用navicat等连接工具远程访问MySQL服务了。</p>
+<blockquote>
+<p>然后如果有同学安装MySQL确实有问题的话，推荐大家可以使用宝塔面板。<a href="https://www.bt.cn/" target="_blank" rel="noopener">https://www.bt.cn/</a> 。使用这个工具可以图形化安装以及管理MySQL，非常方便。</p>
+<p>另外，对于熟悉Docker和K8s的同学，可以用这些虚拟化的方式来搭建，也非常简单高效。</p>
+</blockquote>
+<p>这里需要注意下的是，搭建主从集群的多个服务，有两个必要的条件。</p>
+<p>1、MySQL版本必须一致。</p>
+<p>2、集群中各个服务器的时间需要同步。</p>
+<h2 id="3、搭建主从集群"><a href="#3、搭建主从集群" class="headerlink" title="3、搭建主从集群"></a>3、搭建主从集群</h2><p>接下来在这两个MySQL服务基础上，搭建一个主从集群。</p>
+<h3 id="1》配置master主服务"><a href="#1》配置master主服务" class="headerlink" title="1》配置master主服务"></a>1》配置master主服务</h3><p>首先，配置主节点的mysql配置文件： /etc/my.cnf(没有的话就手动创建一个)</p>
+<p>这一步需要对master进行配置，主要是需要打开binlog日志，以及指定severId。我们打开MySQL主服务的my.cnf文件，在文件中一行server-id以及一个关闭域名解析的配置。然后重启服务。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">47</span></span><br><span class="line"><span class="comment">#开启binlog</span></span><br><span class="line"><span class="attr">log_bin</span>=master-bin</span><br><span class="line"><span class="attr">log_bin-index</span>=master-bin.index</span><br><span class="line">skip-name-resolve</span><br><span class="line"><span class="comment"># 设置连接端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=/usr/local/mysql</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=/usr/local/mysql/mysql-files</span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为UTF8</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="comment">#mysql_native_password</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置说明：主要需要修改的是以下几个属性：</p>
+<p>server-id：服务节点的唯一标识。需要给集群中的每个服务分配一个单独的ID。</p>
+<p>log_bin：打开Binlog日志记录，并指定文件名。</p>
+<p>log_bin-index：Binlog日志文件</p>
+</blockquote>
+<p>重启MySQL服务， <code>service mysqld restart</code></p>
+<p>然后，我们需要给root用户分配一个replication slave的权限。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO 'root'@'%';</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主节点同步状态：</span></span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在实际生产环境中，通常不会直接使用root用户，而会创建一个拥有全部权限的用户来负责主从同步。</p>
+</blockquote>
+<p><img src="https://images.lilhui.com/b133024aff1b96e4a6bc438f2c080c2e" alt="图片"></p>
+<p>这个指令结果中的File和Position记录的是当前日志的binlog文件以及文件中的索引。</p>
+<p>而后面的Binlog_Do_DB和Binlog_Ignore_DB这两个字段是表示需要记录binlog文件的库以及不需要记录binlog文件的库。目前我们没有进行配置，就表示是针对全库记录日志。这两个字段如何进行配置，会在后面进行介绍。</p>
+<blockquote>
+<p>开启binlog后，数据库中的所有操作都会被记录到datadir当中，以一组轮询文件的方式循环记录。而指令查到的File和Position就是当前日志的文件和位置。而在后面配置从服务时，就需要通过这个File和Position通知从服务从哪个地方开始记录binLog。</p>
+<p><img src="https://images.lilhui.com/68f65942245478c912d6083c3fb9c278" alt="图片"></p>
+</blockquote>
+<h3 id="2》配置slave从服务"><a href="#2》配置slave从服务" class="headerlink" title="2》配置slave从服务"></a>2》配置slave从服务</h3><p>​    下一步，我们来配置从服务mysqls。 我们打开mysqls的配置文件my.cnf，修改配置文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment">#主库和从库需要不一致</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">48</span></span><br><span class="line"><span class="comment">#打开MySQL中继日志</span></span><br><span class="line"><span class="attr">relay-log-index</span>=slave-relay-bin.index</span><br><span class="line"><span class="attr">relay-log</span>=slave-relay-bin</span><br><span class="line"><span class="comment">#打开从服务二进制日志</span></span><br><span class="line"><span class="attr">log-bin</span>=mysql-bin</span><br><span class="line"><span class="comment">#使得更新的数据写进二进制日志中</span></span><br><span class="line"><span class="attr">log-slave-updates</span>=<span class="number">1</span></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=/usr/local/mysql</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=/usr/local/mysql/mysql-files</span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为UTF8</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="comment">#mysql_native_password</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置说明：主要需要关注的几个属性：</p>
+<p>server-id：服务节点的唯一标识</p>
+<p>relay-log：打开从服务的relay-log日志。</p>
+<p>log-bin：打开从服务的bin-log日志记录。</p>
+</blockquote>
+<p>然后我们启动mysqls的服务，并设置他的主节点同步状态。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从服务</span></span><br><span class="line">mysql -u root -p;</span><br><span class="line"><span class="meta">#</span><span class="bash">设置同步主节点：</span></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST='192.168.232.128',</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_USER='root',</span><br><span class="line">MASTER_PASSWORD='root',</span><br><span class="line">MASTER_LOG_FILE='master-bin.000004',</span><br><span class="line">MASTER_LOG_POS=156,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br><span class="line"><span class="meta">#</span><span class="bash">开启slave</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主从同步状态</span></span><br><span class="line">show slave status;</span><br><span class="line">或者用 show slave status \G; 这样查看比较简洁</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，CHANGE MASTER指令中需要指定的MASTER_LOG_FILE和MASTER_LOG_POS必须与主服务中查到的保持一致。</p>
+<p>并且后续如果要检查主从架构是否成功，也可以通过检查主服务与从服务之间的File和Position这两个属性是否一致来确定。</p>
+</blockquote>
+<p><img src="https://images.lilhui.com/649680b1ad101aa9f1a86d24bd4185fa" alt="图片"></p>
+<blockquote>
+<p>从这个指令的结果能够看到，有很多Replicate_开头的属性，这些属性指定了两个服务之间要同步哪些数据库、哪些表的配置。只是在我们这个示例中全都没有进行配置，就标识是全库进行同步。后面我们会补充如何配置需要同步的库和表。</p>
+</blockquote>
+<h3 id="3》主从集群测试"><a href="#3》主从集群测试" class="headerlink" title="3》主从集群测试"></a>3》主从集群测试</h3><p>测试时，我们先用showdatabases，查看下两个MySQL服务中的数据库情况</p>
+<p><img src="https://images.lilhui.com/4ac069d810ed32dea205783c892860cd" alt="图片"></p>
+<p>然后我们在主服务器上创建一个数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database syncdemo;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>然后我们再用show databases，来看下这个syncdemo的数据库是不是已经同步到了从服务。</p>
+<p><img src="https://images.lilhui.com/55a30bd9b2d84ec0086b708659253daa" alt="图片"></p>
+<p>接下来我们继续在syncdemo这个数据库中创建一个表，并插入一条数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use syncdemo;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; create table demoTable(id int not null);</span><br><span class="line">Query OK, 0 rows affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into demoTable value(1);</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>然后我们也同样到主服务与从服务上都来查一下这个demoTable是否同步到了从服务。</p>
+<p><img src="https://images.lilhui.com/141ac99dd42b48a659cec324e4718762" alt="图片"></p>
+<p>从上面的实验过程看到，我们在主服务中进行的数据操作，就都已经同步到了从服务上。这样，我们一个主从集群就搭建完成了。</p>
+<blockquote>
+<p>另外，这个主从架构是有可能失败的，如果在slave从服务上查看slave状态，发现Slave_SQL_Running=no，就表示主从同步失败了。这有可能是因为在从数据库上进行了写操作，与同步过来的SQL操作冲突了，也有可能是slave从服务重启后有事务回滚了。</p>
+<p>如果是因为slave从服务事务回滚的原因，可以按照以下方式重启主从同步：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql&gt; stop slave ;</span><br><span class="line">&gt; mysql&gt; set GLOBAL SQL_SLAVE_SKIP_COUNTER=1;</span><br><span class="line">&gt; mysql&gt; start slave ;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>而另一种解决方式就是重新记录主节点的binlog文件消息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql&gt; stop slave ;</span><br><span class="line">&gt; mysql&gt; change master to .....</span><br><span class="line">&gt; mysql&gt; start slave ;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>但是这种方式要注意binlog的文件和位置，如果修改后和之前的同步接不上，那就会丢失部分数据。所以不太常用。</p>
+</blockquote>
+<h3 id="4》全库同步与部分同步："><a href="#4》全库同步与部分同步：" class="headerlink" title="4》全库同步与部分同步："></a>4》全库同步与部分同步：</h3><p>在完成这个基本的MySQL主从集群后，我们还可以进行后续的实验：</p>
+<p>之前提到，我们目前配置的主从同步是针对全库配置的，而实际环境中，一般并不需要针对全库做备份，而只需要对一些特别重要的库或者表来进行同步。那如何针对库和表做同步配置呢？</p>
+<p>首先在Master端：在my.cnf中，可以通过以下这些属性指定需要针对哪些库或者哪些表记录binlog</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#需要同步的二进制数据库名</span></span><br><span class="line"><span class="attr">binlog-do-db</span>=masterdemo</span><br><span class="line"><span class="comment">#只保留7天的二进制日志，以防磁盘被日志占满(可选)</span></span><br><span class="line"><span class="attr">expire-logs-days</span>  = <span class="number">7</span></span><br><span class="line"><span class="comment">#不备份的数据库</span></span><br><span class="line"><span class="attr">binlog-ignore-db</span>=information_schema</span><br><span class="line"><span class="attr">binlog-ignore-db</span>=performation_schema</span><br><span class="line"><span class="attr">binlog-ignore-db</span>=sys</span><br></pre></td></tr></table></figure>
+<p>然后在Slave端：在my.cnf中，需要配置备份库与主服务的库的对应关系。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#如果salve库名称与master库名相同，使用本配置</span></span><br><span class="line"><span class="attr">replicate-do-db</span> = masterdemo </span><br><span class="line"><span class="comment">#如果master库名[mastdemo]与salve库名[mastdemo01]不同，使用以下配置[需要做映射]</span></span><br><span class="line"><span class="attr">replicate-rewrite-db</span> = masterdemo -&gt; masterdemo01</span><br><span class="line"><span class="comment">#如果不是要全部同步[默认全部同步]，则指定需要同步的表</span></span><br><span class="line"><span class="attr">replicate-wild-do-table</span>=masterdemo01.t_dict</span><br><span class="line"><span class="attr">replicate-wild-do-table</span>=masterdemo01.t_num</span><br></pre></td></tr></table></figure>
+<p>配置完成了之后，在show master status指令中，就可以看到Binlog_Do_DB和Binlog_Ignore_DB两个参数的作用了。</p>
+<h3 id="5》GTID同步集群"><a href="#5》GTID同步集群" class="headerlink" title="5》GTID同步集群"></a>5》GTID同步集群</h3><p>上面我们搭建的集群方式，是基于Binlog日志记录点的方式来搭建的，这也是最为传统的MySQL集群搭建方式。而在这个实验中，可以看到有一个Executed_Grid_Set列，暂时还没有用上。实际上，这就是另外一种搭建主从同步的方式，即GTID搭建方式。这种模式是从MySQL5.6版本引入的。</p>
+<p>GTID的本质也是基于Binlog来实现主从同步，只是他会基于一个全局的事务ID来标识同步进度。GTID即全局事务ID，全局唯一并且趋势递增，他可以保证为每一个在主节点上提交的事务在复制集群中可以生成一个唯一的ID 。</p>
+<p>在基于GTID的复制中，首先从服务器会告诉主服务器已经在从服务器执行完了哪些事务的GTID值，然后主库会有把所有没有在从库上执行的事务，发送到从库上进行执行，并且使用GTID的复制可以保证同一个事务只在指定的从库上执行一次，这样可以避免由于偏移量的问题造成数据不一致。</p>
+<p>他的搭建方式跟我们上面的主从架构整体搭建方式差不多。只是需要在my.cnf中修改一些配置。</p>
+<p>在主节点上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_bin=on</span><br><span class="line">server_id=单独设置一个</span><br><span class="line">binlog_format=row</span><br></pre></td></tr></table></figure>
+<p>​    在从节点上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_slave_updates=1</span><br><span class="line">server_id=单独设置一个</span><br></pre></td></tr></table></figure>
+<p>然后分别重启主服务和从服务，就可以开启GTID同步复制方式。</p>
+<h2 id="4、集群扩容与MySQL数据迁移"><a href="#4、集群扩容与MySQL数据迁移" class="headerlink" title="4、集群扩容与MySQL数据迁移"></a>4、集群扩容与MySQL数据迁移</h2><p>我们现在已经搭建成功了一主一从的MySQL集群架构，那要扩展到一主多从的集群架构，其实就比较简单了，只需要增加一个binlog复制就行了。</p>
+<p>但是如果我们的集群是已经运行过一段时间，这时候如果要扩展新的从节点就有一个问题，之前的数据没办法从binlog来恢复了。这时候在扩展新的slave节点时，就需要增加一个数据复制的操作。</p>
+<p>MySQL的数据备份恢复操作相对比较简单，可以通过SQL语句直接来完成。具体操作可以使用mysql的bin目录下的mysqldump工具。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p --all-databases &gt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<p>​    通过这个指令，就可以将整个数据库的所有数据导出成backup.sql，然后把这个backup.sql分发到新的MySQL服务器上，并执行下面的指令将数据全部导入到新的MySQL服务中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &lt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<p>​    这样新的MySQL服务就已经有了所有的历史数据，然后就可以再按照上面的步骤，配置Slave从服务的数据同步了。</p>
+<h2 id="5、搭建半同步复制"><a href="#5、搭建半同步复制" class="headerlink" title="5、搭建半同步复制"></a>5、搭建半同步复制</h2><h3 id="1》理解半同步复制"><a href="#1》理解半同步复制" class="headerlink" title="1》理解半同步复制"></a>1》理解半同步复制</h3><p>到现在为止，我们已经可以搭建MySQL的主从集群，互主集群，但是我们这个集群有一个隐患，就是有可能会丢数据。这是为什么呢？这要从MySQL主从数据复制分析起。</p>
+<p>MySQL主从集群默认采用的是一种异步复制的机制。主服务在执行用户提交的事务后，写入binlog日志，然后就给客户端返回一个成功的响应了。而binlog会由一个dump线程异步发送给Slave从服务。</p>
+<p><img src="https://images.lilhui.com/f00cfe2e202e067d638856b6dc26811a" alt="图片"></p>
+<p>由于这个发送binlog的过程是异步的。主服务在向客户端反馈执行结果时，是不知道binlog是否同步成功了的。这时候如果主服务宕机了，而从服务还没有备份到新执行的binlog，那就有可能会丢数据。</p>
+<p>那怎么解决这个问题呢，这就要靠MySQL的半同步复制机制来保证数据安全。</p>
+<p>半同步复制机制是一种介于异步复制和全同步复制之前的机制。主库在执行完客户端提交的事务后，并不是立即返回客户端响应，而是等待至少一个从库接收并写到relay log中，才会返回给客户端。MySQL在等待确认时，默认会等10秒，如果超过10秒没有收到ack，就会降级成为异步复制。</p>
+<p><img src="https://images.lilhui.com/f8963d1418d45bf84345b7a05e01f1f5" alt="图片"></p>
+<p>这种半同步复制相比异步复制，能够有效的提高数据的安全性。但是这种安全性也不是绝对的，他只保证事务提交后的binlog至少传输到了一个从库，并且并不保证从库应用这个事务的binlog是成功的。另一方面，半同步复制机制也会造成一定程度的延迟，这个延迟时间最少是一个TCP/IP请求往返的时间。整个服务的性能是会有所下降的。而当从服务出现问题时，主服务需要等待的时间就会更长，要等到从服务的服务恢复或者请求超时才能给用户响应。</p>
+<h3 id="2》搭建半同步复制集群"><a href="#2》搭建半同步复制集群" class="headerlink" title="2》搭建半同步复制集群"></a>2》搭建半同步复制集群</h3><p>半同步复制需要基于特定的扩展模块来实现。而mysql从5.5版本开始，往上的版本都默认自带了这个模块。这个模块包含在mysql安装目录下的lib/plugin目录下的semisync_master.so和semisync_slave.so两个文件中。需要在主服务上安装semisync_master模块，在从服务上安装semisync_slave模块。</p>
+<p><img src="https://images.lilhui.com/b50a3d36a6c93aae470f46f4b234efb2" alt="图片"></p>
+<p>首先我们登陆主服务，安装semisync_master模块：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname 'semisync_master.so';</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">| Variable_name                             | Value      |</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">| rpl_semi_sync_master_enabled              | OFF        |</span><br><span class="line">| rpl_semi_sync_master_timeout              | 10000      |</span><br><span class="line">| rpl_semi_sync_master_trace_level          | 32         |</span><br><span class="line">| rpl_semi_sync_master_wait_for_slave_count | 1          |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave        | ON         |</span><br><span class="line">| rpl_semi_sync_master_wait_point           | AFTER_SYNC |</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">6 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_master_enabled=<span class="keyword">ON</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 这三行指令中，第一行是通过扩展库来安装半同步复制模块，需要指定扩展库的文件名。</p>
+<p> 第二行查看系统全局参数，rpl_semi_sync_master_timeout就是半同步复制时等待应答的最长等待时间，默认是10秒，可以根据情况自行调整。</p>
+<p> 第三行则是打开半同步复制的开关。</p>
+<p> 在第二行查看系统参数时，最后的一个参数rpl_semi_sync_master_wait_point其实表示一种半同步复制的方式。</p>
+<p> 半同步复制有两种方式，一种是我们现在看到的这种默认的AFTER_SYNC方式。这种方式下，主库把日志写入binlog，并且复制给从库，然后开始等待从库的响应。从库返回成功后，主库再提交事务，接着给客户端返回一个成功响应。</p>
+<p> 而另一种方式是叫做AFTER_COMMIT方式。他不是默认的。这种方式，在主库写入binlog后，等待binlog复制到从库，主库就提交自己的本地事务，再等待从库返回给自己一个成功响应，然后主库再给客户端返回响应。</p>
+</blockquote>
+<p>然后我们登陆从服务，安装smeisync_slave模块</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname 'semisync_slave.so';</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| Variable_name                   | Value |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| rpl_semi_sync_slave_enabled     | OFF   |</span><br><span class="line">| rpl_semi_sync_slave_trace_level | 32    |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_slave_enabled = <span class="keyword">on</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| Variable_name                   | Value |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| rpl_semi_sync_slave_enabled     | ON    |</span><br><span class="line">| rpl_semi_sync_slave_trace_level | 32    |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">stop</span> <span class="keyword">slave</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; start slave;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>slave端的安装过程基本差不多，不过要注意下安装完slave端的半同步插件后，需要重启下slave服务。</p>
+</blockquote>
+<h2 id="6、主从集群与读写分离"><a href="#6、主从集群与读写分离" class="headerlink" title="6、主从集群与读写分离"></a>6、主从集群与读写分离</h2><p>我们要注意，目前我们的这个MySQL主从集群是单向的，也就是只能从主服务同步到从服务，而从服务的数据表更是无法同步到主服务的。</p>
+<p><img src="https://images.lilhui.com/029f1e4978303c9df5af7d712300f566" alt="图片"></p>
+<p>​    所以，在这种架构下，为了保证数据一致，通常会需要保证数据只在主服务上写，而从服务只进行数据读取。这个功能，就是大名鼎鼎的读写分离。但是这里要注意下，mysql主从本身是无法提供读写分离的服务的，需要由业务自己来实现。这也是我们后面要学的ShardingSphere的一个重要功能。</p>
+<blockquote>
+<p>到这里可以看到，在MySQL主从架构中，是需要严格限制从服务的数据写入的，一旦从服务有数据写入，就会造成数据不一致。并且从服务在执行事务期间还很容易造成数据同步失败。</p>
+<p>如果需要限制用户写数据，我们可以在从服务中将read_only参数的值设为1( <code>set</code> <code>global read_only=1;</code> )。这样就可以限制用户写入数据。但是这个属性有两个需要注意的地方：</p>
+<p>1、read_only=1设置的只读模式，不会影响slave同步复制的功能。 所以在MySQL slave库中设定了read_only=1后，通过 “show slave status\G” 命令查看salve状态，可以看到salve仍然会读取master上的日志，并且在slave库中应用日志，保证主从数据库同步一致；</p>
+<p>2、read_only=1设置的只读模式， 限定的是普通用户进行数据修改的操作，但不会限定具有super权限的用户的数据修改操作。 在MySQL中设置read_only=1后，普通的应用用户进行insert、update、delete等会产生数据变化的DML操作时，都会报出数据库处于只读模式不能发生数据变化的错误，但具有super权限的用户，例如在本地或远程通过root用户登录到数据库，还是可以进行数据变化的DML操作； 如果需要限定super权限的用户写数据，可以设置super_read_only=0。另外 <strong>如果要想连super权限用户的写操作也禁止，就使用”flush tables with read lock;”，这样设置也会阻止主从同步复制！</strong></p>
+</blockquote>
+<h2 id="7、扩展更复杂的集群结构"><a href="#7、扩展更复杂的集群结构" class="headerlink" title="7、扩展更复杂的集群结构"></a>7、扩展更复杂的集群结构</h2><p>我们到这里搭建出了一个一主一从的MySQL主从同步集群，具有了数据同步的基础功能。而在生产环境中，通常会以此为基础，根据业务情况以及负载情况，搭建更大更复杂的集群。</p>
+<p>例如<strong>为了进一步提高整个集群的读能力，可以扩展出一主多从</strong>。而为了减轻主节点进行数据同步的压力，可以继续扩展出多级从的主从集群。</p>
+<p>而<strong>为了提高这个集群的写能力，可以搭建互主集群</strong>，即两个服务互为主从。这样不管写到哪个服务上，集群内的数据都是同步的。这样就可以用一个集群来分担写数据的压力。</p>
+<p><strong>以此为基础，可以扩展出多主多从的集群，全方位提升集群的数据读写能力</strong>。甚至，我们也可以扩展出环形的主从集群，实现MySQL多活部署。</p>
+<p>搭建互主集群只需要按照上面的方式，在主服务上打开一个slave进程，并且指向slave节点的binlog当前文件地址和位置。</p>
+<p><img src="https://images.lilhui.com/ae88bde6c6041b35e0020dbe154fc763" alt="图片"></p>
+<p>另外，在我们搭建的这个主从集群中，有一个比较隐藏的问题，就是这样的主从复制之间会有延迟。这在复杂集群中，做了读写分离后，会更容易体现出来。即数据往主服务写，而读数据在从服务读。这时候这个主从复制延迟就有可能造成主库上刚插入了数据但是从库查不到。当然，这在我们目前的这个集群中是很难出现的，但是在大型集群中会很容易出现。</p>
+<p>出现这个问题的根本在于：面向业务的主服务数据都是多线程并发写入的，而从服务是单个线程慢慢拉取binlog，这中间就会有个效率差。所以解决这个问题的关键是要让从服务也用多线程并行复制binlog数据。</p>
+<p>MySQL自5.7版本后就已经支持并行复制了。可以在从服务上设置slave_parallel_workers为一个大于0的数，然后把slave_parallel_type参数设置为LOGICAL_CLOCK，这就可以了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show global variables like <span class="string">'slave_parallel%'</span>;</span></span><br><span class="line">+------------------------+----------+</span><br><span class="line">| Variable_name          | Value    |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| slave_parallel_type    | DATABASE |</span><br><span class="line">| slave_parallel_workers | 0        |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<h1 id="三、了解MySQL的其他高可用方案"><a href="#三、了解MySQL的其他高可用方案" class="headerlink" title="三、了解MySQL的其他高可用方案"></a>三、了解MySQL的其他高可用方案</h1><p>我们之前的MySQL服务集群，都是使用MySQL自身的功能来搭建的集群。但是这样的集群，不具备高可用的功能。即如果是MySQL主服务挂了，从服务是没办法自动切换成主服务的。而如果要实现MySQL的高可用，需要借助一些第三方工具来实现。</p>
+<blockquote>
+<p>这一部分方案只需要了解即可，因为一方面，这些高可用方案通常都是运维需要考虑的事情，作为开发人员没有必要花费太多的时间精力，偶尔需要用到的时候能够用起来就够了。另一方面，随着业界技术的不断推进，也会冒出更多的新方案。例如ShardingSphere的5.x版本的目标实际上就是将ShardingSphere由一个数据库中间件升级成一个独立的数据库平台，而将MySQL、PostGreSql甚至是RocksDB这些组件作为数据库的后端支撑。等到新版本成熟时，又会冒出更多新的高可用方案。</p>
+</blockquote>
+<p>常见的MySQL集群方案有三种: MMM、MHA、MGR。这三种高可用框架都有一些共同点：</p>
+<ul>
+<li>对主从复制集群中的Master节点进行监控</li>
+<li>自动的对Master进行迁移，通过VIP。</li>
+<li>重新配置集群中的其它slave对新的Master进行同步</li>
+</ul>
+<h2 id="1、MMM"><a href="#1、MMM" class="headerlink" title="1、MMM"></a>1、MMM</h2><p>MMM(Master-Master replication managerfor Mysql，Mysql主主复制管理器)是一套由Perl语言实现的脚本程序，可以对mysql集群进行监控和故障迁移。他需要两个Master，同一时间只有一个Master对外提供服务，可以说是主备模式。</p>
+<p>他是通过一个VIP(虚拟IP)的机制来保证集群的高可用。整个集群中，在主节点上会通过一个VIP地址来提供数据读写服务，而当出现故障时，VIP就会从原来的主节点漂移到其他节点，由其他节点提供服务。</p>
+<p><img src="https://images.lilhui.com/efdeaf0c52e81f1413425212b2c1f1e3" alt="图片"></p>
+<p>优点：</p>
+<ul>
+<li>提供了读写VIP的配置，使读写请求都可以达到高可用</li>
+<li>工具包相对比较完善，不需要额外的开发脚本</li>
+<li>完成故障转移之后可以对MySQL集群进行高可用监控</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>故障简单粗暴，容易丢失事务，建议采用半同步复制方式，减少失败的概率</li>
+<li>目前MMM社区已经缺少维护，不支持基于GTID的复制</li>
+</ul>
+<p>适用场景：</p>
+<ul>
+<li>读写都需要高可用的</li>
+<li>基于日志点的复制方式</li>
+</ul>
+<h2 id="2、MHA"><a href="#2、MHA" class="headerlink" title="2、MHA"></a>2、MHA</h2><p>Master High Availability Manager and Tools for MySQL。是由日本人开发的一个基于Perl脚本写的工具。这个工具专门用于监控主库的状态，当发现master节点故障时，会提升其中拥有新数据的slave节点成为新的master节点，在此期间，MHA会通过其他从节点获取额外的信息来避免数据一致性方面的问题。MHA还提供了mater节点的在线切换功能，即按需切换master-slave节点。MHA能够在30秒内实现故障切换，并能在故障切换过程中，最大程度的保证数据一致性。在淘宝内部，也有一个相似的TMHA产品。</p>
+<p>MHA是需要单独部署的，分为Manager节点和Node节点，两种节点。其中Manager节点一般是单独部署的一台机器。而Node节点一般是部署在每台MySQL机器上的。 Node节点得通过解析各个MySQL的日志来进行一些操作。</p>
+<p>Manager节点会通过探测集群里的Node节点去判断各个Node所在机器上的MySQL运行是否正常，如果发现某个Master故障了，就直接把他的一个Slave提升为Master，然后让其他Slave都挂到新的Master上去，完全透明。</p>
+<p><img src="https://images.lilhui.com/1c78691b2e62fe88bc76ab061fc70da5" alt="图片"></p>
+<p>优点：</p>
+<ul>
+<li>MHA除了支持日志点的复制还支持GTID的方式</li>
+<li>同MMM相比，MHA会尝试从旧的Master中恢复旧的二进制日志，只是未必每次都能成功。如果希望更少的数据丢失场景，建议使用MHA架构。</li>
+</ul>
+<p>缺点：</p>
+<p>MHA需要自行开发VIP转移脚本。</p>
+<p>MHA只监控Master的状态，未监控Slave的状态</p>
+<h2 id="3、MGR"><a href="#3、MGR" class="headerlink" title="3、MGR"></a>3、MGR</h2><p>MGR：MySQL Group Replication。 是MySQL官方在5.7.17版本正式推出的一种组复制机制。主要是解决传统异步复制和半同步复制的数据一致性问题。</p>
+<p>由若干个节点共同组成一个复制组，一个事务提交后，必须经过超过半数节点的决议并通过后，才可以提交。引入组复制，主要是为了解决传统异步复制和半同步复制可能产生数据不一致的问题。MGR依靠分布式一致性协议(Paxos协议的一个变体)，实现了分布式下数据的最终一致性，提供了真正的数据高可用方案(方案落地后是否可靠还有待商榷)。</p>
+<p>支持多主模式，但官方推荐单主模式：</p>
+<ul>
+<li>多主模式下，客户端可以随机向MySQL节点写入数据</li>
+<li>单主模式下，MGR集群会选出primary节点负责写请求，primary节点与其它节点都可以进行读请求处理.</li>
+</ul>
+<p><img src="https://images.lilhui.com/ed5dfe0ae24e7ec263c406ccdb3faee0" alt="图片"></p>
+<p>优点：</p>
+<ul>
+<li>高一致性，基于原生复制及paxos协议的组复制技术，并以插件的方式提供，提供一致数据安全保证；</li>
+<li>高容错性，只要不是大多数节点坏掉就可以继续工作，有自动检测机制，当不同节点产生资源争用冲突时，不会出现错误，按照先到者优先原则进行处理，并且内置了自动化脑裂防护机制；</li>
+<li>高扩展性，节点的新增和移除都是自动的，新节点加入后，会自动从其他节点上同步状态，直到新节点和其他节点保持一致，如果某节点被移除了，其他节点自动更新组信息，自动维护新的组信息；</li>
+<li>高灵活性，有单主模式和多主模式，单主模式下，会自动选主，所有更新操作都在主上进行；多主模式下，所有server都可以同时处理更新操作。</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>仅支持InnoDB引擎，并且每张表一定要有一个主键，用于做write set的冲突检测；</li>
+<li>必须打开GTID特性，二进制日志格式必须设置为ROW，用于选主与write set；主从状态信息存于表中（–master-info-repository=TABLE 、–relay-log-info-repository=TABLE），–log-slave-updates打开；</li>
+<li>COMMIT可能会导致失败，类似于快照事务隔离级别的失败场景</li>
+<li>目前一个MGR集群最多支持9个节点</li>
+<li>不支持外键于save point特性，无法做全局间的约束检测与部分事务回滚</li>
+</ul>
+<p>适用的业务场景：</p>
+<ul>
+<li>对主从延迟比较敏感</li>
+<li>希望对对写服务提供高可用，又不想安装第三方软件</li>
+<li>数据强一致的场景</li>
+</ul>
+<p>而在目前互联网，基于云原生的思路，MySQL的服务高可用又可以有很多不同的实现方式。这里就不一一分享了。</p>
+<h1 id="四、分库分表方案介绍"><a href="#四、分库分表方案介绍" class="headerlink" title="四、分库分表方案介绍"></a>四、分库分表方案介绍</h1><p>前面我们做的一大段实验，目的是为了大家能够理解MySQL的主从集群。而主从集群的作用，在我们开发角度更大的是作为读写分离的支持，也是我们后面学习ShardingSphere的重点。我们这一部分就来介绍下分库分表。</p>
+<p>分库分表就是业务系统将数据写请求分发到master节点，而读请求分发到slave节点的一种方案，可以大大提高整个数据库集群的性能。但是要注意，分库分表的一整套逻辑全部是由客户端自行实现的。而对于MySQL集群，数据主从同步是实现读写分离的一个必要前提条件。</p>
+<h2 id="1、分库分表有什么用"><a href="#1、分库分表有什么用" class="headerlink" title="1、分库分表有什么用"></a>1、分库分表有什么用</h2><p>分库分表就是为了解决由于数据量过大而导致数据库性能降低的问题，将原来独立的数据库拆分成若干数据库组成<br>，将数据大表拆分成若干数据表组成，使得单一数据库、单一数据表的数据量变小，从而达到提升数据库性能的目<br>的。</p>
+<p>例如：微服务架构中，每个服务都分配一个独立的数据库，这就是分库。而对一些业务日志表，按月拆分成不同的表，这就是分表。</p>
+<h2 id="2、分库分表的方式"><a href="#2、分库分表的方式" class="headerlink" title="2、分库分表的方式"></a>2、分库分表的方式</h2><p>分库分表包含分库和分表 两个部分，而这两个部分可以统称为数据分片，其目的都是将数据拆分成不同的存储单元。另外，从分拆的角度上，可以分为垂直分片和水平分片。</p>
+<ul>
+<li>垂直分片： 按照业务来对数据进行分片，又称为纵向分片。他的核心理念就是转库专用。在拆分之前，一个数据库由多个数据表组成，每个表对应不同的业务。而拆分之后，则是按照业务将表进行归类，分布到不同的数据库或表中，从而将压力分散至不同的数据库或表。例如，下图将用户表和订单表垂直分片到不同的数据库：</li>
+</ul>
+<p><img src="https://images.lilhui.com/1edc12784bd872eddc63cdb8ee972a42" alt="图片"></p>
+<p>垂直分片往往需要对架构和设计进行调整。通常来讲，是来不及应对业务需求快速变化的。而且，他也无法真正的解决单点数据库的性能瓶颈。垂直分片可以缓解数据量和访问量带来的问题，但无法根治。如果垂直分片之后，表中的数据量依然超过单节点所能承载的阈值，则需要水平分片来进一步处理。</p>
+<ul>
+<li>水平分片：又称横向分片。相对于垂直分片，它不再将数据根据业务逻辑分类，而是通过某个字段(或某几个字段)，根据某种规则将数据分散至多个库或表中，每个分片仅包含数据的一部分。例如，像下图根据主键机构分片。</li>
+</ul>
+<p><img src="https://images.lilhui.com/c1c667ae26e91ecd6f8a2834363b8b26" alt="图片"></p>
+<p>常用的分片策略有：</p>
+<p>取余\取模  ： 优点 均匀存放数据，缺点 扩容非常麻烦</p>
+<p>按照范围分片 ： 比较好扩容， 数据分布不够均匀</p>
+<p>按照时间分片 ： 比较容易将热点数据区分出来。</p>
+<p>按照枚举值分片 ： 例如按地区分片</p>
+<p>按照目标字段前缀指定进行分区：自定义业务规则分片</p>
+<p>水平分片从理论上突破了单机数据量处理的瓶颈，并且扩展相对自由，是分库分表的标准解决方案。</p>
+<p>一般来说，在系统设计阶段就应该根据业务耦合松紧来确定垂直分库，垂直分表方案，在数据量及访问压力不是特别大的情况，首先考虑缓存、读写分离、索引技术等方案。若数据量极大，且持续增长，再考虑水平分库水平分表方案。</p>
+<blockquote>
+<p>扩展问题： 如何设计一个不需要数据迁移的取模分片扩容方案？</p>
+</blockquote>
+<h2 id="3、分库分表要解决哪些问题"><a href="#3、分库分表要解决哪些问题" class="headerlink" title="3、分库分表要解决哪些问题"></a>3、分库分表要解决哪些问题</h2><p>之前说过，分库分表其实并不只是字面意义上的拆分数据，他还有一系列的问题需要解决。虽然数据分片解决了性能、可用性以及单点备份恢复等问题，但是分布式的架构在获得收益的同时，也引入了非常多新的问题。而这些，都是一个成熟的分库分表方案需要考虑的问题。</p>
+<ul>
+<li><p>事务一致性问题</p>
+<p>原本单机数据库有很好的事务机制能够帮我们保证数据一致性。但是分库分表后，由于数据分布在不同库甚至不同服务器，不可避免会带来分布式事务问题。</p>
+</li>
+<li><p>跨节点关联查询问题</p>
+<p>在没有分库时，我们可以进行很容易的进行跨表的关联查询。但是在分库后，表被分散到了不同的数据库，就无法进行关联查询了。</p>
+<p>这时就需要将关联查询拆分成多次查询，然后将获得的结果进行拼装。</p>
+</li>
+<li><p>跨节点分页、排序函数</p>
+<p>跨节点多库进行查询时，limit分页、order by排序等问题，就变得比较复杂了。需要先在不同的分片节点中将数据<br>进行排序并返回，然后将不同分片返回的结果集进行汇总和再次排序。</p>
+<p>这时非常容易出现内存崩溃的问题。</p>
+</li>
+<li><p>主键避重问题</p>
+<p>在分库分表环境中，由于表中数据同时存在不同数据库中，主键值平时使用的自增长将无用武之地，某个分区数据<br>库生成的ID无法保证全局唯一。因此需要单独设计全局主键，以避免跨库主键重复问题。</p>
+</li>
+<li><p>公共表处理</p>
+<p>实际的应用场景中，参数表、数据字典表等都是数据量较小，变动少，而且属于高频联合查询的依赖表。这一类表一般就需要在每个数据库中都保存一份，并且所有对公共表的操作都要分发到所有的分库去执行。</p>
+</li>
+<li><p>运维工作量</p>
+<p>面对散乱的分库分表之后的数据，应用开发工程师和数据库管理员对数据库的操作都变得非常繁重。对于每一次数据读写操作，他们都需要知道要往哪个具体的数据库的分表去操作，这也是其中重要的挑战之一。</p>
+</li>
+</ul>
+<h2 id="4、什么时候需要分库分表？"><a href="#4、什么时候需要分库分表？" class="headerlink" title="4、什么时候需要分库分表？"></a>4、什么时候需要分库分表？</h2><p>在阿里巴巴公布的开发手册中，建议MySQL单表记录如果达到500W这个级别，或者单表容量达到2GB，一般就建议进行分库分表。而考虑到分库分表需要对数据进行再平衡，所以如果要使用分库分表，就要在系统设计之初就详细考虑好分库分表的方案，这里要分两种情况。</p>
+<p>一般对于用户数据这一类后期增长比较缓慢的数据，一般可以按照三年左右的业务量来预估使用人数，按照标准预设好分库分表的方案。</p>
+<p>而对于业务数据这一类增长快速且稳定的数据，一般则需要按照预估量的两倍左右预设分库分表方案。并且由于分库分表的后期扩容是非常麻烦的，所以在进行分库分表时，尽量根据情况，多分一些表。最好是计算一下数据增量，永远不用增加更多的表。</p>
+<p>另外，在设计分库分表方案时，要尽量兼顾业务场景和数据分布。在支持业务场景的前提下，尽量保证数据能够分得更均匀。</p>
+<p>最后，一旦用到了分库分表，就会表现为对数据查询业务的灵活性有一定的影响，例如如果按userId进行分片，那按age来进行查询，就必然会增加很多麻烦。如果再要进行排序、分页、聚合等操作，很容易就扛不住了。这时候，都要尽量在分库分表的同时，再补充设计一个降级方案，例如将数据转存一份到ES，ES可以实现更灵活的大数据聚合查询。</p>
+<h2 id="5、常见的分库分表组件"><a href="#5、常见的分库分表组件" class="headerlink" title="5、常见的分库分表组件"></a>5、常见的分库分表组件</h2><p>由于分库分表之后，数据被分散在不同的数据库、服务器。因此，对数据的操作也就无法通过常规方式完成，并且<br>它还带来了一系列的问题。好在，这些问题不是所有都需要我们在应用层面上解决，市面上有很多中间件可供我们<br>选择，我们来了解一下它。</p>
+<ul>
+<li>shardingsphere   官网地址：<a href="https://shardingsphere.apache.org/document/current/cn/overview/" target="_blank" rel="noopener">https://shardingsphere.apache.org/document/current/cn/overview/</a></li>
+</ul>
+<p>Sharding-JDBC是当当网研发的开源分布式数据库中间件，他是一套开源的分布式数据库中间件解决方案组成的生态圈，它由Sharding-JDBC、Sharding-Proxy和Sharding-Sidecar（计划中）这3款相互独立的产品组成。 他们均提供标准化的数据分片、分布式事务和<br>数据库治理功能，可适用于如Java同构、异构语言、容器、云原生等各种多样化的应用场景。</p>
+<p>这也是我们这次学习的重点。</p>
+<ul>
+<li>mycat 官网地址：  <a href="http://www.mycat.org.cn/" target="_blank" rel="noopener">http://www.mycat.org.cn/</a></li>
+</ul>
+<p>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
+<p>MyCAT虽然是从阿里的技术体系中出来的，但是跟阿里其实没什么关系。</p>
+<ul>
+<li>DBLE 官网地址：<a href="https://opensource.actionsky.com/" target="_blank" rel="noopener">https://opensource.actionsky.com/</a></li>
+</ul>
+<p>该网站包含几个重要产品。其中分布式中间件可以认为是MyCAT的一个增强版，专注于MySQL的集群化管理。另外还有数据传输组件和分布式事务框架组件可供选择。</p>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>今天课程的内容，主要是给大家介绍MySQL的分布式集群化的主要思路和解决方案。但是，如果换成其他的数据库产品，比如Oracle、SqlServer、DB2等其他数据库，那么肯定又需要有不同的解决方案。所以，对于这次课程的内容，重点在于领会思想。</p>
+<p>其实，分库分表和主从集群，这些方案背后的核心思想都是水平扩展，从单机往集群化发展。这种思想其实我们并不陌生，微服务体系也就是干的这个事情。只不过，由于数据库是一个重状态的组件，因此，在将服务进行集群化的过程中，也需要考虑状态如何分布。而这个事情，MySQL在做，其他的数据组件也都在做，比如Redis、MongoDB等等。对于今天课程的内容，你不妨同之前学过的Redis、MongoDB等其他组件进行数据同步的思路进行下横向的总结、对比，这对于你以后去理解其他没有接触过的新产品比如HBase、Clickhouse等会有帮助的。</p>
+<p>并且，分布式已经是现在软件的主流，我们在以后肯定会要面临各种各样的分布式问题，数据库集群、服务集群、缓存集群、图片等静态资源集群、计算集群 等等。当面临各种各样的复杂场景，如何构建一个稳定高效的集群化方案，这是一个需要日积月累，不断沉淀的问题。而这次的MySQL集群化以及后面的ShardingSphere分库分表，就是一个很好的参考。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+            <a href="/tags/高可用/" rel="tag"># 高可用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/12/06/java/shardingsphere/shardingsphere_4/" rel="next" title="【ShardingSphere 4】实践">
+                <i class="fa fa-chevron-left"></i> 【ShardingSphere 4】实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、MySQL高可用集群介绍"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL高可用集群介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、数据库主从架构与分库分表"><span class="nav-number">1.1.</span> <span class="nav-text">1、数据库主从架构与分库分表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MySQL主从同步原理"><span class="nav-number">1.2.</span> <span class="nav-text">2、MySQL主从同步原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、动手搭建MySQL主从集群"><span class="nav-number">2.</span> <span class="nav-text">二、动手搭建MySQL主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、基础环境搭建"><span class="nav-number">2.1.</span> <span class="nav-text">1、基础环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装MySQL服务"><span class="nav-number">2.2.</span> <span class="nav-text">2、安装MySQL服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》初始化MySQL"><span class="nav-number">2.2.1.</span> <span class="nav-text">1》初始化MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》启动mysql"><span class="nav-number">2.2.2.</span> <span class="nav-text">2》启动mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、搭建主从集群"><span class="nav-number">2.3.</span> <span class="nav-text">3、搭建主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》配置master主服务"><span class="nav-number">2.3.1.</span> <span class="nav-text">1》配置master主服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》配置slave从服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">2》配置slave从服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3》主从集群测试"><span class="nav-number">2.3.3.</span> <span class="nav-text">3》主从集群测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4》全库同步与部分同步："><span class="nav-number">2.3.4.</span> <span class="nav-text">4》全库同步与部分同步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5》GTID同步集群"><span class="nav-number">2.3.5.</span> <span class="nav-text">5》GTID同步集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、集群扩容与MySQL数据迁移"><span class="nav-number">2.4.</span> <span class="nav-text">4、集群扩容与MySQL数据迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、搭建半同步复制"><span class="nav-number">2.5.</span> <span class="nav-text">5、搭建半同步复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》理解半同步复制"><span class="nav-number">2.5.1.</span> <span class="nav-text">1》理解半同步复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》搭建半同步复制集群"><span class="nav-number">2.5.2.</span> <span class="nav-text">2》搭建半同步复制集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、主从集群与读写分离"><span class="nav-number">2.6.</span> <span class="nav-text">6、主从集群与读写分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、扩展更复杂的集群结构"><span class="nav-number">2.7.</span> <span class="nav-text">7、扩展更复杂的集群结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、了解MySQL的其他高可用方案"><span class="nav-number">3.</span> <span class="nav-text">三、了解MySQL的其他高可用方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、MMM"><span class="nav-number">3.1.</span> <span class="nav-text">1、MMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MHA"><span class="nav-number">3.2.</span> <span class="nav-text">2、MHA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、MGR"><span class="nav-number">3.3.</span> <span class="nav-text">3、MGR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、分库分表方案介绍"><span class="nav-number">4.</span> <span class="nav-text">四、分库分表方案介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、分库分表有什么用"><span class="nav-number">4.1.</span> <span class="nav-text">1、分库分表有什么用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分库分表的方式"><span class="nav-number">4.2.</span> <span class="nav-text">2、分库分表的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分库分表要解决哪些问题"><span class="nav-number">4.3.</span> <span class="nav-text">3、分库分表要解决哪些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、什么时候需要分库分表？"><span class="nav-number">4.4.</span> <span class="nav-text">4、什么时候需要分库分表？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、常见的分库分表组件"><span class="nav-number">4.5.</span> <span class="nav-text">5、常见的分库分表组件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
