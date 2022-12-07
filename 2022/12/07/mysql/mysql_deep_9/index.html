@@ -91,12 +91,12 @@
 <meta name="description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
 <meta name="keywords" content="mysql,高可用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Mysql深入理解系列8】Mysql高可用">
-<meta property="og:url" content="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/index.html">
+<meta property="og:title" content="【Mysql深入理解系列9】Mysql高可用">
+<meta property="og:url" content="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320">
+<meta property="og:image" content="https://images.lilhui.com/06521780b407e1c83cf87e94633d3da6">
 <meta property="og:image" content="https://images.lilhui.com/b133024aff1b96e4a6bc438f2c080c2e">
 <meta property="og:image" content="https://images.lilhui.com/68f65942245478c912d6083c3fb9c278">
 <meta property="og:image" content="https://images.lilhui.com/649680b1ad101aa9f1a86d24bd4185fa">
@@ -113,11 +113,11 @@
 <meta property="og:image" content="https://images.lilhui.com/ed5dfe0ae24e7ec263c406ccdb3faee0">
 <meta property="og:image" content="https://images.lilhui.com/1edc12784bd872eddc63cdb8ee972a42">
 <meta property="og:image" content="https://images.lilhui.com/c1c667ae26e91ecd6f8a2834363b8b26">
-<meta property="og:updated_time" content="2022-12-07T09:16:51.659Z">
+<meta property="og:updated_time" content="2022-12-07T09:25:46.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Mysql深入理解系列8】Mysql高可用">
+<meta name="twitter:title" content="【Mysql深入理解系列9】Mysql高可用">
 <meta name="twitter:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
-<meta name="twitter:image" content="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320">
+<meta name="twitter:image" content="https://images.lilhui.com/06521780b407e1c83cf87e94633d3da6">
 
 
 
@@ -147,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/">
 
 
 
 
 
-  <title>【Mysql深入理解系列8】Mysql高可用 | Littlehui's Notes</title>
+  <title>【Mysql深入理解系列9】Mysql高可用 | Littlehui's Notes</title>
   
 
 
@@ -312,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/07/mysql/msyql_deep_9/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -329,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【Mysql深入理解系列8】Mysql高可用</h1>
+          <h1 class="post-title" itemprop="name headline">【Mysql深入理解系列9】Mysql高可用</h1>
         
 
         <div class="post-meta">
@@ -382,8 +382,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2022/12/07/mysql/msyql_deep_9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/07/mysql/msyql_deep_9/" itemprop="commentsCount"></span>
+                <a href="/2022/12/07/mysql/mysql_deep_9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/07/mysql/mysql_deep_9/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +423,7 @@
 <h2 id="2、MySQL主从同步原理"><a href="#2、MySQL主从同步原理" class="headerlink" title="2、MySQL主从同步原理"></a>2、MySQL主从同步原理</h2><p>既然要解决MySQL数据库的分布式集群化问题，那就不能不先了解MySQL自身提供的主从同步原理。这是构建MySQL集群的基础，也是后续进行分库分表的基础，更是MySQL进行生产环境部署的基础。</p>
 <p>其实数据库的主从同步，就是为了要保证多个数据库之间的数据保持一致。最简单的方式就是使用数据库的导入导出工具，定时将主库的数据导出，再导入到从库当中。这是一种很常见，也很简单易行的数据库集群方式。也有很多的工具帮助我们来做这些事情。但是这种方式进行数据同步的实时性比较差。</p>
 <p>而如果要保证数据能够实时同步，对于MySQL，通常就要用到他自身提供的一套通过Binlog日志在多个MySQL服务之间进行同步的集群方案。基于这种集群方案，一方面可以提高数据的安全性，另外也可以以此为基础，提供读写分离、故障转移等其他高级的功能。</p>
-<p><img src="https://note.youdao.com/yws/res/135255/C9937B52A9264CD3A09298EB26EA3320" alt="image"></p>
+<p><img src="https://images.lilhui.com/06521780b407e1c83cf87e94633d3da6" alt="图片"></p>
 <p>即在主库上打开Binlog日志，记录对数据的每一步操作。然后在从库上打开RelayLog日志，用来记录跟主库一样的Binlog日志，并将RelayLog中的操作日志在自己数据库中进行重演。这样就能够更加实时的保证主库与从库的数据一致。</p>
 <blockquote>
 <p>MySQL的Binlog默认是不打开的。</p>
@@ -479,7 +479,7 @@
 </blockquote>
 <p>重启MySQL服务， <code>service mysqld restart</code></p>
 <p>然后，我们需要给root用户分配一个replication slave的权限。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO 'root'@'%';</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主节点同步状态：</span></span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>登录主数据库</span><br><span class="line">mysql -u root -p</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO 'root'@'%';</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span>查看主节点同步状态：</span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在实际生产环境中，通常不会直接使用root用户，而会创建一个拥有全部权限的用户来负责主从同步。</p>
 </blockquote>
@@ -499,7 +499,7 @@
 <p>log-bin：打开从服务的bin-log日志记录。</p>
 </blockquote>
 <p>然后我们启动mysqls的服务，并设置他的主节点同步状态。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从服务</span></span><br><span class="line">mysql -u root -p;</span><br><span class="line"><span class="meta">#</span><span class="bash">设置同步主节点：</span></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST='192.168.232.128',</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_USER='root',</span><br><span class="line">MASTER_PASSWORD='root',</span><br><span class="line">MASTER_LOG_FILE='master-bin.000004',</span><br><span class="line">MASTER_LOG_POS=156,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br><span class="line"><span class="meta">#</span><span class="bash">开启slave</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主从同步状态</span></span><br><span class="line">show slave status;</span><br><span class="line">或者用 show slave status \G; 这样查看比较简洁</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>登录从服务</span><br><span class="line">mysql -u root -p;</span><br><span class="line"><span class="meta">#</span>设置同步主节点：</span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST='192.168.232.128',</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_USER='root',</span><br><span class="line">MASTER_PASSWORD='root',</span><br><span class="line">MASTER_LOG_FILE='master-bin.000004',</span><br><span class="line">MASTER_LOG_POS=156,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br><span class="line"><span class="meta">#</span>开启slave</span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span>查看主从同步状态</span><br><span class="line">show slave status;</span><br><span class="line">或者用 show slave status \G; 这样查看比较简洁</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注意，CHANGE MASTER指令中需要指定的MASTER_LOG_FILE和MASTER_LOG_POS必须与主服务中查到的保持一致。</p>
 <p>并且后续如果要检查主从架构是否成功，也可以通过检查主服务与从服务之间的File和Position这两个属性是否一致来确定。</p>
@@ -550,9 +550,9 @@
 <h2 id="4、集群扩容与MySQL数据迁移"><a href="#4、集群扩容与MySQL数据迁移" class="headerlink" title="4、集群扩容与MySQL数据迁移"></a>4、集群扩容与MySQL数据迁移</h2><p>我们现在已经搭建成功了一主一从的MySQL集群架构，那要扩展到一主多从的集群架构，其实就比较简单了，只需要增加一个binlog复制就行了。</p>
 <p>但是如果我们的集群是已经运行过一段时间，这时候如果要扩展新的从节点就有一个问题，之前的数据没办法从binlog来恢复了。这时候在扩展新的slave节点时，就需要增加一个数据复制的操作。</p>
 <p>MySQL的数据备份恢复操作相对比较简单，可以通过SQL语句直接来完成。具体操作可以使用mysql的bin目录下的mysqldump工具。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p --all-databases &gt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p --all-databases &gt; backup.sql</span><br><span class="line"><span class="meta">#</span>输入密码</span><br></pre></td></tr></table></figure>
 <p>​    通过这个指令，就可以将整个数据库的所有数据导出成backup.sql，然后把这个backup.sql分发到新的MySQL服务器上，并执行下面的指令将数据全部导入到新的MySQL服务中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &lt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &lt; backup.sql</span><br><span class="line"><span class="meta">#</span>输入密码</span><br></pre></td></tr></table></figure>
 <p>​    这样新的MySQL服务就已经有了所有的历史数据，然后就可以再按照上面的步骤，配置Slave从服务的数据同步了。</p>
 <h2 id="5、搭建半同步复制"><a href="#5、搭建半同步复制" class="headerlink" title="5、搭建半同步复制"></a>5、搭建半同步复制</h2><h3 id="1》理解半同步复制"><a href="#1》理解半同步复制" class="headerlink" title="1》理解半同步复制"></a>1》理解半同步复制</h3><p>到现在为止，我们已经可以搭建MySQL的主从集群，互主集群，但是我们这个集群有一个隐患，就是有可能会丢数据。这是为什么呢？这要从MySQL主从数据复制分析起。</p>
 <p>MySQL主从集群默认采用的是一种异步复制的机制。主服务在执行用户提交的事务后，写入binlog日志，然后就给客户端返回一个成功的响应了。而binlog会由一个dump线程异步发送给Slave从服务。</p>
@@ -597,7 +597,7 @@
 <p>另外，在我们搭建的这个主从集群中，有一个比较隐藏的问题，就是这样的主从复制之间会有延迟。这在复杂集群中，做了读写分离后，会更容易体现出来。即数据往主服务写，而读数据在从服务读。这时候这个主从复制延迟就有可能造成主库上刚插入了数据但是从库查不到。当然，这在我们目前的这个集群中是很难出现的，但是在大型集群中会很容易出现。</p>
 <p>出现这个问题的根本在于：面向业务的主服务数据都是多线程并发写入的，而从服务是单个线程慢慢拉取binlog，这中间就会有个效率差。所以解决这个问题的关键是要让从服务也用多线程并行复制binlog数据。</p>
 <p>MySQL自5.7版本后就已经支持并行复制了。可以在从服务上设置slave_parallel_workers为一个大于0的数，然后把slave_parallel_type参数设置为LOGICAL_CLOCK，这就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show global variables like <span class="string">'slave_parallel%'</span>;</span></span><br><span class="line">+------------------------+----------+</span><br><span class="line">| Variable_name          | Value    |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| slave_parallel_type    | DATABASE |</span><br><span class="line">| slave_parallel_workers | 0        |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span> show global variables like 'slave_parallel%';</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| Variable_name          | Value    |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| slave_parallel_type    | DATABASE |</span><br><span class="line">| slave_parallel_workers | 0        |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
 <h1 id="三、了解MySQL的其他高可用方案"><a href="#三、了解MySQL的其他高可用方案" class="headerlink" title="三、了解MySQL的其他高可用方案"></a>三、了解MySQL的其他高可用方案</h1><p>我们之前的MySQL服务集群，都是使用MySQL自身的功能来搭建的集群。但是这样的集群，不具备高可用的功能。即如果是MySQL主服务挂了，从服务是没办法自动切换成主服务的。而如果要实现MySQL的高可用，需要借助一些第三方工具来实现。</p>
 <blockquote>
 <p>这一部分方案只需要了解即可，因为一方面，这些高可用方案通常都是运维需要考虑的事情，作为开发人员没有必要花费太多的时间精力，偶尔需要用到的时候能够用起来就够了。另一方面，随着业界技术的不断推进，也会冒出更多的新方案。例如ShardingSphere的5.x版本的目标实际上就是将ShardingSphere由一个数据库中间件升级成一个独立的数据库平台，而将MySQL、PostGreSql甚至是RocksDB这些组件作为数据库的后端支撑。等到新版本成熟时，又会冒出更多新的高可用方案。</p>
