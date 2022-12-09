@@ -97,7 +97,7 @@
 <meta property="og:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2">
-<meta property="og:updated_time" content="2022-12-09T08:03:47.981Z">
+<meta property="og:updated_time" content="2022-12-09T08:05:30.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Tail At Scale 论文总结">
 <meta name="twitter:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
@@ -465,6 +465,9 @@
 <h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>这篇文章的要点总结完成，给我们的收获就是如果基于不确定的系统来实现确定的服务，本文的核心思想是</p>
 <p>“A simple way to curb latency variability is to issue the same request to multiple replicas and use the results from whichever replica responds first.”</p>
 <p>这个方法看似简单，然而在真正落地时还是会有很多的细节需要去权衡，大家可以通过读论文来学习Google是如何对各个细节进行权衡的。</p>
+<blockquote>
+<p>转载：<a href="https://zhuanlan.zhihu.com/p/39373401" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/39373401</a></p>
+</blockquote>
 
       
     </div>
