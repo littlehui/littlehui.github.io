@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="scale,tail,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
+<meta name="keywords" content="scale,tail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Tail At Scale 论文总结">
+<meta property="og:url" content="https://www.lilhui.com/2022/12/09/paper/paper_1/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2">
+<meta property="og:updated_time" content="2022-12-09T08:03:47.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Tail At Scale 论文总结">
+<meta name="twitter:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
+<meta name="twitter:image" content="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/12/09/paper/paper_1/">
+
+
+
+
+
+  <title>The Tail At Scale 论文总结 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天地那么大，世界那么辽阔。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/09/paper/paper_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">The Tail At Scale 论文总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-09T15:55:48+08:00">
+                2022-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/12/09/paper/paper_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/09/paper/paper_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h1><p>这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是：</p>
+<p><strong>当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？</strong></p>
+<h1 id="2-为什么"><a href="#2-为什么" class="headerlink" title="2. 为什么"></a>2. 为什么</h1><p>首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着用户的输入不断地提示用户可能之后输入的内容，试想如果这个提示需要一秒的时间才能出现？那用户体验是会大打折扣的。</p>
+<p>其次，什么是大规模分布式系统？</p>
+<p>举例来说，当用户打开亚马逊购物网站的一个商品信息页时，可能需要从底层数百个子服务来获取信息，而这些子服务还有它们依赖的更基础的服务，这意味着一个用户的请求可能需要数千台服务器协同工作才能完成。</p>
+<p>在这样的集群规模下，即使有极少数机器请求响应时间较长，也有很大的概率导致用户请求的响应时间变长，如下图所示：</p>
+<p><img src="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2" alt="图片"></p>
+<blockquote>
+<p>当用户请求需要100台服务器来协同完成时，假设只有 1% 的调用延迟较大，那用户请求受影响导致响应时间较长的概率为0.63（1 - 0.99 <strong> 100）<br>当用户的请求需要2000台服务器来协同完成时，假设只有 0.01% 的调用延迟较大，那用户请求受影响导致响应时间较长的概率为0.18（1 - 0.9999 </strong> 2000），相当于每5个用户就有一个体验不佳</p>
+</blockquote>
+<p>在实际生产环境中，有多种原因导致服务调用的响应时间变长，如：</p>
+<ol>
+<li>在一台机器上可能同时部署了多个服务，这些服务可能会对于如CPU，内存，网络等多种资源进行竞争，导致某个服务的响应时间变长；</li>
+<li>某些后台运行的线程（假设每个小时运行一次），可能会在运行时占用一些系统资源（如磁盘IO）导致这台机器上的服务响应时间变长；</li>
+<li>在分布式环境下， 当多个服务对共享资源（如分布式文件系统等）产生竞争时，也会导致服务的响应时间变长；</li>
+<li>其他的原因还包括请求排队、垃圾回收、日志压缩等；</li>
+</ol>
+<p>Jeff Dean的想法是，既然可以在不可靠的服务器上实现可靠的分布式存储系统，那利用同样的想法，我们也可以在响应时间有突刺的服务器集群上实现响应时间快速且一致的分布式集群，他把这样的系统叫做Tail-Tolerant。</p>
+<h1 id="3-怎么做"><a href="#3-怎么做" class="headerlink" title="3. 怎么做"></a>3. 怎么做</h1><h2 id="3-1-单个模块的响应时间"><a href="#3-1-单个模块的响应时间" class="headerlink" title="3.1 单个模块的响应时间"></a>3.1 单个模块的响应时间</h2><p>这一部分讨论的是如何实现一个模块对外的每一次响应的时间是快速一致的，这部分不是本文的重点，因此简单带过。</p>
+<p>作者列举了一些基本的方法，如：</p>
+<ol>
+<li>不要在底层设置太长的任务队列，而由上层基于任务的优先级进行动态的下发。例如Google的集群文件系统，在磁盘的IO队列上只有维护一个很短的队列，当应用层有优先级更高的任务的时候，可以及时将这些任务下发，以保证这些高优先级任务的快速响应；</li>
+<li>将需要长时间运行的任务拆成多个短时间运行的任务。这个跟上面做法的逻辑一样，就是为了防止一个任务长时间占用系统资源而导致其他任务响应时间变长；</li>
+<li>控制好定时任务和后台运行的任务。具体做法有，将后台的大任务拆分成一系列的小任务，在后台任务运行的时候首先确认系统的负载，如果负载太高，则延迟运行后台任务等。</li>
+</ol>
+<p>尽管我们可以通过各种做法让一个模块的响应时间变得更快更均匀，然而由于大规模分布式系统的复杂性，实际上根本无法做到完全消除单个模块的响应时间出现突刺，因此接下来讨论在更大的层面如何解决这个问题。</p>
+<h2 id="3-2-服务间调用控制"><a href="#3-2-服务间调用控制" class="headerlink" title="3.2. 服务间调用控制"></a>3.2. 服务间调用控制</h2><p>这一部分讨论在一个服务调用另一个服务时，可以通过什么技巧来解决响应时间出现突刺的问题。</p>
+<p>首先，分布式系统为了解决数据可靠性的问题，通常将数据复制到多台服务器上，同时为了实现服务的高可用，又会有多个服务器提供同样的功能，防止部分服务器出现故障。</p>
+<p>为了解决响应时间出现突刺，调用者需要将请求“同时”发送给多台服务器，并在收到最快的响应之后，马上终止其他服务器的处理（或将其他服务器返回的结果直接丢弃）。采用这种方法，可以大大降低某个调用出现突刺的情况，因为所有的服务器都出现突刺的概率会大大降低。同时我们也可以看到，这样会让整个系统的请求数量翻两倍或三倍。</p>
+<p>因此，论文给出的做法是：</p>
+<ol>
+<li>客户端首先发送一个请求给服务端，并等待服务端返回的响应；</li>
+<li>如果客户端在一定的时间内没有收到服务端的响应，则马上发送同样的请求到另一台（或多台）服务器；</li>
+<li>客户端等待第一个响应到达之后，终止其他请求的处理；</li>
+</ol>
+<p>上面“一定的时间”定义为：95%的请求的响应时间。</p>
+<p>Google的测试数据表明，采用这种方法，可以仅用2%的额外请求，将系统99.9%的请求的响应时间从1800ms降低到74ms：</p>
+<blockquote>
+<p>For example, in a Google benchmark that reads the values for 1,000 keys stored in a BigTable table distributed across 100 different servers, sending a hedging request after a 10ms delay reduces the 99.9th-percentile latency for retrieving all 1,000 values from 1,800ms to 74ms while sending just 2% more requests.</p>
+</blockquote>
+<p>以上这种做法被称为 Hedged Request，下面介绍另一种解决问题的办法，称为 Tied Request。</p>
+<p>分布式系统中存在一种情况，即请求排队，特别地，可能出现请求的排队时间比处理时间更长的情况。</p>
+<p>当一个上游系统向下游系统分发请求时，一个比较合理的做法是将请求分发给任务队列较短，负载较轻的服务器。</p>
+<p>Google推荐的做法是，上游系统同时发送两个一样的请求给下游多个服务器，当下游服务器处理完成后，通知其他服务器不用再处理该请求。为了防止由于任务队列为空而导致的所有服务器同时处理任务的情况，上游系统需要在发给下游多个系统的时候引入一个延迟，该延迟时间要足够第一个系统处理完任务并通知其他系统。</p>
+<blockquote>
+<p>此处有一个重要的思考：为什么上游系统不再发送请求给下游时首先进行探测，查看各个下游服务器的任务队列长度，然后再将请求发送给任务队列最短的服务呢？</p>
+<p>原因有三：</p>
+<ol>
+<li>探测和发送请求之间有一段时间间隔，即在探测之后再发送请求时，各个服务器的负载已经发生了变化</li>
+<li>如果很多客户端同时发现某个服务器负载较低，则可能同时将请求发给该服务器，导致该服务器瞬间过热</li>
+<li>仅通过队列长度来估计处理时间未必准确，即任务队列端不一定真的负载低</li>
+</ol>
+</blockquote>
+<p>以上两个技巧不仅仅可以用于简单的数据查询服务，例如基于Reed-Solomon编码的存储系统，第一个请求可以去某台服务器上查询数据，如果在一定时间内数据未查到，则可以向其他服务器发起数据重建的任务并得到期望的数据。</p>
+<h2 id="3-3-架构上的权衡"><a href="#3-3-架构上的权衡" class="headerlink" title="3.3. 架构上的权衡"></a>3.3. 架构上的权衡</h2><p>这一部分提出了一些在系统设计层面，为了解决长尾响应时间做的权衡：</p>
+<ol>
+<li>更细粒度的Partition：为了解决系统负载不均衡，Google会将任务拆解成比机器数量多很多的Partition，这样，即使任务的复杂程度不同，机器的处理能力不同会导致各个机器的负载不均衡，这种不均衡也会大大降低。这就会带来系统的响应时间的一致性；<br>举例，如果一个系统有5台机器，将ABCDE 5个任务分给这5台机器来做，如果A任务很复杂，那分到A的机器处理时间就会变得很长。然而，如果将ABCDE 这5个任务继续拆分，变成 A1 - A10, B1-B10, …, D1-D10，再将这些任务分配到5台机器上去，那各台机器的负载就会平均很多（除非A1-A10全部分配到同一台机器上）</li>
+<li>对于热点的数据进行复制：如果某个新闻事件导致某个数据的访问量激增，则可以将该数据复制更多份，来降低这个热点数据的访问响应时间</li>
+<li>将响应时间长的服务器暂时屏蔽：上游系统要实时监控所有下游服务器的响应时间，如果某台服务器的响应时间明显超过其他，则可以暂时将该服务器屏蔽（不再向这台服务器上发送请求），以提高整个系统的响应速度</li>
+<li>某些情况不用追求完美：例如对于网页搜索服务，如果底层的某些系统出现故障，上层未必要等所有的响应全都返回，而是等待一段时间后，基于已经获得的数据为用户进行展示即可：good enough is better than high latency</li>
+</ol>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>这篇文章的要点总结完成，给我们的收获就是如果基于不确定的系统来实现确定的服务，本文的核心思想是</p>
+<p>“A simple way to curb latency variability is to issue the same request to multiple replicas and use the results from whichever replica responds first.”</p>
+<p>这个方法看似简单，然而在真正落地时还是会有很多的细节需要去权衡，大家可以通过读论文来学习Google是如何对各个细节进行权衡的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/scale/" rel="tag"># scale</a>
+          
+            <a href="/tags/tail/" rel="tag"># tail</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/12/07/mysql/mysql_deep_9/" rel="next" title="【Mysql深入理解系列9】Mysql高可用">
+                <i class="fa fa-chevron-left"></i> 【Mysql深入理解系列9】Mysql高可用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">121</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-问题"><span class="nav-number">1.</span> <span class="nav-text">1. 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-为什么"><span class="nav-number">2.</span> <span class="nav-text">2. 为什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-怎么做"><span class="nav-number">3.</span> <span class="nav-text">3. 怎么做</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-单个模块的响应时间"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 单个模块的响应时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-服务间调用控制"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 服务间调用控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-架构上的权衡"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 架构上的权衡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-总结"><span class="nav-number">4.</span> <span class="nav-text">4. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
