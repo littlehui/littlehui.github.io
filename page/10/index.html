@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_17/">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2019/07/28/java/patterndesign/patterndesign_16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Littlehui">
@@ -312,7 +312,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/28/java/patterndesign/patterndesign_17/" itemprop="url">设计模式系列:责任链模式</a></h1>
+                <a class="post-title-link" href="/2019/07/28/java/patterndesign/patterndesign_16/" itemprop="url">设计模式系列:迭代器模式</a></h1>
         
 
         <div class="post-meta">
@@ -399,15 +399,17 @@
         
           
           概念
-责任链模式顾名思义，它是由一连串单一职责的对象构成链式结构。此结构一般为请求接受者做前置业务处理，主要目的是为发送者和接收者进行解耦。其特点是，每个对象都只处理自己成处理的请求，如果处理不了，会把请求传给下一个接收者。以此类推。
+迭代器一般用于访问聚合对象内部元素。只暴露该暴露的，隐藏该隐藏的。比如隐藏掉容器内部的实现逻辑，只暴露遍历的接口。
 
-实现一个简单的日志记录链
-类图
-代码AbstractLogge
+实现类图
+代码
+Iterator
+
+1234567891011121314151617package com.littlehui.design.iterator;/** * @
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/28/java/patterndesign/patterndesign_17/" rel="contents">
+            <a class="btn" href="/2019/07/28/java/patterndesign/patterndesign_16/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
