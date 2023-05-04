@@ -96,12 +96,12 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2">
-<meta property="og:updated_time" content="2022-12-09T08:09:47.341Z">
+<meta property="og:image" content="https://images.lilhui.com/68eb51ca09e8fa0669c7f29e51864ed5">
+<meta property="og:updated_time" content="2022-12-09T08:16:57.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Tail At Scale 论文总结">
 <meta name="twitter:description" content="1. 问题这是Google大神Jeff Dean在2013年的时候发表的一篇文章，主要是为分布式系统中一个复杂而重要的问题提供了一整套的解决方案，这个问题就是： 当用户的请求依赖大规模分布式系统来协作完成时，如何保证请求的响应时间？ 2. 为什么首先，为什么要保证用户请求的响应时间？因为对于某些使用场景来说，只有当响应时间控制在百毫秒以内，用户才能感觉到系统是流畅的，例如Google的搜索框会随着">
-<meta name="twitter:image" content="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2">
+<meta name="twitter:image" content="https://images.lilhui.com/68eb51ca09e8fa0669c7f29e51864ed5">
 
 
 
@@ -407,7 +407,7 @@
 <p>其次，什么是大规模分布式系统？</p>
 <p>举例来说，当用户打开亚马逊购物网站的一个商品信息页时，可能需要从底层数百个子服务来获取信息，而这些子服务还有它们依赖的更基础的服务，这意味着一个用户的请求可能需要数千台服务器协同工作才能完成。</p>
 <p>在这样的集群规模下，即使有极少数机器请求响应时间较长，也有很大的概率导致用户请求的响应时间变长，如下图所示：</p>
-<p><img src="https://images.lilhui.com/7e5a78403c311fc037788368428d92b2" alt="图片"></p>
+<p><img src="https://images.lilhui.com/68eb51ca09e8fa0669c7f29e51864ed5" alt="图片"></p>
 <blockquote>
 <p>当用户请求需要100台服务器来协同完成时，假设只有 1% 的调用延迟较大，那用户请求受影响导致响应时间较长的概率为0.63（1 - 0.99 <strong> 100）<br>当用户的请求需要2000台服务器来协同完成时，假设只有 0.01% 的调用延迟较大，那用户请求受影响导致响应时间较长的概率为0.18（1 - 0.9999 </strong> 2000），相当于每5个用户就有一个体验不佳</p>
 </blockquote>
@@ -511,6 +511,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2022/12/14/mq/rabbitmq_core_2/" rel="prev" title="【rabbitMq学习2】三种编程模型">
+                【rabbitMq学习2】三种编程模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -595,7 +599,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">155</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -693,7 +697,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
