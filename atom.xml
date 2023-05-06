@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.lilhui.com/"/>
-  <updated>2023-01-10T06:21:18.271Z</updated>
+  <updated>2022-12-16T08:46:11.220Z</updated>
   <id>https://www.lilhui.com/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>【山姆】</title>
-    <link href="https://www.lilhui.com/2023/01/10/sams/samus_1/"/>
-    <id>https://www.lilhui.com/2023/01/10/sams/samus_1/</id>
-    <published>2023-01-10T06:17:53.000Z</published>
-    <updated>2023-01-10T06:21:18.271Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://images.lilhui.com/c4c41e8830c9f851e0b3259b24de0f19" alt="图片"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;https://images.lilhui.com/c4c41e8830c9f851e0b3259b24de0f19&quot; alt=&quot;图片&quot;&gt;&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>【rabbitMq学习2】三种编程模型</title>
@@ -527,6 +505,33 @@
       
       
         &lt;h2 id=&quot;Tomcat响应数据过程&quot;&gt;&lt;a href=&quot;#Tomcat响应数据过程&quot; class=&quot;headerlink&quot; title=&quot;Tomcat响应数据过程&quot;&gt;&lt;/a&gt;Tomcat响应数据过程&lt;/h2&gt;&lt;h3 id=&quot;关键部件解释&quot;&gt;&lt;a href=&quot;#关键部件解释&quot;
+      
+    
+    </summary>
+    
+      <category term="tomcat" scheme="https://www.lilhui.com/categories/tomcat/"/>
+    
+    
+      <category term="tomcat" scheme="https://www.lilhui.com/tags/tomcat/"/>
+    
+      <category term="调优" scheme="https://www.lilhui.com/tags/%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【tomcat调优系列1】Tomcat的请求过程</title>
+    <link href="https://www.lilhui.com/2022/11/18/tomcat/tomcat_1/"/>
+    <id>https://www.lilhui.com/2022/11/18/tomcat/tomcat_1/</id>
+    <published>2022-11-18T06:57:04.000Z</published>
+    <updated>2022-11-20T02:04:38.477Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Tomcat请求过程"><a href="#Tomcat请求过程" class="headerlink" title="Tomcat请求过程"></a>Tomcat请求过程</h2><h3 id="几个部件："><a href="#几个部件：" class="headerlink" title="几个部件："></a>几个部件：</h3><ol><li>Endpoint： tomcat接收socket链接的组件。</li><li>Socket：请求的通道链接</li><li>InputBuffer. InternalInputBuffer,AbstractInputBuffer：缓冲内存</li><li>Request：请求对象</li><li>MessageBytes: 请求对象的消息内容</li><li>ByteChunk：</li><li>Connection：Java层面的链接对象</li><li>Servlet：处理请求的组件</li><li>Response：请求处理后的返回</li></ol><h3 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h3><ul><li>请求的解析</li></ul><ol><li>Endpoint接收socket链接。</li><li>从socket中获取数据并缓存到InputBuffer。BIO是InternalInputBuffer继承自AbstractInputBuffer</li><li>从InputBuffer中解析请求。将完整的请求协议和请求体封装到Request对象。</li><li>Request中的messageByte进行标记。标记url,header,请求体等。</li><li>解析头，解析请求。</li><li>初始化请求头的一些参数：Connextion keepalive，Content-length等。包括请求体处理的InputFilter</li><li>将请求交给容器</li></ol><ul><li>请求的处理</li></ul><ol start="8"><li>容器将请求分发到具体的Servlet进行处理。</li><li>Servlet处理请求利用Response进行响应。将返回的数据写入缓冲区，调用flush或者close时，把缓冲区的数据发送给socket.</li><li>servlet处理完请求后，检查是否需要把响应数据发送给socket.</li><li>看请求体是否处理结束，是否还有剩余数据，如果有剩余数据，把这些数据处理掉。以便获取下个请求的数据。</li><li>回到第一步处理下一个请求。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Tomcat请求过程&quot;&gt;&lt;a href=&quot;#Tomcat请求过程&quot; class=&quot;headerlink&quot; title=&quot;Tomcat请求过程&quot;&gt;&lt;/a&gt;Tomcat请求过程&lt;/h2&gt;&lt;h3 id=&quot;几个部件：&quot;&gt;&lt;a href=&quot;#几个部件：&quot; class=&quot;he
       
     
     </summary>
