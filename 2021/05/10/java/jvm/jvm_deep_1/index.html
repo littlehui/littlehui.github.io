@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="klass模型java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、方法信息 MetaspaceObj Metadata     klass         instanceKlass             instanceMirrorKlass买奥数java.lang.Class实例             instanceRefKlass描述ja">
+<meta name="description" content="类的加载过程加载加载是指查找并加载类的字节码文件，并将其转换为 JVM 内部的数据结构，即 Class 对象。Java 中的类加载器负责查找类文件，一般有三种类加载器：引导类加载器、扩展类加载器和应用程序类加载器。 在HotSpot中具体是三个步骤：  通过类的全限定名获取存储该类的class文件。 解析成运行时数据，InstanceKlasss实例。存放在方法区。 在堆区生成该类的class对象">
 <meta name="keywords" content="java,jvm调优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【JVM深入理解系列1】JVM底层加载">
 <meta property="og:url" content="https://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_1/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="klass模型java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、方法信息 MetaspaceObj Metadata     klass         instanceKlass             instanceMirrorKlass买奥数java.lang.Class实例             instanceRefKlass描述ja">
+<meta property="og:description" content="类的加载过程加载加载是指查找并加载类的字节码文件，并将其转换为 JVM 内部的数据结构，即 Class 对象。Java 中的类加载器负责查找类文件，一般有三种类加载器：引导类加载器、扩展类加载器和应用程序类加载器。 在HotSpot中具体是三个步骤：  通过类的全限定名获取存储该类的class文件。 解析成运行时数据，InstanceKlasss实例。存放在方法区。 在堆区生成该类的class对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-07-01T07:25:03.158Z">
+<meta property="og:updated_time" content="2023-05-07T14:48:46.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JVM深入理解系列1】JVM底层加载">
-<meta name="twitter:description" content="klass模型java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、方法信息 MetaspaceObj Metadata     klass         instanceKlass             instanceMirrorKlass买奥数java.lang.Class实例             instanceRefKlass描述ja">
+<meta name="twitter:description" content="类的加载过程加载加载是指查找并加载类的字节码文件，并将其转换为 JVM 内部的数据结构，即 Class 对象。Java 中的类加载器负责查找类文件，一般有三种类加载器：引导类加载器、扩展类加载器和应用程序类加载器。 在HotSpot中具体是三个步骤：  通过类的全限定名获取存储该类的class文件。 解析成运行时数据，InstanceKlasss实例。存放在方法区。 在堆区生成该类的class对象">
 
 
 
@@ -410,42 +410,17 @@
       
 
       
-        <h2 id="klass模型"><a href="#klass模型" class="headerlink" title="klass模型"></a>klass模型</h2><p>java的每个类在JVM中都有一个对应的klass类实例与之对应，存储类的元信息：常量池、属性信息、方法信息</p>
-<p>MetaspaceObj</p>
-<pre><code>Metadata
-    klass
-        instanceKlass
-            instanceMirrorKlass买奥数java.lang.Class实例
-            instanceRefKlass描述java.lang.Reference的子类
-            instanceClassLoaderKlass
-
-        ArrayKlass
-            TypeArrayKlass描述java基本类型数组的数据结构
-            ObjectArrayKlass描述java中引用类型数组的数据结构。
-</code></pre><p>类的元信息是存储在元空间的。</p>
-<p>普通的Java类在JVM对应的是instanceKlass的实例。三个类：</p>
+        <h2 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h2><h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载是指查找并加载类的字节码文件，并将其转换为 JVM 内部的数据结构，即 <code>Class</code> 对象。Java 中的类加载器负责查找类文件，一般有三种类加载器：引导类加载器、扩展类加载器和应用程序类加载器。</p>
+<p>在HotSpot中具体是三个步骤：</p>
 <ol>
-<li>InstanceMirrorKlass:用于表示java.lang.class, Java代码中获取到的class对象，实际上是这个C++类的实例。存储在堆区，学名镜像类。</li>
-<li>InstanceRefClass：用于表示Java.lang.ref.Referece的子类。</li>
-<li>InstanceClassLoader:用于遍历某个加载器加载的类。</li>
-</ol>
-<p>Java中的数组不是静态数组类型，是动态数据类型，既是运行时期生成的，Java数组的元信息用ArrayKlass的子类来表示</p>
-<ol>
-<li>TypeArrayKlass:表示基本类型的数组。</li>
-<li>ObjectArrayKlass:表示引用类型的数组。</li>
-</ol>
-<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p>七个过程：</p>
-<p>loading -&gt; verification -preparation -&gt; resolution<br>-&gt; initialization -&gt; Using -&gt; Unloading</p>
-<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><ol>
 <li>通过类的全限定名获取存储该类的class文件。</li>
 <li>解析成运行时数据，InstanceKlasss实例。存放在方法区。</li>
 <li>在堆区生成该类的class对象，InstanceMirrorKlass实例。</li>
 </ol>
 <p>程序怎么写都可以。只要满足上面三个效果就OK。改写OpenJdk源码，满足上面三个条件就Ok</p>
-<ul>
-<li>何时加载</li>
+<h4 id="加载时机"><a href="#加载时机" class="headerlink" title="加载时机"></a>加载时机</h4><ul>
+<li>主动使用时</li>
 </ul>
-<p>主动使用时</p>
 <ol>
 <li>new, getstatic, putstatic, invokestatic</li>
 <li>反射</li>
@@ -465,34 +440,174 @@
 <li>从数据库读取。</li>
 <li>从加密文件中读取</li>
 </ol>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><ol>
-<li>文件格式验证</li>
-<li>元数据验证</li>
-<li>字节码验证</li>
-<li>符号引用验证</li>
-</ol>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>为静态变量分配内存，赋初值。<br>实例变量是在创建对象的时候完成赋值的，没有赋初值一说。</p>
-<p>int,long,short,char,byte,boolean,float,double,reference</p>
-<p>如果被final修饰，在编译的时候会给属性添加ConstantValue属性，准备阶段直接完成赋值，既没有赋初值这一说。</p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>将常量池中的符号引用转为直接引用</p>
-<p>解析后的信息存储在ConstantPoolCache类实例中</p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>连接包括验证、准备和解析三个阶段：</p>
+<ul>
+<li>验证：验证字节码文件的格式、语义、安全等方面是否符合 JVM 规范。</li>
+<li><p>准备：为类的静态变量分配内存并设置默认初始值。</p>
+<p>  说明：<br>实例变量是在创建对象的时候完成赋值的，没有赋初值一说。<br>int,long,short,char,byte,boolean,float,double,reference<br>如果被final修饰，在编译的时候会给属性添加ConstantValue属性，准备阶段直接完成赋值，既没有赋初值这一说。</p>
+</li>
+<li><p>解析：将符号引用转换为直接引用，以便 JVM 快速访问类的方法和变量。</p>
+<p>  说明： 解析后的信息存储在ConstantPoolCache类实例中</p>
 <ol>
 <li>类或接口的解析。</li>
 <li>字段解析</li>
 <li>方法解析</li>
-<li>接口方法解析</li>
-</ol>
-<ul>
-<li>何时解析</li>
-</ul>
-<p>思路：</p>
-<ol>
+<li><p>接口方法解析</p>
+<p>解析可以发生的时机:</p>
+</li>
 <li>加载阶段解析常量池时</li>
 <li>用的时候</li>
 </ol>
+</li>
+</ul>
 <p>openjdk是第二种思路，在执行特定的字节码指令之前进行解析：</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>执行静态代码块，完成静态变量的赋值。<br>静态字段，静态代码段，字节码层面会生成clinit方法。<br>方法中语句的先手顺序与代码的编写顺序相关。</p>
-<h2 id="类加载细节"><a href="#类加载细节" class="headerlink" title="类加载细节"></a>类加载细节</h2><p>有空了再补`</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>初始化是指为类的静态变量赋值和执行静态代码块。在 Java 中，类的初始化是在首次使用时进行的，如果该类从未被使用过，则不会进行初始化。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>在类初始化完成后，类就可以被使用了。类的使用包括创建对象、调用方法和访问变量等操作。</p>
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p>卸载是指将类的字节码从内存中移除，并释放相应的资源。类的卸载由 JVM 自动完成，不需要显式调用。</p>
+<h2 id="各个阶段会遇到的异常"><a href="#各个阶段会遇到的异常" class="headerlink" title="各个阶段会遇到的异常"></a>各个阶段会遇到的异常</h2><table>
+<thead>
+<tr>
+<th>过程</th>
+<th>异常类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加载</td>
+<td>ClassNotFoundException</td>
+<td>找不到指定类的定义</td>
+</tr>
+<tr>
+<td></td>
+<td>NoClassDefFoundError</td>
+<td>找不到类的定义文件</td>
+</tr>
+<tr>
+<td></td>
+<td>UnsupportedClassVersionError</td>
+<td>JVM不支持加载的类文件版本</td>
+</tr>
+<tr>
+<td>连接</td>
+<td>ClassFormatError</td>
+<td>类文件格式不正确</td>
+</tr>
+<tr>
+<td></td>
+<td>VerifyError</td>
+<td>字节码验证错误</td>
+</tr>
+<tr>
+<td></td>
+<td>IllegalAccessError</td>
+<td>非法访问错误</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td>ExceptionInInitializerError</td>
+<td>静态初始化器抛出异常</td>
+</tr>
+<tr>
+<td>使用</td>
+<td>NoSuchFieldError</td>
+<td>访问不存在的类成员</td>
+</tr>
+<tr>
+<td></td>
+<td>NoSuchMethodError</td>
+<td>调用不存在的方法</td>
+</tr>
+<tr>
+<td></td>
+<td>NullPointerException</td>
+<td>访问空对象</td>
+</tr>
+<tr>
+<td>卸载</td>
+<td></td>
+<td>JVM不支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HotSpot虚拟机中的OOP"><a href="#HotSpot虚拟机中的OOP" class="headerlink" title="HotSpot虚拟机中的OOP"></a>HotSpot虚拟机中的OOP</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Klass</td>
+<td>描述Java类的元数据信息，如类名、访问标志、父类、接口等</td>
+</tr>
+<tr>
+<td>InstanceKlass</td>
+<td>描述Java类的实例信息，如静态变量、成员变量、方法表等</td>
+</tr>
+<tr>
+<td>ArrayKlass</td>
+<td>描述Java数组的元数据信息，如数组长度、元素类型等</td>
+</tr>
+<tr>
+<td>TypeArrayKlass</td>
+<td>描述基本类型数组的元数据信息，如数组长度、元素类型等</td>
+</tr>
+<tr>
+<td>ObjArrayKlass</td>
+<td>描述对象数组的元数据信息，如数组长度、元素类型等</td>
+</tr>
+<tr>
+<td>MethodKlass</td>
+<td>描述方法的元数据信息，如方法名、参数类型、返回值类型等</td>
+</tr>
+<tr>
+<td>ConstantPool</td>
+<td>描述类常量池的信息，如字符串、数字、符号引用等</td>
+</tr>
+<tr>
+<td>Symbol</td>
+<td>描述字符串的信息，如字符数组、字符串长度、哈希值等</td>
+</tr>
+<tr>
+<td>ConstantPoolCache</td>
+<td>保存常量池中的一些元素，如字符串、符号引用等的解析结果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Klass与InstanceKlass"><a href="#Klass与InstanceKlass" class="headerlink" title="Klass与InstanceKlass"></a>Klass与InstanceKlass</h3><p>Klass 对象用于表示类或接口的定义信息，而 instanceKlass 则用于表示类的实例信息。</p>
+<ul>
+<li>Klass</li>
+</ul>
+<p>Klass 对象包含了类或接口的元数据信息，例如类名、父类名、接口名、字段信息、方法信息等。Klass 对象还包含了一些与类的实例无关的信息，例如类变量、静态方法等。</p>
+<ul>
+<li>InstanceKlass</li>
+</ul>
+<p>instanceKlass 对象则用于表示类的实例信息，例如类的实例变量、实例方法等。instanceKlass 对象与 Klass 对象之间存在继承关系，一个 Klass 对象对应一个或多个 instanceKlass 对象。当类被实例化后，虚拟机会根据 Klass 对象创建一个 instanceKlass 对象，并将该对象的指针存储在实例对象的头部，以便访问该对象的实例变量和方法。</p>
+<p>在加载 Java 类时，虚拟机会首先创建 Klass 对象来表示类或接口的定义信息。在连接阶段，虚拟机会为 Klass 对象分配空间，并填充类变量的初始值。在初始化阶段，虚拟机会为类的静态变量赋初值，并执行类的初始化代码。当类被实例化时，虚拟机会根据 Klass 对象创建 instanceKlass 对象，并将该对象的指针存储在实例对象的头部。</p>
+<h3 id="一个类实例结构"><a href="#一个类实例结构" class="headerlink" title="一个类实例结构"></a>一个类实例结构</h3><p>MetaspaceObj</p>
+<pre><code>Metadata
+    klass
+        instanceKlass
+            instanceMirrorKlass描述java.lang.Class实例
+            instanceRefKlass描述java.lang.Reference的子类
+            instanceClassLoaderKlass
+
+        ArrayKlass
+            TypeArrayKlass描述java基本类型数组的数据结构
+            ObjectArrayKlass描述java中引用类型数组的数据结构。
+</code></pre><p>类的元信息是存储在元空间的。<br>普通的Java类在JVM对应的是instanceKlass的实例。三个类：</p>
+<ol>
+<li>InstanceMirrorKlass:用于表示java.lang.class, Java代码中获取到的class对象，实际上是这个C++类的实例。存储在堆区，学名镜像类。</li>
+<li>InstanceRefClass：用于表示Java.lang.ref.Referece的子类。</li>
+<li>InstanceClassLoader:用于遍历某个加载器加载的类。</li>
+</ol>
+<p>Java中的数组不是静态数组类型，是动态数据类型，既是运行时期生成的，Java数组的元信息用ArrayKlass的子类来表示</p>
+<ol>
+<li>TypeArrayKlass:表示基本类型的数组。</li>
+<li>ObjectArrayKlass:表示引用类型的数组。</li>
+</ol>
 
       
     </div>
@@ -623,7 +738,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -645,7 +760,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -701,7 +816,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#klass模型"><span class="nav-number">1.</span> <span class="nav-text">klass模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载的过程"><span class="nav-number">2.</span> <span class="nav-text">类加载的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载"><span class="nav-number">3.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#验证"><span class="nav-number">4.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">5.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">6.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化"><span class="nav-number">7.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载细节"><span class="nav-number">8.</span> <span class="nav-text">类加载细节</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的加载过程"><span class="nav-number">1.</span> <span class="nav-text">类的加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">1.1.</span> <span class="nav-text">加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加载时机"><span class="nav-number">1.1.1.</span> <span class="nav-text">加载时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接"><span class="nav-number">1.2.</span> <span class="nav-text">连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载"><span class="nav-number">1.5.</span> <span class="nav-text">卸载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各个阶段会遇到的异常"><span class="nav-number">2.</span> <span class="nav-text">各个阶段会遇到的异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot虚拟机中的OOP"><span class="nav-number">3.</span> <span class="nav-text">HotSpot虚拟机中的OOP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Klass与InstanceKlass"><span class="nav-number">3.1.</span> <span class="nav-text">Klass与InstanceKlass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个类实例结构"><span class="nav-number">3.2.</span> <span class="nav-text">一个类实例结构</span></a></li></ol></li></ol></div>
             
 
           </div>

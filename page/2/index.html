@@ -293,6 +293,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/02/java/distributed/rocksDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/12/02/java/distributed/rocksDB/" itemprop="url">RocksDB详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-02T14:39:04+08:00">
+                2022-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          RocksDB 详解
+性能好，支持事务。
+
+秒杀库存扣减中使用了缓存 + Write-Ahead Logging 技术。
+事务随机读写。Redo日志是追加文件顺序读写，性能差异有30-40倍。
+事务的实现上，MySQL使用的是WAL机制来的。所有的修改都先被写到日志中，然后再被应用到系统重。包括re
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/12/02/java/distributed/rocksDB/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1665,158 +1819,6 @@ ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下J
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/22/tomcat/tomcat_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Littlehui's Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/11/22/tomcat/tomcat_3/" itemprop="url">【tomcat调优系列3】Tomcat底层BIO和NIO实现原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-11-22T11:02:16+08:00">
-                2022-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Tomcat IO选择历史
-Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
-
-12&lt;Connector port="8080" protocol="org.apache.coyote.http11.Http11Ni oProtocol" connectionTimeout=
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/11/22/tomcat/tomcat_3/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1869,7 +1871,7 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1891,7 +1893,7 @@ Tomcat7时默认用的BIO,同步阻塞。可以通过配置修改为NIO
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-count">123</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
