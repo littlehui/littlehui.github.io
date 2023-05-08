@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="执行引擎JVM运行Java程序的一套子系统 两种解释器  字节码解释器     Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码  模板解释器     Java字节码-&amp;gt;硬件编码      底层实现过程      1. 申请一块内存：可读可写可执行。2. 将处理new字节码的硬编码拿过来     3. 将处理new字节码的硬编码写入申请的内存。     4. 申请一个函数指针，用这个函">
+<meta name="description" content="执行引擎JVM运行Java程序的一套子系统 解释器模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。 字节码解释器Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码 字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。 模板解释器Jav">
 <meta name="keywords" content="java,jvm调优">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【JVM深入理解系列2】执行引擎">
 <meta property="og:url" content="https://www.lilhui.com/2021/05/10/java/jvm/jvm_deep_2/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="执行引擎JVM运行Java程序的一套子系统 两种解释器  字节码解释器     Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码  模板解释器     Java字节码-&amp;gt;硬件编码      底层实现过程      1. 申请一块内存：可读可写可执行。2. 将处理new字节码的硬编码拿过来     3. 将处理new字节码的硬编码写入申请的内存。     4. 申请一个函数指针，用这个函">
+<meta property="og:description" content="执行引擎JVM运行Java程序的一套子系统 解释器模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。 字节码解释器Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码 字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。 模板解释器Jav">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-05-10T16:00:32.000Z">
+<meta property="og:updated_time" content="2023-05-08T14:17:13.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JVM深入理解系列2】执行引擎">
-<meta name="twitter:description" content="执行引擎JVM运行Java程序的一套子系统 两种解释器  字节码解释器     Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码  模板解释器     Java字节码-&amp;gt;硬件编码      底层实现过程      1. 申请一块内存：可读可写可执行。2. 将处理new字节码的硬编码拿过来     3. 将处理new字节码的硬编码写入申请的内存。     4. 申请一个函数指针，用这个函">
+<meta name="twitter:description" content="执行引擎JVM运行Java程序的一套子系统 解释器模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。 字节码解释器Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码 字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。 模板解释器Jav">
 
 
 
@@ -411,105 +411,129 @@
 
       
         <h2 id="执行引擎"><a href="#执行引擎" class="headerlink" title="执行引擎"></a>执行引擎</h2><p>JVM运行Java程序的一套子系统</p>
-<pre><code>两种解释器
-
-字节码解释器
-    Java字节码-&gt; C++代码-&gt;硬件编码
-
-模板解释器
-    Java字节码-&gt;硬件编码
-
-    底层实现过程
-
-    1. 申请一块内存：可读可写可执行。2. 将处理new字节码的硬编码拿过来
-    3. 将处理new字节码的硬编码写入申请的内存。
-    4. 申请一个函数指针，用这个函数指针执行这块内存。
-    5. 调用的时候，直接通过这个指针调用。
-</code></pre><h2 id="三种运行模式"><a href="#三种运行模式" class="headerlink" title="三种运行模式"></a>三种运行模式</h2><ol>
+<h3 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h3><p>模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。</p>
+<h4 id="字节码解释器"><a href="#字节码解释器" class="headerlink" title="字节码解释器"></a>字节码解释器</h4><p>Java字节码-&gt; C++代码-&gt;硬件编码</p>
+<p>字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。<br>在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。</p>
+<h4 id="模板解释器"><a href="#模板解释器" class="headerlink" title="模板解释器"></a>模板解释器</h4><p>Java字节码-&gt;硬件编码</p>
+<p>模板解释器则是使用预编译的机器码来替代每次执行时的解释，从而提高执行效率。<br>模板解释器的基本思想是将频繁使用的Java方法编译成本地机器码并缓存下来，<br>以后每次执行这个方法时直接调用缓存中的机器码，避免了解释执行带来的开销。</p>
+<p>底层实现过程</p>
+<ol>
+<li>申请一块内存：可读可写可执行。</li>
+<li>将处理new字节码的硬编码拿过来</li>
+<li>将处理new字节码的硬编码写入申请的内存。</li>
+<li>申请一个函数指针，用这个函数指针执行这块内存。</li>
+<li>调用的时候，直接通过这个指针调用。</li>
+</ol>
+<h3 id="三种运行模式"><a href="#三种运行模式" class="headerlink" title="三种运行模式"></a>三种运行模式</h3><ol>
 <li>-Xint</li>
 <li>-Xcomp</li>
 <li>-Xmixed</li>
 </ol>
-<h2 id="编译优化"><a href="#编译优化" class="headerlink" title="编译优化"></a>编译优化</h2><p>正常的C++函数生成的硬编码都有堆栈操作。</p>
+<table>
+<thead>
+<tr>
+<th>运行模式</th>
+<th>特点</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客户端模式</td>
+<td>针对交互式应用程序的默认模式，强调的是优秀的用户交互和较短的启动时间。</td>
+<td>优秀的用户交互，较短的启动时间。</td>
+<td>较低的性能，较高的内存消耗</td>
+</tr>
+<tr>
+<td>服务器模式</td>
+<td>针对长时间运行的服务器应用程序的默认模式，强调的是程序长时间稳定运行期间的高性能和稳定性。</td>
+<td>较高的性能和稳定性。</td>
+<td>较慢的启动时间</td>
+</tr>
+<tr>
+<td>混合模式</td>
+<td>混合客户端和服务器模式，根据应用程序的实际运行情况进行动态切换。</td>
+<td>结合了客户端和服务器模式的优点，可以根据应用程序的实际情况进行动态切换。</td>
+<td>初始启动时间较慢，切换时有性能损失。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h2><p>正常的C++函数生成的硬编码都有堆栈操作。</p>
 <ul>
 <li><p>字节码解释器<br>解释执行的<br>和编译器没关系</p>
 </li>
-<li><p>模板解释器<br>执行的因编码是即时编译器编译的。</p>
+<li><p>模板解释器<br>执行的硬编码是即时编译器编译的。</p>
 </li>
 </ul>
 <h3 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h3><p>即时编译器</p>
-<pre><code>C1
-    c1编译器在client模式下的即时编译器
-    1. 比C2搜集的数据少。触发宽松。
-    2. 编译优化比较浅。
-    3. C1编译器生成的代码执行效率低。
-C2
-    C2编译器是server模式下的即时编译器
-
-    1. 触发条件比较严格，程序运行一段时间后才执行。
-    2. 优化比较深。
-    3. 编译生成的代码比C1效率高
-混合编译器
-</code></pre><hr>
-<pre><code>GraalVM
-</code></pre><ul>
-<li><p>即时编译触发条件</p>
-<p>硬编码<br>热点代码</p>
-</li>
-</ul>
-<p>注意：即时编译的最小单位是代码块。</p>
 <ul>
-<li>N热度：</li>
+<li>C1<br>c1编译器在client模式下的即时编译器</li>
 </ul>
-<p>生成热点代码<br>client，N默认是1500<br>server，N默认是10000</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -client -XX:+PrintFlagsFinal -version</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>热度衰减：<br>new 7000<br>一段时间么执行后会2倍速递减 -&gt; 3500</p>
-</li>
-<li><p>经典故障</p>
-<p>  业务增长，加节点。热机切冷机</p>
-</li>
-</ul>
-<p>冷机：刚运行不久<br>热机：运行了一段时间</p>
-<ul>
-<li>节点。相同配置节点加入。负载均衡平摊压力。</li>
-</ul>
-<p>热机有热点代码缓存了，并发更大。</p>
 <ol>
-<li>热机能承受的并发大于冷机。</li>
-<li>冷机一边在增加流量一遍在即时编译。性能就降低。</li>
+<li>比C2搜集的数据少。触发宽松。</li>
+<li>编译优化比较浅。</li>
+<li>C1编译器生成的代码执行效率低。</li>
 </ol>
-<p>问题：热点代码缓存在哪里？<br>方法区：<br>CodeCache（调优方向之一）<br>server 2496 2M，<br>client模式下160k</p>
-<h2 id="即时编译是如何运行的"><a href="#即时编译是如何运行的" class="headerlink" title="即时编译是如何运行的"></a>即时编译是如何运行的</h2><p>VM_THREAD<br>GC</p>
-<p>队列存放及时编译任务。当触发即时编译时会将编译任务放到及时编译队列里。</p>
-<p>1、 触发及时编译任务入队列。<br>2、 VM_THREAD执行队列任务。</p>
-<p>异步。</p>
-<p>即时编译的线程有多少，如何调优？</p>
-<p>硬编码，热点代码<br>热点代码存在哪里？热点代码缓冲区在哪里？</p>
-<p>热点代码缓冲区，在方法区。</p>
+<ul>
+<li>C2<br>C2编译器是server模式下的即时编译器</li>
+</ul>
+<ol>
+<li>触发条件比较严格，程序运行一段时间后才执行。</li>
+<li>优化比较深。</li>
+<li>编译生成的代码比C1效率高</li>
+</ol>
+<p>混合编译器</p>
+<ul>
+<li>即时编译触发条件<br>即时编译的最小单位是代码块。</li>
+</ul>
+<ol>
+<li>方法被多次调用：当一个方法被调用多次之后，JIT编译器会根据统计信息来判断是否对该方法进行编译。</li>
+<li>热点代码：如果某一段代码被多次执行，且执行时间占据了总执行时间的一定比例，那么JIT编译器会将这段代码编译成本地代码，以提高其执行效率。</li>
+<li>被频繁调用的循环体：如果某个循环体被多次执行，且执行时间占据了总执行时间的一定比例，那么JIT编译器会将该循环体编译成本地代码，以提高其执行效率。 </li>
+</ol>
+<p>PS：反射调用：反射调用是一种运行时动态调用的方式，它会对JIT编译器造成困难，因为编译器难以在编译时确定要调用的方法和对象类型。<br>因此，在进行反射调用时，JIT编译器可能不会进行编译，以避免出现错误。</p>
+<ul>
+<li><p>N热度：<br>生成热点代码<br>client，N默认是1500<br>server，N默认是10000</p>
+</li>
+<li><p>热度衰减： new 7000<br>一段时间没执行后会2倍速递减 -&gt; 3500</p>
+</li>
+</ul>
+<h4 id="JIT编译的经典故障"><a href="#JIT编译的经典故障" class="headerlink" title="JIT编译的经典故障"></a>JIT编译的经典故障</h4><p>业务增长，加节点。热机切冷机，冷机还未进行JIT编译，效率不及热机。导致请求延迟。</p>
+<p>冷机：刚运行不久<br>热机：运行了一段时间<br>分析：<br>加节点时：相同配置节点加入，负载均衡平摊压力。 热机有热点代码缓存了，能承载的并发更大。<br>由于热机能承受的并发大于冷机。冷机一边在增加流量一遍在即时编译。性能就降低。在双重因素的<br>影响下，冷机反应速度降低。造成请求超时。</p>
+<p><strong>问题</strong>：热点代码缓存在哪里？<br>热点代码缓存在方法区： CodeCache（调优方向之一）<br>可以配置热点代码的大小，server模式是： 2496 2M，client模式下160k</p>
+<h2 id="即时编译是如何运行的"><a href="#即时编译是如何运行的" class="headerlink" title="即时编译是如何运行的"></a>即时编译是如何运行的</h2><p>JIT编译过程一般分为三个阶段：</p>
+<ol>
+<li>解释执行阶段：程序刚开始执行时，字节码解释器会逐行解释执行字节码指令，同时记录下被频繁执行的热点代码。</li>
+<li>编译准备阶段：当某段代码被执行的次数超过一定的阈值时，JIT编译器会将该段代码标记为“热点代码”，并对其进行编译准备工作，包括类型推断、方法内联、数据流分析等。</li>
+<li>编译执行阶段：JIT编译器将编译准备好的代码转换成本地机器代码，并执行该代码。此时程序的执行效率会有明显的提升。</li>
+</ol>
+<ul>
+<li>VM_THREAD<br>VM_THREAD 是 HotSpot 虚拟机中用来表示一个 Java 线程的数据结构。在 HotSpot 虚拟机内部，VM_THREAD<br>类型的变量主要被用来存储 Java 线程的状<br>态和相关信息，例如线程 ID、当前 Java 方法栈帧的指针、线程调用栈的栈帧信息、局部变量、操作数栈、返回值等等。</li>
+</ul>
+<p>热点数据触发后，队列存放既时编译任务，当触发即时编译时会将编译任务放到及时编译队列里。<br>其顺序：<br>1、 触发既时编译任务入队列。<br>2、 VM_THREAD执行队列任务。</p>
+<h3 id="JIT调优"><a href="#JIT调优" class="headerlink" title="JIT调优"></a>JIT调优</h3><ol>
+<li>即时编译的线程有多少，如何调优？</li>
+<li>硬编码，热点代码 热点代码存在哪里？热点代码缓冲区在哪里？<br>热点代码缓冲区，在方法区。</li>
+</ol>
 <ul>
 <li>逃逸分析</li>
 </ul>
-<p>逃逸<br>是一种现象</p>
-<pre><code>对象作用域
-    局部变量，非逃逸
-    非局部变量，逃逸。方法外，线程外。
-</code></pre><p>基于逃逸技术，JVM开发了三种优化技术。</p>
-<pre><code>1. 栈上分配
-2. 标量替换
-    标量： 不可再分，java中的基本类型就是标量。
-3. 锁消除
-    没竞争的锁，会消除掉。
-</code></pre><ul>
-<li>栈上分配</li>
+<p>逃逸分析（Escape Analysis）是Java虚拟机（JVM）对代码进行分析的一种技术，<br>旨在确定对象的生命周期是否跨越了某些线程或方法的边界。<br>在这种技术中，JVM会尝试分析对象的创建和使用情况，以判断对象是否逃逸出了方法的作用域，<br>进而决定是否可以对对象进行栈上分配等优化。</p>
+<p>逃逸分析的作用域是非局部变量。判断对象是否是局部变量，局部变量是非逃逸对象。非局部变量，逃逸，判断是否在<br>方法外，县城外被引用。如果没有则判断是逃逸。</p>
+<ul>
+<li>基于逃逸技术，JVM开发了三种优化技术。</li>
 </ul>
-<p>如何通过代码测试？</p>
-<pre><code>对象在兑取分配
-对象在虚拟机栈上分配。
-HSDB
-JDK8的栈上分配存在吗？
-生成一个对象100W次，在栈上是不是又100W个。如果没有，就存在栈上分配，不发生GC的情况下。
-</code></pre>
+<ol>
+<li>栈上分配<br>逃逸分析还可以判断出哪些对象的引用不会逃逸到方法的外部，这些对象可以直接分配在栈上。这个过程叫做栈上分配。通过栈上分配，可以进一步减少对堆的使用，减轻垃圾回收的压力，提高程序的性能。</li>
+<li>标量替换<br>逃逸分析首先会将对象拆解成若干个基本数据类型，这些基本数据类型可以直接保存在栈上。这个过程叫做标量替换。通过标量替换，可以将原本存储在堆上的对象的部分或全部字段分配到栈上，从而减少对堆的使用，进而提高程序的性能。</li>
+<li>锁消除<br>没竞争的锁，会消除掉。</li>
+</ol>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>如何通过代码测试是栈上分配？<br>对象在堆区分配，对象在虚拟机栈上分配。<br>工具：HSDB </li>
+<li>JDK8的栈上分配存在吗？<br>生成一个对象100W次，在栈上是不是又100W个。如果没有，就存在栈上分配，不发生GC的情况下。</li>
+</ol>
+
       
     </div>
     
@@ -717,7 +741,7 @@ JDK8的栈上分配存在吗？
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行引擎"><span class="nav-number">1.</span> <span class="nav-text">执行引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种运行模式"><span class="nav-number">2.</span> <span class="nav-text">三种运行模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译优化"><span class="nav-number">3.</span> <span class="nav-text">编译优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JIT"><span class="nav-number">3.1.</span> <span class="nav-text">JIT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#即时编译是如何运行的"><span class="nav-number">4.</span> <span class="nav-text">即时编译是如何运行的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行引擎"><span class="nav-number">1.</span> <span class="nav-text">执行引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解释器"><span class="nav-number">1.1.</span> <span class="nav-text">解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字节码解释器"><span class="nav-number">1.1.1.</span> <span class="nav-text">字节码解释器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板解释器"><span class="nav-number">1.1.2.</span> <span class="nav-text">模板解释器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种运行模式"><span class="nav-number">1.2.</span> <span class="nav-text">三种运行模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器"><span class="nav-number">2.</span> <span class="nav-text">编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JIT"><span class="nav-number">2.1.</span> <span class="nav-text">JIT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JIT编译的经典故障"><span class="nav-number">2.1.1.</span> <span class="nav-text">JIT编译的经典故障</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#即时编译是如何运行的"><span class="nav-number">3.</span> <span class="nav-text">即时编译是如何运行的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JIT调优"><span class="nav-number">3.1.</span> <span class="nav-text">JIT调优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
             
 
           </div>
