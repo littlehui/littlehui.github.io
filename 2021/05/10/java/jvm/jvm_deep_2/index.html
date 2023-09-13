@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="执行引擎JVM运行Java程序的一套子系统 解释器模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。 字节码解释器Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码 字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。 模板解释器Jav">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2023-05-08T14:17:13.074Z">
+<meta property="og:updated_time" content="2023-05-09T04:28:55.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JVM深入理解系列2】执行引擎">
 <meta name="twitter:description" content="执行引擎JVM运行Java程序的一套子系统 解释器模板解释器和字节码解释器都是JVM执行引擎中的一种实现方式，用于解释执行Java字节码指令。 字节码解释器Java字节码-&amp;gt; C++代码-&amp;gt;硬件编码 字节码解释器是JVM默认的执行引擎，其将Java字节码指令解释为对应的本地机器指令，然后交给CPU执行。在解释执行时，字节码解释器需要不停的解析和执行指令，效率相对较低。 模板解释器Jav">
@@ -531,7 +531,7 @@
 </ol>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
 <li>如何通过代码测试是栈上分配？<br>对象在堆区分配，对象在虚拟机栈上分配。<br>工具：HSDB </li>
-<li>JDK8的栈上分配存在吗？<br>生成一个对象100W次，在栈上是不是又100W个。如果没有，就存在栈上分配，不发生GC的情况下。</li>
+<li>JDK8的栈上分配存在吗？<br>生成一个对象100W次，在栈上是不是有100W个。如果没有，就存在栈上分配，不发生GC的情况下。</li>
 </ol>
 
       
@@ -653,7 +653,7 @@
               <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
             
               <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">今晚月光那么美，你说是的。</p>
+              <p class="site-description motion-element" itemprop="description">将军啊将军，像将军一样喝酒。</p>
           </div>
 
           <nav class="site-state motion-element">
