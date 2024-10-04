@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="gateway,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="背景网关选用的是Spring-boot-gateway，网关配置使用nacos持久化。 Spring的网关源码分析通过网关的源码分析，StripPrefixGatewayFilterFactory 通过parts值来截断请求的前缀。正常的是1，在执行过程中被刷新成了5。导致截断请求错误。 123456789101112131415@Overridepublic void start() &amp;#123">
+<meta name="keywords" content="gateway">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring boot gateway 网关压测时配置异常，导致服务返回405">
+<meta property="og:url" content="https://www.lilhui.com/2022/12/01/bugfix/bugfix_1/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="背景网关选用的是Spring-boot-gateway，网关配置使用nacos持久化。 Spring的网关源码分析通过网关的源码分析，StripPrefixGatewayFilterFactory 通过parts值来截断请求的前缀。正常的是1，在执行过程中被刷新成了5。导致截断请求错误。 123456789101112131415@Overridepublic void start() &amp;#123">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-12-05T05:48:02.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring boot gateway 网关压测时配置异常，导致服务返回405">
+<meta name="twitter:description" content="背景网关选用的是Spring-boot-gateway，网关配置使用nacos持久化。 Spring的网关源码分析通过网关的源码分析，StripPrefixGatewayFilterFactory 通过parts值来截断请求的前缀。正常的是1，在执行过程中被刷新成了5。导致截断请求错误。 123456789101112131415@Overridepublic void start() &amp;#123">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_1/">
+
+
+
+
+
+  <title>Spring boot gateway 网关压测时配置异常，导致服务返回405 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">古代有一位将军喝酒成瘾，将军啊将军，他越喝越有型。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/01/bugfix/bugfix_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring boot gateway 网关压测时配置异常，导致服务返回405</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T14:47:11+08:00">
+                2022-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bug/" itemprop="url" rel="index">
+                    <span itemprop="name">bug</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/12/01/bugfix/bugfix_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/01/bugfix/bugfix_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>网关选用的是Spring-boot-gateway，网关配置使用nacos持久化。</p>
+<h2 id="Spring的网关源码分析"><a href="#Spring的网关源码分析" class="headerlink" title="Spring的网关源码分析"></a>Spring的网关源码分析</h2><p>通过网关的源码分析，StripPrefixGatewayFilterFactory 通过parts值来截断请求的前缀。正常的是1，在执行过程中被刷新成了5。导致截断请求错误。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">this</span>.running.compareAndSet(<span class="keyword">false</span>, <span class="keyword">true</span>)) &#123;</span><br><span class="line">     # 30s 触发一次定时任务</span><br><span class="line">      <span class="keyword">this</span>.watchFuture = <span class="keyword">this</span>.taskScheduler.scheduleWithFixedDelay(</span><br><span class="line">            <span class="keyword">this</span>::nacosServicesWatch, <span class="keyword">this</span>.properties.getWatchDelay());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nacosServicesWatch</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 此处nacos 啥都没干, 就强制发送一个更新命令, 正常情况需要判断 service 是否存在更新</span></span><br><span class="line">   <span class="comment">// 因此此处可以作为修复bug的触发点</span></span><br><span class="line">   <span class="comment">// nacos doesn't support watch now , publish an event every 30 seconds.</span></span><br><span class="line">   <span class="keyword">this</span>.publisher.publishEvent(</span><br><span class="line">         <span class="keyword">new</span> HeartbeatEvent(<span class="keyword">this</span>, nacosWatchIndex.getAndIncrement()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由配置刷新机制"><a href="#路由配置刷新机制" class="headerlink" title="路由配置刷新机制"></a>路由配置刷新机制</h2><p>Spring gateway 启动后会缓存路由配置，并且，每隔30秒会从缓存刷新配置到具体的路由执行类。<br>在刷新路由配置的方法里加入了监控日志：<br>RouteDefinitionRouteLocator.loadGatewayFilters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ConfigurationUtils.bind(configuration, properties,</span><br><span class="line">      factory.shortcutFieldPrefix(), definition.getName(), validator);</span><br><span class="line"></span><br><span class="line">if (configuration instanceof StripPrefixGatewayFilterFactory.Config) &#123;</span><br><span class="line">   StripPrefixGatewayFilterFactory.Config stripConfig = (StripPrefixGatewayFilterFactory.Config)configuration;</span><br><span class="line">   if (stripConfig.getParts() &gt; 2) &#123;</span><br><span class="line">      String errorMessage = &quot;parts 异常：&quot; +  stripConfig.getParts()</span><br><span class="line">            + &quot;definition:&quot; + definition</span><br><span class="line">            + &quot;properties:&quot; + properties</span><br><span class="line">            + &quot;id:&quot; + id;</span><br><span class="line">      log.error(errorMessage, new RuntimeException(errorMessage));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>properties 是个Map，存放的是待刷新的part值，configuration 是被刷新的配置类，有一个属性 int parts。通过网关通过ConfigurationUtils.bind 来注入 configuration中的parts值。<br>以上代码修改后的异常日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">2022-07-15 13:46:38,233 - parts 异常：5definition:FilterDefinition&#123;name=&apos;StripPrefix&apos;, args=&#123;parts=1&#125;&#125;properties:&#123;parts=1&#125;id:pay-api-web</span><br><span class="line">java.lang.RuntimeException: parts 异常：5definition:FilterDefinition&#123;name=&apos;StripPrefix&apos;, args=&#123;parts=1&#125;&#125;properties:&#123;parts=1&#125;id:pay-api-web</span><br><span class="line">	at org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator.loadGatewayFilters(RouteDefinitionRouteLocator.java:183)</span><br><span class="line">	at org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator.getFilters(RouteDefinitionRouteLocator.java:212)</span><br><span class="line">	at org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator.convertToRoute(RouteDefinitionRouteLocator.java:143)</span><br><span class="line">	at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:100)</span><br><span class="line">	at reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop(FluxFlatMap.java:664)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在绑定后的 值是5. 但是properties里的是 {parts&#x3D;1}。 说明bug发生在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ConfigurationUtils.bind(configuration, properties,</span><br><span class="line">      factory.shortcutFieldPrefix(), definition.getName(), validator);</span><br></pre></td></tr></table></figure>
+
+<p>这一行ConfigurationUtils.bind 调用的是Spring 底层JavaBeanBinder的bind方法<br>进一步分析JavaBeanBinder.bind</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private &lt;T&gt; boolean bind(BeanSupplier&lt;T&gt; beanSupplier, BeanPropertyBinder propertyBinder, BeanProperty property) &#123;</span><br><span class="line">   String propertyName = property.getName();</span><br><span class="line">   ResolvableType type = property.getType();</span><br><span class="line">   Supplier&lt;Object&gt; value = property.getValue(beanSupplier);</span><br><span class="line">   Annotation[] annotations = property.getAnnotations();</span><br><span class="line">   //这行在设置后返回bound=5。有错！</span><br><span class="line">   Object bound = propertyBinder.bindProperty(propertyName,</span><br><span class="line">         Bindable.of(type).withSuppliedValue(value).withAnnotations(annotations));</span><br><span class="line">   if (bound == null) &#123;</span><br><span class="line">      return false;</span><br><span class="line">   &#125;</span><br><span class="line">   if (property.isSettable()) &#123;</span><br><span class="line">      property.setValue(beanSupplier, bound);</span><br><span class="line">   &#125;</span><br><span class="line">   else if (value == null || !bound.equals(value.get())) &#123;</span><br><span class="line">      throw new IllegalStateException(&quot;No setter found for property: &quot; + property.getName());</span><br><span class="line">   &#125;</span><br><span class="line">   return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object bound = propertyBinder.bindProperty(propertyName,</span><br><span class="line">         Bindable.of(type).withSuppliedValue(value).withAnnotations(annotations));</span><br></pre></td></tr></table></figure>
+
+<p>JavaBeanBinder 是spring boot底层bean属性处理类。</p>
+<h2 id="bind过程分析"><a href="#bind过程分析" class="headerlink" title="bind过程分析"></a>bind过程分析</h2><p>propertyBinder.bindProperty的后续调用链路<br>-&gt;Binder.bind<br>-&gt;BindConverter.cover<br>-&gt;TypeConverterSupport.convertIfNecessary<br>-&gt;TypeConverterSupport.doConvertValue<br>-&gt;TypeConverterSupport.doConvertTextValue</p>
+<p>doConvertTextValue方法有两行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">editor.setAsText(newTextValue);</span><br><span class="line">return editor.getValue();</span><br></pre></td></tr></table></figure>
+
+<p>editor是通过PropertyEditorRegistrySupport.createDefaultEditors()初始化，一个类型一个对象。在执行的时候通过propertyEditorRegistry.getDefaultEditor(requiredType)获取。 如果requiredType相同，获取的就是同一个对象。<br>所以当有2次调用获取的editor相同，就可能有并发问题。时序如下：<br>A：editor.setAsText(1)<br>B：editor.setAsText(5)<br>A: return editor.getValue();<br>此时A获取到的就是5。与期望的值不同。造成执行错误。</p>
+<h2 id="错误分析总结"><a href="#错误分析总结" class="headerlink" title="错误分析总结"></a>错误分析总结</h2><ol>
+<li>spring cloud gateway和nacos30秒一次心跳，每次心跳会从内存中刷新路由规则到执行对象。<br>刷新过程调用的是ConfigurationUtils.bind方法，此方法依赖的PropertyEditor。对象对于每个类型是单例的，如果同时有2个相同类型的值进行bind，可能产生并发问题。</li>
+<li>压测时gateway的负载高。RouteDefinitionRouteLocator.getRoutes()方法并发调用RouteDefinitionRouteLocator.loadGatewayFilters。</li>
+<li>RouteDefinitionRouteLocator.loadGatewayFilters依赖的方法ConfigurationUtils.bind有并发问题 导致路由配置错乱。</li>
+</ol>
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><p>重现方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.common.collect.Lists;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.BeansException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.BeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.BeanFactoryAware;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.FilterDefinition;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.GatewayFilter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.OrderedGatewayFilter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.factory.GatewayFilterFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.factory.StripPrefixGatewayFilterFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.filter.factory.StripPrefixGatewayFilterFactory.Config;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.support.ConfigurationUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.gateway.support.HasRouteId;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.Ordered;</span><br><span class="line"><span class="keyword">import</span> org.springframework.expression.spel.standard.SpelExpressionParser;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ActiveProfiles;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.Validator;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> littlehui</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022/7/18 22:45</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>()</span></span><br><span class="line">@ActiveProfiles("local")</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RouteDefinitionRouteLocatorTest</span>   <span class="keyword">implements</span> <span class="title">BeanFactoryAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   Logger logger = LoggerFactory.getLogger(RouteDefinitionRouteLocatorTest<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> Validator validator;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> SpelExpressionParser parser = <span class="keyword">new</span> SpelExpressionParser();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> BeanFactory beanFactory;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Autowired</span></span><br><span class="line">   <span class="keyword">private</span> List&lt;GatewayFilterFactory&gt; gatewayFilterFactoryList;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, GatewayFilterFactory&gt; gatewayFilterFactories = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">concurrentTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       * assume we have below gateway route config</span></span><br><span class="line"><span class="comment">       *</span></span><br><span class="line"><span class="comment">       - id: r1</span></span><br><span class="line"><span class="comment">       uri: lb://service1</span></span><br><span class="line"><span class="comment">       predicates:</span></span><br><span class="line"><span class="comment">       - Path=/gateway/auth/**</span></span><br><span class="line"><span class="comment">       filters:</span></span><br><span class="line"><span class="comment">       - StripPrefix=1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - id: r2</span></span><br><span class="line"><span class="comment">       uri: lb://service2</span></span><br><span class="line"><span class="comment">       predicates:</span></span><br><span class="line"><span class="comment">       - Path=/gateway/api/business/**</span></span><br><span class="line"><span class="comment">       filters:</span></span><br><span class="line"><span class="comment">       - StripPrefix=2</span></span><br><span class="line"><span class="comment">       * then we can construct the  FilterDefinition to mock this config</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line"></span><br><span class="line">      FilterDefinition f1 = <span class="keyword">new</span> FilterDefinition();</span><br><span class="line">      f1.setName(<span class="string">"StripPrefix"</span>);</span><br><span class="line">      f1.setArgs(<span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">      f1.getArgs().put(<span class="string">"_genkey_0"</span>, <span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line">      FilterDefinition f2 = <span class="keyword">new</span> FilterDefinition();</span><br><span class="line">      f2.setName(<span class="string">"Retry"</span>);</span><br><span class="line">      f2.setArgs(<span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">      f2.getArgs().put(<span class="string">"retries"</span>, <span class="string">"5"</span>);</span><br><span class="line"></span><br><span class="line">      Thread t1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">               loadGatewayFilters(<span class="string">"r1"</span>, Lists.newArrayList(f1));</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;, <span class="string">"prefix1"</span>);</span><br><span class="line"></span><br><span class="line">      Thread t2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">               loadGatewayFilters(<span class="string">"r2"</span>, Lists.newArrayList(f2));</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;, <span class="string">"prefix2"</span>);</span><br><span class="line"></span><br><span class="line">      Thread t22 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">               loadGatewayFilters(<span class="string">"r2"</span>, Lists.newArrayList(f2));</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;, <span class="string">"prefix2"</span>);</span><br><span class="line"></span><br><span class="line">      Thread t11 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">               loadGatewayFilters(<span class="string">"r1"</span>, Lists.newArrayList(f1));</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;, <span class="string">"prefix1"</span>);</span><br><span class="line"></span><br><span class="line">      t1.start();</span><br><span class="line">      t2.start();</span><br><span class="line">      t11.start();</span><br><span class="line">      t22.start();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">         <span class="keyword">if</span> (t1.isInterrupted() || t11.isInterrupted() || t2.isInterrupted() || t22.isInterrupted()) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function">List&lt;GatewayFilter&gt; <span class="title">loadGatewayFilters</span><span class="params">(String id,</span></span></span><br><span class="line"><span class="function"><span class="params">                                          List&lt;FilterDefinition&gt; filterDefinitions)</span> </span>&#123;</span><br><span class="line">      ArrayList&lt;GatewayFilter&gt; ordered = <span class="keyword">new</span> ArrayList&lt;&gt;(filterDefinitions.size());</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; filterDefinitions.size(); i++) &#123;</span><br><span class="line">         FilterDefinition definition = filterDefinitions.get(i);</span><br><span class="line">         GatewayFilterFactory factory = <span class="keyword">this</span>.gatewayFilterFactories</span><br><span class="line">                 .get(definition.getName());</span><br><span class="line">         <span class="keyword">if</span> (factory == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                    <span class="string">"Unable to find GatewayFilterFactory with name "</span></span><br><span class="line">                            + definition.getName());</span><br><span class="line">         &#125;</span><br><span class="line">         Map&lt;String, String&gt; args = definition.getArgs();</span><br><span class="line">         <span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">            logger.debug(<span class="string">"RouteDefinition "</span> + id + <span class="string">" applying filter "</span> + args + <span class="string">" to "</span></span><br><span class="line">                    + definition.getName());</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         Map&lt;String, Object&gt; properties = factory.shortcutType().normalize(args,</span><br><span class="line">                 factory, <span class="keyword">this</span>.parser, <span class="keyword">this</span>.beanFactory);</span><br><span class="line"></span><br><span class="line">         Object configuration = factory.newConfig();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*          //加锁解决</span></span><br><span class="line"><span class="comment">            synchronized (this) &#123;</span></span><br><span class="line"><span class="comment">                ConfigurationUtils.bind(configuration, properties,</span></span><br><span class="line"><span class="comment">                        factory.shortcutFieldPrefix(), definition.getName(), validator);</span></span><br><span class="line"><span class="comment">            &#125;*/</span></span><br><span class="line"></span><br><span class="line">         ConfigurationUtils.bind(configuration, properties,</span><br><span class="line">                 factory.shortcutFieldPrefix(), definition.getName(), validator);</span><br><span class="line">         <span class="comment">// some filters require routeId</span></span><br><span class="line">         <span class="comment">// <span class="doctag">TODO:</span> is there a better place to apply this?</span></span><br><span class="line">         <span class="keyword">if</span> (configuration <span class="keyword">instanceof</span> HasRouteId) &#123;</span><br><span class="line">            HasRouteId hasRouteId = (HasRouteId) configuration;</span><br><span class="line">            hasRouteId.setRouteId(id);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         GatewayFilter gatewayFilter = factory.apply(configuration);</span><br><span class="line"></span><br><span class="line">         <span class="comment">//asset statement start</span></span><br><span class="line">         <span class="keyword">if</span> (configuration <span class="keyword">instanceof</span> StripPrefixGatewayFilterFactory.Config) &#123;</span><br><span class="line">            <span class="keyword">int</span> parts = ((Config) configuration).getParts();</span><br><span class="line">            <span class="keyword">if</span> (StringUtils.equals(<span class="string">"r1"</span>, id) &amp;&amp; !StringUtils.equals(<span class="string">"1"</span>, String.valueOf(parts))) &#123;</span><br><span class="line">               logger.error(<span class="string">"for router id r1,expect parts is 1,but actual is &#123;&#125;"</span>, parts);</span><br><span class="line">               Thread.currentThread().interrupt();</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (StringUtils.equals(<span class="string">"r2"</span>, id) &amp;&amp; !StringUtils</span><br><span class="line">                    .equals(<span class="string">"5"</span>, String.valueOf(parts))) &#123;</span><br><span class="line">               logger.error(<span class="string">"for router id r2,expect parts is 2,but actual is &#123;&#125;"</span>, parts);</span><br><span class="line">               Thread.currentThread().interrupt();</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">//asset statement end</span></span><br><span class="line"></span><br><span class="line">         <span class="keyword">if</span> (gatewayFilter <span class="keyword">instanceof</span> Ordered) &#123;</span><br><span class="line">            ordered.add(gatewayFilter);</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ordered.add(<span class="keyword">new</span> OrderedGatewayFilter(gatewayFilter, i + <span class="number">1</span>));</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> ordered;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBeanFactory</span><span class="params">(BeanFactory beanFactory)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.beanFactory = beanFactory;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Before</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      gatewayFilterFactoryList.forEach(</span><br><span class="line">              factory -&gt; <span class="keyword">this</span>.gatewayFilterFactories.put(factory.name(), factory));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gateway/" rel="tag"># gateway</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/12/01/java/practice/trade_1/" rel="next" title="电商项目数据高可用架构设计">
+                <i class="fa fa-chevron-left"></i> 电商项目数据高可用架构设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/12/01/bugfix/bugfix_0/" rel="prev" title="多数据源项目下dubbo调用，获取的数据源不正确">
+                多数据源项目下dubbo调用，获取的数据源不正确 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring的网关源码分析"><span class="nav-number">2.</span> <span class="nav-text">Spring的网关源码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由配置刷新机制"><span class="nav-number">3.</span> <span class="nav-text">路由配置刷新机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind过程分析"><span class="nav-number">4.</span> <span class="nav-text">bind过程分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误分析总结"><span class="nav-number">5.</span> <span class="nav-text">错误分析总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附件"><span class="nav-number">6.</span> <span class="nav-text">附件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

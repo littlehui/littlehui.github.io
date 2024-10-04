@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="redis,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Redis学习1】核心数据结构与高性能原理">
+<meta property="og:url" content="https://www.lilhui.com/2022/06/29/redis/redis_core_1/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d">
+<meta property="og:image" content="https://images.lilhui.com/5a5b50442717feb7d0a23dd21b64d570">
+<meta property="og:image" content="https://images.lilhui.com/8ea1cfd959c1da3d3febafbff977c492">
+<meta property="og:image" content="https://images.lilhui.com/50e1a804785e735f677e9844230bb37d">
+<meta property="og:image" content="https://images.lilhui.com/ff9c0592b6fc90f5b541809cbd3cb90c">
+<meta property="og:image" content="https://images.lilhui.com/ff9c0592b6fc90f5b541809cbd3cb90c">
+<meta property="og:image" content="https://images.lilhui.com/62e6f348f1bde713939375c504320454">
+<meta property="og:image" content="https://images.lilhui.com/a73277f489af351a18afef12a4a309ad">
+<meta property="og:image" content="https://images.lilhui.com/a9e7bcdfdb7f96bf0f13595f44c40792">
+<meta property="og:image" content="https://images.lilhui.com/a32160b24d2b4685bad068eb3afd1ca2">
+<meta property="og:image" content="https://images.lilhui.com/a389d879e58447147e4ce1ddcab47473">
+<meta property="og:image" content="https://images.lilhui.com/31491901442e1895639eab5095e5eee6">
+<meta property="og:image" content="https://images.lilhui.com/3783a4643c2467640defa05085821cd7">
+<meta property="og:image" content="https://images.lilhui.com/f693785556dbdb72de891f82df20830d">
+<meta property="og:image" content="https://images.lilhui.com/5c41f408bd96434d668b17cb147b8603">
+<meta property="og:updated_time" content="2022-06-29T08:11:36.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Redis学习1】核心数据结构与高性能原理">
+<meta name="twitter:description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
+<meta name="twitter:image" content="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/">
+
+
+
+
+
+  <title>【Redis学习1】核心数据结构与高性能原理 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">古代有一位将军喝酒成瘾，将军啊将军，他越喝越有型。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【Redis学习1】核心数据结构与高性能原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-29T15:14:58+08:00">
+                2022-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/06/29/redis/redis_core_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/06/29/redis/redis_core_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redis-单线程为什么还能这么快？"><a href="#Redis-单线程为什么还能这么快？" class="headerlink" title="Redis 单线程为什么还能这么快？"></a>Redis 单线程为什么还能这么快？</h2><p>因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用<br>Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。</p>
+<h2 id="Redis单线程如何处理那么多的并发客户端链接？"><a href="#Redis单线程如何处理那么多的并发客户端链接？" class="headerlink" title="Redis单线程如何处理那么多的并发客户端链接？"></a>Redis单线程如何处理那么多的并发客户端链接？</h2><p>Redis的<strong>IO多路复用</strong>：redis利用epoll来实现IO多路复用，将连接信息和事件放到队列中，依次放到 文件事件分派器，事件分派器将事件分发给事件处理器。</p>
+<p><img src="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d" alt="图片"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看redis支持的最大连接数，在redis.conf文件中可修改<span class="comment"># maxclients 10000 </span></span></span><br><span class="line">        127.0.0.1:6379&gt; CONFIG GET maxclients </span><br><span class="line">        ##1) "maxclients" 4 </span><br><span class="line">        ##2) "10000"</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些高级命令"><a href="#一些高级命令" class="headerlink" title="一些高级命令"></a>一些高级命令</h2><p>keys: 全量遍历，用来列出所有满足特定正则字符串规则的key.性能比较差。避免使用。<br>scan: 渐进式遍历。SCAN cursor [MATCH pattern] [COUNT count]</p>
+<p>scan 参数提供了三个参数，第一个是 cursor 整数值(hash桶的索引值)，第二个是 key 的正则模式， 第三个是一次遍历的key的数量(参考值，底层遍历的数量不一定)，并不是符合条件的结果数量。第 一次遍历时，cursor 值为 0，然后将返回结果中第一个整数值作为下一次遍历的 cursor。一直遍历 到返回的 cursor 值为 0 时结束。<br>注意：但是scan并非完美无瑕， 如果在scan的过程中如果有键的变化（增加、 删除、 修改） ，那 么遍历效果可能会碰到如下问题： 新增的键可能没有遍历到， 遍历出了重复的键等情况， 也就是说 scan并不能保证完整的遍历出来所有的键， 这些是我们在开发时需要考虑的。</p>
+<p>Info：查看redis服务运行信息，分为 9 大块，每个块都有非常多的参数，这 9 个块分别是:</p>
+<p>Server 服务器运行的环境参数<br>Clients 客户端相关信息<br>Memory 服务器运行内存统计数据<br>Persistence 持久化信息<br>Stats 通用统计数据<br>Replication 主从复制相关信息<br>CPU CPU 使用情况<br>Cluster 集群信息<br>KeySpace 键值对统计数量信息</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p><img src="https://images.lilhui.com/5a5b50442717feb7d0a23dd21b64d570" alt="图片"></p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">字符串常用操作</span><br><span class="line">SET  key  value 			//存入字符串键值对</span><br><span class="line">MSET  key  value [key value ...] 	//批量存储字符串键值对</span><br><span class="line">SETNX  key  value 		//存入一个不存在的字符串键值对</span><br><span class="line">GET  key 			//获取一个字符串键值</span><br><span class="line">MGET  key  [key ...]	 	//批量获取字符串键值</span><br><span class="line">DEL  key  [key ...] 		//删除一个键</span><br><span class="line">EXPIRE  key  seconds 		//设置一个键的过期时间(秒)</span><br><span class="line"></span><br><span class="line">原子加减</span><br><span class="line">INCR  key 			//将key中储存的数字值加1</span><br><span class="line">DECR  key 			//将key中储存的数字值减1</span><br><span class="line">INCRBY  key  increment 		//将key所储存的值加上increment</span><br><span class="line">DECRBY  key  decrement 	//将key所储存的值减去decrement</span><br><span class="line"></span><br><span class="line">计数器</span><br><span class="line">INCR article:readcount:&#123;文章id&#125;</span><br><span class="line">GET article:readcount:&#123;文章id&#125; </span><br><span class="line"></span><br><span class="line">Web集群session共享</span><br><span class="line">spring session + redis实现session共享</span><br><span class="line"></span><br><span class="line">分布式系统全局序列号	</span><br><span class="line">INCRBY  orderId  1000</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hash结构"><a href="#Hash结构" class="headerlink" title="Hash结构"></a>Hash结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Hash常用操作</span><br><span class="line">HSET  key  field  value 			//存储一个哈希表key的键值</span><br><span class="line">HSETNX  key  field  value 		//存储一个不存在的哈希表key的键值</span><br><span class="line">HMSET  key  field  value [field value ...] 	//在一个哈希表key中存储多个键值对</span><br><span class="line">HGET  key  field 				//获取哈希表key对应的field键值</span><br><span class="line">HMGET  key  field  [field ...] 		//批量获取哈希表key中多个field键值</span><br><span class="line">HDEL  key  field  [field ...] 		//删除哈希表key中的field键值</span><br><span class="line">HLEN  key				//返回哈希表key中field的数量</span><br><span class="line">HGETALL key				//返回哈希表key中所有的键值</span><br><span class="line"></span><br><span class="line">HINCRBY  key  field  increment 		//为哈希表key中field键的值加上增量increment</span><br><span class="line"></span><br><span class="line">对象缓存</span><br><span class="line">HMSET  user  &#123;userId&#125;:name  zhuge  &#123;userId&#125;:balance  1888</span><br><span class="line">HMSET  user  1:name  zhuge  1:balance  1888</span><br><span class="line">HMGET  user  1:name  1:balance</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/8ea1cfd959c1da3d3febafbff977c492" alt="图片"><br>表内容<br><img src="https://images.lilhui.com/50e1a804785e735f677e9844230bb37d" alt="图片"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">电商购物车</span><br><span class="line">1）以用户id为key</span><br><span class="line">2）商品id为field</span><br><span class="line">3）商品数量为value</span><br><span class="line"></span><br><span class="line">购物车操作</span><br><span class="line">添加商品hset cart:1001 10088 1</span><br><span class="line">增加数量hincrby cart:1001 10088 1</span><br><span class="line">商品总数hlen cart:1001</span><br><span class="line">删除商品hdel cart:1001 10088</span><br><span class="line">获取购物车所有商品hgetall cart:1001</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>hash结构的优点<br>优点<br>1）同类数据归类整合储存，方便数据管理<br>2）相比string操作消耗内存与cpu更小<br>3）相比string储存更节省空间</li>
+<li>hash结构的缺点<br>缺点<br>过期功能不能使用在field上，只能用在key上<br>Redis集群架构下不适合大规模使用</li>
+</ul>
+<h3 id="List结构"><a href="#List结构" class="headerlink" title="List结构"></a>List结构</h3><p><img src="https://images.lilhui.com/ff9c0592b6fc90f5b541809cbd3cb90c" alt="图片"></p>
+<ul>
+<li><p>常用操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List常用操作</span><br><span class="line">LPUSH  key  value [value ...] 		//将一个或多个值value插入到key列表的表头(最左边)</span><br><span class="line">RPUSH  key  value [value ...]	 	//将一个或多个值value插入到key列表的表尾(最右边)</span><br><span class="line">LPOP  key			//移除并返回key列表的头元素</span><br><span class="line">RPOP  key			//移除并返回key列表的尾元素</span><br><span class="line">LRANGE  key  start  stop		//返回列表key中指定区间内的元素，区间以偏移量start和stop指定</span><br><span class="line"></span><br><span class="line">BLPOP  key  [key ...]  timeout	//从key列表表头弹出一个元素，若列表中没有元素，阻塞等待					timeout秒,如果timeout=0,一直阻塞等待</span><br><span class="line">BRPOP  key  [key ...]  timeout 	//从key列表表尾弹出一个元素，若列表中没有元素，阻塞等待					timeout秒,如果timeout=0,一直阻塞等待</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用场景</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">常用数据结构</span><br><span class="line">Stack(栈) = LPUSH + LPOP</span><br><span class="line">Queue(队列）= LPUSH + RPOP</span><br><span class="line">Blocking MQ(阻塞队列）= LPUSH + BRPOP</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://images.lilhui.com/ff9c0592b6fc90f5b541809cbd3cb90c" alt="图片"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">微博消息和微信公号消息</span><br><span class="line">诸葛老师关注了MacTalk，备胎说车等大V</span><br><span class="line">1）MacTalk发微博，消息ID为10018</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125;  10018</span><br><span class="line">2）备胎说车发微博，消息ID为10086</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125; 10086</span><br><span class="line">3）查看最新微博消息</span><br><span class="line">LRANGE  msg:&#123;诸葛老师-ID&#125;  0  4</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/62e6f348f1bde713939375c504320454" alt="图片"></p>
+<h3 id="Set结构"><a href="#Set结构" class="headerlink" title="Set结构"></a>Set结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Set常用操作</span><br><span class="line">SADD  key  member  [member ...]			//往集合key中存入元素，元素存在则忽略，</span><br><span class="line">							若key不存在则新建</span><br><span class="line">SREM  key  member  [member ...]			//从集合key中删除元素</span><br><span class="line">SMEMBERS  key					//获取集合key中所有元素</span><br><span class="line">SCARD  key					//获取集合key的元素个数</span><br><span class="line">SISMEMBER  key  member			//判断member元素是否存在于集合key中</span><br><span class="line">SRANDMEMBER  key  [count]			//从集合key中选出count个元素，元素不从key中删除</span><br><span class="line">SPOP  key  [count]				//从集合key中选出count个元素，元素从key中删除</span><br><span class="line"></span><br><span class="line">Set运算操作</span><br><span class="line">SINTER  key  [key ...] 				//交集运算</span><br><span class="line">SINTERSTORE  destination  key  [key ..]		//将交集结果存入新集合destination中</span><br><span class="line">SUNION  key  [key ..] 				//并集运算</span><br><span class="line">SUNIONSTORE  destination  key  [key ...]		//将并集结果存入新集合destination中</span><br><span class="line">SDIFF  key  [key ...] 				//差集运算</span><br><span class="line">SDIFFSTORE  destination  key  [key ...]		//将差集结果存入新集合destination中</span><br><span class="line"></span><br><span class="line">微信抽奖小程序</span><br><span class="line">1）点击参与抽奖加入集合</span><br><span class="line">SADD key &#123;userlD&#125;</span><br><span class="line">2）查看参与抽奖所有用户</span><br><span class="line">SMEMBERS key	  </span><br><span class="line">3）抽取count名中奖者</span><br><span class="line">SRANDMEMBER key [count] / SPOP key [count]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/a73277f489af351a18afef12a4a309ad" alt="图片"></p>
+<ul>
+<li>应用场景</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">微信微博点赞，收藏，标签</span><br><span class="line">1) 点赞</span><br><span class="line">SADD  like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">2) 取消点赞</span><br><span class="line">SREM like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">3) 检查用户是否点过赞</span><br><span class="line">SISMEMBER  like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">4) 获取点赞的用户列表</span><br><span class="line">SMEMBERS like:&#123;消息ID&#125;</span><br><span class="line">5) 获取点赞用户数 </span><br><span class="line">SCARD like:&#123;消息ID&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/a9e7bcdfdb7f96bf0f13595f44c40792" alt="图片"></p>
+<ul>
+<li>集合操作<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SINTER set1 set2 set3  &#123; c &#125;</span><br><span class="line">SUNION set1 set2 set3  &#123; a,b,c,d,e &#125;</span><br><span class="line">SDIFF set1 set2 set3  &#123; a &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://images.lilhui.com/a32160b24d2b4685bad068eb3afd1ca2" alt="图片"></p>
+<ul>
+<li>集合操作实现微博关注模型</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">集合操作实现微博微信关注模型</span><br><span class="line">1) 诸葛老师关注的人: </span><br><span class="line"><span class="meta">zhugeSet-&gt;</span><span class="bash"> &#123;guojia, xushu&#125;</span></span><br><span class="line">2) 杨过老师关注的人:</span><br><span class="line"><span class="meta"> yangguoSet--&gt;</span><span class="bash"> &#123;zhuge, baiqi, guojia, xushu&#125;</span></span><br><span class="line">3) 郭嘉老师关注的人: </span><br><span class="line"><span class="meta">guojiaSet-&gt;</span><span class="bash"> &#123;zhuge, yangguo, baiqi, xushu, xunyu)</span></span><br><span class="line">4) 我和杨过老师共同关注: </span><br><span class="line">SINTER zhugeSet yangguoSet--&gt; &#123;guojia, xushu&#125;</span><br><span class="line">5) 我关注的人也关注他(杨过老师): </span><br><span class="line">SISMEMBER guojiaSet yangguo </span><br><span class="line">SISMEMBER xushuSet yangguo</span><br><span class="line">6) 我可能认识的人: </span><br><span class="line">SDIFF yangguoSet zhugeSet-&gt;(zhuge, baiqi&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/a389d879e58447147e4ce1ddcab47473" alt="图片"></p>
+<p><img src="https://images.lilhui.com/31491901442e1895639eab5095e5eee6" alt="图片"></p>
+<ul>
+<li>集合操作实现电商商品筛选</li>
+</ul>
+<p><img src="https://images.lilhui.com/3783a4643c2467640defa05085821cd7" alt="图片"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SADD  brand:huawei  P40</span><br><span class="line">SADD  brand:xiaomi  mi-10</span><br><span class="line">SADD  brand:iPhone iphone12</span><br><span class="line">SADD os:android  P40  mi-10</span><br><span class="line">SADD cpu:brand:intel  P40  mi-10</span><br><span class="line">SADD ram:8G  P40  mi-10  iphone12</span><br><span class="line"></span><br><span class="line">SINTER  os:android  cpu:brand:intel  ram:8G   &#123;P40，mi-10&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Zset有序集合结构"><a href="#Zset有序集合结构" class="headerlink" title="Zset有序集合结构"></a>Zset有序集合结构</h3><p><img src="https://images.lilhui.com/f693785556dbdb72de891f82df20830d" alt="图片"></p>
+<ul>
+<li><p>ZSet常用操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ZSet常用操作</span><br><span class="line">ZADD key score member [[score member]…]	//往有序集合key中加入带分值元素</span><br><span class="line">ZREM key member [member …]		//从有序集合key中删除元素</span><br><span class="line">ZSCORE key member 			//返回有序集合key中元素member的分值</span><br><span class="line">ZINCRBY key increment member		//为有序集合key中元素member的分值加上increment </span><br><span class="line">ZCARD key				//返回有序集合key中元素个数</span><br><span class="line">ZRANGE key start stop [WITHSCORES]	//正序获取有序集合key从start下标到stop下标的元素</span><br><span class="line">ZREVRANGE key start stop [WITHSCORES]	//倒序获取有序集合key从start下标到stop下标的元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ZSet集合操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ZUNIONSTORE destkey numkeys key [key ...] 	//并集计算</span><br><span class="line">ZINTERSTORE destkey numkeys key [key …]	//交集计算</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>应用场景</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Zset集合操作实现排行榜</span><br><span class="line">1）点击新闻</span><br><span class="line">ZINCRBY  hotNews:20190819  1  守护香港</span><br><span class="line">2）展示当日排行前十</span><br><span class="line">ZREVRANGE  hotNews:20190819  0  9  WITHSCORES </span><br><span class="line">3）七日搜索榜单计算</span><br><span class="line">ZUNIONSTORE  hotNews:20190813-20190819  7 </span><br><span class="line">hotNews:20190813  hotNews:20190814... hotNews:20190819</span><br><span class="line">4）展示七日排行前十</span><br><span class="line">ZREVRANGE hotNews:20190813-20190819  0  9  WITHSCORES</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://images.lilhui.com/5c41f408bd96434d668b17cb147b8603" alt="图片"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/04/28/java/spring/spring_deep_3/" rel="next" title="【深入理解Spring系列2】动态代理">
+                <i class="fa fa-chevron-left"></i> 【深入理解Spring系列2】动态代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/06/29/redis/redis_core_2/" rel="prev" title="【Redis学习2】redis持久化，主从，哨兵架构">
+                【Redis学习2】redis持久化，主从，哨兵架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-单线程为什么还能这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 单线程为什么还能这么快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis单线程如何处理那么多的并发客户端链接？"><span class="nav-number">2.</span> <span class="nav-text">Redis单线程如何处理那么多的并发客户端链接？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些高级命令"><span class="nav-number">3.</span> <span class="nav-text">一些高级命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">4.1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash结构"><span class="nav-number">4.2.</span> <span class="nav-text">Hash结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List结构"><span class="nav-number">4.3.</span> <span class="nav-text">List结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set结构"><span class="nav-number">4.4.</span> <span class="nav-text">Set结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zset有序集合结构"><span class="nav-number">4.5.</span> <span class="nav-text">Zset有序集合结构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

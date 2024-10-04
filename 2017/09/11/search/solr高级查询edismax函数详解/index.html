@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="solr,edismax,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant 支持小数点的常量例如，1.5，查询表达式就是：_val_:1">
+<meta name="keywords" content="solr,edismax">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solr高级查询edismax函数详解">
+<meta property="og:url" content="https://www.lilhui.com/2017/09/11/search/solr高级查询edismax函数详解/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant 支持小数点的常量例如，1.5，查询表达式就是：_val_:1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+<meta property="og:updated_time" content="2017-09-27T06:07:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="solr高级查询edismax函数详解">
+<meta name="twitter:description" content="前言 最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。    使用方式详细见官方文档介绍，这里不做说明，我们重点讲solr edismax所涉及到的函数。    bf函数列表 constant 支持小数点的常量例如，1.5，查询表达式就是：_val_:1">
+<meta name="twitter:image" content="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2017/09/11/search/solr高级查询edismax函数详解/">
+
+
+
+
+
+  <title>solr高级查询edismax函数详解 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">古代有一位将军喝酒成瘾，将军啊将军，他越喝越有型。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2017/09/11/search/solr高级查询edismax函数详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Littlehui">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">solr高级查询edismax函数详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-11T17:29:43+08:00">
+                2017-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/搜索/" itemprop="url" rel="index">
+                    <span itemprop="name">搜索</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/11/search/solr高级查询edismax函数详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/09/11/search/solr高级查询edismax函数详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>最近遇到solr查询中加入字段权重的需求，自然而然地想到了edismax这个功能。通过系统的学习和文档阅读，大概了解solr 对于函数式查询的支持方式。为了便于记忆，这里对常用公式进行整理说明。  </p>
+</blockquote>
+<p>使用方式详细见<a href="https://cwiki.apache.org/confluence/display/solr/The+DisMax+Query+Parser" target="_blank" rel="noopener">官方文档介绍</a><br>，这里不做说明，我们重点讲solr edismax所涉及到的函数。   </p>
+<h2 id="bf函数列表"><a href="#bf函数列表" class="headerlink" title="bf函数列表"></a>bf函数列表</h2><ol>
+<li><p>constant<br> 支持小数点的常量<br>例如，1.5，查询表达式就是：_val_:1.5</p>
+</li>
+<li><p>fieldvalue<br> 返回numberic field的名字.<br>域必须是index的，非multivalue。格式为该域的名字。如果这个域没值，就返回0</p>
+</li>
+<li><p>ord<br> ord，返回你要查询的那个特定的值在这个顺序中的排名。<br> 非multiValued的，当没有值存在的时候，将返回0<br> 例如：某个特定的域只能去三个值，“apple”、“banana”、“pear”，那么ord（“apple”）&#x3D;1，ord（“banana”）&#x3D;2，ord（“pear”）&#x3D;3<br> 需要注意的是，ord（）这个函数，依赖于值在索引中的位置，所以当有文档被删除、或者添加的时候，ord（）的值就会发生变化。当你使用MultiSearcher的时候，这个值也就是不定的了。</p>
+</li>
+<li><p>rord<br> 函数将会返回与ord相对应的倒排序的排名。<br> 格式: rord(myIndexedField).</p>
+</li>
+<li><p>sum<br> 就是表示多个数值的“和”。<br> 格式：<br> sum(x,1)<br> sum(x,y)<br> sum(sqrt(x),log(y),z,0.5)</p>
+</li>
+<li><p>product<br> 多个参数的乘积，参数可以是数值，也可以是函数，当为函数时，表示为此函数的计算值乘积。<br> 格式：<br> product(x,2)<br> product(x,y)</p>
+</li>
+<li><p>div<br> 两个参数做除法。支持函数参数<br> 格式：<br> div(x,y)<br> div(sum(x,100),max(y,1))</p>
+</li>
+<li><p>pow<br> 幂值计算，pow(x,y)&#x3D;x^y 。支持函数参数。<br> 格式：<br> pow(x,0.5) 标识开方<br> pow(x, log(y))</p>
+</li>
+<li><p>abs<br> 返回表达式的绝对值，支持函数参数。<br> 格式：<br> abx(-5)<br> abc(x)  </p>
+</li>
+<li><p>log<br>返回对数操作，支持函数参数。<br>格式：<br>log(x)<br>log(sum(x,100))  </p>
+</li>
+<li><p>sqrt<br>返回平方根。与pow(x，0.5)一样。<br>格式：<br>sqrt(2)<br>sqrt(sum(x,100))</p>
+</li>
+<li><p>map<br>区间检测<br>如果 min&lt;&#x3D;x&lt;&#x3D;max，那么map(x,min,max,target)&#x3D;target，如果x不在[min,max]这个区间内，那么map(x,min,max,target)&#x3D;x.</p>
+</li>
+<li><p>scala<br>限制参数区间<br>例如：<br>scale(x,minTarget,maxTarget) 这个函数将会把x的值限制在[minTarget,maxTarget]范围内。</p>
+</li>
+<li><p>query<br>计算subquery查询分数<br>例如：<br>query(subquery,default)表示返回给定的subquery的分数，如果subquery与文档不匹配，那么将会返回默认值。任何的查询类型都是受支持的。可以通过引用的方式，也可以直接指定查询串。<br>q&#x3D;product(popularity, query({!dismax v&#x3D;’solr rocks’})) 将会返回popularity和通过dismax 查询得到的分数的乘积<br>q&#x3D;product(popularity, query($qq)&amp;qq&#x3D;{!dismax}solr rocks) 跟上一个例子的效果是一样的。不过这里使用的是引用的方式<br>q&#x3D;product(popularity, query($qq,0.1)&amp;qq&#x3D;{!dismax}solr rocks) 在前一个例子的基础上又加了一个默认值。</p>
+</li>
+<li><p>linear<br>线性函数计算<br>例如：<br>liner(x,m,c)其中 x为变量或者函数，m,c为常量。整个函数取值为： x<em>m+c的值。<br>liner(x,2,4)&#x3D;2</em>x+4</p>
+</li>
+<li><p>recip<br>recip(x,m,a,b) 函数表达式 a&#x2F;(m*x+b)<br>其中，m、a、b是常量，x是变量或者一个函数。当a&#x3D;b，并且x&gt;&#x3D;0的时候，这个函数的最大值是1，值的大小随着x的增大而减小。</p>
+</li>
+<li><p>max<br>比较大小<br>例如：max(x,c) x可以为变量或者函数，c为常数，返回两个之间最大值。</p>
+</li>
+</ol>
+<h2 id="场景应用"><a href="#场景应用" class="headerlink" title="场景应用"></a>场景应用</h2><ol>
+<li><p>某地的新闻网页库中原本的逻辑是对仓库里的数据字段 subject，message进行搜索。默认是通过score检索字段匹配得分进行排序输出。随着时间的推移，大量的搜索可能会展示两年前，三年前匹配度更高的数据，这些搜索结果明显不合适的。那么我们需要对其进行改造，加入发布时间权重排序。</p>
+<p> 原本的参数：  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subject:武则天 OR message:武则天</span><br></pre></td></tr></table></figure>
+
+<p> 搜索得出结果：  </p>
+<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143414801.png?imageView2/2/w/1225/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"><br> 文档得分：<br> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143508131.png?imageView2/2/w/913/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"></p>
+<p> 上面我们可以看到，tid为666811的文档排在第一位，得分27.811375 它的dateline时间是：1239781944明显早于第二位 tid：10364925的 1503334472，得分：26.519054。第三位是 tid:9759987 得分：26.511488。这样的搜索结果显然不是很令人满意的。<br> 开启edismax 加入</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bf=sqrt(log(dateline))^100</span><br></pre></td></tr></table></figure>
+
+<p> 搜索得出结果：  </p>
+<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143118475.png?imageView2/2/w/1222/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"></p>
+<p> 文档得分： </p>
+<p> <img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505143152722.png?imageView2/2/w/922/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"><br> 经过调整，我们得出的结果中排在第一位的是 tid:9759987 其时间dateline是1473820016 得分：330.85 是原本的第三位。原来的排第一的 tid:666811排在了第三位，得分 329.40 原来的第二tid:10364925 得分：329.50</p>
+<p> 调整后的排序大致满足我们的需求。那么为什么调整后会变成这样的排序呢？</p>
+<p> 首先我们要清楚solr的打分机制默认是通过匹配度计算文档相似度得来的。也就是第一次搜索的默认得分，引入edismax的bf函数后我们来分析下最终的结果是怎样，以第一次搜索排名前三的数据为例子：  </p>
+<table>
+<thead>
+<tr>
+<th>tid</th>
+<th>dateline</th>
+<th>初始得分</th>
+<th>引入bf重新计算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>666811</td>
+<td>1239781944</td>
+<td>27.811382</td>
+<td>329.40198</td>
+</tr>
+<tr>
+<td>10364925</td>
+<td>1503334472</td>
+<td>26.519054</td>
+<td>329.50174</td>
+</tr>
+<tr>
+<td>9759987</td>
+<td>1473820016</td>
+<td>26.511488</td>
+<td>330.85834</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<blockquote>
+<p>根据bf&#x3D;sqrt(log(dateline))^100 分别计算上面三个的新得分  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sqrt(log(1239781944)) = 3.0155174194591075  </span><br><span class="line">权重乘100 得:  </span><br><span class="line">301.55174194591075</span><br><span class="line">再加 27.811382  </span><br><span class="line">=329.36312394591073</span><br><span class="line"></span><br><span class="line">sqrt(log(1503334472)) = 3.029365546794402</span><br><span class="line">权重乘100 得:</span><br><span class="line">302.9365546794402</span><br><span class="line">再加 26.519054</span><br><span class="line">=329.45560867944016</span><br><span class="line"></span><br><span class="line">sqrt(log(1473820016)) = 3.0279439311841663</span><br><span class="line">权重乘100 得:</span><br><span class="line">302.79439311841663</span><br><span class="line">再加 26.511488</span><br><span class="line">=329.3058811184166</span><br></pre></td></tr></table></figure>
+
+<pre><code>纳尼。很奇怪为什么 9759987 计算最小 不对劲
+</code></pre>
+<p>于是翻看原来前面查询的debug列表分析仔细看原来是<br>原图：</p>
+<p><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186205866.png?imageView2/2/w/898/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"></p>
+<p>添加edismax后：<br><img src="http://ovuanu0c3.bkt.clouddn.com/hexo/1505186154351.png?imageView2/2/w/916/h/640/format/jpg/q/100%7Cwatermark/2/text/d3d3LmxpbGh1aS5jb20=/font/5b6u6L2v6ZuF6buR/fontsize/400/fill/Izk2OEM4Qw==/dissolve/100/gravity/SouthEast/dx/10/dy/10%7Cimageslim" alt="图片"></p>
+<p>对比以上靓图，原来是我们的Qparser不一样。在普通查询的时候我么使用的是定制化的 SWMCLuceneQparser 查询解析器。而 用edimax后，解析器变成了 ExtendDismaxQparser 这两个差别在于 定制化的 SWMCLuceneQparser会将查询字段通过IK分词转换后进行查询。其parsedquery_tostring 变成  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;parsedquery&quot;:&quot;PhraseQuery(subject:\&quot;武 则 天\&quot;) PhraseQuery(message:\&quot;武 则 天\&quot;)&quot;,</span><br></pre></td></tr></table></figure>
+
+<p>ExtendDismaxQparser的 parsedquery_tostringshi :  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;parsedquery_toString&quot;:&quot;+((subject:武 subject:则 subject:天) (message:武 message:则 message:天)) (sqrt(log(long(dateline))))^10.0&quot;,</span><br></pre></td></tr></table></figure>
+
+<p>两者稍有不同，所以在计算最终权重的时候有些差异。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/solr/" rel="tag"># solr</a>
+          
+            <a href="/tags/edismax/" rel="tag"># edismax</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/02/blog/hexo技术博客搭建日记/" rel="next" title="Hexo技术博客搭建日记">
+                <i class="fa fa-chevron-left"></i> Hexo技术博客搭建日记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/13/blog/alfred结合七牛实现快速插入markdown格式图片/" rel="prev" title="alfred结合七牛实现快速插入markdown格式图片">
+                alfred结合七牛实现快速插入markdown格式图片 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
+            
+              <p class="site-author-name" itemprop="name">Littlehui</p>
+              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">123</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bf函数列表"><span class="nav-number">2.</span> <span class="nav-text">bf函数列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景应用"><span class="nav-number">3.</span> <span class="nav-text">场景应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
+        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'littlehui',
+            repo: 'littlehui.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+            
+                client_id: '968de029d09127201fdc'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
