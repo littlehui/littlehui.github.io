@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -47,41 +47,57 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <meta name="keywords" content="亿级流量,TCC,分布式事务," />
 
 
 
 
 
-  <meta name="keywords" content="分布式事务,亿级流量,TCC,">
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -89,23 +105,25 @@
 
 
 <meta name="description" content="TCC的异常场景在分布式系统中，随时随地都需要面对网络超时，网络重发和服务器宕机等问题。所以分布式事务框架作为搭载在分布式系统之上的一个框架型应用也绕不开这些问题。具体而言，有以下常见问题：  幂等处理 空回滚 资源悬挂  这些异常的应对需要TCC框架的支持和解决方案。 幂等处理产生原因因为网络抖动等原因，分布式事务框架可能会重复调用同一个分布式事务中的一个分支事务的二阶段接口。所以分支事务的二阶">
-<meta name="keywords" content="分布式事务,亿级流量,TCC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【分布式事务问题】TCC模式常见问题以及解决">
 <meta property="og:url" content="https://www.lilhui.com/2021/12/03/java/distributed/distributed_2/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="TCC的异常场景在分布式系统中，随时随地都需要面对网络超时，网络重发和服务器宕机等问题。所以分布式事务框架作为搭载在分布式系统之上的一个框架型应用也绕不开这些问题。具体而言，有以下常见问题：  幂等处理 空回滚 资源悬挂  这些异常的应对需要TCC框架的支持和解决方案。 幂等处理产生原因因为网络抖动等原因，分布式事务框架可能会重复调用同一个分布式事务中的一个分支事务的二阶段接口。所以分支事务的二阶">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="https://images.lilhui.com/010edd2e9bfc776ea7ff279c73ad3720">
 <meta property="og:image" content="https://images.lilhui.com/c77b3d00cd350f897ccac0d16dc47974">
 <meta property="og:image" content="https://images.lilhui.com/df780906ab4661d139ee0b75dab41057">
 <meta property="og:image" content="https://images.lilhui.com/5cdd703d498a93fb68ad70771ab9d439">
 <meta property="og:image" content="https://images.lilhui.com/2c269f2d9a233c752b935b3ce59f6d5e">
 <meta property="og:image" content="https://images.lilhui.com/200bc9ff36e970c062980826f14a6550">
-<meta property="og:updated_time" content="2022-11-20T02:27:23.884Z">
+<meta property="article:published_time" content="2021-12-03T03:13:20.000Z">
+<meta property="article:modified_time" content="2022-11-20T02:27:23.884Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="TCC">
+<meta property="article:tag" content="亿级流量">
+<meta property="article:tag" content="分布式事务">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【分布式事务问题】TCC模式常见问题以及解决">
-<meta name="twitter:description" content="TCC的异常场景在分布式系统中，随时随地都需要面对网络超时，网络重发和服务器宕机等问题。所以分布式事务框架作为搭载在分布式系统之上的一个框架型应用也绕不开这些问题。具体而言，有以下常见问题：  幂等处理 空回滚 资源悬挂  这些异常的应对需要TCC框架的支持和解决方案。 幂等处理产生原因因为网络抖动等原因，分布式事务框架可能会重复调用同一个分布式事务中的一个分支事务的二阶段接口。所以分支事务的二阶">
 <meta name="twitter:image" content="https://images.lilhui.com/010edd2e9bfc776ea7ff279c73ad3720">
 
 
@@ -113,13 +131,13 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -136,7 +154,7 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2021/12/03/java/distributed/distributed_2/">
+  <link rel="canonical" href="https://www.lilhui.com/2021/12/03/java/distributed/distributed_2/"/>
 
 
 
@@ -152,7 +170,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -170,7 +188,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Littlehui's Notes</span>
         <span class="logo-line-after"><i></i></span>
@@ -200,7 +218,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -210,7 +228,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -220,7 +238,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -230,7 +248,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -243,7 +261,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -264,7 +282,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -304,8 +324,8 @@
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2021/12/03/java/distributed/distributed_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
     </span>
 
@@ -341,7 +361,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -353,7 +373,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/电商/" itemprop="url" rel="index">
+                  <a href="/categories/%E7%94%B5%E5%95%86/" itemprop="url" rel="index">
                     <span itemprop="name">电商</span>
                   </a>
                 </span>
@@ -364,7 +384,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/电商/微服务/" itemprop="url" rel="index">
+                  <a href="/categories/%E7%94%B5%E5%95%86/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index">
                     <span itemprop="name">微服务</span>
                   </a>
                 </span>
@@ -377,16 +397,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2021/12/03/java/distributed/distributed_2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/12/03/java/distributed/distributed_2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -395,7 +405,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
 
@@ -464,7 +474,7 @@
 <p><img src="https://images.lilhui.com/2c269f2d9a233c752b935b3ce59f6d5e" alt="图片"></p>
 <h3 id="应对策略-2"><a href="#应对策略-2" class="headerlink" title="应对策略"></a>应对策略</h3><p>资源悬挂的本质原因在于，一阶段和二阶段的执行顺序没有被严格地保证。所以相应的解决方案还是通过读取事务状态控制表的事务状态。</p>
 <p>前面在幂等方案的讨论中说过：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">幂等记录的插入时机是参与者的Try方法，此时的分支事务状态会被初始化为INIT。然后当二阶段的Confirm/Cancel执行时会将其状态置为CONFIRMED/ROLLBACKED。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">幂等记录的插入时机是参与者的Try方法，此时的分支事务状态会被初始化为INIT。然后当二阶段的Confirm/Cancel执行时会将其状态置为CONFIRMED/ROLLBACKED。</span><br></pre></td></tr></table></figure>
 
 <p>由于悬挂的产生背景是一阶段方法根本就未执行，所以此时事务控制记录是不存在的，需要在二阶段中处理ROLLBACK的情况(因为超时后触发回滚不可能存在二阶段为CONFIRM)。</p>
 <p>处理方案为在判断为空回滚的场景下(体现在对应一阶段事务控制记录不存在)，插入一条状态为ROLLBACKED的控制记录。</p>
@@ -500,11 +510,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/分布式事务/" rel="tag"># 分布式事务</a>
-          
-            <a href="/tags/亿级流量/" rel="tag"># 亿级流量</a>
+            <a href="/tags/%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F/" rel="tag"># 亿级流量</a>
           
             <a href="/tags/TCC/" rel="tag"># TCC</a>
+          
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" rel="tag"># 分布式事务</a>
           
         </div>
       
@@ -557,16 +567,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
 
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
+        
+      </div>
 
 
         </div>
@@ -589,98 +597,85 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          <li class="sidebar-nav-overview" data-target="site-overview">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
-            
-              <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
-          </div>
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">157</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">123</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+        <nav class="site-state motion-element">
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">162</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
-          
-          
+        </nav>
 
-          
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
 
       
@@ -693,7 +688,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC的异常场景"><span class="nav-number">1.</span> <span class="nav-text">TCC的异常场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#幂等处理"><span class="nav-number">2.</span> <span class="nav-text">幂等处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生原因"><span class="nav-number">2.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应对策略"><span class="nav-number">2.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空回滚"><span class="nav-number">3.</span> <span class="nav-text">空回滚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生原因-1"><span class="nav-number">3.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应对策略-1"><span class="nav-number">3.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源悬挂（try-cancel-–try-循环执行，cancel在try之前）"><span class="nav-number">4.</span> <span class="nav-text">资源悬挂（try - cancel –try  循环执行，cancel在try之前）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生原因-2"><span class="nav-number">4.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应对策略-2"><span class="nav-number">4.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种异常总结"><span class="nav-number">5.</span> <span class="nav-text">三种异常总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#幂等"><span class="nav-number">5.1.</span> <span class="nav-text">幂等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空回滚-1"><span class="nav-number">5.2.</span> <span class="nav-text">空回滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源悬挂"><span class="nav-number">5.3.</span> <span class="nav-text">资源悬挂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共同点"><span class="nav-number">5.4.</span> <span class="nav-text">共同点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCC%E7%9A%84%E5%BC%82%E5%B8%B8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">TCC的异常场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E7%AD%89%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">幂等处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E5%AF%B9%E7%AD%96%E7%95%A5"><span class="nav-number">2.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%9B%9E%E6%BB%9A"><span class="nav-number">3.</span> <span class="nav-text">空回滚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0-1"><span class="nav-number">3.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E5%AF%B9%E7%AD%96%E7%95%A5-1"><span class="nav-number">3.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E6%82%AC%E6%8C%82%EF%BC%88try-cancel-%E2%80%93try-%E5%BE%AA%E7%8E%AF%E6%89%A7%E8%A1%8C%EF%BC%8Ccancel%E5%9C%A8try%E4%B9%8B%E5%89%8D%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">资源悬挂（try - cancel –try  循环执行，cancel在try之前）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0-2"><span class="nav-number">4.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E5%AF%B9%E7%AD%96%E7%95%A5-2"><span class="nav-number">4.2.</span> <span class="nav-text">应对策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BC%82%E5%B8%B8%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">三种异常总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%82%E7%AD%89"><span class="nav-number">5.1.</span> <span class="nav-text">幂等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E5%9B%9E%E6%BB%9A-1"><span class="nav-number">5.2.</span> <span class="nav-text">空回滚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E6%82%AC%E6%8C%82"><span class="nav-number">5.3.</span> <span class="nav-text">资源悬挂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E5%90%8C%E7%82%B9"><span class="nav-number">5.4.</span> <span class="nav-text">共同点</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +708,15 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -723,17 +724,19 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
 
-
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
 
 
         
@@ -776,8 +779,6 @@
       </div>
     
 
-    
-
   </div>
 
   
@@ -810,42 +811,30 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
@@ -853,22 +842,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -901,87 +894,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
 
 
 
@@ -992,7 +923,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -1311,8 +1242,6 @@
   
 
   
-
-  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1329,7 +1258,6 @@
 </script>
 
 
-  
   
 
   

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -47,41 +47,57 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <meta name="keywords" content="tomcat,类加载，热部署," />
 
 
 
 
 
-  <meta name="keywords" content="tomcat,类加载，热部署,">
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -89,22 +105,23 @@
 
 
 <meta name="description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
-<meta name="keywords" content="tomcat,类加载，热部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【tomcat调优系列4】Tomcat 类加载机制，和热部署">
 <meta property="og:url" content="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="https://images.lilhui.com/c9cdb1fc55bcbd323b25aa274b6f2916">
 <meta property="og:image" content="https://images.lilhui.com/23455a00f586de4dcebe1e4dd8453b05">
 <meta property="og:image" content="https://images.lilhui.com/a4bfcb6f0ae2ddbd691e12746461c7cc">
 <meta property="og:image" content="https://images.lilhui.com/0121b5252cd38720749f046807893124">
 <meta property="og:image" content="https://images.lilhui.com/5c90f19905daff7d323025a58de15ebd">
-<meta property="og:updated_time" content="2022-11-23T13:54:40.278Z">
+<meta property="article:published_time" content="2022-11-23T06:55:17.000Z">
+<meta property="article:modified_time" content="2022-11-23T13:54:40.278Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="tomcat">
+<meta property="article:tag" content="类加载，热部署">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【tomcat调优系列4】Tomcat 类加载机制，和热部署">
-<meta name="twitter:description" content="Tomcat类加载机制JVM类加载器Java中有3个类加载器，并且你可以自定义加载器。  BoostrapClassLoader 是启动类加载器，由C预演实现，用来加载JVM启动时所需的核心类，比如rt.jar。 ExtClassLoader是扩展类加载器，用来加载\jre\lib\ext 目录下Jar包。扩展加载器的 #getParent()返回null,实际上扩展类加载器的父类加载器就是启动类">
 <meta name="twitter:image" content="https://images.lilhui.com/c9cdb1fc55bcbd323b25aa274b6f2916">
 
 
@@ -112,13 +129,13 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -135,7 +152,7 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/"/>
 
 
 
@@ -151,7 +168,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -169,7 +186,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Littlehui's Notes</span>
         <span class="logo-line-after"><i></i></span>
@@ -199,7 +216,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -209,7 +226,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -219,7 +236,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -229,7 +246,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -242,7 +259,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -263,7 +280,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -303,8 +322,8 @@
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/11/23/tomcat/tomcat_4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
     </span>
 
@@ -340,7 +359,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -365,16 +384,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2022/11/23/tomcat/tomcat_4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/11/23/tomcat/tomcat_4/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -383,7 +392,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
 
@@ -474,12 +483,12 @@
 <ul>
 <li>热加载：在server.xml -&gt; context 标签中 设置 reloadable&#x3D;”true”</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\mvc"</span> <span class="attr">path</span>=<span class="string">"/mvc"</span>  <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">热部署：在server.xml -&gt; Host标签中 设置  autoDeploy="true"</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">&quot;D:\mvc&quot;</span> <span class="attr">path</span>=<span class="string">&quot;/mvc&quot;</span>  <span class="attr">reloadable</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">热部署：在server.xml -&gt; Host标签中 设置  autoDeploy=&quot;true&quot;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>热部署：在server.xml -&gt; Host标签中 设置  autoDeploy&#x3D;”true”</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"localhost"</span>  <span class="attr">appBase</span>=<span class="string">"webapps"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">unpackWARs</span>=<span class="string">"true"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">&quot;localhost&quot;</span>  <span class="attr">appBase</span>=<span class="string">&quot;webapps&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">unpackWARs</span>=<span class="string">&quot;true&quot;</span> <span class="attr">autoDeploy</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>他们的区别</strong></p>
 <ul>
@@ -493,7 +502,7 @@
 <p><img src="https://images.lilhui.com/5c90f19905daff7d323025a58de15ebd" alt="图片"></p>
 <p>有了 ContainerBase 中的后台线程和 backgroundProcess 方法，各种子容器和通用 组件不需要各自弄一个后台线程来处理周期性任务，这样的设计显得优雅和整洁。</p>
 <h3 id="热加载实现原理"><a href="#热加载实现原理" class="headerlink" title="热加载实现原理"></a>热加载实现原理</h3><p>有了 ContainerBase 的周期性任务处理“框架”，作为具体容器子类，只需要实现自 己的周期性任务就行。而 Tomcat 的热加载，就是在 Context 容器中实现的。Context 容 器的 backgroundProcess 方法是这样实现的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  StandardContext#backgroundProcess</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//WebappLoader 周期性的检查 WEB-INF/classes 和 WEB-INF/lib 目录下的类文件</span></span><br><span class="line"><span class="comment">// 热加载</span></span><br><span class="line">Loader loader = getLoader();</span><br><span class="line"><span class="keyword">if</span> (loader != <span class="keyword">null</span>) &#123;</span><br><span class="line">    loader.backgroundProcess();        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  StandardContext#backgroundProcess</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//WebappLoader 周期性的检查 WEB-INF/classes 和 WEB-INF/lib 目录下的类文件</span></span><br><span class="line"><span class="comment">// 热加载</span></span><br><span class="line"><span class="type">Loader</span> <span class="variable">loader</span> <span class="operator">=</span> getLoader();</span><br><span class="line"><span class="keyword">if</span> (loader != <span class="literal">null</span>) &#123;</span><br><span class="line">    loader.backgroundProcess();        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>WebappLoader 实现热加载的逻辑：它主要是调用了 Context 容器的 reload 方法，先stop Context容器，再start Context容器。具体的实现：<br>停止和销毁 Context 容器及其所有子容器，子容器其实就是 Wrapper，也就是说 Wrapper 里面 Servlet 实例也被销毁了。</p>
 <ol>
@@ -506,7 +515,7 @@
 <p>在这个过程中，类加载器发挥着关键作用。一个 Context 容器对应一个类加载器，类加载器在销毁的过程中会把它加载的所有类也全部销毁。Context 容器在启动过程中，会创建一个新的类加载器来加载新的类文件。</p>
 <h3 id="Tomcat热部署原理"><a href="#Tomcat热部署原理" class="headerlink" title="Tomcat热部署原理"></a>Tomcat热部署原理</h3><p>热部署跟热加载的本质区别是，热部署会重新部署 Web 应用，原来的 Context 对象会整个被销毁掉，因此这个 Context 所关联的一切资源都会被销毁，包括 Session。<br>Host 容器并没有在 backgroundProcess 方法中实现周期性检测的任务，而是通过监听器 HostConfig 来实现的</p>
 <p>Host 容器并没有在 backgroundProcess 方法中实现周期性检测的任务，而是通过监听器 HostConfig 来实现的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HostConfig#lifecycleEvent</span></span><br><span class="line"><span class="comment">// 周期性任务</span></span><br><span class="line"><span class="keyword">if</span> (event.getType().equals(Lifecycle.PERIODIC_EVENT)) &#123;</span><br><span class="line">    check();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (host.getAutoDeploy()) &#123;</span><br><span class="line">        <span class="comment">// Check for resources modification to trigger redeployment</span></span><br><span class="line">        DeployedApplication[] apps = deployed.values().toArray(<span class="keyword">new</span> DeployedApplication[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span> (DeployedApplication app : apps) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tryAddServiced(app.name)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 检查 Web 应用目录是否有变化</span></span><br><span class="line">                    checkResources(app, <span class="keyword">false</span>);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    removeServiced(app.name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Check for old versions of applications that can now be undeployed</span></span><br><span class="line">        <span class="keyword">if</span> (host.getUndeployOldVersions()) &#123;</span><br><span class="line">            checkUndeploy();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Hotdeploy applications</span></span><br><span class="line">        <span class="comment">//热部署</span></span><br><span class="line">        deployApps();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HostConfig#lifecycleEvent</span></span><br><span class="line"><span class="comment">// 周期性任务</span></span><br><span class="line"><span class="keyword">if</span> (event.getType().equals(Lifecycle.PERIODIC_EVENT)) &#123;</span><br><span class="line">    check();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">check</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (host.getAutoDeploy()) &#123;</span><br><span class="line">        <span class="comment">// Check for resources modification to trigger redeployment</span></span><br><span class="line">        DeployedApplication[] apps = deployed.values().toArray(<span class="keyword">new</span> <span class="title class_">DeployedApplication</span>[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span> (DeployedApplication app : apps) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tryAddServiced(app.name)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 检查 Web 应用目录是否有变化</span></span><br><span class="line">                    checkResources(app, <span class="literal">false</span>);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    removeServiced(app.name);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Check for old versions of applications that can now be undeployed</span></span><br><span class="line">        <span class="keyword">if</span> (host.getUndeployOldVersions()) &#123;</span><br><span class="line">            checkUndeploy();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Hotdeploy applications</span></span><br><span class="line">        <span class="comment">//热部署</span></span><br><span class="line">        deployApps();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>HostConfig 会检查 webapps 目录下的所有 Web 应用：</p>
 <ul>
@@ -533,7 +542,7 @@
           
             <a href="/tags/tomcat/" rel="tag"># tomcat</a>
           
-            <a href="/tags/类加载，热部署/" rel="tag"># 类加载，热部署</a>
+            <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%EF%BC%8C%E7%83%AD%E9%83%A8%E7%BD%B2/" rel="tag"># 类加载，热部署</a>
           
         </div>
       
@@ -586,16 +595,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
 
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
+        
+      </div>
 
 
         </div>
@@ -618,98 +625,85 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          <li class="sidebar-nav-overview" data-target="site-overview">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
-            
-              <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
-          </div>
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">157</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">123</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+        <nav class="site-state motion-element">
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">162</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
-          
-          
+        </nav>
 
-          
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
 
       
@@ -722,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat类加载机制"><span class="nav-number">1.</span> <span class="nav-text">Tomcat类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM类加载器"><span class="nav-number">1.1.</span> <span class="nav-text">JVM类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派机制"><span class="nav-number">1.2.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat类加载机制-1"><span class="nav-number">1.3.</span> <span class="nav-text">Tomcat类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat类加载器的层次结构"><span class="nav-number">1.4.</span> <span class="nav-text">Tomcat类加载器的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程上下文加载器"><span class="nav-number">1.5.</span> <span class="nav-text">线程上下文加载器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat热加载和热部署"><span class="nav-number">2.</span> <span class="nav-text">Tomcat热加载和热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat开启后台线程执行周期性任务"><span class="nav-number">2.1.</span> <span class="nav-text">Tomcat开启后台线程执行周期性任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热加载实现原理"><span class="nav-number">2.2.</span> <span class="nav-text">热加载实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat热部署原理"><span class="nav-number">2.3.</span> <span class="nav-text">Tomcat热部署原理</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">Tomcat类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">JVM类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6-1"><span class="nav-number">1.3.</span> <span class="nav-text">Tomcat类加载机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">Tomcat类加载器的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">线程上下文加载器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E7%83%AD%E5%8A%A0%E8%BD%BD%E5%92%8C%E7%83%AD%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">Tomcat热加载和热部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat%E5%BC%80%E5%90%AF%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.1.</span> <span class="nav-text">Tomcat开启后台线程执行周期性任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">热加载实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat%E7%83%AD%E9%83%A8%E7%BD%B2%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">Tomcat热部署原理</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -742,9 +736,15 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -752,17 +752,19 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
 
-
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
 
 
         
@@ -805,8 +807,6 @@
       </div>
     
 
-    
-
   </div>
 
   
@@ -839,42 +839,30 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
@@ -882,22 +870,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -930,87 +922,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
 
 
 
@@ -1021,7 +951,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -1340,8 +1270,6 @@
   
 
   
-
-  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1358,7 +1286,6 @@
 </script>
 
 
-  
   
 
   

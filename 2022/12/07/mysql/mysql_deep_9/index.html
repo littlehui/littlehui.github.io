@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -47,41 +47,57 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <meta name="keywords" content="mysql,高可用," />
 
 
 
 
 
-  <meta name="keywords" content="mysql,高可用,">
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -89,13 +105,12 @@
 
 
 <meta name="description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
-<meta name="keywords" content="mysql,高可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Mysql深入理解系列9】Mysql高可用">
 <meta property="og:url" content="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="https://images.lilhui.com/06521780b407e1c83cf87e94633d3da6">
 <meta property="og:image" content="https://images.lilhui.com/b133024aff1b96e4a6bc438f2c080c2e">
 <meta property="og:image" content="https://images.lilhui.com/68f65942245478c912d6083c3fb9c278">
@@ -113,10 +128,12 @@
 <meta property="og:image" content="https://images.lilhui.com/ed5dfe0ae24e7ec263c406ccdb3faee0">
 <meta property="og:image" content="https://images.lilhui.com/1edc12784bd872eddc63cdb8ee972a42">
 <meta property="og:image" content="https://images.lilhui.com/c1c667ae26e91ecd6f8a2834363b8b26">
-<meta property="og:updated_time" content="2022-12-07T09:25:46.454Z">
+<meta property="article:published_time" content="2022-12-07T08:41:47.000Z">
+<meta property="article:modified_time" content="2022-12-07T09:25:46.454Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="高可用">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Mysql深入理解系列9】Mysql高可用">
-<meta name="twitter:description" content="一、MySQL高可用集群介绍1、数据库主从架构与分库分表随着现在互联网的应用越来越大，数据库会频繁的成为整个应用的性能瓶颈。而我们经常使用的MySQL数据库，也会不断面临数据量太大、数据访问太频繁、数据读写速度太快等一系列的问题。所以，我们需要设计复杂的应用架构来保护孱弱的数据库，例如添加Redis缓存，增加MQ进行流量削峰等等。但是，数据库本身如果不能得到提升，这就相当于是水桶理论中的最短板。">
 <meta name="twitter:image" content="https://images.lilhui.com/06521780b407e1c83cf87e94633d3da6">
 
 
@@ -124,13 +141,13 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -147,7 +164,7 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/"/>
 
 
 
@@ -163,7 +180,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -181,7 +198,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Littlehui's Notes</span>
         <span class="logo-line-after"><i></i></span>
@@ -211,7 +228,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -221,7 +238,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -231,7 +248,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -241,7 +258,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -254,7 +271,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -275,7 +292,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -315,8 +334,8 @@
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/12/07/mysql/mysql_deep_9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
     </span>
 
@@ -352,7 +371,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -377,16 +396,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2022/12/07/mysql/mysql_deep_9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/12/07/mysql/mysql_deep_9/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -395,7 +404,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
 
@@ -433,7 +442,7 @@
 <h1 id="二、动手搭建MySQL主从集群"><a href="#二、动手搭建MySQL主从集群" class="headerlink" title="二、动手搭建MySQL主从集群"></a>二、动手搭建MySQL主从集群</h1><h2 id="1、基础环境搭建"><a href="#1、基础环境搭建" class="headerlink" title="1、基础环境搭建"></a>1、基础环境搭建</h2><p>以下实验准备两台服务器，来搭建一个MySQL的主从集群。均安装CentOS7操作系统。 192.168.232.128将作为MySQL主节点，192.168.232.129将作为MySQL的从节点。</p>
 <p>然后在两台服务器上均安装MySQL服务，MySQL版本采用mysql-8.0.20版本。</p>
 <h2 id="2、安装MySQL服务"><a href="#2、安装MySQL服务" class="headerlink" title="2、安装MySQL服务"></a>2、安装MySQL服务</h2><p>这里强调下，我们下面的示例是带大家在Linux上搭建MySQL服务。但是在Linux上安装MySQL经常会遇到各种各样的环境问题，这些环境问题大都只能通过百度加经验的方式来解决。大家根据自己的实际情况，如果在Linux上搭建MySQL有困难的话，可以改为用Windows来安装MySQL。Windows上安装MySQL会简单很多，并且也不影响我们后续ShardingSphere的学习。</p>
-<h3 id="1》初始化MySQL"><a href="#1》初始化MySQL" class="headerlink" title="1》初始化MySQL"></a>1》初始化MySQL</h3><p>MySQL的安装有很多种方式，具体可以参考官网手册：<a href="https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html" target="_blank" rel="noopener">https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html</a></p>
+<h3 id="1》初始化MySQL"><a href="#1》初始化MySQL" class="headerlink" title="1》初始化MySQL"></a>1》初始化MySQL</h3><p>MySQL的安装有很多种方式，具体可以参考官网手册：<a href="https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html">https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html</a></p>
 <p>我们这里采用对系统环境依赖最低，出问题的可能性最小的tar包方式来安装。</p>
 <p>上传mysql压缩包到worker2机器的root用户工作目录&#x2F;root下，然后按照下面的指令，解压安装mysql</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -r -g mysql -s /bin/false mysql  #这里是创建一个mysql用户用于承载mysql服务，但是不需要登录权限。</span><br><span class="line">tar -zxvf mysql-8.0.20-el7-x86_64.tar.gz #解压</span><br><span class="line">ln -s mysql-8.0.20-el7-x86_64 mysql #建立软链接</span><br><span class="line">cd mysql</span><br><span class="line">mkdir mysql-files</span><br><span class="line">chown mysql:mysql mysql-files</span><br><span class="line">chmod 750 mysql-files</span><br><span class="line">bin/mysqld --initialize --user=mysql #初始化mysql数据文件 注意点1</span><br><span class="line">bin/mysql_ssl_rsa_setup</span><br><span class="line">bin/mysqld_safe --user=mysql </span><br><span class="line"></span><br><span class="line">cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
@@ -442,7 +451,7 @@
 <p> <strong>注意点：</strong></p>
 <p> 1、初始化过程中会初始化一些mysql的数据文件，经常会出现一些文件或者文件夹权限不足的问题。如果有文件权限不足的问题，需要根据他的报错信息，创建对应的文件或者文件夹，并配置对应的文件权限。</p>
 <p> 2、初始化过程如果正常完成，日志中会打印出一个root用户的默认密码。这个密码需要记录下来。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;  2020-12-10T06:05:28.948043Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: P6kigsT6Lg&gt;=</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2020-12-10T06:05:28.948043Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: P6kigsT6Lg&gt;=</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h3 id="2》启动mysql"><a href="#2》启动mysql" class="headerlink" title="2》启动mysql"></a>2》启动mysql</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/mysqld --user=mysql</span><br></pre></td></tr></table></figure>
 
@@ -458,14 +467,14 @@
 <blockquote>
 <p> <strong>注意点：</strong></p>
 <p> 1、如果有同学遇到  <strong>ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘&#x2F;tmp&#x2F;mysql.sock’ (2)</strong>  这个报错信息，可以参照下面的配置，修改下&#x2F;etc&#x2F;my.cnf配置文件，来配置下socket连接文件的地址。主要是下面client部分。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt;  [mysqld]</span><br><span class="line">&gt;  datadir=/var/lib/mysql</span><br><span class="line">&gt;  socket=/var/lib/mysql/mysql.sock</span><br><span class="line">&gt;  user=mysql</span><br><span class="line">&gt;  # Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">&gt;  symbolic-links=0</span><br><span class="line">&gt;  # Settings user and group are ignored when systemd is used.</span><br><span class="line">&gt;  # If you need to run mysqld under a different user or group,</span><br><span class="line">&gt;  # customize your systemd unit file for mariadb according to the</span><br><span class="line">&gt;  # instructions in http://fedoraproject.org/wiki/Systemd</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  [mysqld_safe]</span><br><span class="line">&gt;  log-error=/var/log/mariadb/mariadb.log</span><br><span class="line">&gt;  pid-file=/var/run/mariadb/mariadb.pid</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  #</span><br><span class="line">&gt;  # include all files from the config directory</span><br><span class="line">&gt;  #</span><br><span class="line">&gt;  !includedir /etc/my.cnf.d</span><br><span class="line">&gt;  </span><br><span class="line">&gt;  [client]</span><br><span class="line">&gt;  port=3306</span><br><span class="line">&gt;  socket=/var/lib/mysql/mysql.sock</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line">user=mysql</span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=0</span><br><span class="line"># Settings user and group are ignored when systemd is used.</span><br><span class="line"># If you need to run mysqld under a different user or group,</span><br><span class="line"># customize your systemd unit file for mariadb according to the</span><br><span class="line"># instructions in http://fedoraproject.org/wiki/Systemd</span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mariadb/mariadb.log</span><br><span class="line">pid-file=/var/run/mariadb/mariadb.pid</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"># include all files from the config directory</span><br><span class="line">#</span><br><span class="line">!includedir /etc/my.cnf.d</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">port=3306</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>登录进去后，需要配置远程登录权限：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">'root'</span>@<span class="string">'localhost'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'123456'</span>; <span class="comment">#修改root用户的密码</span></span><br><span class="line"><span class="keyword">use</span> mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host=<span class="string">'%'</span> <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;123456&#x27;</span>; #修改root用户的密码</span><br><span class="line">use mysql;</span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host<span class="operator">=</span><span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 
 <p>这样，Linux机器上的MySQL服务就搭建完成了。可以使用navicat等连接工具远程访问MySQL服务了。</p>
 <blockquote>
-<p>然后如果有同学安装MySQL确实有问题的话，推荐大家可以使用宝塔面板。<a href="https://www.bt.cn/" target="_blank" rel="noopener">https://www.bt.cn/</a> 。使用这个工具可以图形化安装以及管理MySQL，非常方便。</p>
+<p>然后如果有同学安装MySQL确实有问题的话，推荐大家可以使用宝塔面板。<a href="https://www.bt.cn/">https://www.bt.cn/</a> 。使用这个工具可以图形化安装以及管理MySQL，非常方便。</p>
 <p>另外，对于熟悉Docker和K8s的同学，可以用这些虚拟化的方式来搭建，也非常简单高效。</p>
 </blockquote>
 <p>这里需要注意下的是，搭建主从集群的多个服务，有两个必要的条件。</p>
@@ -484,7 +493,7 @@
 </blockquote>
 <p>重启MySQL服务， <code>service mysqld restart</code></p>
 <p>然后，我们需要给root用户分配一个replication slave的权限。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录主数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO 'root'@'%';</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主节点同步状态：</span></span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">登录主数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line">GRANT REPLICATION SLAVE ON *.* TO &#x27;root&#x27;@&#x27;%&#x27;;</span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看主节点同步状态：</span></span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>在实际生产环境中，通常不会直接使用root用户，而会创建一个拥有全部权限的用户来负责主从同步。</p>
@@ -506,7 +515,7 @@
 <p>log-bin：打开从服务的bin-log日志记录。</p>
 </blockquote>
 <p>然后我们启动mysqls的服务，并设置他的主节点同步状态。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">登录从服务</span></span><br><span class="line">mysql -u root -p;</span><br><span class="line"><span class="meta">#</span><span class="bash">设置同步主节点：</span></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST='192.168.232.128',</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_USER='root',</span><br><span class="line">MASTER_PASSWORD='root',</span><br><span class="line">MASTER_LOG_FILE='master-bin.000004',</span><br><span class="line">MASTER_LOG_POS=156,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br><span class="line"><span class="meta">#</span><span class="bash">开启slave</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主从同步状态</span></span><br><span class="line">show slave status;</span><br><span class="line">或者用 show slave status \G; 这样查看比较简洁</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">登录从服务</span></span><br><span class="line">mysql -u root -p;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">设置同步主节点：</span></span><br><span class="line">CHANGE MASTER TO</span><br><span class="line">MASTER_HOST=&#x27;192.168.232.128&#x27;,</span><br><span class="line">MASTER_PORT=3306,</span><br><span class="line">MASTER_USER=&#x27;root&#x27;,</span><br><span class="line">MASTER_PASSWORD=&#x27;root&#x27;,</span><br><span class="line">MASTER_LOG_FILE=&#x27;master-bin.000004&#x27;,</span><br><span class="line">MASTER_LOG_POS=156,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启slave</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看主从同步状态</span></span><br><span class="line">show slave status;</span><br><span class="line">或者用 show slave status \G; 这样查看比较简洁</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>注意，CHANGE MASTER指令中需要指定的MASTER_LOG_FILE和MASTER_LOG_POS必须与主服务中查到的保持一致。</p>
@@ -519,12 +528,12 @@
 <h3 id="3》主从集群测试"><a href="#3》主从集群测试" class="headerlink" title="3》主从集群测试"></a>3》主从集群测试</h3><p>测试时，我们先用showdatabases，查看下两个MySQL服务中的数据库情况</p>
 <p><img src="https://images.lilhui.com/4ac069d810ed32dea205783c892860cd" alt="图片"></p>
 <p>然后我们在主服务器上创建一个数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database syncdemo;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> database syncdemo;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
 
 <p>然后我们再用show databases，来看下这个syncdemo的数据库是不是已经同步到了从服务。</p>
 <p><img src="https://images.lilhui.com/55a30bd9b2d84ec0086b708659253daa" alt="图片"></p>
 <p>接下来我们继续在syncdemo这个数据库中创建一个表，并插入一条数据。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use syncdemo;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; create table demoTable(id int not null);</span><br><span class="line">Query OK, 0 rows affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; insert into demoTable value(1);</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> use syncdemo;</span><br><span class="line">Database changed</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create table</span> demoTable(id <span class="type">int</span> <span class="keyword">not null</span>);</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert into</span> demoTable <span class="keyword">value</span>(<span class="number">1</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
 
 <p>然后我们也同样到主服务与从服务上都来查一下这个demoTable是否同步到了从服务。</p>
 <p><img src="https://images.lilhui.com/141ac99dd42b48a659cec324e4718762" alt="图片"></p>
@@ -532,13 +541,11 @@
 <blockquote>
 <p>另外，这个主从架构是有可能失败的，如果在slave从服务上查看slave状态，发现Slave_SQL_Running&#x3D;no，就表示主从同步失败了。这有可能是因为在从数据库上进行了写操作，与同步过来的SQL操作冲突了，也有可能是slave从服务重启后有事务回滚了。</p>
 <p>如果是因为slave从服务事务回滚的原因，可以按照以下方式重启主从同步：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql&gt; stop slave ;</span><br><span class="line">&gt; mysql&gt; set GLOBAL SQL_SLAVE_SKIP_COUNTER=1;</span><br><span class="line">&gt; mysql&gt; start slave ;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> stop slave ;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> <span class="keyword">GLOBAL</span> SQL_SLAVE_SKIP_COUNTER<span class="operator">=</span><span class="number">1</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">start</span> slave ;</span><br></pre></td></tr></table></figure>
+
 <p>而另一种解决方式就是重新记录主节点的binlog文件消息</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; mysql&gt; stop slave ;</span><br><span class="line">&gt; mysql&gt; change master to .....</span><br><span class="line">&gt; mysql&gt; start slave ;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> stop slave ;</span><br><span class="line">mysql<span class="operator">&gt;</span> change master <span class="keyword">to</span> .....</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">start</span> slave ;</span><br></pre></td></tr></table></figure>
+
 <p>但是这种方式要注意binlog的文件和位置，如果修改后和之前的同步接不上，那就会丢失部分数据。所以不太常用。</p>
 </blockquote>
 <h3 id="4》全库同步与部分同步："><a href="#4》全库同步与部分同步：" class="headerlink" title="4》全库同步与部分同步："></a>4》全库同步与部分同步：</h3><p>在完成这个基本的MySQL主从集群后，我们还可以进行后续的实验：</p>
@@ -555,19 +562,19 @@
 <p>在基于GTID的复制中，首先从服务器会告诉主服务器已经在从服务器执行完了哪些事务的GTID值，然后主库会有把所有没有在从库上执行的事务，发送到从库上进行执行，并且使用GTID的复制可以保证同一个事务只在指定的从库上执行一次，这样可以避免由于偏移量的问题造成数据不一致。</p>
 <p>他的搭建方式跟我们上面的主从架构整体搭建方式差不多。只是需要在my.cnf中修改一些配置。</p>
 <p>在主节点上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_bin=on</span><br><span class="line">server_id=单独设置一个</span><br><span class="line">binlog_format=row</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_bin=on</span><br><span class="line">server_id=单独设置一个</span><br><span class="line">binlog_format=row</span><br></pre></td></tr></table></figure>
 
 <p>​	在从节点上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_slave_updates=1</span><br><span class="line">server_id=单独设置一个</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gtid_mode=on</span><br><span class="line">enforce_gtid_consistency=on</span><br><span class="line">log_slave_updates=1</span><br><span class="line">server_id=单独设置一个</span><br></pre></td></tr></table></figure>
 
 <p>然后分别重启主服务和从服务，就可以开启GTID同步复制方式。</p>
 <h2 id="4、集群扩容与MySQL数据迁移"><a href="#4、集群扩容与MySQL数据迁移" class="headerlink" title="4、集群扩容与MySQL数据迁移"></a>4、集群扩容与MySQL数据迁移</h2><p>我们现在已经搭建成功了一主一从的MySQL集群架构，那要扩展到一主多从的集群架构，其实就比较简单了，只需要增加一个binlog复制就行了。</p>
 <p>但是如果我们的集群是已经运行过一段时间，这时候如果要扩展新的从节点就有一个问题，之前的数据没办法从binlog来恢复了。这时候在扩展新的slave节点时，就需要增加一个数据复制的操作。</p>
 <p>MySQL的数据备份恢复操作相对比较简单，可以通过SQL语句直接来完成。具体操作可以使用mysql的bin目录下的mysqldump工具。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p --all-databases &gt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p --all-databases &gt; backup.sql</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">输入密码</span></span><br></pre></td></tr></table></figure>
 
 <p>​	通过这个指令，就可以将整个数据库的所有数据导出成backup.sql，然后把这个backup.sql分发到新的MySQL服务器上，并执行下面的指令将数据全部导入到新的MySQL服务中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &lt; backup.sql</span><br><span class="line"><span class="meta">#</span><span class="bash">输入密码</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p &lt; backup.sql</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">输入密码</span></span><br></pre></td></tr></table></figure>
 
 <p>​	这样新的MySQL服务就已经有了所有的历史数据，然后就可以再按照上面的步骤，配置Slave从服务的数据同步了。</p>
 <h2 id="5、搭建半同步复制"><a href="#5、搭建半同步复制" class="headerlink" title="5、搭建半同步复制"></a>5、搭建半同步复制</h2><h3 id="1》理解半同步复制"><a href="#1》理解半同步复制" class="headerlink" title="1》理解半同步复制"></a>1》理解半同步复制</h3><p>到现在为止，我们已经可以搭建MySQL的主从集群，互主集群，但是我们这个集群有一个隐患，就是有可能会丢数据。这是为什么呢？这要从MySQL主从数据复制分析起。</p>
@@ -581,7 +588,7 @@
 <h3 id="2》搭建半同步复制集群"><a href="#2》搭建半同步复制集群" class="headerlink" title="2》搭建半同步复制集群"></a>2》搭建半同步复制集群</h3><p>半同步复制需要基于特定的扩展模块来实现。而mysql从5.5版本开始，往上的版本都默认自带了这个模块。这个模块包含在mysql安装目录下的lib&#x2F;plugin目录下的semisync_master.so和semisync_slave.so两个文件中。需要在主服务上安装semisync_master模块，在从服务上安装semisync_slave模块。</p>
 <p><img src="https://images.lilhui.com/b50a3d36a6c93aae470f46f4b234efb2" alt="图片"></p>
 <p>首先我们登陆主服务，安装semisync_master模块：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname 'semisync_master.so';</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">| Variable_name                             | Value      |</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">| rpl_semi_sync_master_enabled              | OFF        |</span><br><span class="line">| rpl_semi_sync_master_timeout              | 10000      |</span><br><span class="line">| rpl_semi_sync_master_trace_level          | 32         |</span><br><span class="line">| rpl_semi_sync_master_wait_for_slave_count | 1          |</span><br><span class="line">| rpl_semi_sync_master_wait_no_slave        | ON         |</span><br><span class="line">| rpl_semi_sync_master_wait_point           | AFTER_SYNC |</span><br><span class="line">+<span class="comment">-------------------------------------------+------------+</span></span><br><span class="line">6 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_master_enabled=<span class="keyword">ON</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> install plugin rpl_semi_sync_master soname <span class="string">&#x27;semisync_master.so&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;rpl_semi%&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+------------+</span></span><br><span class="line"><span class="operator">|</span> Variable_name                             <span class="operator">|</span> <span class="keyword">Value</span>      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+------------+</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_enabled              <span class="operator">|</span> OFF        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_timeout              <span class="operator">|</span> <span class="number">10000</span>      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_trace_level          <span class="operator">|</span> <span class="number">32</span>         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_wait_for_slave_count <span class="operator">|</span> <span class="number">1</span>          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_wait_no_slave        <span class="operator">|</span> <span class="keyword">ON</span>         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_master_wait_point           <span class="operator">|</span> AFTER_SYNC <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+------------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span>, <span class="number">1</span> warning (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_master_enabled<span class="operator">=</span><span class="keyword">ON</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p> 这三行指令中，第一行是通过扩展库来安装半同步复制模块，需要指定扩展库的文件名。</p>
@@ -592,7 +599,7 @@
 <p> 而另一种方式是叫做AFTER_COMMIT方式。他不是默认的。这种方式，在主库写入binlog后，等待binlog复制到从库，主库就提交自己的本地事务，再等待从库返回给自己一个成功响应，然后主库再给客户端返回响应。</p>
 </blockquote>
 <p>然后我们登陆从服务，安装smeisync_slave模块</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname 'semisync_slave.so';</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| Variable_name                   | Value |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| rpl_semi_sync_slave_enabled     | OFF   |</span><br><span class="line">| rpl_semi_sync_slave_trace_level | 32    |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_slave_enabled = <span class="keyword">on</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show global variables like 'rpl_semi%';</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| Variable_name                   | Value |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">| rpl_semi_sync_slave_enabled     | ON    |</span><br><span class="line">| rpl_semi_sync_slave_trace_level | 32    |</span><br><span class="line">+<span class="comment">---------------------------------+-------+</span></span><br><span class="line">2 rows in <span class="keyword">set</span>, <span class="number">1</span> <span class="keyword">warning</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">stop</span> <span class="keyword">slave</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; start slave;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> install plugin rpl_semi_sync_slave soname <span class="string">&#x27;semisync_slave.so&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;rpl_semi%&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="operator">|</span> Variable_name                   <span class="operator">|</span> <span class="keyword">Value</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_slave_enabled     <span class="operator">|</span> OFF   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_slave_trace_level <span class="operator">|</span> <span class="number">32</span>    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span>, <span class="number">1</span> warning (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> <span class="keyword">global</span> rpl_semi_sync_slave_enabled <span class="operator">=</span> <span class="keyword">on</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">global</span> variables <span class="keyword">like</span> <span class="string">&#x27;rpl_semi%&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="operator">|</span> Variable_name                   <span class="operator">|</span> <span class="keyword">Value</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_slave_enabled     <span class="operator">|</span> <span class="keyword">ON</span>    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> rpl_semi_sync_slave_trace_level <span class="operator">|</span> <span class="number">32</span>    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------------+-------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span>, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> stop slave;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">start</span> slave;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>slave端的安装过程基本差不多，不过要注意下安装完slave端的半同步插件后，需要重启下slave服务。</p>
@@ -615,7 +622,7 @@
 <p>另外，在我们搭建的这个主从集群中，有一个比较隐藏的问题，就是这样的主从复制之间会有延迟。这在复杂集群中，做了读写分离后，会更容易体现出来。即数据往主服务写，而读数据在从服务读。这时候这个主从复制延迟就有可能造成主库上刚插入了数据但是从库查不到。当然，这在我们目前的这个集群中是很难出现的，但是在大型集群中会很容易出现。</p>
 <p>出现这个问题的根本在于：面向业务的主服务数据都是多线程并发写入的，而从服务是单个线程慢慢拉取binlog，这中间就会有个效率差。所以解决这个问题的关键是要让从服务也用多线程并行复制binlog数据。</p>
 <p>MySQL自5.7版本后就已经支持并行复制了。可以在从服务上设置slave_parallel_workers为一个大于0的数，然后把slave_parallel_type参数设置为LOGICAL_CLOCK，这就可以了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> show global variables like <span class="string">'slave_parallel%'</span>;</span></span><br><span class="line">+------------------------+----------+</span><br><span class="line">| Variable_name          | Value    |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| slave_parallel_type    | DATABASE |</span><br><span class="line">| slave_parallel_workers | 0        |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">show global variables like <span class="string">&#x27;slave_parallel%&#x27;</span>;</span></span><br><span class="line">+------------------------+----------+</span><br><span class="line">| Variable_name          | Value    |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">| slave_parallel_type    | DATABASE |</span><br><span class="line">| slave_parallel_workers | 0        |</span><br><span class="line">+------------------------+----------+</span><br><span class="line">2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
 
 <h1 id="三、了解MySQL的其他高可用方案"><a href="#三、了解MySQL的其他高可用方案" class="headerlink" title="三、了解MySQL的其他高可用方案"></a>三、了解MySQL的其他高可用方案</h1><p>我们之前的MySQL服务集群，都是使用MySQL自身的功能来搭建的集群。但是这样的集群，不具备高可用的功能。即如果是MySQL主服务挂了，从服务是没办法自动切换成主服务的。而如果要实现MySQL的高可用，需要借助一些第三方工具来实现。</p>
 <blockquote>
@@ -743,17 +750,17 @@
 <p>最后，一旦用到了分库分表，就会表现为对数据查询业务的灵活性有一定的影响，例如如果按userId进行分片，那按age来进行查询，就必然会增加很多麻烦。如果再要进行排序、分页、聚合等操作，很容易就扛不住了。这时候，都要尽量在分库分表的同时，再补充设计一个降级方案，例如将数据转存一份到ES，ES可以实现更灵活的大数据聚合查询。</p>
 <h2 id="5、常见的分库分表组件"><a href="#5、常见的分库分表组件" class="headerlink" title="5、常见的分库分表组件"></a>5、常见的分库分表组件</h2><p>由于分库分表之后，数据被分散在不同的数据库、服务器。因此，对数据的操作也就无法通过常规方式完成，并且<br>它还带来了一系列的问题。好在，这些问题不是所有都需要我们在应用层面上解决，市面上有很多中间件可供我们<br>选择，我们来了解一下它。</p>
 <ul>
-<li>shardingsphere   官网地址：<a href="https://shardingsphere.apache.org/document/current/cn/overview/" target="_blank" rel="noopener">https://shardingsphere.apache.org/document/current/cn/overview/</a></li>
+<li>shardingsphere   官网地址：<a href="https://shardingsphere.apache.org/document/current/cn/overview/">https://shardingsphere.apache.org/document/current/cn/overview/</a></li>
 </ul>
 <p>Sharding-JDBC是当当网研发的开源分布式数据库中间件，他是一套开源的分布式数据库中间件解决方案组成的生态圈，它由Sharding-JDBC、Sharding-Proxy和Sharding-Sidecar（计划中）这3款相互独立的产品组成。 他们均提供标准化的数据分片、分布式事务和<br>数据库治理功能，可适用于如Java同构、异构语言、容器、云原生等各种多样化的应用场景。</p>
 <p>这也是我们这次学习的重点。</p>
 <ul>
-<li>mycat 官网地址：  <a href="http://www.mycat.org.cn/" target="_blank" rel="noopener">http://www.mycat.org.cn/</a></li>
+<li>mycat 官网地址：  <a href="http://www.mycat.org.cn/">http://www.mycat.org.cn/</a></li>
 </ul>
 <p>基于阿里开源的Cobar产品而研发，Cobar的稳定性、可靠性、优秀的架构和性能以及众多成熟的使用案例使得MYCAT一开始就拥有一个很好的起点，站在巨人的肩膀上，我们能看到更远。业界优秀的开源项目和创新思路被广泛融入到MYCAT的基因中，使得MYCAT在很多方面都领先于目前其他一些同类的开源项目，甚至超越某些商业产品。</p>
 <p>MyCAT虽然是从阿里的技术体系中出来的，但是跟阿里其实没什么关系。</p>
 <ul>
-<li>DBLE 官网地址：<a href="https://opensource.actionsky.com/" target="_blank" rel="noopener">https://opensource.actionsky.com/</a></li>
+<li>DBLE 官网地址：<a href="https://opensource.actionsky.com/">https://opensource.actionsky.com/</a></li>
 </ul>
 <p>该网站包含几个重要产品。其中分布式中间件可以认为是MyCAT的一个增强版，专注于MySQL的集群化管理。另外还有数据传输组件和分布式事务框架组件可供选择。</p>
 <h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>今天课程的内容，主要是给大家介绍MySQL的分布式集群化的主要思路和解决方案。但是，如果换成其他的数据库产品，比如Oracle、SqlServer、DB2等其他数据库，那么肯定又需要有不同的解决方案。所以，对于这次课程的内容，重点在于领会思想。</p>
@@ -778,7 +785,7 @@
           
             <a href="/tags/mysql/" rel="tag"># mysql</a>
           
-            <a href="/tags/高可用/" rel="tag"># 高可用</a>
+            <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/" rel="tag"># 高可用</a>
           
         </div>
       
@@ -831,16 +838,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
 
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
+        
+      </div>
 
 
         </div>
@@ -863,98 +868,85 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          <li class="sidebar-nav-overview" data-target="site-overview">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
-            
-              <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
-          </div>
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">157</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">123</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+        <nav class="site-state motion-element">
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">162</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
-          
-          
+        </nav>
 
-          
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
 
       
@@ -967,7 +959,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、MySQL高可用集群介绍"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL高可用集群介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、数据库主从架构与分库分表"><span class="nav-number">1.1.</span> <span class="nav-text">1、数据库主从架构与分库分表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MySQL主从同步原理"><span class="nav-number">1.2.</span> <span class="nav-text">2、MySQL主从同步原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、动手搭建MySQL主从集群"><span class="nav-number">2.</span> <span class="nav-text">二、动手搭建MySQL主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、基础环境搭建"><span class="nav-number">2.1.</span> <span class="nav-text">1、基础环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装MySQL服务"><span class="nav-number">2.2.</span> <span class="nav-text">2、安装MySQL服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》初始化MySQL"><span class="nav-number">2.2.1.</span> <span class="nav-text">1》初始化MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》启动mysql"><span class="nav-number">2.2.2.</span> <span class="nav-text">2》启动mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、搭建主从集群"><span class="nav-number">2.3.</span> <span class="nav-text">3、搭建主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》配置master主服务"><span class="nav-number">2.3.1.</span> <span class="nav-text">1》配置master主服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》配置slave从服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">2》配置slave从服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3》主从集群测试"><span class="nav-number">2.3.3.</span> <span class="nav-text">3》主从集群测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4》全库同步与部分同步："><span class="nav-number">2.3.4.</span> <span class="nav-text">4》全库同步与部分同步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5》GTID同步集群"><span class="nav-number">2.3.5.</span> <span class="nav-text">5》GTID同步集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、集群扩容与MySQL数据迁移"><span class="nav-number">2.4.</span> <span class="nav-text">4、集群扩容与MySQL数据迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、搭建半同步复制"><span class="nav-number">2.5.</span> <span class="nav-text">5、搭建半同步复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1》理解半同步复制"><span class="nav-number">2.5.1.</span> <span class="nav-text">1》理解半同步复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2》搭建半同步复制集群"><span class="nav-number">2.5.2.</span> <span class="nav-text">2》搭建半同步复制集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、主从集群与读写分离"><span class="nav-number">2.6.</span> <span class="nav-text">6、主从集群与读写分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、扩展更复杂的集群结构"><span class="nav-number">2.7.</span> <span class="nav-text">7、扩展更复杂的集群结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、了解MySQL的其他高可用方案"><span class="nav-number">3.</span> <span class="nav-text">三、了解MySQL的其他高可用方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、MMM"><span class="nav-number">3.1.</span> <span class="nav-text">1、MMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、MHA"><span class="nav-number">3.2.</span> <span class="nav-text">2、MHA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、MGR"><span class="nav-number">3.3.</span> <span class="nav-text">3、MGR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、分库分表方案介绍"><span class="nav-number">4.</span> <span class="nav-text">四、分库分表方案介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、分库分表有什么用"><span class="nav-number">4.1.</span> <span class="nav-text">1、分库分表有什么用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、分库分表的方式"><span class="nav-number">4.2.</span> <span class="nav-text">2、分库分表的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、分库分表要解决哪些问题"><span class="nav-number">4.3.</span> <span class="nav-text">3、分库分表要解决哪些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、什么时候需要分库分表？"><span class="nav-number">4.4.</span> <span class="nav-text">4、什么时候需要分库分表？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、常见的分库分表组件"><span class="nav-number">4.5.</span> <span class="nav-text">5、常见的分库分表组件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81MySQL%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">一、MySQL高可用集群介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">1、数据库主从架构与分库分表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81MySQL%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">2、MySQL主从同步原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A8%E6%89%8B%E6%90%AD%E5%BB%BAMySQL%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">2.</span> <span class="nav-text">二、动手搭建MySQL主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">2.1.</span> <span class="nav-text">1、基础环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85MySQL%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">2、安装MySQL服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%8B%E5%88%9D%E5%A7%8B%E5%8C%96MySQL"><span class="nav-number">2.2.1.</span> <span class="nav-text">1》初始化MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%8B%E5%90%AF%E5%8A%A8mysql"><span class="nav-number">2.2.2.</span> <span class="nav-text">2》启动mysql</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%90%AD%E5%BB%BA%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4"><span class="nav-number">2.3.</span> <span class="nav-text">3、搭建主从集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%8B%E9%85%8D%E7%BD%AEmaster%E4%B8%BB%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.3.1.</span> <span class="nav-text">1》配置master主服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%8B%E9%85%8D%E7%BD%AEslave%E4%BB%8E%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.3.2.</span> <span class="nav-text">2》配置slave从服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%8B%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E6%B5%8B%E8%AF%95"><span class="nav-number">2.3.3.</span> <span class="nav-text">3》主从集群测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%8B%E5%85%A8%E5%BA%93%E5%90%8C%E6%AD%A5%E4%B8%8E%E9%83%A8%E5%88%86%E5%90%8C%E6%AD%A5%EF%BC%9A"><span class="nav-number">2.3.4.</span> <span class="nav-text">4》全库同步与部分同步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%8BGTID%E5%90%8C%E6%AD%A5%E9%9B%86%E7%BE%A4"><span class="nav-number">2.3.5.</span> <span class="nav-text">5》GTID同步集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E9%9B%86%E7%BE%A4%E6%89%A9%E5%AE%B9%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB"><span class="nav-number">2.4.</span> <span class="nav-text">4、集群扩容与MySQL数据迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E6%90%AD%E5%BB%BA%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6"><span class="nav-number">2.5.</span> <span class="nav-text">5、搭建半同步复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%8B%E7%90%86%E8%A7%A3%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">1》理解半同步复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%8B%E6%90%AD%E5%BB%BA%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4"><span class="nav-number">2.5.2.</span> <span class="nav-text">2》搭建半同步复制集群</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E4%B8%BB%E4%BB%8E%E9%9B%86%E7%BE%A4%E4%B8%8E%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="nav-number">2.6.</span> <span class="nav-text">6、主从集群与读写分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E6%89%A9%E5%B1%95%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E9%9B%86%E7%BE%A4%E7%BB%93%E6%9E%84"><span class="nav-number">2.7.</span> <span class="nav-text">7、扩展更复杂的集群结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BA%86%E8%A7%A3MySQL%E7%9A%84%E5%85%B6%E4%BB%96%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">三、了解MySQL的其他高可用方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81MMM"><span class="nav-number">3.1.</span> <span class="nav-text">1、MMM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81MHA"><span class="nav-number">3.2.</span> <span class="nav-text">2、MHA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81MGR"><span class="nav-number">3.3.</span> <span class="nav-text">3、MGR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%96%B9%E6%A1%88%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.</span> <span class="nav-text">四、分库分表方案介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">1、分库分表有什么用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">2、分库分表的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E8%A6%81%E8%A7%A3%E5%86%B3%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="nav-number">4.3.</span> <span class="nav-text">3、分库分表要解决哪些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%EF%BC%9F"><span class="nav-number">4.4.</span> <span class="nav-text">4、什么时候需要分库分表？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">4.5.</span> <span class="nav-text">5、常见的分库分表组件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
             
 
           </div>
@@ -987,9 +979,15 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -997,17 +995,19 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
 
-
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
 
 
         
@@ -1050,8 +1050,6 @@
       </div>
     
 
-    
-
   </div>
 
   
@@ -1084,42 +1082,30 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
@@ -1127,22 +1113,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -1175,87 +1165,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
 
 
 
@@ -1266,7 +1194,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -1585,8 +1513,6 @@
   
 
   
-
-  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1603,7 +1529,6 @@
 </script>
 
 
-  
   
 
   

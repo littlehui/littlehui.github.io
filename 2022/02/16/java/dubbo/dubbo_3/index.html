@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -47,62 +47,78 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <meta name="keywords" content="SPI," />
 
 
 
 
 
-  <meta name="keywords" content="SPI,">
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
 
 
 
-<meta name="description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&amp;lt;Protocol&amp;gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http = extensionLoader.getExtension(&quot;dubbo&quot;);Sys">
-<meta name="keywords" content="SPI">
+<meta name="description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&lt;Protocol&gt; extensionLoader &#x3D; ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http &#x3D; extensionLoader.getExtension(&quot;dubbo&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Dubbo源码系列3】Duboo 可扩展机制SPI源码解析">
 <meta property="og:url" content="https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
-<meta property="og:description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&amp;lt;Protocol&amp;gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http = extensionLoader.getExtension(&quot;dubbo&quot;);Sys">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&lt;Protocol&gt; extensionLoader &#x3D; ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http &#x3D; extensionLoader.getExtension(&quot;dubbo&amp;">
+<meta property="og:locale">
 <meta property="og:image" content="https://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
 <meta property="og:image" content="https://images.lilhui.com/d917674e8a07d8f91ed5a9e4ebf49e04">
 <meta property="og:image" content="https://images.lilhui.com/265316c207746d158fcfe520beebd065">
-<meta property="og:updated_time" content="2022-11-20T02:27:23.947Z">
+<meta property="article:published_time" content="2022-02-16T06:12:39.000Z">
+<meta property="article:modified_time" content="2022-11-20T02:27:23.947Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="SPI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Dubbo源码系列3】Duboo 可扩展机制SPI源码解析">
-<meta name="twitter:description" content="Dubbo SPI架构图  Demo获取Dubbo的protocol扩展点  123ExtensionLoader&amp;lt;Protocol&amp;gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);Protocol http = extensionLoader.getExtension(&quot;dubbo&quot;);Sys">
 <meta name="twitter:image" content="https://images.lilhui.com/8920bd45bf8beedd17b1bab7339363cc">
 
 
@@ -110,13 +126,13 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -133,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/"/>
 
 
 
@@ -149,7 +165,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -167,7 +183,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Littlehui's Notes</span>
         <span class="logo-line-after"><i></i></span>
@@ -197,7 +213,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -207,7 +223,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -217,7 +233,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -227,7 +243,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -240,7 +256,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -261,7 +277,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -301,8 +319,8 @@
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/02/16/java/dubbo/dubbo_3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
     </span>
 
@@ -338,7 +356,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -363,16 +381,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2022/02/16/java/dubbo/dubbo_3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/02/16/java/dubbo/dubbo_3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -381,7 +389,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
 
@@ -407,7 +415,7 @@
 <ul>
 <li>Demo获取Dubbo的protocol扩展点</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">Protocol http = extensionLoader.getExtension(<span class="string">"dubbo"</span>);</span><br><span class="line">System.out.println(http);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);</span><br><span class="line"><span class="type">Protocol</span> <span class="variable">http</span> <span class="operator">=</span> extensionLoader.getExtension(<span class="string">&quot;dubbo&quot;</span>);</span><br><span class="line">System.out.println(http);</span><br></pre></td></tr></table></figure>
 
 <p>在ExtensionLoader类的内部有一个static的ConcurrentHashMap，用来缓存某个接口类型所对应的ExtensionLoader实例.</p>
 <h2 id="ExtensionLoader"><a href="#ExtensionLoader" class="headerlink" title="ExtensionLoader"></a>ExtensionLoader</h2><p>ExtensionLoader表示某个接口的扩展点加载器，可以用来加载某个扩展点实例。<br>在ExtensionLoader中除开有上文的static的Map外，还有两个非常重要的属性：</p>
@@ -427,7 +435,7 @@
 <li>getActivateExtension(URL url, String[] values, String group)：表示一个可以被url激活的扩展点实例，后文详细解释</li>
 </ol>
 <p>其中，什么是自适应扩展点实例？它其实就是当前这个接口的一个代理对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">Protocol protocol = extensionLoader.getExtension(<span class="string">"dubbo"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);</span><br><span class="line"><span class="type">Protocol</span> <span class="variable">protocol</span> <span class="operator">=</span> extensionLoader.getExtension(<span class="string">&quot;dubbo&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>当我们调用上述代码，我们会将得到一个DubboProtocol的实例对象，但在getExtension()方法中，Dubbo会对DubboProtocol对象进行依赖注入（也就是自动给属性赋值，属性的类型为一个接口，记为A接口），这个时候，对于Dubbo来说它并不知道该给这个属性赋什么值，换句话说，Dubbo并不知道在进行依赖注入时该找一个什么的的扩展点对象给这个属性，这时就会预先赋值一个A接口的自适应扩展点实例，也就是A接口的一个代理对象。</p>
 <p>后续，在A接口的代理对象被真正用到时，才会结合URL信息找到真正的A接口对应的扩展点实例进行调用。</p>
@@ -474,16 +482,14 @@
 <p>额外的，在Dubbo中还设计另外一种机制来生成自适应扩展点，这种机制就是可以通过@Adaptive注解来指定某个类为某个接口的代理类，如果指定了，Dubbo在生成自适应扩展点对象时实际上生成的就是@Adaptive注解所注解的类的实例对象。</p>
 <p>如果是由Dubbo默认实现的，那么我们就看看Dubbo是如何生成代理类的。</p>
 <h3 id="createAdaptiveExtensionClass方法"><a href="#createAdaptiveExtensionClass方法" class="headerlink" title="createAdaptiveExtensionClass方法"></a>createAdaptiveExtensionClass方法</h3><p>createAdaptiveExtensionClass方法就是Dubbo中默认生成Adaptive类实例的逻辑。说白了，这个实例就是当前这个接口的一个代理对象。比如下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">Protocol protocol = extensionLoader.getAdaptiveExtension();</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExtensionLoader&lt;Protocol&gt; extensionLoader = ExtensionLoader.getExtensionLoader(Protocol.class);</span><br><span class="line"><span class="type">Protocol</span> <span class="variable">protocol</span> <span class="operator">=</span> extensionLoader.getAdaptiveExtension();</span><br></pre></td></tr></table></figure>
 <p>这个代码就是Protocol接口的一个代理对象，那么代理逻辑就是在new AdaptiveClassCodeGenerator(type, cachedDefaultName).generate()方法中。</p>
 <ol>
 <li>type就是接口</li>
 <li>cacheDefaultName就是该接口默认的扩展点实现的名字</li>
 </ol>
 <p>看个例子，Protocol接口的Adaptive类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.dubbo.rpc;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.common.extension.ExtensionLoader;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Protocol</span>$<span class="title">Adaptive</span> <span class="keyword">implements</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">dubbo</span>.<span class="title">rpc</span>.<span class="title">Protocol</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"The method public abstract void org.apache.dubbo.rpc.Protocol.destroy() of interface org.apache.dubbo.rpc.Protocol is not adaptive method!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDefaultPort</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException(<span class="string">"The method public abstract int org.apache.dubbo.rpc.Protocol.getDefaultPort() of interface org.apache.dubbo.rpc.Protocol is not adaptive method!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> org.apache.dubbo.rpc.<span class="function">Exporter <span class="title">export</span><span class="params">(org.apache.dubbo.rpc.Invoker arg0)</span> <span class="keyword">throws</span> org.apache.dubbo.rpc.RpcException </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arg0 == <span class="keyword">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"org.apache.dubbo.rpc.Invoker argument == null"</span>);</span><br><span class="line">		<span class="keyword">if</span> (arg0.getUrl() == <span class="keyword">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"org.apache.dubbo.rpc.Invoker argument getUrl() == null"</span>);</span><br><span class="line">		</span><br><span class="line">        org.apache.dubbo.common.URL url = arg0.getUrl();</span><br><span class="line">		</span><br><span class="line">        String extName = ( url.getProtocol() == <span class="keyword">null</span> ? <span class="string">"dubbo"</span> : url.getProtocol() );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(extName == <span class="keyword">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Failed to get extension (org.apache.dubbo.rpc.Protocol) name from url ("</span> + url.toString() + <span class="string">") use keys([protocol])"</span>);</span><br><span class="line">        </span><br><span class="line">        org.apache.dubbo.rpc.Protocol extension = (org.apache.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(org.apache.dubbo.rpc.Protocol<span class="class">.<span class="keyword">class</span>).<span class="title">getExtension</span>(<span class="title">extName</span>)</span>;</span><br><span class="line"> 		</span><br><span class="line">        <span class="keyword">return</span> extension.export(arg0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> org.apache.dubbo.rpc.<span class="function">Invoker <span class="title">refer</span><span class="params">(java.lang.Class arg0, org.apache.dubbo.common.URL arg1)</span> <span class="keyword">throws</span> org.apache.dubbo.rpc.RpcException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arg1 == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"url == null"</span>);</span><br><span class="line"></span><br><span class="line">        org.apache.dubbo.common.URL url = arg1;</span><br><span class="line"></span><br><span class="line">        String extName = ( url.getProtocol() == <span class="keyword">null</span> ? <span class="string">"dubbo"</span> : url.getProtocol() );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(extName == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Failed to get extension (org.apache.dubbo.rpc.Protocol) name from url ("</span> + url.toString() + <span class="string">") use keys([protocol])"</span>);</span><br><span class="line"></span><br><span class="line">        org.apache.dubbo.rpc.Protocol extension = (org.apache.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(org.apache.dubbo.rpc.Protocol<span class="class">.<span class="keyword">class</span>).<span class="title">getExtension</span>(<span class="title">extName</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> extension.refer(arg0, arg1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.dubbo.rpc;</span><br><span class="line"><span class="keyword">import</span> org.apache.dubbo.common.extension.ExtensionLoader;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Protocol$Adaptive</span> <span class="keyword">implements</span> <span class="title class_">org</span>.apache.dubbo.rpc.Protocol &#123;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span>  &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>(<span class="string">&quot;The method public abstract void org.apache.dubbo.rpc.Protocol.destroy() of interface org.apache.dubbo.rpc.Protocol is not adaptive method!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getDefaultPort</span><span class="params">()</span>  &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">UnsupportedOperationException</span>(<span class="string">&quot;The method public abstract int org.apache.dubbo.rpc.Protocol.getDefaultPort() of interface org.apache.dubbo.rpc.Protocol is not adaptive method!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">public</span> org.apache.dubbo.rpc.Exporter <span class="title function_">export</span><span class="params">(org.apache.dubbo.rpc.Invoker arg0)</span> <span class="keyword">throws</span> org.apache.dubbo.rpc.RpcException &#123;</span><br><span class="line">		<span class="keyword">if</span> (arg0 == <span class="literal">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;org.apache.dubbo.rpc.Invoker argument == null&quot;</span>);</span><br><span class="line">		<span class="keyword">if</span> (arg0.getUrl() == <span class="literal">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;org.apache.dubbo.rpc.Invoker argument getUrl() == null&quot;</span>);</span><br><span class="line">		</span><br><span class="line">        org.apache.dubbo.common.<span class="type">URL</span> <span class="variable">url</span> <span class="operator">=</span> arg0.getUrl();</span><br><span class="line">		</span><br><span class="line">        <span class="type">String</span> <span class="variable">extName</span> <span class="operator">=</span> ( url.getProtocol() == <span class="literal">null</span> ? <span class="string">&quot;dubbo&quot;</span> : url.getProtocol() );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(extName == <span class="literal">null</span>) </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Failed to get extension (org.apache.dubbo.rpc.Protocol) name from url (&quot;</span> + url.toString() + <span class="string">&quot;) use keys([protocol])&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        org.apache.dubbo.rpc.<span class="type">Protocol</span> <span class="variable">extension</span> <span class="operator">=</span> (org.apache.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(org.apache.dubbo.rpc.Protocol.class).getExtension(extName);</span><br><span class="line"> 		</span><br><span class="line">        <span class="keyword">return</span> extension.export(arg0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> org.apache.dubbo.rpc.Invoker <span class="title function_">refer</span><span class="params">(java.lang.Class arg0, org.apache.dubbo.common.URL arg1)</span> <span class="keyword">throws</span> org.apache.dubbo.rpc.RpcException &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arg1 == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;url == null&quot;</span>);</span><br><span class="line"></span><br><span class="line">        org.apache.dubbo.common.<span class="type">URL</span> <span class="variable">url</span> <span class="operator">=</span> arg1;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">extName</span> <span class="operator">=</span> ( url.getProtocol() == <span class="literal">null</span> ? <span class="string">&quot;dubbo&quot;</span> : url.getProtocol() );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(extName == <span class="literal">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Failed to get extension (org.apache.dubbo.rpc.Protocol) name from url (&quot;</span> + url.toString() + <span class="string">&quot;) use keys([protocol])&quot;</span>);</span><br><span class="line"></span><br><span class="line">        org.apache.dubbo.rpc.<span class="type">Protocol</span> <span class="variable">extension</span> <span class="operator">=</span> (org.apache.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(org.apache.dubbo.rpc.Protocol.class).getExtension(extName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> extension.refer(arg0, arg1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到，Protocol接口中有四个方法，但是只有export和refer两个方法进行代理。为什么？因为Protocol接口中在export方法和refer方法上加了@Adaptive注解。但是，不是只要在方法上加了@Adaptive注解就可以进行代理，还有其他条件，比如：</p>
 <ol>
 <li>该方法如果是无参的，那么则会报错</li>
@@ -493,11 +499,10 @@
 </ol>
 <p>所以，可以发现，某个接口的Adaptive对象，在调用某个方法时，是通过该方法中的URL参数，通过调用ExtensionLoader.getExtensionLoader(com.luban.Car.class).getExtension(extName);得到一个扩展点实例，然后调用该实例对应的方法。</p>
 <h3 id="Activate扩展点"><a href="#Activate扩展点" class="headerlink" title="Activate扩展点"></a>Activate扩展点</h3><p>上文说到，每个扩展点都有一个name，通过这个name可以获得该name对应的扩展点实例，但是有的场景下，希望一次性获得多个扩展点实例</p>
-<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight plain"><figcaption><span>extensionLoader </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">URL url = new URL(&quot;http://&quot;, &quot;localhost&quot;, 8080);</span><br><span class="line">url = url.addParameter(&quot;cache&quot;, &quot;test&quot;);</span><br><span class="line"></span><br><span class="line">List&lt;Filter&gt; activateExtensions = extensionLoader.getActivateExtension(url, </span><br><span class="line">                                                      new String[]&#123;&quot;validation&quot;&#125;,</span><br><span class="line">                                                      CommonConstants.CONSUMER);</span><br><span class="line">for (Filter activateExtension : activateExtensions) &#123;</span><br><span class="line">	System.out.println(activateExtension);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight plaintext"><figcaption><span>extensionLoader </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">URL url = new URL(&quot;http://&quot;, &quot;localhost&quot;, 8080);</span><br><span class="line">url = url.addParameter(&quot;cache&quot;, &quot;test&quot;);</span><br><span class="line"></span><br><span class="line">List&lt;Filter&gt; activateExtensions = extensionLoader.getActivateExtension(url, </span><br><span class="line">                                                      new String[]&#123;&quot;validation&quot;&#125;,</span><br><span class="line">                                                      CommonConstants.CONSUMER);</span><br><span class="line">for (Filter activateExtension : activateExtensions) &#123;</span><br><span class="line">	System.out.println(activateExtension);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>会找到5个Filter</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">org.apache.dubbo.rpc.filter.ConsumerContextFilter@<span class="number">4566e5</span>bd</span><br><span class="line">org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter@<span class="number">1</span>ed4004b</span><br><span class="line">org.apache.dubbo.monitor.support.MonitorFilter<span class="meta">@ff</span>5b51f</span><br><span class="line">org.apache.dubbo.cache.filter.CacheFilter@<span class="number">25</span>bbe1b6</span><br><span class="line">org.apache.dubbo.validation.filter.ValidationFilter@<span class="number">5702</span>b3b1</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">org.apache.dubbo.rpc.filter.ConsumerContextFilter@4566e5bd</span><br><span class="line">org.apache.dubbo.rpc.protocol.dubbo.filter.FutureFilter@1ed4004b</span><br><span class="line">org.apache.dubbo.monitor.support.MonitorFilter<span class="meta">@ff5b51f</span></span><br><span class="line">org.apache.dubbo.cache.filter.CacheFilter@25bbe1b6</span><br><span class="line">org.apache.dubbo.validation.filter.ValidationFilter@5702b3b1</span><br></pre></td></tr></table></figure>
 <p>前三个是通过CommonConstants.CONSUMER找到的<br>CacheFilter是通过url中的参数找到的<br>ValidationFilter是通过指定的name找到的</p>
 <p>在一个扩展点类上，可以添加@Activate注解，这个注解的属性有：</p>
 <ol>
@@ -574,16 +579,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
 
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
+        
+      </div>
 
 
         </div>
@@ -606,98 +609,85 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          <li class="sidebar-nav-overview" data-target="site-overview">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
-            
-              <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
-          </div>
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">157</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">123</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+        <nav class="site-state motion-element">
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">162</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
-          
-          
+        </nav>
 
-          
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
 
       
@@ -710,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo-SPI架构图"><span class="nav-number">1.</span> <span class="nav-text">Dubbo SPI架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExtensionLoader"><span class="nav-number">2.</span> <span class="nav-text">ExtensionLoader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getExtension-String-name-方法"><span class="nav-number">2.1.</span> <span class="nav-text">getExtension(String name)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#createExtension-String-name-方法"><span class="nav-number">2.2.</span> <span class="nav-text">createExtension(String name)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getExtensionClasses"><span class="nav-number">2.3.</span> <span class="nav-text">getExtensionClasses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadResource方法"><span class="nav-number">2.4.</span> <span class="nav-text">loadResource方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadClass方法"><span class="nav-number">2.5.</span> <span class="nav-text">loadClass方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo中的IOC"><span class="nav-number">3.</span> <span class="nav-text">Dubbo中的IOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo中的AOP"><span class="nav-number">4.</span> <span class="nav-text">Dubbo中的AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自适应扩展点补充"><span class="nav-number">5.</span> <span class="nav-text">自适应扩展点补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createAdaptiveExtensionClass方法"><span class="nav-number">5.1.</span> <span class="nav-text">createAdaptiveExtensionClass方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activate扩展点"><span class="nav-number">5.2.</span> <span class="nav-text">Activate扩展点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">5.3.</span> <span class="nav-text">demo</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo-SPI%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">Dubbo SPI架构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExtensionLoader"><span class="nav-number">2.</span> <span class="nav-text">ExtensionLoader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getExtension-String-name-%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">getExtension(String name)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#createExtension-String-name-%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">createExtension(String name)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getExtensionClasses"><span class="nav-number">2.3.</span> <span class="nav-text">getExtensionClasses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadResource%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">loadResource方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadClass%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">loadClass方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo%E4%B8%AD%E7%9A%84IOC"><span class="nav-number">3.</span> <span class="nav-text">Dubbo中的IOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dubbo%E4%B8%AD%E7%9A%84AOP"><span class="nav-number">4.</span> <span class="nav-text">Dubbo中的AOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94%E6%89%A9%E5%B1%95%E7%82%B9%E8%A1%A5%E5%85%85"><span class="nav-number">5.</span> <span class="nav-text">自适应扩展点补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createAdaptiveExtensionClass%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">createAdaptiveExtensionClass方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activate%E6%89%A9%E5%B1%95%E7%82%B9"><span class="nav-number">5.2.</span> <span class="nav-text">Activate扩展点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#demo"><span class="nav-number">5.3.</span> <span class="nav-text">demo</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -730,9 +720,15 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -740,17 +736,19 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
 
-
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
 
 
         
@@ -793,8 +791,6 @@
       </div>
     
 
-    
-
   </div>
 
   
@@ -827,42 +823,30 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
@@ -870,22 +854,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -918,87 +906,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
 
 
 
@@ -1009,7 +935,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -1328,8 +1254,6 @@
   
 
   
-
-  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1346,7 +1270,6 @@
 </script>
 
 
-  
   
 
   

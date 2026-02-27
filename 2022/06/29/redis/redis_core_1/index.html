@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -47,41 +47,57 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
 
 
 
 
 
 
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <meta name="keywords" content="redis," />
 
 
 
 
 
-  <meta name="keywords" content="redis,">
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
 
 
 
 
-
-  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -89,13 +105,12 @@
 
 
 <meta name="description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
-<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Redis学习1】核心数据结构与高性能原理">
 <meta property="og:url" content="https://www.lilhui.com/2022/06/29/redis/redis_core_1/index.html">
 <meta property="og:site_name" content="Littlehui&#39;s Notes">
 <meta property="og:description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d">
 <meta property="og:image" content="https://images.lilhui.com/5a5b50442717feb7d0a23dd21b64d570">
 <meta property="og:image" content="https://images.lilhui.com/8ea1cfd959c1da3d3febafbff977c492">
@@ -111,10 +126,11 @@
 <meta property="og:image" content="https://images.lilhui.com/3783a4643c2467640defa05085821cd7">
 <meta property="og:image" content="https://images.lilhui.com/f693785556dbdb72de891f82df20830d">
 <meta property="og:image" content="https://images.lilhui.com/5c41f408bd96434d668b17cb147b8603">
-<meta property="og:updated_time" content="2022-06-29T08:11:36.172Z">
+<meta property="article:published_time" content="2022-06-29T07:14:58.000Z">
+<meta property="article:modified_time" content="2022-06-29T08:11:36.172Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Redis学习1】核心数据结构与高性能原理">
-<meta name="twitter:description" content="Redis 单线程为什么还能这么快？因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。 Redis单线程如何处理那么多的并发客户端链接？Redis的IO多路复用：redis利用epoll来实现">
 <meta name="twitter:image" content="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d">
 
 
@@ -122,13 +138,13 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -145,7 +161,7 @@
 
 
 
-  <link rel="canonical" href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/">
+  <link rel="canonical" href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/"/>
 
 
 
@@ -161,7 +177,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 8.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -179,7 +195,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Littlehui's Notes</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +225,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -219,7 +235,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -229,7 +245,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -239,7 +255,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -252,7 +268,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -273,7 +289,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -313,8 +331,8 @@
     <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2022/06/29/redis/redis_core_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Littlehui">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
     </span>
 
@@ -350,7 +368,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -375,16 +393,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2022/06/29/redis/redis_core_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/06/29/redis/redis_core_1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -393,7 +401,7 @@
           
             <span class="post-meta-divider">|</span>
             <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
 
@@ -418,17 +426,15 @@
         <h2 id="Redis-单线程为什么还能这么快？"><a href="#Redis-单线程为什么还能这么快？" class="headerlink" title="Redis 单线程为什么还能这么快？"></a>Redis 单线程为什么还能这么快？</h2><p>因为它所有的数据都在内存中，所有的运算都是内存级别的运算，而且单线程避免了多线程的切换性 能损耗问题。正因为 Redis 是单线程，所以要小心使用<br>Redis 指令，对于那些耗时的指令(比如 keys)，一定要谨慎使用，一不小心就可能会导致 Redis 卡顿。</p>
 <h2 id="Redis单线程如何处理那么多的并发客户端链接？"><a href="#Redis单线程如何处理那么多的并发客户端链接？" class="headerlink" title="Redis单线程如何处理那么多的并发客户端链接？"></a>Redis单线程如何处理那么多的并发客户端链接？</h2><p>Redis的<strong>IO多路复用</strong>：redis利用epoll来实现IO多路复用，将连接信息和事件放到队列中，依次放到 文件事件分派器，事件分派器将事件分发给事件处理器。</p>
 <p><img src="https://images.lilhui.com/3d76aa01f1678c619f175331f40e982d" alt="图片"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看redis支持的最大连接数，在redis.conf文件中可修改<span class="comment"># maxclients 10000 </span></span></span><br><span class="line">        127.0.0.1:6379&gt; CONFIG GET maxclients </span><br><span class="line">        ##1) "maxclients" 4 </span><br><span class="line">        ##2) "10000"</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看redis支持的最大连接数，在redis.conf文件中可修改# maxclients 10000</span> </span><br><span class="line">        127.0.0.1:6379&gt; CONFIG GET maxclients </span><br><span class="line">        ##1) &quot;maxclients&quot; 4 </span><br><span class="line">        ##2) &quot;10000&quot;</span><br></pre></td></tr></table></figure>
 <h2 id="一些高级命令"><a href="#一些高级命令" class="headerlink" title="一些高级命令"></a>一些高级命令</h2><p>keys: 全量遍历，用来列出所有满足特定正则字符串规则的key.性能比较差。避免使用。<br>scan: 渐进式遍历。SCAN cursor [MATCH pattern] [COUNT count]</p>
 <p>scan 参数提供了三个参数，第一个是 cursor 整数值(hash桶的索引值)，第二个是 key 的正则模式， 第三个是一次遍历的key的数量(参考值，底层遍历的数量不一定)，并不是符合条件的结果数量。第 一次遍历时，cursor 值为 0，然后将返回结果中第一个整数值作为下一次遍历的 cursor。一直遍历 到返回的 cursor 值为 0 时结束。<br>注意：但是scan并非完美无瑕， 如果在scan的过程中如果有键的变化（增加、 删除、 修改） ，那 么遍历效果可能会碰到如下问题： 新增的键可能没有遍历到， 遍历出了重复的键等情况， 也就是说 scan并不能保证完整的遍历出来所有的键， 这些是我们在开发时需要考虑的。</p>
 <p>Info：查看redis服务运行信息，分为 9 大块，每个块都有非常多的参数，这 9 个块分别是:</p>
 <p>Server 服务器运行的环境参数<br>Clients 客户端相关信息<br>Memory 服务器运行内存统计数据<br>Persistence 持久化信息<br>Stats 通用统计数据<br>Replication 主从复制相关信息<br>CPU CPU 使用情况<br>Cluster 集群信息<br>KeySpace 键值对统计数量信息</p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p><img src="https://images.lilhui.com/5a5b50442717feb7d0a23dd21b64d570" alt="图片"></p>
-<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">字符串常用操作</span><br><span class="line">SET  key  value 			//存入字符串键值对</span><br><span class="line">MSET  key  value [key value ...] 	//批量存储字符串键值对</span><br><span class="line">SETNX  key  value 		//存入一个不存在的字符串键值对</span><br><span class="line">GET  key 			//获取一个字符串键值</span><br><span class="line">MGET  key  [key ...]	 	//批量获取字符串键值</span><br><span class="line">DEL  key  [key ...] 		//删除一个键</span><br><span class="line">EXPIRE  key  seconds 		//设置一个键的过期时间(秒)</span><br><span class="line"></span><br><span class="line">原子加减</span><br><span class="line">INCR  key 			//将key中储存的数字值加1</span><br><span class="line">DECR  key 			//将key中储存的数字值减1</span><br><span class="line">INCRBY  key  increment 		//将key所储存的值加上increment</span><br><span class="line">DECRBY  key  decrement 	//将key所储存的值减去decrement</span><br><span class="line"></span><br><span class="line">计数器</span><br><span class="line">INCR article:readcount:&#123;文章id&#125;</span><br><span class="line">GET article:readcount:&#123;文章id&#125; </span><br><span class="line"></span><br><span class="line">Web集群session共享</span><br><span class="line">spring session + redis实现session共享</span><br><span class="line"></span><br><span class="line">分布式系统全局序列号	</span><br><span class="line">INCRBY  orderId  1000</span><br></pre></td></tr></table></figure>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">字符串常用操作</span><br><span class="line">SET  key  value 			//存入字符串键值对</span><br><span class="line">MSET  key  value [key value ...] 	//批量存储字符串键值对</span><br><span class="line">SETNX  key  value 		//存入一个不存在的字符串键值对</span><br><span class="line">GET  key 			//获取一个字符串键值</span><br><span class="line">MGET  key  [key ...]	 	//批量获取字符串键值</span><br><span class="line">DEL  key  [key ...] 		//删除一个键</span><br><span class="line">EXPIRE  key  seconds 		//设置一个键的过期时间(秒)</span><br><span class="line"></span><br><span class="line">原子加减</span><br><span class="line">INCR  key 			//将key中储存的数字值加1</span><br><span class="line">DECR  key 			//将key中储存的数字值减1</span><br><span class="line">INCRBY  key  increment 		//将key所储存的值加上increment</span><br><span class="line">DECRBY  key  decrement 	//将key所储存的值减去decrement</span><br><span class="line"></span><br><span class="line">计数器</span><br><span class="line">INCR article:readcount:&#123;文章id&#125;</span><br><span class="line">GET article:readcount:&#123;文章id&#125; </span><br><span class="line"></span><br><span class="line">Web集群session共享</span><br><span class="line">spring session + redis实现session共享</span><br><span class="line"></span><br><span class="line">分布式系统全局序列号	</span><br><span class="line">INCRBY  orderId  1000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="Hash结构"><a href="#Hash结构" class="headerlink" title="Hash结构"></a>Hash结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Hash常用操作</span><br><span class="line">HSET  key  field  value 			//存储一个哈希表key的键值</span><br><span class="line">HSETNX  key  field  value 		//存储一个不存在的哈希表key的键值</span><br><span class="line">HMSET  key  field  value [field value ...] 	//在一个哈希表key中存储多个键值对</span><br><span class="line">HGET  key  field 				//获取哈希表key对应的field键值</span><br><span class="line">HMGET  key  field  [field ...] 		//批量获取哈希表key中多个field键值</span><br><span class="line">HDEL  key  field  [field ...] 		//删除哈希表key中的field键值</span><br><span class="line">HLEN  key				//返回哈希表key中field的数量</span><br><span class="line">HGETALL key				//返回哈希表key中所有的键值</span><br><span class="line"></span><br><span class="line">HINCRBY  key  field  increment 		//为哈希表key中field键的值加上增量increment</span><br><span class="line"></span><br><span class="line">对象缓存</span><br><span class="line">HMSET  user  &#123;userId&#125;:name  zhuge  &#123;userId&#125;:balance  1888</span><br><span class="line">HMSET  user  1:name  zhuge  1:balance  1888</span><br><span class="line">HMGET  user  1:name  1:balance</span><br></pre></td></tr></table></figure>
-
+<h3 id="Hash结构"><a href="#Hash结构" class="headerlink" title="Hash结构"></a>Hash结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Hash常用操作</span><br><span class="line">HSET  key  field  value 			//存储一个哈希表key的键值</span><br><span class="line">HSETNX  key  field  value 		//存储一个不存在的哈希表key的键值</span><br><span class="line">HMSET  key  field  value [field value ...] 	//在一个哈希表key中存储多个键值对</span><br><span class="line">HGET  key  field 				//获取哈希表key对应的field键值</span><br><span class="line">HMGET  key  field  [field ...] 		//批量获取哈希表key中多个field键值</span><br><span class="line">HDEL  key  field  [field ...] 		//删除哈希表key中的field键值</span><br><span class="line">HLEN  key				//返回哈希表key中field的数量</span><br><span class="line">HGETALL key				//返回哈希表key中所有的键值</span><br><span class="line"></span><br><span class="line">HINCRBY  key  field  increment 		//为哈希表key中field键的值加上增量increment</span><br><span class="line"></span><br><span class="line">对象缓存</span><br><span class="line">HMSET  user  &#123;userId&#125;:name  zhuge  &#123;userId&#125;:balance  1888</span><br><span class="line">HMSET  user  1:name  zhuge  1:balance  1888</span><br><span class="line">HMGET  user  1:name  1:balance</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><img src="https://images.lilhui.com/8ea1cfd959c1da3d3febafbff977c492" alt="图片"><br>表内容<br><img src="https://images.lilhui.com/50e1a804785e735f677e9844230bb37d" alt="图片"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">电商购物车</span><br><span class="line">1）以用户id为key</span><br><span class="line">2）商品id为field</span><br><span class="line">3）商品数量为value</span><br><span class="line"></span><br><span class="line">购物车操作</span><br><span class="line">添加商品hset cart:1001 10088 1</span><br><span class="line">增加数量hincrby cart:1001 10088 1</span><br><span class="line">商品总数hlen cart:1001</span><br><span class="line">删除商品hdel cart:1001 10088</span><br><span class="line">获取购物车所有商品hgetall cart:1001</span><br></pre></td></tr></table></figure>
 
@@ -442,30 +448,30 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List常用操作</span><br><span class="line">LPUSH  key  value [value ...] 		//将一个或多个值value插入到key列表的表头(最左边)</span><br><span class="line">RPUSH  key  value [value ...]	 	//将一个或多个值value插入到key列表的表尾(最右边)</span><br><span class="line">LPOP  key			//移除并返回key列表的头元素</span><br><span class="line">RPOP  key			//移除并返回key列表的尾元素</span><br><span class="line">LRANGE  key  start  stop		//返回列表key中指定区间内的元素，区间以偏移量start和stop指定</span><br><span class="line"></span><br><span class="line">BLPOP  key  [key ...]  timeout	//从key列表表头弹出一个元素，若列表中没有元素，阻塞等待					timeout秒,如果timeout=0,一直阻塞等待</span><br><span class="line">BRPOP  key  [key ...]  timeout 	//从key列表表尾弹出一个元素，若列表中没有元素，阻塞等待					timeout秒,如果timeout=0,一直阻塞等待</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>应用场景</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">常用数据结构</span><br><span class="line">Stack(栈) = LPUSH + LPOP</span><br><span class="line">Queue(队列）= LPUSH + RPOP</span><br><span class="line">Blocking MQ(阻塞队列）= LPUSH + BRPOP</span><br></pre></td></tr></table></figure></li>
-</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">常用数据结构</span><br><span class="line">Stack(栈) = LPUSH + LPOP</span><br><span class="line">Queue(队列）= LPUSH + RPOP</span><br><span class="line">Blocking MQ(阻塞队列）= LPUSH + BRPOP</span><br></pre></td></tr></table></figure>
 <p><img src="https://images.lilhui.com/ff9c0592b6fc90f5b541809cbd3cb90c" alt="图片"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">微博消息和微信公号消息</span><br><span class="line">诸葛老师关注了MacTalk，备胎说车等大V</span><br><span class="line">1）MacTalk发微博，消息ID为10018</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125;  10018</span><br><span class="line">2）备胎说车发微博，消息ID为10086</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125; 10086</span><br><span class="line">3）查看最新微博消息</span><br><span class="line">LRANGE  msg:&#123;诸葛老师-ID&#125;  0  4</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">微博消息和微信公号消息</span><br><span class="line">诸葛老师关注了MacTalk，备胎说车等大V</span><br><span class="line">1）MacTalk发微博，消息ID为10018</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125;  10018</span><br><span class="line">2）备胎说车发微博，消息ID为10086</span><br><span class="line">LPUSH  msg:&#123;诸葛老师-ID&#125; 10086</span><br><span class="line">3）查看最新微博消息</span><br><span class="line">LRANGE  msg:&#123;诸葛老师-ID&#125;  0  4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://images.lilhui.com/62e6f348f1bde713939375c504320454" alt="图片"></p>
-<h3 id="Set结构"><a href="#Set结构" class="headerlink" title="Set结构"></a>Set结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Set常用操作</span><br><span class="line">SADD  key  member  [member ...]			//往集合key中存入元素，元素存在则忽略，</span><br><span class="line">							若key不存在则新建</span><br><span class="line">SREM  key  member  [member ...]			//从集合key中删除元素</span><br><span class="line">SMEMBERS  key					//获取集合key中所有元素</span><br><span class="line">SCARD  key					//获取集合key的元素个数</span><br><span class="line">SISMEMBER  key  member			//判断member元素是否存在于集合key中</span><br><span class="line">SRANDMEMBER  key  [count]			//从集合key中选出count个元素，元素不从key中删除</span><br><span class="line">SPOP  key  [count]				//从集合key中选出count个元素，元素从key中删除</span><br><span class="line"></span><br><span class="line">Set运算操作</span><br><span class="line">SINTER  key  [key ...] 				//交集运算</span><br><span class="line">SINTERSTORE  destination  key  [key ..]		//将交集结果存入新集合destination中</span><br><span class="line">SUNION  key  [key ..] 				//并集运算</span><br><span class="line">SUNIONSTORE  destination  key  [key ...]		//将并集结果存入新集合destination中</span><br><span class="line">SDIFF  key  [key ...] 				//差集运算</span><br><span class="line">SDIFFSTORE  destination  key  [key ...]		//将差集结果存入新集合destination中</span><br><span class="line"></span><br><span class="line">微信抽奖小程序</span><br><span class="line">1）点击参与抽奖加入集合</span><br><span class="line">SADD key &#123;userlD&#125;</span><br><span class="line">2）查看参与抽奖所有用户</span><br><span class="line">SMEMBERS key	  </span><br><span class="line">3）抽取count名中奖者</span><br><span class="line">SRANDMEMBER key [count] / SPOP key [count]</span><br></pre></td></tr></table></figure>
+<h3 id="Set结构"><a href="#Set结构" class="headerlink" title="Set结构"></a>Set结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Set常用操作</span><br><span class="line">SADD  key  member  [member ...]			//往集合key中存入元素，元素存在则忽略，</span><br><span class="line">							若key不存在则新建</span><br><span class="line">SREM  key  member  [member ...]			//从集合key中删除元素</span><br><span class="line">SMEMBERS  key					//获取集合key中所有元素</span><br><span class="line">SCARD  key					//获取集合key的元素个数</span><br><span class="line">SISMEMBER  key  member			//判断member元素是否存在于集合key中</span><br><span class="line">SRANDMEMBER  key  [count]			//从集合key中选出count个元素，元素不从key中删除</span><br><span class="line">SPOP  key  [count]				//从集合key中选出count个元素，元素从key中删除</span><br><span class="line"></span><br><span class="line">Set运算操作</span><br><span class="line">SINTER  key  [key ...] 				//交集运算</span><br><span class="line">SINTERSTORE  destination  key  [key ..]		//将交集结果存入新集合destination中</span><br><span class="line">SUNION  key  [key ..] 				//并集运算</span><br><span class="line">SUNIONSTORE  destination  key  [key ...]		//将并集结果存入新集合destination中</span><br><span class="line">SDIFF  key  [key ...] 				//差集运算</span><br><span class="line">SDIFFSTORE  destination  key  [key ...]		//将差集结果存入新集合destination中</span><br><span class="line"></span><br><span class="line">微信抽奖小程序</span><br><span class="line">1）点击参与抽奖加入集合</span><br><span class="line">SADD key &#123;userlD&#125;</span><br><span class="line">2）查看参与抽奖所有用户</span><br><span class="line">SMEMBERS key	  </span><br><span class="line">3）抽取count名中奖者</span><br><span class="line">SRANDMEMBER key [count] / SPOP key [count]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://images.lilhui.com/a73277f489af351a18afef12a4a309ad" alt="图片"></p>
 <ul>
 <li>应用场景</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">微信微博点赞，收藏，标签</span><br><span class="line">1) 点赞</span><br><span class="line">SADD  like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">2) 取消点赞</span><br><span class="line">SREM like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">3) 检查用户是否点过赞</span><br><span class="line">SISMEMBER  like:&#123;消息ID&#125;  &#123;用户ID&#125;</span><br><span class="line">4) 获取点赞的用户列表</span><br><span class="line">SMEMBERS like:&#123;消息ID&#125;</span><br><span class="line">5) 获取点赞用户数 </span><br><span class="line">SCARD like:&#123;消息ID&#125;</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://images.lilhui.com/a9e7bcdfdb7f96bf0f13595f44c40792" alt="图片"></p>
 <ul>
-<li>集合操作<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SINTER set1 set2 set3  &#123; c &#125;</span><br><span class="line">SUNION set1 set2 set3  &#123; a,b,c,d,e &#125;</span><br><span class="line">SDIFF set1 set2 set3  &#123; a &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+<li><p>集合操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SINTER set1 set2 set3  &#123; c &#125;</span><br><span class="line">SUNION set1 set2 set3  &#123; a,b,c,d,e &#125;</span><br><span class="line">SDIFF set1 set2 set3  &#123; a &#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://images.lilhui.com/a32160b24d2b4685bad068eb3afd1ca2" alt="图片"></p>
-<ul>
-<li>集合操作实现微博关注模型</li>
+</li>
+<li><p>集合操作实现微博关注模型</p>
+</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">集合操作实现微博微信关注模型</span><br><span class="line">1) 诸葛老师关注的人: </span><br><span class="line"><span class="meta">zhugeSet-&gt;</span><span class="bash"> &#123;guojia, xushu&#125;</span></span><br><span class="line">2) 杨过老师关注的人:</span><br><span class="line"><span class="meta"> yangguoSet--&gt;</span><span class="bash"> &#123;zhuge, baiqi, guojia, xushu&#125;</span></span><br><span class="line">3) 郭嘉老师关注的人: </span><br><span class="line"><span class="meta">guojiaSet-&gt;</span><span class="bash"> &#123;zhuge, yangguo, baiqi, xushu, xunyu)</span></span><br><span class="line">4) 我和杨过老师共同关注: </span><br><span class="line">SINTER zhugeSet yangguoSet--&gt; &#123;guojia, xushu&#125;</span><br><span class="line">5) 我关注的人也关注他(杨过老师): </span><br><span class="line">SISMEMBER guojiaSet yangguo </span><br><span class="line">SISMEMBER xushuSet yangguo</span><br><span class="line">6) 我可能认识的人: </span><br><span class="line">SDIFF yangguoSet zhugeSet-&gt;(zhuge, baiqi&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">集合操作实现微博微信关注模型</span><br><span class="line">1) 诸葛老师关注的人: </span><br><span class="line"><span class="meta prompt_">zhugeSet-&gt; </span><span class="language-bash">&#123;guojia, xushu&#125;</span></span><br><span class="line">2) 杨过老师关注的人:</span><br><span class="line"><span class="meta prompt_"> yangguoSet--&gt; </span><span class="language-bash">&#123;zhuge, baiqi, guojia, xushu&#125;</span></span><br><span class="line">3) 郭嘉老师关注的人: </span><br><span class="line"><span class="meta prompt_">guojiaSet-&gt; </span><span class="language-bash">&#123;zhuge, yangguo, baiqi, xushu, xunyu)</span></span><br><span class="line">4) 我和杨过老师共同关注: </span><br><span class="line">SINTER zhugeSet yangguoSet--&gt; &#123;guojia, xushu&#125;</span><br><span class="line">5) 我关注的人也关注他(杨过老师): </span><br><span class="line">SISMEMBER guojiaSet yangguo </span><br><span class="line">SISMEMBER xushuSet yangguo</span><br><span class="line">6) 我可能认识的人: </span><br><span class="line">SDIFF yangguoSet zhugeSet-&gt;(zhuge, baiqi&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://images.lilhui.com/a389d879e58447147e4ce1ddcab47473" alt="图片"></p>
 <p><img src="https://images.lilhui.com/31491901442e1895639eab5095e5eee6" alt="图片"></p>
 <ul>
@@ -477,16 +483,14 @@
 <h3 id="Zset有序集合结构"><a href="#Zset有序集合结构" class="headerlink" title="Zset有序集合结构"></a>Zset有序集合结构</h3><p><img src="https://images.lilhui.com/f693785556dbdb72de891f82df20830d" alt="图片"></p>
 <ul>
 <li><p>ZSet常用操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ZSet常用操作</span><br><span class="line">ZADD key score member [[score member]…]	//往有序集合key中加入带分值元素</span><br><span class="line">ZREM key member [member …]		//从有序集合key中删除元素</span><br><span class="line">ZSCORE key member 			//返回有序集合key中元素member的分值</span><br><span class="line">ZINCRBY key increment member		//为有序集合key中元素member的分值加上increment </span><br><span class="line">ZCARD key				//返回有序集合key中元素个数</span><br><span class="line">ZRANGE key start stop [WITHSCORES]	//正序获取有序集合key从start下标到stop下标的元素</span><br><span class="line">ZREVRANGE key start stop [WITHSCORES]	//倒序获取有序集合key从start下标到stop下标的元素</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ZSet常用操作</span><br><span class="line">ZADD key score member [[score member]…]	//往有序集合key中加入带分值元素</span><br><span class="line">ZREM key member [member …]		//从有序集合key中删除元素</span><br><span class="line">ZSCORE key member 			//返回有序集合key中元素member的分值</span><br><span class="line">ZINCRBY key increment member		//为有序集合key中元素member的分值加上increment </span><br><span class="line">ZCARD key				//返回有序集合key中元素个数</span><br><span class="line">ZRANGE key start stop [WITHSCORES]	//正序获取有序集合key从start下标到stop下标的元素</span><br><span class="line">ZREVRANGE key start stop [WITHSCORES]	//倒序获取有序集合key从start下标到stop下标的元素</span><br></pre></td></tr></table></figure></li>
 <li><p>ZSet集合操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ZUNIONSTORE destkey numkeys key [key ...] 	//并集计算</span><br><span class="line">ZINTERSTORE destkey numkeys key [key …]	//交集计算</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZUNIONSTORE destkey numkeys key [key ...] 	//并集计算</span><br><span class="line">ZINTERSTORE destkey numkeys key [key …]	//交集计算</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>应用场景</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Zset集合操作实现排行榜</span><br><span class="line">1）点击新闻</span><br><span class="line">ZINCRBY  hotNews:20190819  1  守护香港</span><br><span class="line">2）展示当日排行前十</span><br><span class="line">ZREVRANGE  hotNews:20190819  0  9  WITHSCORES </span><br><span class="line">3）七日搜索榜单计算</span><br><span class="line">ZUNIONSTORE  hotNews:20190813-20190819  7 </span><br><span class="line">hotNews:20190813  hotNews:20190814... hotNews:20190819</span><br><span class="line">4）展示七日排行前十</span><br><span class="line">ZREVRANGE hotNews:20190813-20190819  0  9  WITHSCORES</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Zset集合操作实现排行榜</span><br><span class="line">1）点击新闻</span><br><span class="line">ZINCRBY  hotNews:20190819  1  守护香港</span><br><span class="line">2）展示当日排行前十</span><br><span class="line">ZREVRANGE  hotNews:20190819  0  9  WITHSCORES </span><br><span class="line">3）七日搜索榜单计算</span><br><span class="line">ZUNIONSTORE  hotNews:20190813-20190819  7 </span><br><span class="line">hotNews:20190813  hotNews:20190814... hotNews:20190819</span><br><span class="line">4）展示七日排行前十</span><br><span class="line">ZREVRANGE hotNews:20190813-20190819  0  9  WITHSCORES</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><img src="https://images.lilhui.com/5c41f408bd96434d668b17cb147b8603" alt="图片"></p>
 
       
@@ -558,16 +562,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
 
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
+        
+      </div>
 
 
         </div>
@@ -590,98 +592,85 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          <li class="sidebar-nav-overview" data-target="site-overview">
             站点概览
           </li>
         </ul>
       
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4" alt="Littlehui">
-            
-              <p class="site-author-name" itemprop="name">Littlehui</p>
-              <p class="site-description motion-element" itemprop="description">将军啊将军，我要像将军那样喝酒。</p>
-          </div>
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives">
-              
-                  <span class="site-state-item-count">157</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">48</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">123</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+        <nav class="site-state motion-element">
 
           
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">162</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/littlehui" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/3526033295de" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-book"></i>简书</a>
-                  </span>
-                
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">124</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
-          
-          
+        </nav>
 
-          
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
+        <div class="links-of-author motion-element">
+          
         </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
 
       
@@ -694,7 +683,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-单线程为什么还能这么快？"><span class="nav-number">1.</span> <span class="nav-text">Redis 单线程为什么还能这么快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis单线程如何处理那么多的并发客户端链接？"><span class="nav-number">2.</span> <span class="nav-text">Redis单线程如何处理那么多的并发客户端链接？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些高级命令"><span class="nav-number">3.</span> <span class="nav-text">一些高级命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">4.1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash结构"><span class="nav-number">4.2.</span> <span class="nav-text">Hash结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List结构"><span class="nav-number">4.3.</span> <span class="nav-text">List结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set结构"><span class="nav-number">4.4.</span> <span class="nav-text">Set结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zset有序集合结构"><span class="nav-number">4.5.</span> <span class="nav-text">Zset有序集合结构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%8D%95%E7%BA%BF%E7%A8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%83%BD%E8%BF%99%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Redis 单线程为什么还能这么快？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E9%82%A3%E4%B9%88%E5%A4%9A%E7%9A%84%E5%B9%B6%E5%8F%91%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%93%BE%E6%8E%A5%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Redis单线程如何处理那么多的并发客户端链接？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%AB%98%E7%BA%A7%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">一些高级命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">4.1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.</span> <span class="nav-text">Hash结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List%E7%BB%93%E6%9E%84"><span class="nav-number">4.3.</span> <span class="nav-text">List结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set%E7%BB%93%E6%9E%84"><span class="nav-number">4.4.</span> <span class="nav-text">Set结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zset%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%E7%BB%93%E6%9E%84"><span class="nav-number">4.5.</span> <span class="nav-text">Zset有序集合结构</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -714,9 +703,15 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Littlehui</span>
 
@@ -724,17 +719,19 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
 
-
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
   <span class="post-meta-divider">|</span>
 
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
 
 
         
@@ -777,8 +774,6 @@
       </div>
     
 
-    
-
   </div>
 
   
@@ -811,42 +806,30 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
@@ -854,22 +837,26 @@
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
 
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -902,87 +889,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <!-- https://imsun.github.io/gitment/dist/gitmint.browser.js -->
-        <script src="https://www.lilhui.com/js/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname,
-            owner: 'littlehui',
-            repo: 'littlehui.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
-            
-                client_id: '968de029d09127201fdc'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
 
 
 
@@ -993,7 +918,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -1312,8 +1237,6 @@
   
 
   
-
-  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1330,7 +1253,6 @@
 </script>
 
 
-  
   
 
   
