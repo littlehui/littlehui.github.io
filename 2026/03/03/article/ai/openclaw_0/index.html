@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ai,agent,openclaw," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Littlehui's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="一、说明1.1 官方文档适用于任何操作系统的 AI 智能体 Gateway 网关，支持 WhatsApp、Telegram、Discord、iMessage 等。 发送消息，随时随地获取智能体响应。通过插件可添加 Mattermost 等更多渠道。 1.2架构说明  **多渠道接入 (Channels)**：支持 WhatsApp、Telegram、Discord 等，将复杂的指令交互转化为日常的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Openclaw实践教程">
+<meta property="og:url" content="https://www.lilhui.com/2026/03/03/article/ai/openclaw_0/index.html">
+<meta property="og:site_name" content="Littlehui&#39;s Notes">
+<meta property="og:description" content="一、说明1.1 官方文档适用于任何操作系统的 AI 智能体 Gateway 网关，支持 WhatsApp、Telegram、Discord、iMessage 等。 发送消息，随时随地获取智能体响应。通过插件可添加 Mattermost 等更多渠道。 1.2架构说明  **多渠道接入 (Channels)**：支持 WhatsApp、Telegram、Discord 等，将复杂的指令交互转化为日常的">
+<meta property="og:locale">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r35d957cb2ac14882b3221270b4fe36ae?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzNWQ5NTdjYjJhYzE0ODgyYjMyMjEyNzBiNGZlMzZhZSJ9.wY3XtMdmzkg5KbR29ThEMNxg0cG99-4fcdQfNK-BddY&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rea480b4274c3ce6cd79f45713ff8c8a1?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlYTQ4MGI0Mjc0YzNjZTZjZDc5ZjQ1NzEzZmY4YzhhMSJ9.aTet0P3lYIsi-ctnIuBpRBfEukPn0ZnFol7qFpayQ64&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r23623466a18abd2c696104b937c12388?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyMzYyMzQ2NmExOGFiZDJjNjk2MTA0YjkzN2MxMjM4OCJ9.8Qy9-pGTNt3kvYh6rVtjnHaGdaFsEQJ_pTLgN314_ks&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r1eee88aa6606c1973f601d170cb78236?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxZWVlODhhYTY2MDZjMTk3M2Y2MDFkMTcwY2I3ODIzNiJ9.O2upl0G4BhY3nnx0uknvJuoWqDT8v2WipOAlXetVAJA&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rba5e0e2d8583224b91c41a5982b4776c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JiYTVlMGUyZDg1ODMyMjRiOTFjNDFhNTk4MmI0Nzc2YyJ9.23GBQfQQaFqzChNx79L750oRCkmnywe1N1i5hvYsoCg&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r34e8d8b3abdd5313383d2c0d35a60d51?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzEyMCwiaWF0IjoxNzcyNTA4MzIwLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzNGU4ZDhiM2FiZGQ1MzEzMzgzZDJjMGQzNWE2MGQ1MSJ9.gLwqBTlO1vaU73dQBM0jfRsoPnUZTaoxxK323AWmFA0&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113ra3eb896ff6078b71a4a4d92c31bd422e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzIwOCwiaWF0IjoxNzcyNTA4NDA4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhM2ViODk2ZmY2MDc4YjcxYTRhNGQ5MmMzMWJkNDIyZSJ9.FxTPUVSkKiSJCrl1FyKsZJ6tYYIzdubYcMnWEi3-57Y&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r9f4502ed210f9f64f1359de9152d5a9c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5ZjQ1MDJlZDIxMGY5ZjY0ZjEzNTlkZTkxNTJkNWE5YyJ9._NAojB2n-vmWp03ai0m5Fp0j0hb6mGkNqSEUJR2CQyo&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r91e99715b7fd72084842a989fd558fba?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzQwNiwiaWF0IjoxNzcyNTA4NjA2LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5MWU5OTcxNWI3ZmQ3MjA4NDg0MmE5ODlmZDU1OGZiYSJ9.XgkTqbnA3qp548vd5IdI1O5iVs-lk-E4Nh6MVA-7ULs&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r261c735839f457abbb15bdaeff8c1da0?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNjFjNzM1ODM5ZjQ1N2FiYmIxNWJkYWVmZjhjMWRhMCJ9.BYK8CUaJ8N19vvGpZ5SRLyzfPYQMAMAp-LHJSuUn5H8&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r6687c6a4c42b5969ce211c39f9403370?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2Njg3YzZhNGM0MmI1OTY5Y2UyMTFjMzlmOTQwMzM3MCJ9.LnCIxUQzEEiva4_yTkZzS8MALC12dMntuqghoPT02kw&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r684588baadf0dea42ae3ad51133696a8?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2ODQ1ODhiYWFkZjBkZWE0MmFlM2FkNTExMzM2OTZhOCJ9.tFnD_9269WCTRmxUiEiDeSJIFpGGJM1sJKD4cUMhIaw&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rdd4af3fa5edddf05ede0ce38b5df7c2f?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkZDRhZjNmYTVlZGRkZjA1ZWRlMGNlMzhiNWRmN2MyZiJ9.u73NDvNJGq9u6Z4MjYNZTOd3E_PCq7kW7yTj0WJAj98&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r06f6623d198788bd8d4ef460e96b79c5?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IwNmY2NjIzZDE5ODc4OGJkOGQ0ZWY0NjBlOTZiNzljNSJ9.IlBuORPUxxrDWsc_GP7vRN0Jt6fvvMKN_cxGSRCMr0k&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rdc3220bdbcb4ed2cfbd3bbd65f9dd7fe?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkYzMyMjBiZGJjYjRlZDJjZmJkM2JiZDY1ZjlkZDdmZSJ9.GhdogaXPuGjcio7lfSsgh3UC59EzYC8W5_U2Rt4NAJE&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r1a77935b15e0d17e55a657c6c2a41c3d?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxYTc3OTM1YjE1ZTBkMTdlNTVhNjU3YzZjMmE0MWMzZCJ9.-pzNAYDPp0QBGbjPW9M9v-83PFE6vz6wzrR35aZB8RA&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r6a240d025e3892440f4bcfe384fbc3e9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2YTI0MGQwMjVlMzg5MjQ0MGY0YmNmZTM4NGZiYzNlOSJ9.MM6LlA7RiHBFA9hDAo2dENN9_jPLNclfL0F6YzISyAw&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113re8fbfc44eca4a09a081215fc314affd8?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlOGZiZmM0NGVjYTRhMDlhMDgxMjE1ZmMzMTRhZmZkOCJ9.nha8ewPAMc-BwZ9fKNpnC_P3-i_Vj5wcEaU0PBO7Pi8&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113re6bc6028ab2bdb277a6fcac2afc72d33?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlNmJjNjAyOGFiMmJkYjI3N2E2ZmNhYzJhZmM3MmQzMyJ9.AI7nq4JpA7UoypJqPObv6d_oJ9-HngrTq44wlBd56wY&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113ra663f3571349eeb3029f1d34e121006b?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhNjYzZjM1NzEzNDllZWIzMDI5ZjFkMzRlMTIxMDA2YiJ9.uBz5K7SsOusYg2EDgCbq1dkUdYlXtM-4kgaQuFoz4iQ&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r61e9447acb3710742ae3099de6a4d909?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2MWU5NDQ3YWNiMzcxMDc0MmFlMzA5OWRlNmE0ZDkwOSJ9.ZS_DksqiEB13pNiPJJo9Bm2VONUGbFWLSGuFtz2T3WU&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r86d8297f771719e6456c2bc362e2a252?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I4NmQ4Mjk3Zjc3MTcxOWU2NDU2YzJiYzM2MmUyYTI1MiJ9.nU6tqEAucwEybEcHqmcz3Id_AEEkFWTqnd7h-xg7324&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r61ac7a4ed6ff787deb83e81137a44ece?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2MWFjN2E0ZWQ2ZmY3ODdkZWI4M2U4MTEzN2E0NGVjZSJ9.McU9y6P6nsP3F8075I_duOvJNEDEsHQ8AZ8fHxHQC-E&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r25eb7ac01947597d18a762d7e60fd609?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNWViN2FjMDE5NDc1OTdkMThhNzYyZDdlNjBmZDYwOSJ9.--mUMzvPPczesa2lbzLXjhucU23kThrELfdm-GeYPmU&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r7783d66bc747876562d559a011462e14?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3NzgzZDY2YmM3NDc4NzY1NjJkNTU5YTAxMTQ2MmUxNCJ9.3gQnWG7BoBLkI7ZK5tdejlIygHL17e7WozKdRPXlxn0&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rf7143ec44a9c58bc4eeebcad7171011c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JmNzE0M2VjNDRhOWM1OGJjNGVlZWJjYWQ3MTcxMDExYyJ9.pBtwXt1YC6JTjZVyRrCLdyafMcuYWIisTJjOX08jWq8&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113rcdbf6d2c775175f06094acd6da3aa2eb?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JjZGJmNmQyYzc3NTE3NWYwNjA5NGFjZDZkYTNhYTJlYiJ9.DbibGB5pVs4UvnnaYoCzby-I8BzV53BpKtogDrM4dLI&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r91ca602127d8a51c5b6f2993c5152c41?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5MWNhNjAyMTI3ZDhhNTFjNWI2ZjI5OTNjNTE1MmM0MSJ9.WFYIECZlc9UoPAF5o_QyUlRRDUOPQXXEQiaAZb6bCYI&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r1bdc4b562998abf99bc3e7fc89a50390?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxYmRjNGI1NjI5OThhYmY5OWJjM2U3ZmM4OWE1MDM5MCJ9.EhY08jfxJvNr76grB1BuG1hI-cbwmocOWN1AGDdFoo0&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113r5a29c3fe2605c44aba3da5d6745cbccb?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I1YTI5YzNmZTI2MDVjNDRhYmEzZGE1ZDY3NDVjYmNjYiJ9.hOwHWs8Wixuj9VMSf8H08ZJaU0ZLLY7L0bxNth9do4Y&download=image.png">
+<meta property="og:image" content="https://tcs-devops.aliyuncs.com/storage/113ra5129cbf2a95d6381efdc2d024d8405a?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhNTEyOWNiZjJhOTVkNjM4MWVmZGMyZDAyNGQ4NDA1YSJ9.HQqiQLgt_s6cKyyNigSqbK4t6DIW07w9ZizmqrdlJzI&download=image.png">
+<meta property="article:published_time" content="2026-03-03T13:03:27.000Z">
+<meta property="article:modified_time" content="2026-03-03T13:08:14.607Z">
+<meta property="article:author" content="Littlehui">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="openclaw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tcs-devops.aliyuncs.com/storage/113r35d957cb2ac14882b3221270b4fe36ae?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzNWQ5NTdjYjJhYzE0ODgyYjMyMjEyNzBiNGZlMzZhZSJ9.wY3XtMdmzkg5KbR29ThEMNxg0cG99-4fcdQfNK-BddY&download=image.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.lilhui.com/2026/03/03/article/ai/openclaw_0/"/>
+
+
+
+
+
+  <title>Openclaw实践教程 | Littlehui's Notes</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Littlehui's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">古代有一位将军喝酒成瘾，将军啊将军，他越喝越有型。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.lilhui.com/2026/03/03/article/ai/openclaw_0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Littlehui's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Openclaw实践教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-03-03T21:03:27+08:00">
+                2026-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、说明"><a href="#一、说明" class="headerlink" title="一、说明"></a>一、说明</h1><h2 id="1-1-官方文档"><a href="#1-1-官方文档" class="headerlink" title="1.1 官方文档"></a>1.1 官方文档</h2><p><strong>适用于任何操作系统的 AI 智能体 Gateway 网关，支持 WhatsApp、Telegram、Discord、iMessage 等。</strong></p>
+<p>发送消息，随时随地获取智能体响应。通过插件可添加 Mattermost 等更多渠道。</p>
+<h2 id="1-2架构说明"><a href="#1-2架构说明" class="headerlink" title="1.2架构说明"></a>1.2架构说明</h2><p><img src="https://tcs-devops.aliyuncs.com/storage/113r35d957cb2ac14882b3221270b4fe36ae?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzNWQ5NTdjYjJhYzE0ODgyYjMyMjEyNzBiNGZlMzZhZSJ9.wY3XtMdmzkg5KbR29ThEMNxg0cG99-4fcdQfNK-BddY&download=image.png"></p>
+<ul>
+<li><p>**多渠道接入 (Channels)**：支持 WhatsApp、Telegram、Discord 等，将复杂的指令交互转化为日常的即时通讯。</p>
+</li>
+<li><p>**中枢控制 (Gateway)**：作为系统的大脑，负责状态管理、模型路由及<a href="https://zhida.zhihu.com/search?content_id=269938492&content_type=Article&match_order=1&q=+MCP+%E5%8D%8F%E8%AE%AE&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NzI2Nzk0NTYsInEiOiIgTUNQIOWNj-iuriIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjI2OTkzODQ5MiwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.dgKoRhXOXiVhkbIfmgAAMZAIhu8qTGuCSuMw8KrdqVw&zhida_source=entity"> MCP 协议</a>分发。</p>
+</li>
+<li><p>**技能扩展 (Skills)**：原生支持 <strong>MCP（Model Context Protocol）</strong>，可无缝对接文件系统、浏览器、Shell 等上百种工具。</p>
+</li>
+<li><p>**持久化记忆 (Memory)**：交互历史与知识库均以 Markdown 或向量库形式存储于本地，实现“越用越懂你”的个性化进化。</p>
+</li>
+</ul>
+<h2 id="1-3-openClaw任务处理流程"><a href="#1-3-openClaw任务处理流程" class="headerlink" title="1.3 openClaw任务处理流程"></a>1.3 openClaw任务处理流程</h2><p><img src="https://tcs-devops.aliyuncs.com/storage/113rea480b4274c3ce6cd79f45713ff8c8a1?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlYTQ4MGI0Mjc0YzNjZTZjZDc5ZjQ1NzEzZmY4YzhhMSJ9.aTet0P3lYIsi-ctnIuBpRBfEukPn0ZnFol7qFpayQ64&download=image.png"></p>
+<ol>
+<li><p><strong>意图解析</strong>：LLM 分析指令，判断是否需要调用外部工具。</p>
+</li>
+<li><p><strong>工具调度</strong>：Gateway 通过 MCP 协议激活对应的本地 Skill。</p>
+</li>
+<li><p><strong>反馈与记忆</strong>：执行结果反馈给 LLM，并同步更新本地记忆库，完成任务闭环。</p>
+</li>
+</ol>
+<h1 id="二、本地部署"><a href="#二、本地部署" class="headerlink" title="二、本地部署"></a>二、本地部署</h1><p>网上的部署方案很多，主要有两个，一个是本地部署，另一个是云服务部署。本地部署可以直接部署也可以进行docker部署。这里介绍本地的直接部署：</p>
+<h2 id="2-1-前置依赖"><a href="#2-1-前置依赖" class="headerlink" title="2.1 前置依赖"></a>2.1 前置依赖</h2><p>openclaw依赖Nodejs 22+版本以上，所以先升级Nodejs</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r23623466a18abd2c696104b937c12388?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyMzYyMzQ2NmExOGFiZDJjNjk2MTA0YjkzN2MxMjM4OCJ9.8Qy9-pGTNt3kvYh6rVtjnHaGdaFsEQJ_pTLgN314_ks&download=image.png"></p>
+<p><strong>Mac 用户（推荐用 Homebrew）：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 如果没装过 Homebrew，先安装</span><br><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br><span class="line"></span><br><span class="line"># 安装 Node.js</span><br><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Windows用户</strong></p>
+<p>去 Node.js 官网下载安装包：<a href="https://nodejs.org/zh-cn/download">https://nodejs.org/zh-cn/download</a></p>
+<p>安装时注意勾选 **”Add Node.js to PATH”**。</p>
+<p><strong>Linux用户</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Ubuntu/Debian</span><br><span class="line">curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -</span><br><span class="line">sudo apt install -y nodejs</span><br><span class="line"></span><br><span class="line"># CentOS/RHEL</span><br><span class="line">curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -</span><br><span class="line">sudo yum install -y nodejs</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-2-安装步骤"><a href="#2-2-安装步骤" class="headerlink" title="2.2 安装步骤"></a>2.2 安装步骤</h2><h3 id="1-安装openclaw"><a href="#1-安装openclaw" class="headerlink" title="1. 安装openclaw"></a>1. 安装openclaw</h3><p>macos&#x2F;linux</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://openclaw.ai/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>windows</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装openclaw</span><br><span class="line">npm install -g openclaw</span><br><span class="line"></span><br><span class="line"># 查看版本</span><br><span class="line">openclaw -v</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-配置向导"><a href="#2-配置向导" class="headerlink" title="2. 配置向导"></a>2. 配置向导</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw onboard --install-daemon</span><br></pre></td></tr></table></figure>
+
+<p><code>--install-daemon</code> 参数的作用：</p>
+<ol>
+<li><p><strong>认证配置</strong>：用 GitHub 账号登录验证身份</p>
+</li>
+<li><p><strong>网关设置</strong>：配置 Gateway 服务，包括 AI 模型选择和 API Key</p>
+</li>
+<li><p><strong>安装守护进程</strong>：把 OpenClaw Gateway 注册为系统服务，开机自启</p>
+</li>
+</ol>
+<p>详情如下：</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r1eee88aa6606c1973f601d170cb78236?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxZWVlODhhYTY2MDZjMTk3M2Y2MDFkMTcwY2I3ODIzNiJ9.O2upl0G4BhY3nnx0uknvJuoWqDT8v2WipOAlXetVAJA&download=image.png"></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113rba5e0e2d8583224b91c41a5982b4776c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JiYTVlMGUyZDg1ODMyMjRiOTFjNDFhNTk4MmI0Nzc2YyJ9.23GBQfQQaFqzChNx79L750oRCkmnywe1N1i5hvYsoCg&download=image.png"></p>
+<ul>
+<li>模型认证方式-skip</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r34e8d8b3abdd5313383d2c0d35a60d51?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzEyMCwiaWF0IjoxNzcyNTA4MzIwLCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IzNGU4ZDhiM2FiZGQ1MzEzMzgzZDJjMGQzNWE2MGQ1MSJ9.gLwqBTlO1vaU73dQBM0jfRsoPnUZTaoxxK323AWmFA0&download=image.png"></p>
+<ul>
+<li>模型选择先跳过</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113ra3eb896ff6078b71a4a4d92c31bd422e?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzIwOCwiaWF0IjoxNzcyNTA4NDA4LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhM2ViODk2ZmY2MDc4YjcxYTRhNGQ5MmMzMWJkNDIyZSJ9.FxTPUVSkKiSJCrl1FyKsZJ6tYYIzdubYcMnWEi3-57Y&download=image.png"></p>
+<ul>
+<li>配置消息发送渠道，这里跳过:</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r9f4502ed210f9f64f1359de9152d5a9c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5ZjQ1MDJlZDIxMGY5ZjY0ZjEzNTlkZTkxNTJkNWE5YyJ9._NAojB2n-vmWp03ai0m5Fp0j0hb6mGkNqSEUJR2CQyo&download=image.png"></p>
+<ul>
+<li>配置skill这里先不配置</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r91e99715b7fd72084842a989fd558fba?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IjVmZmZmYTdmMWU0NWRiM2MxY2MyNzE4NSIsImV4cCI6MTc3MzExMzQwNiwiaWF0IjoxNzcyNTA4NjA2LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5MWU5OTcxNWI3ZmQ3MjA4NDg0MmE5ODlmZDU1OGZiYSJ9.XgkTqbnA3qp548vd5IdI1O5iVs-lk-E4Nh6MVA-7ULs&download=image.png"></p>
+<ul>
+<li>hooks都选。</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r261c735839f457abbb15bdaeff8c1da0?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNjFjNzM1ODM5ZjQ1N2FiYmIxNWJkYWVmZjhjMWRhMCJ9.BYK8CUaJ8N19vvGpZ5SRLyzfPYQMAMAp-LHJSuUn5H8&download=image.png"></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">OpenClaw 内置了 4 个启动相关 hooks，作用如下：</span><br><span class="line"></span><br><span class="line"> 🚀 boot-md</span><br><span class="line"></span><br><span class="line"> 功能：在 Gateway 启动时运行 BOOT.md 文件</span><br><span class="line"> - 触发时机：gateway:startup</span><br><span class="line"> - 用途：用于在服务启动时执行初始化检查清单（类似 AGENTS.md 里的 BOOTSTRAP.md）</span><br><span class="line"> - 要求：需要配置 workspace.dir</span><br><span class="line"></span><br><span class="line"> 📎 bootstrap-extra-files</span><br><span class="line"></span><br><span class="line"> 功能：通过 glob 模式注入额外的 workspace bootstrap 文件到 Project Context</span><br><span class="line"> - 触发时机：agent:bootstrap</span><br><span class="line"> - 用途：当你的 workspace 是 monorepo 等多目录结构时，可以加载额外的 packages/*/AGENTS.md、packages/*/TOOLS.md 等文件，不用改 workspace root</span><br><span class="line"> - 配置示例：</span><br><span class="line">   ```json</span><br><span class="line">     &#123;</span><br><span class="line">       &quot;paths&quot;: [&quot;packages/*/AGENTS.md&quot;, &quot;packages/*/TOOLS.md&quot;]</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>限制：只能加载特定基础名的文件（AGENTS.md、SO UL.md、TOOLS.md、IDENTITY.md、USER. md、HEARTBEAT.md、BOOTSTRAP.md、MEM ORY.md、memory.md）</li>
+</ul>
+<p>📝 command-logger</p>
+<p>功能：将所有命令事件（&#x2F;new、&#x2F;reset、&#x2F;stop 等）记录到中心审计文件</p>
+<ul>
+<li>触发时机：command（任何命令）</li>
+<li>日志位置：~&#x2F;.openclaw&#x2F;logs&#x2F;commands.log</li>
+<li>格式：JSONL（每行一个 JSON 对象）<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="string">&quot;2026-01-16T14:30:0 0.000Z&quot;</span><span class="punctuation">,</span><span class="attr">&quot;action&quot;</span><span class="punctuation">:</span><span class="string">&quot;new&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sessionK ey&quot;</span><span class="punctuation">:</span><span class="string">&quot;agent:main:main&quot;</span><span class="punctuation">,</span><span class="attr">&quot;senderId&quot;</span> <span class="punctuation">:</span><span class="string">&quot;+1234567890&quot;</span><span class="punctuation">,</span><span class="attr">&quot;source&quot;</span><span class="punctuation">:</span><span class="string">&quot;telegra m&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>用途：调试、审计、分析命令模式、故障排查</li>
+</ul>
+<p>💾 session-memory</p>
+<p>功能：当你执行 &#x2F;new 或 &#x2F;reset 时，自动把前一个 session 的上下文保存到 memory 文件</p>
+<ul>
+<li>触发时机：command:new、command: reset</li>
+<li>保存位置：<workspace>&#x2F;memory&#x2F;YYYY-MM-DD-slug.md</li>
+<li>工作流程：<ol>
+<li>找到上次 session 的对话历史</li>
+<li>提取最后 N 条用户&#x2F;助手消息（默认 15 条，可配）</li>
+<li>用 LLM 生成描述性 slug（自动根据内容命名）</li>
+<li>保存到 memory 文件并通知你路径</li>
+</ol>
+</li>
+<li>配置示例：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;messages&quot;</span><span class="punctuation">:</span> <span class="number">25</span>  <span class="comment">// 保存 25 条消息</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>文件命名示例：2026-01-16-vendor-pi tch.md（供应商评估讨论）、2026-01-16-api -design.md（API 架构规划）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下来就部署好了:</span><br><span class="line"></span><br><span class="line">![](https://tcs-devops.aliyuncs.com/storage/113r67493f4896d279414c7c21cc76b3d0ee?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2NzQ5M2Y0ODk2ZDI3OTQxNGM3YzIxY2M3NmIzZDBlZSJ9.8iOxmGRotdckSC8Myx4gIllHD5-kABaMjTKFuFVxFOQ&amp;download=image.png &quot;&quot;)</span><br><span class="line"></span><br><span class="line">访问：</span><br><span class="line"></span><br><span class="line">1. [__http://127.0.0.1:18789/__](http://127.0.0.1:18789/) 既可看到</span><br><span class="line"></span><br><span class="line">1. 控制台命令 `openclaw tui`</span><br><span class="line"></span><br><span class="line">如果有提示需要设备配对，执行一下命令行：</span><br><span class="line"></span><br><span class="line">- 设备配对</span><br><span class="line"></span><br><span class="line">```text</span><br><span class="line">openclaw devices list</span><br><span class="line"></span><br><span class="line">openclaw devices approve &#123;requestId&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="三、使用前置"><a href="#三、使用前置" class="headerlink" title="三、使用前置"></a>三、使用前置</h1><h2 id="3-1、配置模型"><a href="#3-1、配置模型" class="headerlink" title="3.1、配置模型"></a>3.1、配置模型</h2><p>给openclaw装上大脑。Openclaw通过配置可以选取不同的模型。</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r6687c6a4c42b5969ce211c39f9403370?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2Njg3YzZhNGM0MmI1OTY5Y2UyMTFjMzlmOTQwMzM3MCJ9.LnCIxUQzEEiva4_yTkZzS8MALC12dMntuqghoPT02kw&download=image.png"></p>
+<p>Openclaw非常耗token，轻度使用2天2.8m token.采用硅基流动，实名认证后免费领<code>16元</code>token 薅个羊毛。硅基流动（siliconflow）是模型提供商，提供几十种模型选择。</p>
+<p><a href="https://cloud.siliconflow.cn/i/dvezuUDJ"><strong>https://cloud.siliconflow.cn/i/dvezuUDJ</strong></a></p>
+<p>一定要邀请码：<code>dvezuUDJ</code></p>
+<ul>
+<li>实名认证：</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r684588baadf0dea42ae3ad51133696a8?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2ODQ1ODhiYWFkZjBkZWE0MmFlM2FkNTExMzM2OTZhOCJ9.tFnD_9269WCTRmxUiEiDeSJIFpGGJM1sJKD4cUMhIaw&download=image.png"></p>
+<ul>
+<li>认证完成后在余额充值里会看到 ：</li>
+</ul>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113rdd4af3fa5edddf05ede0ce38b5df7c2f?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkZDRhZjNmYTVlZGRkZjA1ZWRlMGNlMzhiNWRmN2MyZiJ9.u73NDvNJGq9u6Z4MjYNZTOd3E_PCq7kW7yTj0WJAj98&download=image.png"></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r06f6623d198788bd8d4ef460e96b79c5?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IwNmY2NjIzZDE5ODc4OGJkOGQ0ZWY0NjBlOTZiNzljNSJ9.IlBuORPUxxrDWsc_GP7vRN0Jt6fvvMKN_cxGSRCMr0k&download=image.png"></p>
+<p>得到apikey后修改模型：</p>
+<p>可以通过向导配置模型，也可以通过配置文件进行配置。这里通过配置文件 <code>~/.openclaw/openclaw.json</code>：</p>
+<p>在 <code>models</code> -&gt; <code>providers</code> 节点下添加 <code>siliconflow</code> 服务商，把“siliconflow”部分粘贴进去</p>
+<figure class="highlight bash"><figcaption><span>hljs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;models&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;providers&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;siliconflow&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;baseUrl&quot;</span>: <span class="string">&quot;https://api.siliconflow.cn/v1&quot;</span>,</span><br><span class="line">      <span class="string">&quot;apiKey&quot;</span>: <span class="string">&quot;sk-你的硅基流动API密钥&quot;</span>,</span><br><span class="line">      <span class="string">&quot;api&quot;</span>: <span class="string">&quot;openai-completions&quot;</span>,</span><br><span class="line">      <span class="string">&quot;models&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">&quot;id&quot;</span>: <span class="string">&quot;Pro/zai-org/GLM-4.7&quot;</span>,</span><br><span class="line">          <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Silicon GLM 4.7&quot;</span>,</span><br><span class="line">          <span class="string">&quot;contextWindow&quot;</span>: 128000,</span><br><span class="line">          <span class="string">&quot;maxTokens&quot;</span>: 8192</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">&quot;id&quot;</span>: <span class="string">&quot;deepseek-ai/DeepSeek-V3&quot;</span>,</span><br><span class="line">          <span class="string">&quot;name&quot;</span>: <span class="string">&quot;DeepSeek V3&quot;</span>,</span><br><span class="line">          <span class="string">&quot;contextWindow&quot;</span>: 64000,</span><br><span class="line">          <span class="string">&quot;maxTokens&quot;</span>: 4096</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>agents</code> -&gt; <code>defaults</code> 中声明模型的使用路径，并可设置别名。修改model、models</p>
+<figure class="highlight bash"><figcaption><span>hljs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;agents&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;defaults&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;model&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;primary&quot;</span>: <span class="string">&quot;siliconflow/Pro/zai-org/GLM-4.7&quot;</span> </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;models&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;siliconflow/Pro/zai-org/GLM-4.7&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;alias&quot;</span>: <span class="string">&quot;glm&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&quot;siliconflow/deepseek-ai/DeepSeek-V3&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;alias&quot;</span>: <span class="string">&quot;deepseek&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里配置了GLM 4.7、DeepSeek-V3</p>
+<p>（注：”primary”的值需要添加前缀 siliconflow&#x2F;（如上图配置的providers名字），xxx为从硅基流动上粘贴下来的模型id）</p>
+<table>
+<thead>
+<tr>
+<th>操作目的</th>
+<th>对应指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>强制重启服务</td>
+<td>openclaw gateway stopschtasks &#x2F;Run &#x2F;TN “openclaw Gateway”</td>
+</tr>
+<tr>
+<td>测试模型连接</td>
+<td>openclaw agent –agent main –message “你好”</td>
+</tr>
+<tr>
+<td>修复环境配置</td>
+<td>openclaw doctor –fix</td>
+</tr>
+<tr>
+<td>查看实时日志</td>
+<td>openclaw logs –follow</td>
+</tr>
+</tbody></table>
+<h2 id="3-2、skill相关"><a href="#3-2、skill相关" class="headerlink" title="3.2、skill相关"></a>3.2、skill相关</h2><h3 id="1、skills安装"><a href="#1、skills安装" class="headerlink" title="1、skills安装"></a>1、skills安装</h3><p>skill安装可以通过向导进行配置，也可以通过命令安装。</p>
+<p>Skills 的加载有优先级机制，高优先级会覆盖低优先级的同名 Skill：</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113rdc3220bdbcb4ed2cfbd3bbd65f9dd7fe?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JkYzMyMjBiZGJjYjRlZDJjZmJkM2JiZDY1ZjlkZDdmZSJ9.GhdogaXPuGjcio7lfSsgh3UC59EzYC8W5_U2Rt4NAJE&download=image.png"></p>
+<p>Skills 通过 <strong>ClawHub</strong>（OpenClaw 的公共技能注册表）来管理。安装命令是 <code>clawhub</code>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 安装一个技能（会装到 ./skills 或 ~/.openclaw/skills 目录下）</span><br><span class="line">clawhub install &lt;skill-slug&gt;</span><br><span class="line"></span><br><span class="line"># 更新所有已安装的技能</span><br><span class="line">clawhub update --all</span><br><span class="line"></span><br><span class="line"># 扫描并同步技能</span><br><span class="line">clawhub sync --all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>推荐Skills清单</p>
+<p>生产力类</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>功能</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>daily-report</td>
+<td>自动生成日报</td>
+<td>每天写日报的打工人</td>
+</tr>
+<tr>
+<td>meeting-notes</td>
+<td>会议纪要整理</td>
+<td>会议记录员</td>
+</tr>
+<tr>
+<td>email-digest</td>
+<td>邮件摘要</td>
+<td>邮件太多的用户</td>
+</tr>
+</tbody></table>
+<h3 id="2、自建skill"><a href="#2、自建skill" class="headerlink" title="2、自建skill"></a>2、自建skill</h3><p><strong>步骤 1：创建目录</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 进入你的 OpenClaw 工作区</span><br><span class="line">cd ~/.openclaw/workspace</span><br><span class="line"># 创建技能目录</span><br><span class="line">mkdir -p skills/weather-reporter</span><br><span class="line"># 进入技能目录</span><br><span class="line">cd skills/weather-reporter</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 2：编写 SKILL.md</strong></p>
+<p>创建 <code>SKILL.md</code> 文件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">name: weather-reporter</span><br><span class="line">description: 智能天气播报员，用生动的语言播报天气状况</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># 天气播报员 Skill</span><br><span class="line"></span><br><span class="line">当用户询问天气时，按以下流程播报：</span><br><span class="line"></span><br><span class="line">## 播报流程</span><br><span class="line"></span><br><span class="line">1. **获取天气数据**</span><br><span class="line">   - 调用天气 API 获取当前天气</span><br><span class="line">   - 记录：温度、湿度、风速、天气状况</span><br><span class="line"></span><br><span class="line">2. **生成播报文案**</span><br><span class="line">   - 用生动、拟人化的语言</span><br><span class="line">   - 加入场景感（如&quot;阳光正好，适合出门散步&quot;）</span><br><span class="line">   - 根据天气给出建议（穿衣、带伞等）</span><br><span class="line"></span><br><span class="line">3. **格式化输出**</span><br><span class="line">   - 使用 emoji 增强可读性</span><br><span class="line">   - 结构清晰：今日天气 → 出行建议 → 温馨提示</span><br><span class="line"></span><br><span class="line">## 示例输出</span><br><span class="line"></span><br><span class="line">&gt; 🌤️ 今日天气播报</span><br><span class="line">&gt;</span><br><span class="line">&gt; 天气：晴朗，微风拂面</span><br><span class="line">&gt; 温度：22°C，体感舒适</span><br><span class="line">&gt; 湿度：65%，空气清新</span><br><span class="line">&gt;</span><br><span class="line">&gt; 🚶 出行建议：</span><br><span class="line">&gt; - 阳光正好，适合户外活动</span><br><span class="line">&gt; - 轻薄外套即可，注意防晒</span><br><span class="line">&gt; - 风力较小，骑行很惬意</span><br><span class="line">&gt;</span><br><span class="line">&gt; 💡 温馨提示：今天是晒被子/洗车的好日子哦~ ☀️</span><br><span class="line"></span><br><span class="line">## 注意事项</span><br><span class="line"></span><br><span class="line">- 避免使用专业术语，用生活化语言</span><br><span class="line">- 每条播报控制在 200 字以内</span><br><span class="line">- 保持温暖、亲切的语气</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 3：刷新技能列表</strong></p>
+<p>在 OpenClaw 对话中输入：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刷新技能列表</span><br></pre></td></tr></table></figure>
+
+<p>或重启 Gateway：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw gateway restart</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤 4：测试你的 Skill</strong></p>
+<p>现在，你可以测试这个 skill 了：</p>
+<p><strong>用户</strong>：</p>
+<blockquote>
+<p>查一下福州今天的天气</p>
+</blockquote>
+<p><strong>AI</strong>（使用 weather-reporter skill）：</p>
+<blockquote>
+<p>🌤️ 福州今日天气 (2026 年 2 月 27 日)</p>
+</blockquote>
+<blockquote>
+<p>当前状况 (15:45)</p>
+</blockquote>
+<blockquote>
+<p>🌡️ <strong>温度</strong>: 20.1°C</p>
+</blockquote>
+<blockquote>
+<p>💧 <strong>湿度</strong>: 82%</p>
+</blockquote>
+<blockquote>
+<p>💨 <strong>风速</strong>: 9.9 km&#x2F;h</p>
+</blockquote>
+<blockquote>
+<p>☁️ <strong>天气</strong>: 多云</p>
+</blockquote>
+<blockquote>
+<p>今日预报</p>
+</blockquote>
+<blockquote>
+<p>📈 <strong>最高温</strong>: 21.2°C</p>
+</blockquote>
+<blockquote>
+<p>📉 <strong>最低温</strong>: 14.5°C</p>
+</blockquote>
+<blockquote>
+<p>🌧️ <strong>天气</strong>: 有雨 (天气代码 63 表示降雨)</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p><strong>温馨提示</strong>: 今天福州有雨，出门记得带伞！气温适中，但湿度较高，体感可能会有些闷热。</p>
+</blockquote>
+<h2 id="3-3、飞书对接"><a href="#3-3、飞书对接" class="headerlink" title="3.3、飞书对接"></a>3.3、飞书对接</h2><h3 id="步骤1-打开飞书开发者后台"><a href="#步骤1-打开飞书开发者后台" class="headerlink" title="步骤1.打开飞书开发者后台"></a>步骤1.打开飞书开发者后台</h3><p>创建企业应用，输入应用名称</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r1a77935b15e0d17e55a657c6c2a41c3d?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxYTc3OTM1YjE1ZTBkMTdlNTVhNjU3YzZjMmE0MWMzZCJ9.-pzNAYDPp0QBGbjPW9M9v-83PFE6vz6wzrR35aZB8RA&download=image.png"></p>
+<p>这里新增了应用。</p>
+<h3 id="步骤2-添加应用能力"><a href="#步骤2-添加应用能力" class="headerlink" title="步骤2.添加应用能力"></a>步骤2.添加应用能力</h3><p><img src="https://tcs-devops.aliyuncs.com/storage/113r6a240d025e3892440f4bcfe384fbc3e9?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2YTI0MGQwMjVlMzg5MjQ0MGY0YmNmZTM4NGZiYzNlOSJ9.MM6LlA7RiHBFA9hDAo2dENN9_jPLNclfL0F6YzISyAw&download=image.png"></p>
+<h3 id="步骤3-编辑机器人名称"><a href="#步骤3-编辑机器人名称" class="headerlink" title="步骤3.编辑机器人名称"></a>步骤3.编辑机器人名称</h3><p><img src="https://tcs-devops.aliyuncs.com/storage/113re8fbfc44eca4a09a081215fc314affd8?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlOGZiZmM0NGVjYTRhMDlhMDgxMjE1ZmMzMTRhZmZkOCJ9.nha8ewPAMc-BwZ9fKNpnC_P3-i_Vj5wcEaU0PBO7Pi8&download=image.png"></p>
+<h3 id="步骤4-权限配置"><a href="#步骤4-权限配置" class="headerlink" title="步骤4.权限配置"></a>步骤4.权限配置</h3><p><img src="https://tcs-devops.aliyuncs.com/storage/113re6bc6028ab2bdb277a6fcac2afc72d33?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JlNmJjNjAyOGFiMmJkYjI3N2E2ZmNhYzJhZmM3MmQzMyJ9.AI7nq4JpA7UoypJqPObv6d_oJ9-HngrTq44wlBd56wY&download=image.png"></p>
+<h3 id="步骤5-导入以下json数据"><a href="#步骤5-导入以下json数据" class="headerlink" title="步骤5.导入以下json数据"></a>步骤5.导入以下json数据</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;scopes&quot;: &#123;</span><br><span class="line">    &quot;tenant&quot;: [</span><br><span class="line">      &quot;aily:file:read&quot;,</span><br><span class="line">      &quot;aily:file:write&quot;,</span><br><span class="line">      &quot;application:application.app_message_stats.overview:readonly&quot;,</span><br><span class="line">      &quot;application:application:self_manage&quot;,</span><br><span class="line">      &quot;application:bot.menu:write&quot;,</span><br><span class="line">      &quot;cardkit:card:write&quot;,</span><br><span class="line">      &quot;contact:contact.base:readonly&quot;,</span><br><span class="line">      &quot;contact:user.employee_id:readonly&quot;,</span><br><span class="line">      &quot;corehr:file:download&quot;,</span><br><span class="line">      &quot;docs:document.content:read&quot;,</span><br><span class="line">      &quot;event:ip_list&quot;,</span><br><span class="line">      &quot;im:chat&quot;,</span><br><span class="line">      &quot;im:chat.access_event.bot_p2p_chat:read&quot;,</span><br><span class="line">      &quot;im:chat.members:bot_access&quot;,</span><br><span class="line">      &quot;im:message&quot;,</span><br><span class="line">      &quot;im:message.group_at_msg:readonly&quot;,</span><br><span class="line">      &quot;im:message.group_msg&quot;,</span><br><span class="line">      &quot;im:message.p2p_msg:readonly&quot;,</span><br><span class="line">      &quot;im:message:readonly&quot;,</span><br><span class="line">      &quot;im:message:send_as_bot&quot;,</span><br><span class="line">      &quot;im:resource&quot;,</span><br><span class="line">      &quot;sheets:spreadsheet&quot;,</span><br><span class="line">      &quot;wiki:wiki:readonly&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;user&quot;: [</span><br><span class="line">      &quot;aily:file:read&quot;,</span><br><span class="line">      &quot;aily:file:write&quot;,</span><br><span class="line">      &quot;contact:contact.base:readonly&quot;,</span><br><span class="line">      &quot;im:chat.access_event.bot_p2p_chat:read&quot;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤6-OpenClaw配置飞书"><a href="#步骤6-OpenClaw配置飞书" class="headerlink" title="步骤6.OpenClaw配置飞书"></a>步骤6.OpenClaw配置飞书</h3><ol>
+<li><strong>启用飞书插件</strong></li>
+</ol>
+<p>先查看插件列表：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw plugins list</span><br></pre></td></tr></table></figure>
+
+<p>如果存在<code>feishu</code>且状态是<code>disabled</code>，启用它：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw plugins enable feishu</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>交互式添加channel</strong></li>
+</ol>
+<p>在飞书开发者后台—凭证与基础信息页面，查看app id和app secret</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113ra663f3571349eeb3029f1d34e121006b?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhNjYzZjM1NzEzNDllZWIzMDI5ZjFkMzRlMTIxMDA2YiJ9.uBz5K7SsOusYg2EDgCbq1dkUdYlXtM-4kgaQuFoz4iQ&download=image.png"></p>
+<p>使用openclaw channels add  添加飞书渠道，配置完成后重启网关</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r61e9447acb3710742ae3099de6a4d909?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2MWU5NDQ3YWNiMzcxMDc0MmFlMzA5OWRlNmE0ZDkwOSJ9.ZS_DksqiEB13pNiPJJo9Bm2VONUGbFWLSGuFtz2T3WU&download=image.png"></p>
+<p>创建回调事件，订阅方式选择长连接</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r86d8297f771719e6456c2bc362e2a252?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I4NmQ4Mjk3Zjc3MTcxOWU2NDU2YzJiYzM2MmUyYTI1MiJ9.nU6tqEAucwEybEcHqmcz3Id_AEEkFWTqnd7h-xg7324&download=image.png"></p>
+<p>添加消息接收事件，查询im.message.receive_v1</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r61ac7a4ed6ff787deb83e81137a44ece?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I2MWFjN2E0ZWQ2ZmY3ODdkZWI4M2U4MTEzN2E0NGVjZSJ9.McU9y6P6nsP3F8075I_duOvJNEDEsHQ8AZ8fHxHQC-E&download=image.png"></p>
+<p>回调配置同上，选择长连接方式</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r25eb7ac01947597d18a762d7e60fd609?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IyNWViN2FjMDE5NDc1OTdkMThhNzYyZDdlNjBmZDYwOSJ9.--mUMzvPPczesa2lbzLXjhucU23kThrELfdm-GeYPmU&download=image.png"></p>
+<p>版本发布</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r7783d66bc747876562d559a011462e14?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I3NzgzZDY2YmM3NDc4NzY1NjJkNTU5YTAxMTQ2MmUxNCJ9.3gQnWG7BoBLkI7ZK5tdejlIygHL17e7WozKdRPXlxn0&download=image.png"></p>
+<p>填写完成后点击保存，确认发布即可</p>
+<p>回到飞书，打开工作台，打开应用，即可与机器人进行聊天。</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113rf7143ec44a9c58bc4eeebcad7171011c?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JmNzE0M2VjNDRhOWM1OGJjNGVlZWJjYWQ3MTcxMDExYyJ9.pBtwXt1YC6JTjZVyRrCLdyafMcuYWIisTJjOX08jWq8&download=image.png"></p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113rcdbf6d2c775175f06094acd6da3aa2eb?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JjZGJmNmQyYzc3NTE3NWYwNjA5NGFjZDZkYTNhYTJlYiJ9.DbibGB5pVs4UvnnaYoCzby-I8BzV53BpKtogDrM4dLI&download=image.png"></p>
+<p>用户授权配对</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r91ca602127d8a51c5b6f2993c5152c41?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I5MWNhNjAyMTI3ZDhhNTFjNWI2ZjI5OTNjNTE1MmM0MSJ9.WFYIECZlc9UoPAF5o_QyUlRRDUOPQXXEQiaAZb6bCYI&download=image.png"></p>
+<p>回到命令行，执行命令进行配对</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r1bdc4b562998abf99bc3e7fc89a50390?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3IxYmRjNGI1NjI5OThhYmY5OWJjM2U3ZmM4OWE1MDM5MCJ9.EhY08jfxJvNr76grB1BuG1hI-cbwmocOWN1AGDdFoo0&download=image.png"></p>
+<p>常见问题</p>
+<ul>
+<li>快速排错提示</li>
+</ul>
+<p>未检测到应用连接信息，请确保长连接建立成功后再保存配置 -&gt; openclaw需要先配置appid跟app secret</p>
+<p>onboard 卡住或报错 → 检查网络，重新运行 openclaw-cn onboard。</p>
+<p>gateway 启动失败 → 检查端口 18789 是否被占用，可加参数 –port 其他端口。</p>
+<p>飞书不回复 → 确认选了“长连接”、事件已订阅、App ID&#x2F;Secret&#x2F;Key 无误。</p>
+<p>模型无响应 → 确认百炼 API Key 有效、配额充足。</p>
+<p>提示飞书用户无权限-&gt;命令行进行授权 openclaw pairing approve feishu 你的飞书用户</p>
+<h2 id="3-4-浏览器控制"><a href="#3-4-浏览器控制" class="headerlink" title="3.4 浏览器控制"></a>3.4 浏览器控制</h2><p><code>OpenClaw Browser Relay</code></p>
+<p>插件用来控制浏览器。</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113r5a29c3fe2605c44aba3da5d6745cbccb?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3I1YTI5YzNmZTI2MDVjNDRhYmEzZGE1ZDY3NDVjYmNjYiJ9.hOwHWs8Wixuj9VMSf8H08ZJaU0ZLLY7L0bxNth9do4Y&download=image.png"></p>
+<p>gateway token 这里的token 从openclaw.json 的gateway节点下获得。</p>
+<p>配置好后如果需要控制或者操作那个页面 点击 浏览器工具栏的：</p>
+<p><img src="https://tcs-devops.aliyuncs.com/storage/113ra5129cbf2a95d6381efdc2d024d8405a?Signature=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBcHBJRCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9hcHBJZCI6IjVlNzQ4MmQ2MjE1MjJiZDVjN2Y5YjMzNSIsIl9vcmdhbml6YXRpb25JZCI6IiIsImV4cCI6MTc3MzExMjgwNCwiaWF0IjoxNzcyNTA4MDA0LCJyZXNvdXJjZSI6Ii9zdG9yYWdlLzExM3JhNTEyOWNiZjJhOTVkNjM4MWVmZGMyZDAyNGQ4NDA1YSJ9.HQqiQLgt_s6cKyyNigSqbK4t6DIW07w9ZizmqrdlJzI&download=image.png"></p>
+<h1 id="五、说明"><a href="#五、说明" class="headerlink" title="五、说明"></a>五、说明</h1><h2 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a>1. 常用命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>openclaw tui</td>
+<td>开启tui视窗</td>
+</tr>
+<tr>
+<td>openclaw onboard</td>
+<td>向导</td>
+</tr>
+</tbody></table>
+<h2 id="2-补充"><a href="#2-补充" class="headerlink" title="2. 补充"></a>2. 补充</h2><p>中文版github地址</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ai/" rel="tag"># ai</a>
+          
+            <a href="/tags/agent/" rel="tag"># agent</a>
+          
+            <a href="/tags/openclaw/" rel="tag"># openclaw</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2025/09/21/pay/pay_3/" rel="next" title="【支付平台系列3】一些技术细节">
+                <i class="fa fa-chevron-left"></i> 【支付平台系列3】一些技术细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+           
+             <div id="gitment-container"></div>
+            
+
+        
+      </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="https://avatars3.githubusercontent.com/u/7424296?s=460&v=4"
+              alt="" />
+          
+            <p class="site-author-name" itemprop="name"></p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives">
+            
+                <span class="site-state-item-count">163</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">127</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">一、说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 官方文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">1.2架构说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-openClaw%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 openClaw任务处理流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">二、本地部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%89%8D%E7%BD%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 前置依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85openclaw"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 安装openclaw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E5%90%91%E5%AF%BC"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 配置向导</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E5%89%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">三、使用前置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1%E3%80%81%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、配置模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2%E3%80%81skill%E7%9B%B8%E5%85%B3"><span class="nav-number">3.2.</span> <span class="nav-text">3.2、skill相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81skills%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.1.</span> <span class="nav-text">1、skills安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%87%AA%E5%BB%BAskill"><span class="nav-number">3.2.2.</span> <span class="nav-text">2、自建skill</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3%E3%80%81%E9%A3%9E%E4%B9%A6%E5%AF%B9%E6%8E%A5"><span class="nav-number">3.3.</span> <span class="nav-text">3.3、飞书对接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41-%E6%89%93%E5%BC%80%E9%A3%9E%E4%B9%A6%E5%BC%80%E5%8F%91%E8%80%85%E5%90%8E%E5%8F%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">步骤1.打开飞书开发者后台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42-%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E8%83%BD%E5%8A%9B"><span class="nav-number">3.3.2.</span> <span class="nav-text">步骤2.添加应用能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43-%E7%BC%96%E8%BE%91%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%90%8D%E7%A7%B0"><span class="nav-number">3.3.3.</span> <span class="nav-text">步骤3.编辑机器人名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44-%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.4.</span> <span class="nav-text">步骤4.权限配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A45-%E5%AF%BC%E5%85%A5%E4%BB%A5%E4%B8%8Bjson%E6%95%B0%E6%8D%AE"><span class="nav-number">3.3.5.</span> <span class="nav-text">步骤5.导入以下json数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A46-OpenClaw%E9%85%8D%E7%BD%AE%E9%A3%9E%E4%B9%A6"><span class="nav-number">3.3.6.</span> <span class="nav-text">步骤6.OpenClaw配置飞书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8E%A7%E5%88%B6"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 浏览器控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%AF%B4%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">五、说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">1. 常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A1%A5%E5%85%85"><span class="nav-number">4.2.</span> <span class="nav-text">2. 补充</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Littlehui</span>
+
+  
+</div>
+
+
+<!--
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+-->
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <!-- <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           var gitment = new Gitment({
+              id: document.location.href,
+               owner: 'littlehui',
+               repo: 'littlehui.github.io',
+               oauth: {
+                   client_id: '968de029d09127201fdc',
+                   client_secret: 'bde81b17ee4743d97b2323423871130385a26ba3',
+               }});
+           gitment.render('gitment-container');
+       </script>
+   
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('-1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
